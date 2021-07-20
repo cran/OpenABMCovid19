@@ -21,8 +21,6 @@ if (!is.null(model)) {
 
   # Make changes to the model (environment)
   model$seed_infect_by_idx(0)
-  model$vaccinate_individual(2)
-  model$vaccinate_schedule( VaccineSchedule$new() )
 
   # Resume simulation
   sim$steps(1) # Note: slow operation (takes a few seconds).

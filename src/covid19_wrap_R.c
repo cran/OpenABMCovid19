@@ -1111,39 +1111,47 @@ SWIG_R_ConvertPacked(SEXP obj, void *ptr, size_t sz, swig_type_info *ty) {
 #define SWIGTYPE_p_event_block swig_types[10]
 #define SWIGTYPE_p_event_list swig_types[11]
 #define SWIGTYPE_p_f_p_model_p_struct_individual__void swig_types[12]
-#define SWIGTYPE_p_gsl_rng swig_types[13]
-#define SWIGTYPE_p_hospital swig_types[14]
-#define SWIGTYPE_p_incomplete_gamma_p_params swig_types[15]
-#define SWIGTYPE_p_individual swig_types[16]
-#define SWIGTYPE_p_infection_event swig_types[17]
-#define SWIGTYPE_p_int swig_types[18]
-#define SWIGTYPE_p_intArray swig_types[19]
-#define SWIGTYPE_p_interaction swig_types[20]
-#define SWIGTYPE_p_interaction_block swig_types[21]
-#define SWIGTYPE_p_long swig_types[22]
-#define SWIGTYPE_p_longArray swig_types[23]
-#define SWIGTYPE_p_model swig_types[24]
-#define SWIGTYPE_p_network swig_types[25]
-#define SWIGTYPE_p_p_char swig_types[26]
-#define SWIGTYPE_p_p_double swig_types[27]
-#define SWIGTYPE_p_p_doubleArray swig_types[28]
-#define SWIGTYPE_p_p_event swig_types[29]
-#define SWIGTYPE_p_p_int swig_types[30]
-#define SWIGTYPE_p_p_intArray swig_types[31]
-#define SWIGTYPE_p_p_interaction swig_types[32]
-#define SWIGTYPE_p_p_interaction_block swig_types[33]
-#define SWIGTYPE_p_p_long swig_types[34]
-#define SWIGTYPE_p_p_longArray swig_types[35]
-#define SWIGTYPE_p_p_network swig_types[36]
-#define SWIGTYPE_p_p_p_double swig_types[37]
-#define SWIGTYPE_p_p_p_doubleArray swig_types[38]
-#define SWIGTYPE_p_parameters swig_types[39]
-#define SWIGTYPE_p_short swig_types[40]
-#define SWIGTYPE_p_shortArray swig_types[41]
-#define SWIGTYPE_p_trace_token swig_types[42]
-#define SWIGTYPE_p_trace_token_block swig_types[43]
-static swig_type_info *swig_types[45];
-static swig_module_info swig_module = {swig_types, 44, 0, 0, 0, 0};
+#define SWIGTYPE_p_f_p_model_p_struct_individual_p_void__void swig_types[13]
+#define SWIGTYPE_p_float swig_types[14]
+#define SWIGTYPE_p_floatArray swig_types[15]
+#define SWIGTYPE_p_gsl_rng swig_types[16]
+#define SWIGTYPE_p_hospital swig_types[17]
+#define SWIGTYPE_p_incomplete_gamma_p_params swig_types[18]
+#define SWIGTYPE_p_individual swig_types[19]
+#define SWIGTYPE_p_infection_event swig_types[20]
+#define SWIGTYPE_p_int swig_types[21]
+#define SWIGTYPE_p_intArray swig_types[22]
+#define SWIGTYPE_p_interaction swig_types[23]
+#define SWIGTYPE_p_interaction_block swig_types[24]
+#define SWIGTYPE_p_long swig_types[25]
+#define SWIGTYPE_p_longArray swig_types[26]
+#define SWIGTYPE_p_model swig_types[27]
+#define SWIGTYPE_p_network swig_types[28]
+#define SWIGTYPE_p_p_char swig_types[29]
+#define SWIGTYPE_p_p_double swig_types[30]
+#define SWIGTYPE_p_p_doubleArray swig_types[31]
+#define SWIGTYPE_p_p_event swig_types[32]
+#define SWIGTYPE_p_p_float swig_types[33]
+#define SWIGTYPE_p_p_floatArray swig_types[34]
+#define SWIGTYPE_p_p_int swig_types[35]
+#define SWIGTYPE_p_p_intArray swig_types[36]
+#define SWIGTYPE_p_p_interaction swig_types[37]
+#define SWIGTYPE_p_p_interaction_block swig_types[38]
+#define SWIGTYPE_p_p_long swig_types[39]
+#define SWIGTYPE_p_p_longArray swig_types[40]
+#define SWIGTYPE_p_p_network swig_types[41]
+#define SWIGTYPE_p_p_p_double swig_types[42]
+#define SWIGTYPE_p_p_p_doubleArray swig_types[43]
+#define SWIGTYPE_p_parameters swig_types[44]
+#define SWIGTYPE_p_short swig_types[45]
+#define SWIGTYPE_p_shortArray swig_types[46]
+#define SWIGTYPE_p_strain swig_types[47]
+#define SWIGTYPE_p_trace_token swig_types[48]
+#define SWIGTYPE_p_trace_token_block swig_types[49]
+#define SWIGTYPE_p_vaccine swig_types[50]
+#define SWIGTYPE_p_void swig_types[51]
+static swig_type_info *swig_types[53];
+static swig_module_info swig_module = {swig_types, 52, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1311,6 +1319,7 @@ static swig_module_info swig_module = {swig_types, 44, 0, 0, 0, 0};
 #include "utilities.h"
 #include "disease.h"
 #include "network.h"
+#include "strain.h"
 
 
 SWIGINTERNINLINE  int
@@ -1522,7 +1531,7 @@ int get_param_hospital_on(parameters *params)
     return params->hospital_on;
 }
 /*****************************************************************************************
-*  Name: 		get_param_rng_seed
+*  Name:        get_param_rng_seed
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 long get_param_rng_seed(parameters *params)
@@ -1531,7 +1540,7 @@ long get_param_rng_seed(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_param_id
+*  Name:        get_param_param_id
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 long get_param_param_id(parameters *params)
@@ -1540,7 +1549,7 @@ long get_param_param_id(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_n_total
+*  Name:        get_param_n_total
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 long get_param_n_total(parameters *params)
@@ -1549,7 +1558,7 @@ long get_param_n_total(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_days_of_interactions
+*  Name:        get_param_days_of_interactions
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 int get_param_days_of_interactions(parameters *params)
@@ -1558,7 +1567,7 @@ int get_param_days_of_interactions(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_mean_random_interactions
+*  Name:        get_param_mean_random_interactions
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_mean_random_interactions(parameters *params, int idx)
@@ -1569,7 +1578,7 @@ double get_param_mean_random_interactions(parameters *params, int idx)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_sd_random_interactions
+*  Name:        get_param_sd_random_interactions
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_sd_random_interactions(parameters *params, int idx)
@@ -1580,7 +1589,7 @@ double get_param_sd_random_interactions(parameters *params, int idx)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_random_interaction_distribution
+*  Name:        get_param_random_interaction_distribution
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 int get_param_random_interaction_distribution(parameters *params)
@@ -1589,7 +1598,7 @@ int get_param_random_interaction_distribution(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_mean_work_interactions
+*  Name:        get_param_mean_work_interactions
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_mean_work_interactions(parameters *params, int idx)
@@ -1600,7 +1609,7 @@ double get_param_mean_work_interactions(parameters *params, int idx)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_daily_fraction_work
+*  Name:        get_param_daily_fraction_work
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_daily_fraction_work(parameters *params)
@@ -1609,7 +1618,7 @@ double get_param_daily_fraction_work(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_child_network_adults
+*  Name:        get_param_child_network_adults
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_child_network_adults(parameters *params)
@@ -1618,7 +1627,7 @@ double get_param_child_network_adults(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_elderly_network_adults
+*  Name:        get_param_elderly_network_adults
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_elderly_network_adults(parameters *params)
@@ -1627,7 +1636,7 @@ double get_param_elderly_network_adults(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_mean_infectious_period
+*  Name:        get_param_mean_infectious_period
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_mean_infectious_period(parameters *params)
@@ -1636,7 +1645,7 @@ double get_param_mean_infectious_period(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_sd_infectious_period
+*  Name:        get_param_sd_infectious_period
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_sd_infectious_period(parameters *params)
@@ -1645,7 +1654,7 @@ double get_param_sd_infectious_period(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_infectious_rate
+*  Name:        get_param_infectious_rate
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_infectious_rate(parameters *params)
@@ -1662,6 +1671,14 @@ int get_param_rebuild_networks(parameters *params)
     return params->rebuild_networks;
 }
 
+/*****************************************************************************************
+*  Name: 		get_param_max_n_strains
+*  Description: Gets the value of a parameter
+******************************************************************************************/
+int get_param_max_n_strains(parameters *params)
+{
+    return params->max_n_strains;
+}
 
 /*****************************************************************************************
 *  Name: 		get_param_sd_infectiousness_multiplier
@@ -1673,7 +1690,7 @@ double get_param_sd_infectiousness_multiplier(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_relative_susceptibility
+*  Name:        get_param_relative_susceptibility
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_relative_susceptibility(parameters *params, int idx)
@@ -1684,7 +1701,7 @@ double get_param_relative_susceptibility(parameters *params, int idx)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_adjusted_susceptibility
+*  Name:        get_param_adjusted_susceptibility
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_adjusted_susceptibility(parameters *params, int idx)
@@ -1695,7 +1712,7 @@ double get_param_adjusted_susceptibility(parameters *params, int idx)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_relative_transmission
+*  Name:        get_param_relative_transmission
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_relative_transmission(parameters *params, int idx)
@@ -1706,7 +1723,7 @@ double get_param_relative_transmission(parameters *params, int idx)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_relative_transmission_used
+*  Name:        get_param_relative_transmission_used
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_relative_transmission_used(parameters *params, int idx)
@@ -1727,7 +1744,7 @@ double get_param_manual_traceable_fraction(parameters *params, int idx)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_mean_time_to_symptoms
+*  Name:        get_param_mean_time_to_symptoms
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_mean_time_to_symptoms(parameters *params)
@@ -1736,7 +1753,7 @@ double get_param_mean_time_to_symptoms(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_sd_time_to_symptoms
+*  Name:        get_param_sd_time_to_symptoms
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_sd_time_to_symptoms(parameters *params)
@@ -1745,7 +1762,7 @@ double get_param_sd_time_to_symptoms(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_hospitalised_fraction
+*  Name:        get_param_hospitalised_fraction
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_hospitalised_fraction(parameters *params, int idx)
@@ -1756,7 +1773,7 @@ double get_param_hospitalised_fraction(parameters *params, int idx)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_critical_fraction
+*  Name:        get_param_critical_fraction
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_critical_fraction(parameters *params, int idx)
@@ -1767,7 +1784,7 @@ double get_param_critical_fraction(parameters *params, int idx)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_fatality_fraction
+*  Name:        get_param_fatality_fraction
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_fatality_fraction(parameters *params, int idx)
@@ -1778,7 +1795,7 @@ double get_param_fatality_fraction(parameters *params, int idx)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_mean_time_to_hospital
+*  Name:        get_param_mean_time_to_hospital
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_mean_time_to_hospital(parameters *params)
@@ -1787,7 +1804,7 @@ double get_param_mean_time_to_hospital(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_mean_time_to_critical
+*  Name:        get_param_mean_time_to_critical
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_mean_time_to_critical(parameters *params)
@@ -1796,7 +1813,7 @@ double get_param_mean_time_to_critical(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_sd_time_to_critical
+*  Name:        get_param_sd_time_to_critical
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_sd_time_to_critical(parameters *params)
@@ -1805,7 +1822,7 @@ double get_param_sd_time_to_critical(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_mean_time_to_recover
+*  Name:        get_param_mean_time_to_recover
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_mean_time_to_recover(parameters *params)
@@ -1814,7 +1831,7 @@ double get_param_mean_time_to_recover(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_sd_time_to_recover
+*  Name:        get_param_sd_time_to_recover
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_mean_sd_to_recover(parameters *params)
@@ -1823,7 +1840,7 @@ double get_param_mean_sd_to_recover(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_mean_time_to_death
+*  Name:        get_param_mean_time_to_death
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_mean_time_to_death(parameters *params)
@@ -1832,7 +1849,7 @@ double get_param_mean_time_to_death(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_sd_time_to_death
+*  Name:        get_param_sd_time_to_death
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_mean_sd_to_death(parameters *params)
@@ -1841,7 +1858,7 @@ double get_param_mean_sd_to_death(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_household_size
+*  Name:        get_param_household_size
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_household_size(parameters *params, int idx)
@@ -1852,7 +1869,7 @@ double get_param_household_size(parameters *params, int idx)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_population
+*  Name:        get_param_population
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_population(parameters *params, int idx)
@@ -1864,7 +1881,7 @@ double get_param_population(parameters *params, int idx)
 
 
 /*****************************************************************************************
-*  Name: 		get_param_fraction_asymptomatic
+*  Name:        get_param_fraction_asymptomatic
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_fraction_asymptomatic(parameters *params, int idx)
@@ -1875,7 +1892,7 @@ double get_param_fraction_asymptomatic(parameters *params, int idx)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_asymptomatic_infectious_factor
+*  Name:        get_param_asymptomatic_infectious_factor
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_asymptomatic_infectious_factor(parameters *params)
@@ -1884,7 +1901,7 @@ double get_param_asymptomatic_infectious_factor(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_mean_asymptomatic_to_recover
+*  Name:        get_param_mean_asymptomatic_to_recover
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_mean_asymptomatic_to_recover(parameters *params)
@@ -1892,7 +1909,7 @@ double get_param_mean_asymptomatic_to_recover(parameters *params)
     return params->mean_asymptomatic_to_recovery;
 }
 /*****************************************************************************************
-*  Name: 		get_param_mild_fraction
+*  Name:        get_param_mild_fraction
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_mild_fraction(parameters *params, int idx)
@@ -1903,7 +1920,7 @@ double get_param_mild_fraction(parameters *params, int idx)
 }
 
 /*****************************************************************************************
-*  Name: 		get_param_sd_asymptomatic_to_recover
+*  Name:        get_param_sd_asymptomatic_to_recover
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_sd_asymptomatic_to_recover(parameters *params)
@@ -1912,7 +1929,7 @@ double get_param_sd_asymptomatic_to_recover(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_quarantine_daily_interactions
+*  Name:        get_param_quarantine_daily_interactions
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_quarantine_daily_interactions(parameters *params)
@@ -1921,7 +1938,7 @@ int get_param_quarantine_daily_interactions(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_hospitalised_daily_interactions
+*  Name:        get_param_hospitalised_daily_interactions
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_hospitalised_daily_interactions(parameters *params)
@@ -1930,7 +1947,7 @@ int get_param_hospitalised_daily_interactions(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_self_quarantine_fraction
+*  Name:        get_param_self_quarantine_fraction
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 double get_param_self_quarantine_fraction(parameters *params)
@@ -1939,7 +1956,7 @@ double get_param_self_quarantine_fraction(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_trace_on_symptoms
+*  Name:        get_param_trace_on_symptoms
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_trace_on_symptoms(parameters *params)
@@ -1948,7 +1965,7 @@ int get_param_trace_on_symptoms(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_trace_on_positive
+*  Name:        get_param_trace_on_positive
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_trace_on_positive(parameters *params)
@@ -1957,7 +1974,7 @@ int get_param_trace_on_positive(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_quarantine_length_self
+*  Name:        get_param_quarantine_length_self
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_quarantine_length_self(parameters *params)
@@ -1966,7 +1983,7 @@ int get_param_quarantine_length_self(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_quarantine_length_traced_symptoms
+*  Name:        get_param_quarantine_length_traced_symptoms
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_quarantine_length_traced_symptoms(parameters *params)
@@ -1975,7 +1992,7 @@ int get_param_quarantine_length_traced_symptoms(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_quarantine_length_traced_positive
+*  Name:        get_param_quarantine_length_traced_positive
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_quarantine_length_traced_positive(parameters *params)
@@ -1984,7 +2001,7 @@ int get_param_quarantine_length_traced_positive(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_quarantine_length_positive
+*  Name:        get_param_quarantine_length_positive
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_quarantine_length_positive(parameters *params)
@@ -1993,7 +2010,7 @@ int get_param_quarantine_length_positive(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_quarantine_dropout_self
+*  Name:        get_param_quarantine_dropout_self
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 double get_param_quarantine_dropout_self(parameters *params)
@@ -2002,7 +2019,7 @@ double get_param_quarantine_dropout_self(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_quarantine_dropout_traced_positive
+*  Name:        get_param_quarantine_dropout_traced_positive
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 double get_param_quarantine_dropout_traced_positive(parameters *params)
@@ -2011,7 +2028,7 @@ double get_param_quarantine_dropout_traced_positive(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_quarantine_dropout_traced_symptoms
+*  Name:        get_param_quarantine_dropout_traced_symptoms
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 double get_param_quarantine_dropout_traced_symptoms(parameters *params)
@@ -2020,7 +2037,7 @@ double get_param_quarantine_dropout_traced_symptoms(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_quarantine_dropout_positive
+*  Name:        get_param_quarantine_dropout_positive
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 double get_param_quarantine_dropout_positive(parameters *params)
@@ -2029,7 +2046,7 @@ double get_param_quarantine_dropout_positive(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_quarantine_compliance_traced_symptoms
+*  Name:        get_param_quarantine_compliance_traced_symptoms
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 double get_param_quarantine_compliance_traced_symptoms(parameters *params)
@@ -2038,7 +2055,7 @@ double get_param_quarantine_compliance_traced_symptoms(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_quarantine_compliance_traced_positive
+*  Name:        get_param_quarantine_compliance_traced_positive
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 double get_param_quarantine_compliance_traced_positive(parameters *params)
@@ -2048,7 +2065,7 @@ double get_param_quarantine_compliance_traced_positive(parameters *params)
 
 
 /*****************************************************************************************
-*  Name:		get_param_quarantine_on_traced
+*  Name:        get_param_quarantine_on_traced
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_quarantine_on_traced(parameters *params)
@@ -2057,7 +2074,7 @@ int get_param_quarantine_on_traced(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_traceable_interaction_fraction
+*  Name:        get_param_traceable_interaction_fraction
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 double get_param_traceable_interaction_fraction(parameters *params)
@@ -2066,7 +2083,7 @@ double get_param_traceable_interaction_fraction(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_tracing_network_depth
+*  Name:        get_param_tracing_network_depth
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_tracing_network_depth(parameters *params)
@@ -2075,7 +2092,7 @@ int get_param_tracing_network_depth(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_allow_clinical_diagnosis
+*  Name:        get_param_allow_clinical_diagnosis
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_allow_clinical_diagnosis(parameters *params)
@@ -2084,7 +2101,7 @@ int get_param_allow_clinical_diagnosis(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_quarantine_household_on_symptoms
+*  Name:        get_param_quarantine_household_on_symptoms
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_quarantine_household_on_symptoms(parameters *params)
@@ -2093,7 +2110,7 @@ int get_param_quarantine_household_on_symptoms(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_quarantine_household_on_positive
+*  Name:        get_param_quarantine_household_on_positive
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_quarantine_household_on_positive(parameters *params)
@@ -2102,7 +2119,7 @@ int get_param_quarantine_household_on_positive(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_quarantine_household_on_traced_positive
+*  Name:        get_param_quarantine_household_on_traced_positive
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_quarantine_household_on_traced_positive(parameters *params)
@@ -2111,7 +2128,7 @@ int get_param_quarantine_household_on_traced_positive(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_quarantine_household_on_traced_symptoms
+*  Name:        get_param_quarantine_household_on_traced_symptoms
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_quarantine_household_on_traced_symptoms(parameters *params)
@@ -2119,7 +2136,7 @@ int get_param_quarantine_household_on_traced_symptoms(parameters *params)
     return params->quarantine_household_on_traced_symptoms;
 }
 /*****************************************************************************************
-*  Name:		get_param_quarantine_household_contacts_on_positive
+*  Name:        get_param_quarantine_household_contacts_on_positive
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_quarantine_household_contacts_on_positive(parameters *params)
@@ -2128,7 +2145,7 @@ int get_param_quarantine_household_contacts_on_positive(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_test_on_symptoms
+*  Name:        get_param_test_on_symptoms
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_test_on_symptoms(parameters *params)
@@ -2137,7 +2154,7 @@ int get_param_test_on_symptoms(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_test_on_traced
+*  Name:        get_param_test_on_traced
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_test_on_traced(parameters *params)
@@ -2146,7 +2163,7 @@ int get_param_test_on_traced(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_test_release_on_negative
+*  Name:        get_param_test_release_on_negative
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_test_release_on_negative(parameters *params)
@@ -2155,7 +2172,7 @@ int get_param_test_release_on_negative(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_test_insensitive_period
+*  Name:        get_param_test_insensitive_period
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_test_insensitive_period(parameters *params)
@@ -2164,7 +2181,7 @@ int get_param_test_insensitive_period(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_test_sensitive_period
+*  Name:        get_param_test_sensitive_period
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_test_sensitive_period(parameters *params)
@@ -2173,7 +2190,7 @@ int get_param_test_sensitive_period(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_test_sensitivity
+*  Name:        get_param_test_sensitivity
 *  Description: Gets the value of a double parameter
 ******************************************************************************************/
 double get_param_test_sensitivity(parameters *params)
@@ -2182,7 +2199,7 @@ double get_param_test_sensitivity(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_test_specificity
+*  Name:        get_param_test_specificity
 *  Description: Gets the value of a double parameter
 ******************************************************************************************/
 double get_param_test_specificity(parameters *params)
@@ -2191,7 +2208,7 @@ double get_param_test_specificity(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_test_result_wait
+*  Name:        get_param_test_result_wait
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_test_result_wait(parameters *params)
@@ -2200,7 +2217,7 @@ int get_param_test_result_wait(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_test_order_wait
+*  Name:        get_param_test_order_wait
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_test_order_wait(parameters *params)
@@ -2209,7 +2226,7 @@ int get_param_test_order_wait(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_test_order_wait_priority
+*  Name:        get_param_test_order_wait_priority
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_test_order_wait_priority(parameters *params)
@@ -2218,7 +2235,7 @@ int get_param_test_order_wait_priority(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_test_result_wait_priority
+*  Name:        get_param_test_result_wait_priority
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_test_result_wait_priority(parameters *params)
@@ -2227,7 +2244,7 @@ int get_param_test_result_wait_priority(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_priority_test_contacts
+*  Name:        get_param_priority_test_contacts
 *  Description: Gets the value of int parameter
 ******************************************************************************************/
 int get_param_priority_test_contacts(parameters *params, int idx)
@@ -2238,7 +2255,7 @@ int get_param_priority_test_contacts(parameters *params, int idx)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_app_users_fraction
+*  Name:        get_param_app_users_fraction
 *  Description: Gets the value of double parameter
 ******************************************************************************************/
 double get_param_app_users_fraction(parameters *params, int idx)
@@ -2249,7 +2266,7 @@ double get_param_app_users_fraction(parameters *params, int idx)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_app_turned_on
+*  Name:        get_param_app_turned_on
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_app_turned_on(parameters *params)
@@ -2258,7 +2275,7 @@ int get_param_app_turned_on(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_app_turn_on_time
+*  Name:        get_param_app_turn_on_time
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_app_turn_on_time(parameters *params)
@@ -2267,7 +2284,7 @@ int get_param_app_turn_on_time(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_daily_non_cov_symptoms_rate
+*  Name:        get_param_daily_non_cov_symptoms_rate
 *  Description: Gets the value of double parameter
 ******************************************************************************************/
 double get_param_daily_non_cov_symptoms_rate(parameters *params)
@@ -2276,7 +2293,7 @@ double get_param_daily_non_cov_symptoms_rate(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_lockdown_occupation_multiplier
+*  Name:        get_param_lockdown_occupation_multiplier
 *  Description: Gets the value of double parameter
 ******************************************************************************************/
 double get_param_lockdown_occupation_multiplier(parameters *params, int idx)
@@ -2286,7 +2303,7 @@ double get_param_lockdown_occupation_multiplier(parameters *params, int idx)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_lockdown_random_network_multiplier
+*  Name:        get_param_lockdown_random_network_multiplier
 *  Description: Gets the value of double parameter
 ******************************************************************************************/
 double get_param_lockdown_random_network_multiplier(parameters *params)
@@ -2295,7 +2312,7 @@ double get_param_lockdown_random_network_multiplier(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_lockdown_house_interaction_multiplier
+*  Name:        get_param_lockdown_house_interaction_multiplier
 *  Description: Gets the value of double parameter
 ******************************************************************************************/
 double get_param_lockdown_house_interaction_multiplier(parameters *params)
@@ -2304,7 +2321,7 @@ double get_param_lockdown_house_interaction_multiplier(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_lockdown_time_on
+*  Name:        get_param_lockdown_time_on
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_lockdown_time_on(parameters *params)
@@ -2313,7 +2330,7 @@ int get_param_lockdown_time_on(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_lockdown_time_off
+*  Name:        get_param_lockdown_time_off
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_lockdown_time_off(parameters *params)
@@ -2322,7 +2339,7 @@ int get_param_lockdown_time_off(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_lockdown_on
+*  Name:        get_param_lockdown_on
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_lockdown_on(parameters *params)
@@ -2331,7 +2348,7 @@ int get_param_lockdown_on(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_lockdown_elderly_time_on
+*  Name:        get_param_lockdown_elderly_time_on
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_lockdown_elderly_time_on(parameters *params)
@@ -2340,7 +2357,7 @@ int get_param_lockdown_elderly_time_on(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_lockdown_elderly_time_off
+*  Name:        get_param_lockdown_elderly_time_off
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_lockdown_elderly_time_off(parameters *params)
@@ -2349,7 +2366,7 @@ int get_param_lockdown_elderly_time_off(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_lockdown_elderly_on
+*  Name:        get_param_lockdown_elderly_on
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_lockdown_elderly_on(parameters *params)
@@ -2358,7 +2375,7 @@ int get_param_lockdown_elderly_on(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_testing_symptoms_time_on
+*  Name:        get_param_testing_symptoms_time_on
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_symptoms_time_on(parameters *params)
@@ -2367,7 +2384,7 @@ int get_param_symptoms_time_on(parameters *params)
 }
 
 /*****************************************************************************************
-*  Name:		get_param_testing_symptoms_time_off
+*  Name:        get_param_testing_symptoms_time_off
 *  Description: Gets the value of an int parameter
 ******************************************************************************************/
 int get_param_testing_symptoms_time_off(parameters *params)
@@ -2377,7 +2394,7 @@ int get_param_testing_symptoms_time_off(parameters *params)
 
 
 /*****************************************************************************************
-*  Name: 		get_param_location_death_icu
+*  Name:        get_param_location_death_icu
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double get_param_location_death_icu(parameters *params, int idx)
@@ -2542,6 +2559,16 @@ int set_param_rebuild_networks(parameters *params, int value)
 }
 
 /*****************************************************************************************
+*  Name:        set_param_max_n_strains
+*  Description: Sets the value of parameter
+******************************************************************************************/
+int set_param_max_n_strains(parameters *params, int value)
+{
+   params->max_n_strains = value;
+   return TRUE;
+}
+
+/*****************************************************************************************
 *  Name:        set_param_sd_infectiousness_multiplier
 *  Description: Sets the value of parameter
 ******************************************************************************************/
@@ -2596,7 +2623,7 @@ int set_param_manual_traceable_fraction(parameters *params, double value, int id
 }
 
 /*****************************************************************************************
-*  Name:		set_param_mean_time_to_symptoms
+*  Name:        set_param_mean_time_to_symptoms
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_mean_time_to_symptoms(parameters *params, double value)
@@ -2606,7 +2633,7 @@ int set_param_mean_time_to_symptoms(parameters *params, double value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_sd_time_to_symptoms
+*  Name:        set_param_sd_time_to_symptoms
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_sd_time_to_symptoms(parameters *params, double value)
@@ -2932,7 +2959,7 @@ int set_param_quarantine_compliance_traced_positive(parameters *params, double v
 }
 
 /*****************************************************************************************
-*  Name: 		set_param_quarantine_on_traced
+*  Name:        set_param_quarantine_on_traced
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_quarantine_on_traced(parameters *params, int value)
@@ -2942,7 +2969,7 @@ int set_param_quarantine_on_traced(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_traceable_interaction_fractio
+*  Name:        set_param_traceable_interaction_fractio
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_traceable_interaction_fraction(parameters *params, double value)
@@ -2952,7 +2979,7 @@ int set_param_traceable_interaction_fraction(parameters *params, double value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_tracing_network_depth
+*  Name:        set_param_tracing_network_depth
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_tracing_network_depth(parameters *params, int value)
@@ -2962,7 +2989,7 @@ int set_param_tracing_network_depth(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_allow_clinical_diagnosis
+*  Name:        set_param_allow_clinical_diagnosis
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_allow_clinical_diagnosis(parameters *params, int value)
@@ -2972,7 +2999,7 @@ int set_param_allow_clinical_diagnosis(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_quarantine_household_on_symptoms
+*  Name:        set_param_quarantine_household_on_symptoms
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_quarantine_household_on_symptoms(parameters *params, int value)
@@ -2982,7 +3009,7 @@ int set_param_quarantine_household_on_symptoms(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_quarantine_household_on_positive
+*  Name:        set_param_quarantine_household_on_positive
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_quarantine_household_on_positive(parameters *params, int value)
@@ -2992,7 +3019,7 @@ int set_param_quarantine_household_on_positive(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_quarantine_household_on_traced_positive
+*  Name:        set_param_quarantine_household_on_traced_positive
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_quarantine_household_on_traced_positive( parameters *params, int value )
@@ -3002,7 +3029,7 @@ int set_param_quarantine_household_on_traced_positive( parameters *params, int v
 }
 
 /*****************************************************************************************
-*  Name:		set_param_quarantine_household_on_traced_symptoms
+*  Name:        set_param_quarantine_household_on_traced_symptoms
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_quarantine_household_on_traced_symptoms( parameters *params, int value )
@@ -3012,7 +3039,7 @@ int set_param_quarantine_household_on_traced_symptoms( parameters *params, int v
 }
 
 /*****************************************************************************************
-*  Name:		set_param_quarantine_household_contacts_on_positive
+*  Name:        set_param_quarantine_household_contacts_on_positive
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_quarantine_household_contacts_on_positive(parameters *params, int value)
@@ -3022,7 +3049,7 @@ int set_param_quarantine_household_contacts_on_positive(parameters *params, int 
 }
 
 /*****************************************************************************************
-*  Name:		set_param_test_on_symptoms
+*  Name:        set_param_test_on_symptoms
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_test_on_symptoms(parameters *params, int value)
@@ -3032,7 +3059,7 @@ int set_param_test_on_symptoms(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_test_on_traced
+*  Name:        set_param_test_on_traced
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_test_on_traced(parameters *params, int value)
@@ -3042,7 +3069,7 @@ int set_param_test_on_traced(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_test_release_on_negative
+*  Name:        set_param_test_release_on_negative
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_test_release_on_negative(parameters *params, int value)
@@ -3052,7 +3079,7 @@ int set_param_test_release_on_negative(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_test_insensitive_period
+*  Name:        set_param_test_insensitive_period
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_test_insensitive_period(parameters *params, int value)
@@ -3062,7 +3089,7 @@ int set_param_test_insensitive_period(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_test_sensitive_period
+*  Name:        set_param_test_sensitive_period
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_test_sensitive_period(parameters *params, int value)
@@ -3072,7 +3099,7 @@ int set_param_test_sensitive_period(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_test_sensitivity
+*  Name:        set_param_test_sensitivity
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_test_sensitivity(parameters *params, double value)
@@ -3082,7 +3109,7 @@ int set_param_test_sensitivity(parameters *params, double value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_test_specificity
+*  Name:        set_param_test_specificity
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_test_specificity(parameters *params, double value)
@@ -3092,7 +3119,7 @@ int set_param_test_specificity(parameters *params, double value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_test_result_wait
+*  Name:        set_param_test_result_wait
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_test_result_wait(parameters *params, int value)
@@ -3102,7 +3129,7 @@ int set_param_test_result_wait(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_test_order_wait
+*  Name:        set_param_test_order_wait
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_test_order_wait(parameters *params, int value)
@@ -3112,7 +3139,7 @@ int set_param_test_order_wait(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_test_order_wait_priority
+*  Name:        set_param_test_order_wait_priority
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_test_order_wait_priority(parameters *params, int value)
@@ -3122,7 +3149,7 @@ int set_param_test_order_wait_priority(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_test_result_wait_priority
+*  Name:        set_param_test_result_wait_priority
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_test_result_wait_priority(parameters *params, int value)
@@ -3132,7 +3159,7 @@ int set_param_test_result_wait_priority(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_priority_test_contacts
+*  Name:        set_param_priority_test_contacts
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_priority_test_contacts(parameters *params, int value, int idx)
@@ -3143,7 +3170,7 @@ int set_param_priority_test_contacts(parameters *params, int value, int idx)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_app_users_fraction
+*  Name:        set_param_app_users_fraction
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_app_users_fraction(parameters *params, double value, int idx)
@@ -3154,7 +3181,7 @@ int set_param_app_users_fraction(parameters *params, double value, int idx)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_app_turn_on_time
+*  Name:        set_param_app_turn_on_time
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_app_turn_on_time(parameters *params, int value)
@@ -3164,7 +3191,7 @@ int set_param_app_turn_on_time(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_app_turned_on
+*  Name:        set_param_app_turned_on
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_app_turned_on(parameters *params, int value)
@@ -3174,7 +3201,7 @@ int set_param_app_turned_on(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_daily_non_cov_symptoms_rate
+*  Name:        set_param_daily_non_cov_symptoms_rate
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_daily_non_cov_symptoms_rate(parameters *params, double value)
@@ -3184,7 +3211,7 @@ int set_param_daily_non_cov_symptoms_rate(parameters *params, double value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_lockdown_occupation_multiplier
+*  Name:        set_param_lockdown_occupation_multiplier
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_lockdown_occupation_multiplier( parameters *params, double value, int idx)
@@ -3195,7 +3222,7 @@ int set_param_lockdown_occupation_multiplier( parameters *params, double value, 
 }
 
 /*****************************************************************************************
-*  Name:		set_param_lockdown_random_network_multiplier
+*  Name:        set_param_lockdown_random_network_multiplier
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_random_network_multiplier(parameters *params, double value)
@@ -3205,7 +3232,7 @@ int set_param_random_network_multiplier(parameters *params, double value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_lockdown_house_interaction_multiplier
+*  Name:        set_param_lockdown_house_interaction_multiplier
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_lockdown_house_interaction_multiplier(parameters *params, double value)
@@ -3215,7 +3242,7 @@ int set_param_lockdown_house_interaction_multiplier(parameters *params, double v
 }
 
 /*****************************************************************************************
-*  Name:		set_param_lockdown_time_on
+*  Name:        set_param_lockdown_time_on
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_lockdown_time_on(parameters *params, int value)
@@ -3225,7 +3252,7 @@ int set_param_lockdown_time_on(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_lockdown_time_off
+*  Name:        set_param_lockdown_time_off
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_lockdown_time_off(parameters *params, int value)
@@ -3235,7 +3262,7 @@ int set_param_lockdown_time_off(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_lockdown_on
+*  Name:        set_param_lockdown_on
 *  Description: Carries out checks on the input parameters
 ******************************************************************************************/
 int set_param_lockdown_on(parameters *params, int value)
@@ -3245,7 +3272,7 @@ int set_param_lockdown_on(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_lockdown_elderly_time_on
+*  Name:        set_param_lockdown_elderly_time_on
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_lockdown_elderly_time_on(parameters *params, int value)
@@ -3255,7 +3282,7 @@ int set_param_lockdown_elderly_time_on(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_lockdown_elderly_time_off
+*  Name:        set_param_lockdown_elderly_time_off
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_lockdown_elderly_time_off(parameters *params, int value)
@@ -3265,7 +3292,7 @@ int set_param_lockdown_elderly_time_off(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_lockdown_elderly_on
+*  Name:        set_param_lockdown_elderly_on
 *  Description: Carries out checks on the input parameters
 ******************************************************************************************/
 int set_param_lockdown_elderly_on(parameters *params, int value)
@@ -3275,7 +3302,7 @@ int set_param_lockdown_elderly_on(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_testing_symptoms_time_on
+*  Name:        set_param_testing_symptoms_time_on
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_testing_symptoms_time_on(parameters *params, int value)
@@ -3285,7 +3312,7 @@ int set_param_testing_symptoms_time_on(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name:		set_param_testing_symptoms_time_off
+*  Name:        set_param_testing_symptoms_time_off
 *  Description: Sets the value of parameter
 ******************************************************************************************/
 int set_param_testing_symptoms_time_off(parameters *params, int value)
@@ -3295,7 +3322,7 @@ int set_param_testing_symptoms_time_off(parameters *params, int value)
 }
 
 /*****************************************************************************************
-*  Name: 		set_param_mild_fraction
+*  Name:        set_param_mild_fraction
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double set_param_mild_fraction(parameters *params, double value, int idx)
@@ -3306,7 +3333,7 @@ double set_param_mild_fraction(parameters *params, double value, int idx)
 }
 
 /*****************************************************************************************
-*  Name: 		set_param_location_death_icu
+*  Name:        set_param_location_death_icu
 *  Description: Gets the value of a parameter
 ******************************************************************************************/
 double set_param_location_death_icu(parameters *params, double value, int idx)
@@ -3421,6 +3448,27 @@ SWIGINTERN short *shortArray_cast(shortArray *self){
 }
 SWIGINTERN shortArray *shortArray_frompointer(short *t){
   return (shortArray *) t;
+}
+
+typedef float floatArray;
+
+SWIGINTERN floatArray *new_floatArray(int nelements){
+  return (float *) calloc(nelements,sizeof(float));
+}
+SWIGINTERN void delete_floatArray(floatArray *self){
+  free(self);
+}
+SWIGINTERN float floatArray_getitem(floatArray *self,int index){
+  return self[index];
+}
+SWIGINTERN void floatArray_setitem(floatArray *self,int index,float value){
+  self[index] = value;
+}
+SWIGINTERN float *floatArray_cast(floatArray *self){
+  return self;
+}
+SWIGINTERN floatArray *floatArray_frompointer(float *t){
+  return (floatArray *) t;
 }
 
 /*****************************************************************************************
@@ -3805,6 +3853,14 @@ double network_daily_fraction( network *pnetwork ) {
 	return pnetwork->daily_fraction;
 }
 
+float network_transmission_multiplier( network *pnetwork ) {
+	return pnetwork->transmission_multiplier;
+} 
+
+void set_network_transmission_multiplier( network *pnetwork, float val ) {
+	pnetwork->transmission_multiplier = val;
+}
+
 int get_network( network *pnetwork, long *id1_array, long *id2_array) {
     
     long idx;
@@ -3817,6 +3873,64 @@ int get_network( network *pnetwork, long *id1_array, long *id2_array) {
     }
     
 	return TRUE;
+}
+
+
+
+
+short vaccine_idx( vaccine *pvaccine ) {
+    return pvaccine->idx;
+}
+
+void vaccine_full_efficacy( vaccine *pvaccine, float *efficacy ) {
+ 	
+ 	short n_strains = pvaccine->n_strains;
+ 	
+ 	for( int idx = 0; idx < n_strains; idx++ )
+ 		efficacy[ idx ] = pvaccine->full_efficacy[ idx ];
+}
+
+void vaccine_symptoms_efficacy( vaccine *pvaccine, float *efficacy ) {
+
+	short n_strains = pvaccine->n_strains;
+ 	
+ 	for( int idx = 0; idx < n_strains; idx++ )
+ 		efficacy[ idx ] = pvaccine->symptoms_efficacy[ idx ];
+ }
+
+void vaccine_severe_efficacy( vaccine *pvaccine, float *efficacy  ) {
+	
+	short n_strains = pvaccine->n_strains;
+ 	
+ 	for( int idx = 0; idx < n_strains; idx++ )
+ 		efficacy[ idx ] = pvaccine->severe_efficacy[ idx ];
+}
+
+short vaccine_time_to_protect( vaccine *pvaccine ) {
+    return pvaccine->time_to_protect;
+}
+
+short vaccine_vaccine_protection_period( vaccine *pvaccine ) {
+    return pvaccine->vaccine_protection_period;
+}
+
+char *vaccine_name( vaccine *pvaccine ) {
+	return pvaccine->name;
+}
+
+short vaccine_n_strains( vaccine *pvaccine ) {
+    return pvaccine->n_strains;
+}
+
+
+
+
+short strain_idx( strain *pstrain ) {
+    return pstrain->idx;
+}
+
+float strain_transmission_multiplier( strain *pstrain ) {
+    return pstrain->transmission_multiplier;
 }
 
 
@@ -5402,6 +5516,120 @@ R_swig_model_user_network_get ( SEXP self)
   arg1 = (struct model *)(argp1);
   result = (network *) ((arg1)->user_network);
   r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_network, R_SWIG_EXTERNAL |  0 );
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_model_n_networks_set ( SEXP self, SEXP s_n_networks)
+{
+  struct model *arg1 = (struct model *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_model, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "model_n_networks_set" "', argument " "1"" of type '" "struct model *""'"); 
+  }
+  arg1 = (struct model *)(argp1);
+  arg2 = (int)(INTEGER(s_n_networks)[0]);
+  if (arg1) (arg1)->n_networks = arg2;
+  r_ans = R_NilValue;
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_model_n_networks_get ( SEXP self, SEXP s_swig_copy)
+{
+  int result;
+  struct model *arg1 = (struct model *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_model, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "model_n_networks_get" "', argument " "1"" of type '" "struct model *""'"); 
+  }
+  arg1 = (struct model *)(argp1);
+  result = (int) ((arg1)->n_networks);
+  r_ans = Rf_ScalarInteger(result);
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_model_all_networks_set ( SEXP self, SEXP s_all_networks)
+{
+  struct model *arg1 = (struct model *) 0 ;
+  network **arg2 = (network **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_model, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "model_all_networks_set" "', argument " "1"" of type '" "struct model *""'"); 
+  }
+  arg1 = (struct model *)(argp1);
+  res2 = SWIG_R_ConvertPtr(s_all_networks, &argp2, SWIGTYPE_p_p_network, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "model_all_networks_set" "', argument " "2"" of type '" "network **""'"); 
+  }
+  arg2 = (network **)(argp2);
+  if (arg1) (arg1)->all_networks = arg2;
+  r_ans = R_NilValue;
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_model_all_networks_get ( SEXP self)
+{
+  network **result = 0 ;
+  struct model *arg1 = (struct model *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_model, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "model_all_networks_get" "', argument " "1"" of type '" "struct model *""'"); 
+  }
+  arg1 = (struct model *)(argp1);
+  result = (network **) ((arg1)->all_networks);
+  r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_p_network, R_SWIG_EXTERNAL |  0 );
   
   vmaxset(r_vmax);
   if(r_nprotect)  Rf_unprotect(r_nprotect);
@@ -7091,6 +7319,240 @@ R_swig_model_hospitals_get ( SEXP self)
 
 
 SWIGEXPORT SEXP
+R_swig_model_strains_set ( SEXP self, SEXP s_strains)
+{
+  struct model *arg1 = (struct model *) 0 ;
+  strain *arg2 = (strain *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_model, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "model_strains_set" "', argument " "1"" of type '" "struct model *""'"); 
+  }
+  arg1 = (struct model *)(argp1);
+  res2 = SWIG_R_ConvertPtr(s_strains, &argp2, SWIGTYPE_p_strain, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "model_strains_set" "', argument " "2"" of type '" "strain *""'"); 
+  }
+  arg2 = (strain *)(argp2);
+  if (arg1) (arg1)->strains = arg2;
+  r_ans = R_NilValue;
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_model_strains_get ( SEXP self)
+{
+  strain *result = 0 ;
+  struct model *arg1 = (struct model *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_model, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "model_strains_get" "', argument " "1"" of type '" "struct model *""'"); 
+  }
+  arg1 = (struct model *)(argp1);
+  result = (strain *) ((arg1)->strains);
+  r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_strain, R_SWIG_EXTERNAL |  0 );
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_model_n_initialised_strains_set ( SEXP self, SEXP s_n_initialised_strains)
+{
+  struct model *arg1 = (struct model *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_model, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "model_n_initialised_strains_set" "', argument " "1"" of type '" "struct model *""'"); 
+  }
+  arg1 = (struct model *)(argp1);
+  arg2 = (int)(INTEGER(s_n_initialised_strains)[0]);
+  if (arg1) (arg1)->n_initialised_strains = arg2;
+  r_ans = R_NilValue;
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_model_n_initialised_strains_get ( SEXP self, SEXP s_swig_copy)
+{
+  int result;
+  struct model *arg1 = (struct model *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_model, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "model_n_initialised_strains_get" "', argument " "1"" of type '" "struct model *""'"); 
+  }
+  arg1 = (struct model *)(argp1);
+  result = (int) ((arg1)->n_initialised_strains);
+  r_ans = Rf_ScalarInteger(result);
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_model_cross_immunity_set ( SEXP self, SEXP s_cross_immunity)
+{
+  struct model *arg1 = (struct model *) 0 ;
+  float **arg2 = (float **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_model, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "model_cross_immunity_set" "', argument " "1"" of type '" "struct model *""'"); 
+  }
+  arg1 = (struct model *)(argp1);
+  res2 = SWIG_R_ConvertPtr(s_cross_immunity, &argp2, SWIGTYPE_p_p_float, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "model_cross_immunity_set" "', argument " "2"" of type '" "float **""'"); 
+  }
+  arg2 = (float **)(argp2);
+  if (arg1) (arg1)->cross_immunity = arg2;
+  r_ans = R_NilValue;
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_model_cross_immunity_get ( SEXP self)
+{
+  float **result = 0 ;
+  struct model *arg1 = (struct model *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_model, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "model_cross_immunity_get" "', argument " "1"" of type '" "struct model *""'"); 
+  }
+  arg1 = (struct model *)(argp1);
+  result = (float **) ((arg1)->cross_immunity);
+  r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_p_float, R_SWIG_EXTERNAL |  0 );
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_model_vaccines_set ( SEXP self, SEXP s_vaccines)
+{
+  struct model *arg1 = (struct model *) 0 ;
+  vaccine *arg2 = (vaccine *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_model, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "model_vaccines_set" "', argument " "1"" of type '" "struct model *""'"); 
+  }
+  arg1 = (struct model *)(argp1);
+  res2 = SWIG_R_ConvertPtr(s_vaccines, &argp2, SWIGTYPE_p_vaccine, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "model_vaccines_set" "', argument " "2"" of type '" "vaccine *""'"); 
+  }
+  arg2 = (vaccine *)(argp2);
+  if (arg1) (arg1)->vaccines = arg2;
+  r_ans = R_NilValue;
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_model_vaccines_get ( SEXP self)
+{
+  vaccine *result = 0 ;
+  struct model *arg1 = (struct model *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_model, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "model_vaccines_get" "', argument " "1"" of type '" "struct model *""'"); 
+  }
+  arg1 = (struct model *)(argp1);
+  result = (vaccine *) ((arg1)->vaccines);
+  r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_vaccine, R_SWIG_EXTERNAL |  0 );
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
 R_swig_delete_model ( SEXP self)
 {
   struct model *arg1 = (struct model *) 0 ;
@@ -7434,6 +7896,64 @@ R_swig_event_time_get ( SEXP self, SEXP s_swig_copy)
 
 
 SWIGEXPORT SEXP
+R_swig_event_info_set ( SEXP self, SEXP s_info)
+{
+  struct event *arg1 = (struct event *) 0 ;
+  void *arg2 = (void *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_event, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "event_info_set" "', argument " "1"" of type '" "struct event *""'"); 
+  }
+  arg1 = (struct event *)(argp1);
+  res2 = SWIG_R_ConvertPtr(s_info, SWIG_as_voidptrptr(&arg2), 0, SWIG_POINTER_DISOWN);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "event_info_set" "', argument " "2"" of type '" "void *""'"); 
+  }
+  if (arg1) (arg1)->info = arg2;
+  r_ans = R_NilValue;
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_event_info_get ( SEXP self)
+{
+  void *result = 0 ;
+  struct event *arg1 = (struct event *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_event, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "event_info_get" "', argument " "1"" of type '" "struct event *""'"); 
+  }
+  arg1 = (struct event *)(argp1);
+  result = (void *) ((arg1)->info);
+  r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_void, R_SWIG_EXTERNAL |  0 );
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
 R_swig_event__next_set ( SEXP self, SEXP s_arg2)
 {
   struct event *arg1 = (struct event *) 0 ;
@@ -7708,6 +8228,31 @@ R_swig_add_event_block ( SEXP s_arg1, SEXP s_arg2)
 
 
 SWIGEXPORT SEXP
+R_swig_set_up_strains ( SEXP s_arg1)
+{
+  model *arg1 = (model *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(s_arg1, &argp1, SWIGTYPE_p_model, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "set_up_strains" "', argument " "1"" of type '" "model *""'"); 
+  }
+  arg1 = (model *)(argp1);
+  set_up_strains(arg1);
+  r_ans = R_NilValue;
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
 R_swig_set_up_seed_infection ( SEXP s_arg1)
 {
   model *arg1 = (model *) 0 ;
@@ -7960,17 +8505,19 @@ R_swig_create_event ( SEXP s_arg1)
 
 
 SWIGEXPORT SEXP
-R_swig_add_individual_to_event_list ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4)
+R_swig_add_individual_to_event_list ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4, SEXP s_arg5)
 {
   event *result = 0 ;
   model *arg1 = (model *) 0 ;
   int arg2 ;
   individual *arg3 = (individual *) 0 ;
   int arg4 ;
+  void *arg5 = (void *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp3 = 0 ;
   int res3 = 0 ;
+  int res5 ;
   unsigned int r_nprotect = 0;
   SEXP r_ans = R_NilValue ;
   VMAXTYPE r_vmax = vmaxget() ;
@@ -7987,8 +8534,13 @@ R_swig_add_individual_to_event_list ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEX
   }
   arg3 = (individual *)(argp3);
   arg4 = (int)(INTEGER(s_arg4)[0]);
-  result = (event *)add_individual_to_event_list(arg1,arg2,arg3,arg4);
+  res5 = SWIG_R_ConvertPtr(s_arg5, SWIG_as_voidptrptr(&arg5), 0, 0);
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "add_individual_to_event_list" "', argument " "5"" of type '" "void *""'"); 
+  }
+  result = (event *)add_individual_to_event_list(arg1,arg2,arg3,arg4,arg5);
   r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_event, R_SWIG_EXTERNAL |  0 );
+  
   
   
   
@@ -8212,6 +8764,96 @@ R_swig_transition_events ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4)
 }
 
 
+void _p_f_p_model_p_struct_individual_p_void__void(model * s_arg1, individual * s_arg2, void * s_arg3) {
+  model *arg1 = (model *) 0 ;
+  individual *arg2 = (individual *) 0 ;
+  void *arg3 = (void *) 0 ;
+  RCallbackFunctionData *r_swig_cb_data = R_SWIG_getCallbackFunctionData();
+  SEXP r_tmp;
+  int r_nprotect = 0;
+  char * r_vmax= 0;
+  int ecode = 0;
+  
+  Rf_protect(r_swig_cb_data->expr = Rf_allocVector(LANGSXP, 4));
+  r_nprotect++;
+  r_swig_cb_data->el = r_swig_cb_data->expr;
+  
+  SETCAR(r_swig_cb_data->el, r_swig_cb_data->fun);
+  r_swig_cb_data->el = CDR(r_swig_cb_data->el);
+  
+  r_tmp = SWIG_R_NewPointerObj(SWIG_as_voidptr(s_arg1), SWIGTYPE_p_model, R_SWIG_EXTERNAL |  0 );
+  SETCAR(r_swig_cb_data->el, r_tmp);
+  r_swig_cb_data->el = CDR(r_swig_cb_data->el);
+  
+  r_tmp = SWIG_R_NewPointerObj(SWIG_as_voidptr(s_arg2), SWIGTYPE_p_individual, R_SWIG_EXTERNAL |  0 );
+  SETCAR(r_swig_cb_data->el, r_tmp);
+  r_swig_cb_data->el = CDR(r_swig_cb_data->el);
+  
+  r_tmp = SWIG_R_NewPointerObj(SWIG_as_voidptr(s_arg3), SWIGTYPE_p_void, R_SWIG_EXTERNAL |  0 );
+  SETCAR(r_swig_cb_data->el, r_tmp);
+  r_swig_cb_data->el = CDR(r_swig_cb_data->el);
+  
+  
+  
+  r_swig_cb_data->retValue = R_tryEval(r_swig_cb_data->expr, R_GlobalEnv, &r_swig_cb_data->errorOccurred);
+  
+  if(r_swig_cb_data->errorOccurred) {
+    R_SWIG_popCallbackFunctionData(1);
+    Rf_error("error in calling R function as a function pointer (_p_f_p_model_p_struct_individual_p_void__void)");
+  }
+  R_SWIG_popCallbackFunctionData(1);
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  
+}
+
+
+SWIGEXPORT SEXP
+R_swig_transition_events_info ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4)
+{
+  model *arg1 = (model *) 0 ;
+  int arg2 ;
+  void (*arg3)(model *,individual *,void *) = (void (*)(model *,individual *,void *)) 0 ;
+  int arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(s_arg1, &argp1, SWIGTYPE_p_model, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "transition_events_info" "', argument " "1"" of type '" "model *""'"); 
+  }
+  arg1 = (model *)(argp1);
+  arg2 = (int)(INTEGER(s_arg2)[0]);
+  if(TYPEOF(s_arg3) != CLOSXP) {
+    {
+      int res = SWIG_R_ConvertPtr(s_arg3, (void**)(&arg3), SWIGTYPE_p_f_p_model_p_struct_individual_p_void__void, 0);
+      if (!SWIG_IsOK(res)) {
+        SWIG_exception_fail(SWIG_ArgError(res), "in method '" "transition_events_info" "', argument " "3"" of type '" "void (*)(model *,individual *,void *)""'"); 
+      }
+    }
+  } else {
+    arg3 = _p_f_p_model_p_struct_individual_p_void__void;
+    R_SWIG_pushCallbackFunctionData(s_arg3, NULL);
+  }
+  arg4 = (int)(INTEGER(s_arg4)[0]);
+  transition_events_info(arg1,arg2,arg3,arg4);
+  r_ans = R_NilValue;
+  
+  
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
 SWIGEXPORT SEXP
 R_swig_add_interaction_block ( SEXP s_arg1, SEXP s_arg2)
 {
@@ -8257,6 +8899,38 @@ R_swig_return_interactions ( SEXP s_arg1)
   arg1 = (model *)(argp1);
   return_interactions(arg1);
   r_ans = R_NilValue;
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_add_new_network ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3)
+{
+  network *result = 0 ;
+  model *arg1 = (model *) 0 ;
+  long arg2 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(s_arg1, &argp1, SWIGTYPE_p_model, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "add_new_network" "', argument " "1"" of type '" "model *""'"); 
+  }
+  arg1 = (model *)(argp1);
+  arg2 = (long)(INTEGER(s_arg2)[0]);
+  arg3 = (int)(INTEGER(s_arg3)[0]);
+  result = (network *)add_new_network(arg1,arg2,arg3);
+  r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_network, R_SWIG_EXTERNAL |  0 );
+  
+  
   
   vmaxset(r_vmax);
   if(r_nprotect)  Rf_unprotect(r_nprotect);
@@ -8640,12 +9314,11 @@ R_swig_get_network_by_id ( SEXP s_arg1, SEXP s_arg2)
 
 
 SWIGEXPORT SEXP
-R_swig_get_network_ids ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_swig_copy)
+R_swig_get_network_ids ( SEXP s_arg1, SEXP s_arg2, SEXP s_swig_copy)
 {
   int result;
   model *arg1 = (model *) 0 ;
   int *arg2 = (int *) 0 ;
-  int arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   unsigned int r_nprotect = 0;
@@ -8667,42 +9340,11 @@ R_swig_get_network_ids ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_swig_copy
       }
     }
   }
-  arg3 = (int)(INTEGER(s_arg3)[0]);
-  result = (int)get_network_ids(arg1,arg2,arg3);
+  result = (int)get_network_ids(arg1,arg2);
   r_ans = Rf_ScalarInteger(result);
   
   
   free(arg2);
-  
-  
-  vmaxset(r_vmax);
-  if(r_nprotect)  Rf_unprotect(r_nprotect);
-  
-  return r_ans;
-}
-
-
-SWIGEXPORT SEXP
-R_swig_get_network_id_by_index ( SEXP s_arg1, SEXP s_arg2, SEXP s_swig_copy)
-{
-  int result;
-  model *arg1 = (model *) 0 ;
-  int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int r_nprotect = 0;
-  SEXP r_ans = R_NilValue ;
-  VMAXTYPE r_vmax = vmaxget() ;
-  
-  res1 = SWIG_R_ConvertPtr(s_arg1, &argp1, SWIGTYPE_p_model, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "get_network_id_by_index" "', argument " "1"" of type '" "model *""'"); 
-  }
-  arg1 = (model *)(argp1);
-  arg2 = (int)(INTEGER(s_arg2)[0]);
-  result = (int)get_network_id_by_index(arg1,arg2);
-  r_ans = Rf_ScalarInteger(result);
-  
   
   vmaxset(r_vmax);
   if(r_nprotect)  Rf_unprotect(r_nprotect);
@@ -16856,6 +17498,60 @@ R_swig_parameters_hcw_mean_work_interactions_get ( SEXP self, SEXP s_swig_copy)
 
 
 SWIGEXPORT SEXP
+R_swig_parameters_max_n_strains_set ( SEXP self, SEXP s_max_n_strains)
+{
+  parameters *arg1 = (parameters *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_parameters, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "parameters_max_n_strains_set" "', argument " "1"" of type '" "parameters *""'"); 
+  }
+  arg1 = (parameters *)(argp1);
+  arg2 = (int)(INTEGER(s_max_n_strains)[0]);
+  if (arg1) (arg1)->max_n_strains = arg2;
+  r_ans = R_NilValue;
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_parameters_max_n_strains_get ( SEXP self, SEXP s_swig_copy)
+{
+  int result;
+  parameters *arg1 = (parameters *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_parameters, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "parameters_max_n_strains_get" "', argument " "1"" of type '" "parameters *""'"); 
+  }
+  arg1 = (parameters *)(argp1);
+  result = (int) ((arg1)->max_n_strains);
+  r_ans = Rf_ScalarInteger(result);
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
 R_swig_delete_parameters ( SEXP self)
 {
   parameters *arg1 = (parameters *) 0 ;
@@ -19375,7 +20071,7 @@ R_swig_set_occupation_network_table ( SEXP params, SEXP n_total, SEXP n_networks
 
 
 SWIGEXPORT SEXP
-R_swig_set_indiv_occupation_network_property ( SEXP params, SEXP network, SEXP age_type, SEXP mean_interaction, SEXP lockdown_multiplier, SEXP network_id, SEXP network_name, SEXP s_swig_copy)
+R_swig_set_indiv_occupation_network_property ( SEXP params, SEXP network, SEXP age_type, SEXP mean_interaction, SEXP lockdown_multiplier, SEXP network_name, SEXP s_swig_copy)
 {
   int result;
   parameters *arg1 = (parameters *) 0 ;
@@ -19383,13 +20079,12 @@ R_swig_set_indiv_occupation_network_property ( SEXP params, SEXP network, SEXP a
   int arg3 ;
   double arg4 ;
   double arg5 ;
-  long arg6 ;
-  char *arg7 = (char *) 0 ;
+  char *arg6 = (char *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int res7 ;
-  char *buf7 = 0 ;
-  int alloc7 = 0 ;
+  int res6 ;
+  char *buf6 = 0 ;
+  int alloc6 = 0 ;
   unsigned int r_nprotect = 0;
   SEXP r_ans = R_NilValue ;
   VMAXTYPE r_vmax = vmaxget() ;
@@ -19403,21 +20098,19 @@ R_swig_set_indiv_occupation_network_property ( SEXP params, SEXP network, SEXP a
   arg3 = (int)(INTEGER(age_type)[0]);
   arg4 = (double)(REAL(mean_interaction)[0]);
   arg5 = (double)(REAL(lockdown_multiplier)[0]);
-  arg6 = (long)(INTEGER(network_id)[0]);
-  res7 = SWIG_AsCharPtrAndSize(network_name, &buf7, NULL, &alloc7);
-  if (!SWIG_IsOK(res7)) {
-    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "set_indiv_occupation_network_property" "', argument " "7"" of type '" "char const *""'");
+  res6 = SWIG_AsCharPtrAndSize(network_name, &buf6, NULL, &alloc6);
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "set_indiv_occupation_network_property" "', argument " "6"" of type '" "char const *""'");
   }
-  arg7 = (char *)(buf7);
-  result = (int)set_indiv_occupation_network_property(arg1,arg2,arg3,arg4,arg5,arg6,(char const *)arg7);
+  arg6 = (char *)(buf6);
+  result = (int)set_indiv_occupation_network_property(arg1,arg2,arg3,arg4,arg5,(char const *)arg6);
   r_ans = Rf_ScalarInteger(result);
   
   
   
   
   
-  
-  if (alloc7 == SWIG_NEWOBJ) free((char*)buf7);
+  if (alloc6 == SWIG_NEWOBJ) free((char*)buf6);
   vmaxset(r_vmax);
   if(r_nprotect)  Rf_unprotect(r_nprotect);
   
@@ -20791,7 +21484,7 @@ R_swig_get_n_transmissions ( SEXP s_arg1, SEXP s_swig_copy)
 
 
 SWIGEXPORT SEXP
-R_swig_get_transmissions ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4, SEXP s_arg5, SEXP s_arg6, SEXP s_arg7, SEXP s_arg8, SEXP s_arg9, SEXP s_arg10, SEXP s_arg11, SEXP s_arg12, SEXP s_arg13, SEXP s_arg14, SEXP s_arg15, SEXP s_arg16, SEXP s_arg17, SEXP s_arg18, SEXP s_arg19, SEXP s_arg20, SEXP s_arg21, SEXP s_arg22, SEXP s_arg23, SEXP s_arg24, SEXP s_arg25, SEXP s_arg26, SEXP s_arg27, SEXP s_arg28, SEXP s_arg29, SEXP s_arg30, SEXP s_arg31, SEXP s_arg32, SEXP s_arg33, SEXP s_arg34)
+R_swig_get_transmissions ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4, SEXP s_arg5, SEXP s_arg6, SEXP s_arg7, SEXP s_arg8, SEXP s_arg9, SEXP s_arg10, SEXP s_arg11, SEXP s_arg12, SEXP s_arg13, SEXP s_arg14, SEXP s_arg15, SEXP s_arg16, SEXP s_arg17, SEXP s_arg18, SEXP s_arg19, SEXP s_arg20, SEXP s_arg21, SEXP s_arg22, SEXP s_arg23, SEXP s_arg24, SEXP s_arg25, SEXP s_arg26, SEXP s_arg27, SEXP s_arg28, SEXP s_arg29, SEXP s_arg30, SEXP s_arg31, SEXP s_arg32, SEXP s_arg33, SEXP s_arg34, SEXP s_arg35, SEXP s_arg36)
 {
   model *arg1 = (model *) 0 ;
   long *arg2 = (long *) 0 ;
@@ -20826,7 +21519,9 @@ R_swig_get_transmissions ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4, S
   int *arg31 = (int *) 0 ;
   int *arg32 = (int *) 0 ;
   int *arg33 = (int *) 0 ;
-  float *arg34 = (float *) 0 ;
+  int *arg34 = (int *) 0 ;
+  float *arg35 = (float *) 0 ;
+  float *arg36 = (float *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   unsigned int r_nprotect = 0;
@@ -21162,13 +21857,33 @@ R_swig_get_transmissions ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4, S
     {
       int _rswigi;
       int _rswiglen = LENGTH(s_arg34);
-      arg34 = (float *)(calloc(sizeof(float), _rswiglen));
-      for (_rswigi=0; _rswigi<_rswiglen; _rswigi++) {
-        arg34[_rswigi] = REAL(s_arg34)[_rswigi];
+      arg34 = (int *)(calloc(sizeof(int), _rswiglen));
+      for (_rswigi=0; _rswigi< _rswiglen; _rswigi++) {
+        arg34[_rswigi] = INTEGER(s_arg34)[_rswigi];
       }
     }
   }
-  get_transmissions(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,arg12,arg13,arg14,arg15,arg16,arg17,arg18,arg19,arg20,arg21,arg22,arg23,arg24,arg25,arg26,arg27,arg28,arg29,arg30,arg31,arg32,arg33,arg34);
+  {
+    {
+      int _rswigi;
+      int _rswiglen = LENGTH(s_arg35);
+      arg35 = (float *)(calloc(sizeof(float), _rswiglen));
+      for (_rswigi=0; _rswigi<_rswiglen; _rswigi++) {
+        arg35[_rswigi] = REAL(s_arg35)[_rswigi];
+      }
+    }
+  }
+  {
+    {
+      int _rswigi;
+      int _rswiglen = LENGTH(s_arg36);
+      arg36 = (float *)(calloc(sizeof(float), _rswiglen));
+      for (_rswigi=0; _rswigi<_rswiglen; _rswigi++) {
+        arg36[_rswigi] = REAL(s_arg36)[_rswigi];
+      }
+    }
+  }
+  get_transmissions(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,arg12,arg13,arg14,arg15,arg16,arg17,arg18,arg19,arg20,arg21,arg22,arg23,arg24,arg25,arg26,arg27,arg28,arg29,arg30,arg31,arg32,arg33,arg34,arg35,arg36);
   r_ans = R_NilValue;
   
   
@@ -21269,6 +21984,12 @@ R_swig_get_transmissions ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4, S
   
   
   free(arg34);
+  
+  
+  free(arg35);
+  
+  
+  free(arg36);
   
   vmaxset(r_vmax);
   if(r_nprotect)  Rf_unprotect(r_nprotect);
@@ -21874,7 +22595,7 @@ SWIGEXPORT SEXP
 R_swig_individual_hazard_set ( SEXP self, SEXP s_hazard)
 {
   struct individual *arg1 = (struct individual *) 0 ;
-  float arg2 ;
+  float *arg2 = (float *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   unsigned int r_nprotect = 0;
@@ -21886,10 +22607,21 @@ R_swig_individual_hazard_set ( SEXP self, SEXP s_hazard)
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "individual_hazard_set" "', argument " "1"" of type '" "struct individual *""'"); 
   }
   arg1 = (struct individual *)(argp1);
-  arg2 = (float)(REAL(s_hazard)[0]);
+  {
+    {
+      int _rswigi;
+      int _rswiglen = LENGTH(s_hazard);
+      arg2 = (float *)(calloc(sizeof(float), _rswiglen));
+      for (_rswigi=0; _rswigi<_rswiglen; _rswigi++) {
+        arg2[_rswigi] = REAL(s_hazard)[_rswigi];
+      }
+    }
+  }
   if (arg1) (arg1)->hazard = arg2;
   r_ans = R_NilValue;
   
+  
+  free(arg2);
   
   vmaxset(r_vmax);
   if(r_nprotect)  Rf_unprotect(r_nprotect);
@@ -21899,9 +22631,9 @@ R_swig_individual_hazard_set ( SEXP self, SEXP s_hazard)
 
 
 SWIGEXPORT SEXP
-R_swig_individual_hazard_get ( SEXP self, SEXP s_swig_copy)
+R_swig_individual_hazard_get ( SEXP self)
 {
-  float result;
+  float *result = 0 ;
   struct individual *arg1 = (struct individual *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21914,8 +22646,8 @@ R_swig_individual_hazard_get ( SEXP self, SEXP s_swig_copy)
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "individual_hazard_get" "', argument " "1"" of type '" "struct individual *""'"); 
   }
   arg1 = (struct individual *)(argp1);
-  result = (float) ((arg1)->hazard);
-  r_ans = SWIG_From_float((float)(result));
+  result = (float *) ((arg1)->hazard);
+  r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_float, R_SWIG_EXTERNAL |  0 );
   
   vmaxset(r_vmax);
   if(r_nprotect)  Rf_unprotect(r_nprotect);
@@ -23245,57 +23977,36 @@ R_swig_individual_vaccine_status_get ( SEXP self, SEXP s_swig_copy)
 
 
 SWIGEXPORT SEXP
-R_swig_individual_vaccine_status_next_set ( SEXP self, SEXP s_vaccine_status_next)
+R_swig_individual_immune_full_set ( SEXP self, SEXP s_immune_full)
 {
   struct individual *arg1 = (struct individual *) 0 ;
-  short arg2 ;
+  short *arg2 = (short *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
   unsigned int r_nprotect = 0;
   SEXP r_ans = R_NilValue ;
   VMAXTYPE r_vmax = vmaxget() ;
   
   res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_individual, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "individual_vaccine_status_next_set" "', argument " "1"" of type '" "struct individual *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "individual_immune_full_set" "', argument " "1"" of type '" "struct individual *""'"); 
   }
   arg1 = (struct individual *)(argp1);
-  ecode2 = SWIG_AsVal_int(s_vaccine_status_next, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "individual_vaccine_status_next_set" "', argument " "2"" of type '" "short""'");
-  } 
-  arg2 = (short)(val2);
-  if (arg1) (arg1)->vaccine_status_next = arg2;
+  {
+    {
+      int _rswigi;
+      int _rswiglen = LENGTH(s_immune_full);
+      arg2 = (short *)(calloc(sizeof(short), _rswiglen));
+      for (_rswigi=0; _rswigi< _rswiglen; _rswigi++) {
+        arg2[_rswigi] = INTEGER(s_immune_full)[_rswigi];
+      }
+    }
+  }
+  if (arg1) (arg1)->immune_full = arg2;
   r_ans = R_NilValue;
   
   
-  vmaxset(r_vmax);
-  if(r_nprotect)  Rf_unprotect(r_nprotect);
-  
-  return r_ans;
-}
-
-
-SWIGEXPORT SEXP
-R_swig_individual_vaccine_status_next_get ( SEXP self, SEXP s_swig_copy)
-{
-  short result;
-  struct individual *arg1 = (struct individual *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned int r_nprotect = 0;
-  SEXP r_ans = R_NilValue ;
-  VMAXTYPE r_vmax = vmaxget() ;
-  
-  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_individual, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "individual_vaccine_status_next_get" "', argument " "1"" of type '" "struct individual *""'"); 
-  }
-  arg1 = (struct individual *)(argp1);
-  result = (short) ((arg1)->vaccine_status_next);
-  r_ans = SWIG_From_int((int)(result));
+  free(arg2);
   
   vmaxset(r_vmax);
   if(r_nprotect)  Rf_unprotect(r_nprotect);
@@ -23305,32 +24016,63 @@ R_swig_individual_vaccine_status_next_get ( SEXP self, SEXP s_swig_copy)
 
 
 SWIGEXPORT SEXP
-R_swig_individual_vaccine_wane_event_set ( SEXP self, SEXP s_vaccine_wane_event)
+R_swig_individual_immune_full_get ( SEXP self)
 {
+  short *result = 0 ;
   struct individual *arg1 = (struct individual *) 0 ;
-  event *arg2 = (event *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
   unsigned int r_nprotect = 0;
   SEXP r_ans = R_NilValue ;
   VMAXTYPE r_vmax = vmaxget() ;
   
   res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_individual, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "individual_vaccine_wane_event_set" "', argument " "1"" of type '" "struct individual *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "individual_immune_full_get" "', argument " "1"" of type '" "struct individual *""'"); 
   }
   arg1 = (struct individual *)(argp1);
-  res2 = SWIG_R_ConvertPtr(s_vaccine_wane_event, &argp2, SWIGTYPE_p_event, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "individual_vaccine_wane_event_set" "', argument " "2"" of type '" "event *""'"); 
+  result = (short *) ((arg1)->immune_full);
+  r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_short, R_SWIG_EXTERNAL |  0 );
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_individual_immune_to_symptoms_set ( SEXP self, SEXP s_immune_to_symptoms)
+{
+  struct individual *arg1 = (struct individual *) 0 ;
+  short *arg2 = (short *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_individual, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "individual_immune_to_symptoms_set" "', argument " "1"" of type '" "struct individual *""'"); 
   }
-  arg2 = (event *)(argp2);
-  if (arg1) (arg1)->vaccine_wane_event = arg2;
+  arg1 = (struct individual *)(argp1);
+  {
+    {
+      int _rswigi;
+      int _rswiglen = LENGTH(s_immune_to_symptoms);
+      arg2 = (short *)(calloc(sizeof(short), _rswiglen));
+      for (_rswigi=0; _rswigi< _rswiglen; _rswigi++) {
+        arg2[_rswigi] = INTEGER(s_immune_to_symptoms)[_rswigi];
+      }
+    }
+  }
+  if (arg1) (arg1)->immune_to_symptoms = arg2;
   r_ans = R_NilValue;
   
   
+  free(arg2);
+  
   vmaxset(r_vmax);
   if(r_nprotect)  Rf_unprotect(r_nprotect);
   
@@ -23339,9 +24081,9 @@ R_swig_individual_vaccine_wane_event_set ( SEXP self, SEXP s_vaccine_wane_event)
 
 
 SWIGEXPORT SEXP
-R_swig_individual_vaccine_wane_event_get ( SEXP self)
+R_swig_individual_immune_to_symptoms_get ( SEXP self)
 {
-  event *result = 0 ;
+  short *result = 0 ;
   struct individual *arg1 = (struct individual *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -23351,11 +24093,76 @@ R_swig_individual_vaccine_wane_event_get ( SEXP self)
   
   res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_individual, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "individual_vaccine_wane_event_get" "', argument " "1"" of type '" "struct individual *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "individual_immune_to_symptoms_get" "', argument " "1"" of type '" "struct individual *""'"); 
   }
   arg1 = (struct individual *)(argp1);
-  result = (event *) ((arg1)->vaccine_wane_event);
-  r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_event, R_SWIG_EXTERNAL |  0 );
+  result = (short *) ((arg1)->immune_to_symptoms);
+  r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_short, R_SWIG_EXTERNAL |  0 );
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_individual_immune_to_severe_set ( SEXP self, SEXP s_immune_to_severe)
+{
+  struct individual *arg1 = (struct individual *) 0 ;
+  short *arg2 = (short *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_individual, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "individual_immune_to_severe_set" "', argument " "1"" of type '" "struct individual *""'"); 
+  }
+  arg1 = (struct individual *)(argp1);
+  {
+    {
+      int _rswigi;
+      int _rswiglen = LENGTH(s_immune_to_severe);
+      arg2 = (short *)(calloc(sizeof(short), _rswiglen));
+      for (_rswigi=0; _rswigi< _rswiglen; _rswigi++) {
+        arg2[_rswigi] = INTEGER(s_immune_to_severe)[_rswigi];
+      }
+    }
+  }
+  if (arg1) (arg1)->immune_to_severe = arg2;
+  r_ans = R_NilValue;
+  
+  
+  free(arg2);
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_individual_immune_to_severe_get ( SEXP self)
+{
+  short *result = 0 ;
+  struct individual *arg1 = (struct individual *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_individual, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "individual_immune_to_severe_get" "', argument " "1"" of type '" "struct individual *""'"); 
+  }
+  arg1 = (struct individual *)(argp1);
+  result = (short *) ((arg1)->immune_to_severe);
+  r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_short, R_SWIG_EXTERNAL |  0 );
   
   vmaxset(r_vmax);
   if(r_nprotect)  Rf_unprotect(r_nprotect);
@@ -24498,7 +25305,7 @@ R_swig_infection_event_network_id_get ( SEXP self, SEXP s_swig_copy)
 
 
 SWIGEXPORT SEXP
-R_swig_infection_event_strain_multiplier_set ( SEXP self, SEXP s_strain_multiplier)
+R_swig_infection_event_expected_hospitalisation_set ( SEXP self, SEXP s_expected_hospitalisation)
 {
   struct infection_event *arg1 = (struct infection_event *) 0 ;
   float arg2 ;
@@ -24510,11 +25317,11 @@ R_swig_infection_event_strain_multiplier_set ( SEXP self, SEXP s_strain_multipli
   
   res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_infection_event, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "infection_event_strain_multiplier_set" "', argument " "1"" of type '" "struct infection_event *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "infection_event_expected_hospitalisation_set" "', argument " "1"" of type '" "struct infection_event *""'"); 
   }
   arg1 = (struct infection_event *)(argp1);
-  arg2 = (float)(REAL(s_strain_multiplier)[0]);
-  if (arg1) (arg1)->strain_multiplier = arg2;
+  arg2 = (float)(REAL(s_expected_hospitalisation)[0]);
+  if (arg1) (arg1)->expected_hospitalisation = arg2;
   r_ans = R_NilValue;
   
   
@@ -24526,7 +25333,7 @@ R_swig_infection_event_strain_multiplier_set ( SEXP self, SEXP s_strain_multipli
 
 
 SWIGEXPORT SEXP
-R_swig_infection_event_strain_multiplier_get ( SEXP self, SEXP s_swig_copy)
+R_swig_infection_event_expected_hospitalisation_get ( SEXP self, SEXP s_swig_copy)
 {
   float result;
   struct infection_event *arg1 = (struct infection_event *) 0 ;
@@ -24538,11 +25345,71 @@ R_swig_infection_event_strain_multiplier_get ( SEXP self, SEXP s_swig_copy)
   
   res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_infection_event, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "infection_event_strain_multiplier_get" "', argument " "1"" of type '" "struct infection_event *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "infection_event_expected_hospitalisation_get" "', argument " "1"" of type '" "struct infection_event *""'"); 
   }
   arg1 = (struct infection_event *)(argp1);
-  result = (float) ((arg1)->strain_multiplier);
+  result = (float) ((arg1)->expected_hospitalisation);
   r_ans = SWIG_From_float((float)(result));
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_infection_event_strain_set ( SEXP self, SEXP s_strain)
+{
+  struct infection_event *arg1 = (struct infection_event *) 0 ;
+  strain *arg2 = (strain *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_infection_event, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "infection_event_strain_set" "', argument " "1"" of type '" "struct infection_event *""'"); 
+  }
+  arg1 = (struct infection_event *)(argp1);
+  res2 = SWIG_R_ConvertPtr(s_strain, &argp2, SWIGTYPE_p_strain, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "infection_event_strain_set" "', argument " "2"" of type '" "strain *""'"); 
+  }
+  arg2 = (strain *)(argp2);
+  if (arg1) (arg1)->strain = arg2;
+  r_ans = R_NilValue;
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_infection_event_strain_get ( SEXP self)
+{
+  strain *result = 0 ;
+  struct infection_event *arg1 = (struct infection_event *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_infection_event, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "infection_event_strain_get" "', argument " "1"" of type '" "struct infection_event *""'"); 
+  }
+  arg1 = (struct infection_event *)(argp1);
+  result = (strain *) ((arg1)->strain);
+  r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_strain, R_SWIG_EXTERNAL |  0 );
   
   vmaxset(r_vmax);
   if(r_nprotect)  Rf_unprotect(r_nprotect);
@@ -24589,10 +25456,11 @@ R_swig_initialize_individual ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3)
 
 
 SWIGEXPORT SEXP
-R_swig_initialize_hazard ( SEXP s_arg1, SEXP s_arg2)
+R_swig_initialize_hazard ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3)
 {
   individual *arg1 = (individual *) 0 ;
   parameters *arg2 = (parameters *) 0 ;
+  int arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
@@ -24611,8 +25479,71 @@ R_swig_initialize_hazard ( SEXP s_arg1, SEXP s_arg2)
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "initialize_hazard" "', argument " "2"" of type '" "parameters *""'"); 
   }
   arg2 = (parameters *)(argp2);
-  initialize_hazard(arg1,arg2);
+  arg3 = (int)(INTEGER(s_arg3)[0]);
+  initialize_hazard(arg1,arg2,arg3);
   r_ans = R_NilValue;
+  
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_add_infection_event ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4, SEXP s_arg5)
+{
+  individual *arg1 = (individual *) 0 ;
+  individual *arg2 = (individual *) 0 ;
+  short arg3 ;
+  strain *arg4 = (strain *) 0 ;
+  short arg5 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(s_arg1, &argp1, SWIGTYPE_p_individual, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "add_infection_event" "', argument " "1"" of type '" "individual *""'"); 
+  }
+  arg1 = (individual *)(argp1);
+  res2 = SWIG_R_ConvertPtr(s_arg2, &argp2, SWIGTYPE_p_individual, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "add_infection_event" "', argument " "2"" of type '" "individual *""'"); 
+  }
+  arg2 = (individual *)(argp2);
+  ecode3 = SWIG_AsVal_int(s_arg3, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "add_infection_event" "', argument " "3"" of type '" "short""'");
+  } 
+  arg3 = (short)(val3);
+  res4 = SWIG_R_ConvertPtr(s_arg4, &argp4, SWIGTYPE_p_strain, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "add_infection_event" "', argument " "4"" of type '" "strain *""'"); 
+  }
+  arg4 = (strain *)(argp4);
+  ecode5 = SWIG_AsVal_int(s_arg5, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "add_infection_event" "', argument " "5"" of type '" "short""'");
+  } 
+  arg5 = (short)(val5);
+  add_infection_event(arg1,arg2,arg3,arg4,arg5);
+  r_ans = R_NilValue;
+  
+  
+  
   
   
   vmaxset(r_vmax);
@@ -25181,15 +26112,67 @@ R_swig_set_discharged ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3)
 
 
 SWIGEXPORT SEXP
-R_swig_set_vaccine_status ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3)
+R_swig_set_immune ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4)
 {
   individual *arg1 = (individual *) 0 ;
   short arg2 ;
   short arg3 ;
+  short arg4 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   int val2 ;
   int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(s_arg1, &argp1, SWIGTYPE_p_individual, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "set_immune" "', argument " "1"" of type '" "individual *""'"); 
+  }
+  arg1 = (individual *)(argp1);
+  ecode2 = SWIG_AsVal_int(s_arg2, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "set_immune" "', argument " "2"" of type '" "short""'");
+  } 
+  arg2 = (short)(val2);
+  ecode3 = SWIG_AsVal_int(s_arg3, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "set_immune" "', argument " "3"" of type '" "short""'");
+  } 
+  arg3 = (short)(val3);
+  ecode4 = SWIG_AsVal_int(s_arg4, &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "set_immune" "', argument " "4"" of type '" "short""'");
+  } 
+  arg4 = (short)(val4);
+  set_immune(arg1,arg2,arg3,arg4);
+  r_ans = R_NilValue;
+  
+  
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_wane_immunity ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3)
+{
+  individual *arg1 = (individual *) 0 ;
+  parameters *arg2 = (parameters *) 0 ;
+  short arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
   int val3 ;
   int ecode3 = 0 ;
   unsigned int r_nprotect = 0;
@@ -25198,20 +26181,20 @@ R_swig_set_vaccine_status ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3)
   
   res1 = SWIG_R_ConvertPtr(s_arg1, &argp1, SWIGTYPE_p_individual, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "set_vaccine_status" "', argument " "1"" of type '" "individual *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "wane_immunity" "', argument " "1"" of type '" "individual *""'"); 
   }
   arg1 = (individual *)(argp1);
-  ecode2 = SWIG_AsVal_int(s_arg2, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "set_vaccine_status" "', argument " "2"" of type '" "short""'");
-  } 
-  arg2 = (short)(val2);
+  res2 = SWIG_R_ConvertPtr(s_arg2, &argp2, SWIGTYPE_p_parameters, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "wane_immunity" "', argument " "2"" of type '" "parameters *""'"); 
+  }
+  arg2 = (parameters *)(argp2);
   ecode3 = SWIG_AsVal_int(s_arg3, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "set_vaccine_status" "', argument " "3"" of type '" "short""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "wane_immunity" "', argument " "3"" of type '" "short""'");
   } 
   arg3 = (short)(val3);
-  set_vaccine_status(arg1,arg2,arg3);
+  wane_immunity(arg1,arg2,arg3);
   r_ans = R_NilValue;
   
   
@@ -25224,22 +26207,67 @@ R_swig_set_vaccine_status ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3)
 
 
 SWIGEXPORT SEXP
-R_swig_transition_vaccine_status ( SEXP s_arg1)
+R_swig_set_vaccine_status ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4, SEXP s_arg5, SEXP s_arg6)
 {
   individual *arg1 = (individual *) 0 ;
+  parameters *arg2 = (parameters *) 0 ;
+  short arg3 ;
+  short arg4 ;
+  short arg5 ;
+  short arg6 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  int val6 ;
+  int ecode6 = 0 ;
   unsigned int r_nprotect = 0;
   SEXP r_ans = R_NilValue ;
   VMAXTYPE r_vmax = vmaxget() ;
   
   res1 = SWIG_R_ConvertPtr(s_arg1, &argp1, SWIGTYPE_p_individual, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "transition_vaccine_status" "', argument " "1"" of type '" "individual *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "set_vaccine_status" "', argument " "1"" of type '" "individual *""'"); 
   }
   arg1 = (individual *)(argp1);
-  transition_vaccine_status(arg1);
+  res2 = SWIG_R_ConvertPtr(s_arg2, &argp2, SWIGTYPE_p_parameters, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "set_vaccine_status" "', argument " "2"" of type '" "parameters *""'"); 
+  }
+  arg2 = (parameters *)(argp2);
+  ecode3 = SWIG_AsVal_int(s_arg3, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "set_vaccine_status" "', argument " "3"" of type '" "short""'");
+  } 
+  arg3 = (short)(val3);
+  ecode4 = SWIG_AsVal_int(s_arg4, &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "set_vaccine_status" "', argument " "4"" of type '" "short""'");
+  } 
+  arg4 = (short)(val4);
+  ecode5 = SWIG_AsVal_int(s_arg5, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "set_vaccine_status" "', argument " "5"" of type '" "short""'");
+  } 
+  arg5 = (short)(val5);
+  ecode6 = SWIG_AsVal_int(s_arg6, &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "set_vaccine_status" "', argument " "6"" of type '" "short""'");
+  } 
+  arg6 = (short)(val6);
+  set_vaccine_status(arg1,arg2,arg3,arg4,arg5,arg6);
   r_ans = R_NilValue;
+  
+  
+  
+  
+  
   
   vmaxset(r_vmax);
   if(r_nprotect)  Rf_unprotect(r_nprotect);
@@ -25941,6 +26969,742 @@ R_swig_trace_token_index_status_get ( SEXP self, SEXP s_swig_copy)
   arg1 = (struct trace_token *)(argp1);
   result = (int) ((arg1)->index_status);
   r_ans = Rf_ScalarInteger(result);
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_idx_set ( SEXP self, SEXP s_idx)
+{
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  short arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_idx_set" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  ecode2 = SWIG_AsVal_int(s_idx, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vaccine_idx_set" "', argument " "2"" of type '" "short""'");
+  } 
+  arg2 = (short)(val2);
+  if (arg1) (arg1)->idx = arg2;
+  r_ans = R_NilValue;
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_idx_get ( SEXP self, SEXP s_swig_copy)
+{
+  short result;
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_idx_get" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  result = (short) ((arg1)->idx);
+  r_ans = SWIG_From_int((int)(result));
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_full_efficacy_set ( SEXP self, SEXP s_full_efficacy)
+{
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  float *arg2 = (float *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_full_efficacy_set" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  {
+    {
+      int _rswigi;
+      int _rswiglen = LENGTH(s_full_efficacy);
+      arg2 = (float *)(calloc(sizeof(float), _rswiglen));
+      for (_rswigi=0; _rswigi<_rswiglen; _rswigi++) {
+        arg2[_rswigi] = REAL(s_full_efficacy)[_rswigi];
+      }
+    }
+  }
+  if (arg1) (arg1)->full_efficacy = arg2;
+  r_ans = R_NilValue;
+  
+  
+  free(arg2);
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_full_efficacy_get ( SEXP self)
+{
+  float *result = 0 ;
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_full_efficacy_get" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  result = (float *) ((arg1)->full_efficacy);
+  r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_float, R_SWIG_EXTERNAL |  0 );
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_symptoms_efficacy_set ( SEXP self, SEXP s_symptoms_efficacy)
+{
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  float *arg2 = (float *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_symptoms_efficacy_set" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  {
+    {
+      int _rswigi;
+      int _rswiglen = LENGTH(s_symptoms_efficacy);
+      arg2 = (float *)(calloc(sizeof(float), _rswiglen));
+      for (_rswigi=0; _rswigi<_rswiglen; _rswigi++) {
+        arg2[_rswigi] = REAL(s_symptoms_efficacy)[_rswigi];
+      }
+    }
+  }
+  if (arg1) (arg1)->symptoms_efficacy = arg2;
+  r_ans = R_NilValue;
+  
+  
+  free(arg2);
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_symptoms_efficacy_get ( SEXP self)
+{
+  float *result = 0 ;
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_symptoms_efficacy_get" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  result = (float *) ((arg1)->symptoms_efficacy);
+  r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_float, R_SWIG_EXTERNAL |  0 );
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_severe_efficacy_set ( SEXP self, SEXP s_severe_efficacy)
+{
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  float *arg2 = (float *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_severe_efficacy_set" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  {
+    {
+      int _rswigi;
+      int _rswiglen = LENGTH(s_severe_efficacy);
+      arg2 = (float *)(calloc(sizeof(float), _rswiglen));
+      for (_rswigi=0; _rswigi<_rswiglen; _rswigi++) {
+        arg2[_rswigi] = REAL(s_severe_efficacy)[_rswigi];
+      }
+    }
+  }
+  if (arg1) (arg1)->severe_efficacy = arg2;
+  r_ans = R_NilValue;
+  
+  
+  free(arg2);
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_severe_efficacy_get ( SEXP self)
+{
+  float *result = 0 ;
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_severe_efficacy_get" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  result = (float *) ((arg1)->severe_efficacy);
+  r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_float, R_SWIG_EXTERNAL |  0 );
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_time_to_protect_set ( SEXP self, SEXP s_time_to_protect)
+{
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  short arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_time_to_protect_set" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  ecode2 = SWIG_AsVal_int(s_time_to_protect, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vaccine_time_to_protect_set" "', argument " "2"" of type '" "short""'");
+  } 
+  arg2 = (short)(val2);
+  if (arg1) (arg1)->time_to_protect = arg2;
+  r_ans = R_NilValue;
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_time_to_protect_get ( SEXP self, SEXP s_swig_copy)
+{
+  short result;
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_time_to_protect_get" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  result = (short) ((arg1)->time_to_protect);
+  r_ans = SWIG_From_int((int)(result));
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_vaccine_protection_period_set ( SEXP self, SEXP s_vaccine_protection_period)
+{
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  short arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_vaccine_protection_period_set" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  ecode2 = SWIG_AsVal_int(s_vaccine_protection_period, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vaccine_vaccine_protection_period_set" "', argument " "2"" of type '" "short""'");
+  } 
+  arg2 = (short)(val2);
+  if (arg1) (arg1)->vaccine_protection_period = arg2;
+  r_ans = R_NilValue;
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_vaccine_protection_period_get ( SEXP self, SEXP s_swig_copy)
+{
+  short result;
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_vaccine_protection_period_get" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  result = (short) ((arg1)->vaccine_protection_period);
+  r_ans = SWIG_From_int((int)(result));
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_is_full_set ( SEXP self, SEXP s_is_full)
+{
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  short arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_is_full_set" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  ecode2 = SWIG_AsVal_int(s_is_full, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vaccine_is_full_set" "', argument " "2"" of type '" "short""'");
+  } 
+  arg2 = (short)(val2);
+  if (arg1) (arg1)->is_full = arg2;
+  r_ans = R_NilValue;
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_is_full_get ( SEXP self, SEXP s_swig_copy)
+{
+  short result;
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_is_full_get" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  result = (short) ((arg1)->is_full);
+  r_ans = SWIG_From_int((int)(result));
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_is_symptoms_set ( SEXP self, SEXP s_is_symptoms)
+{
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  short arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_is_symptoms_set" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  ecode2 = SWIG_AsVal_int(s_is_symptoms, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vaccine_is_symptoms_set" "', argument " "2"" of type '" "short""'");
+  } 
+  arg2 = (short)(val2);
+  if (arg1) (arg1)->is_symptoms = arg2;
+  r_ans = R_NilValue;
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_is_symptoms_get ( SEXP self, SEXP s_swig_copy)
+{
+  short result;
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_is_symptoms_get" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  result = (short) ((arg1)->is_symptoms);
+  r_ans = SWIG_From_int((int)(result));
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_is_severe_set ( SEXP self, SEXP s_is_severe)
+{
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  short arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_is_severe_set" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  ecode2 = SWIG_AsVal_int(s_is_severe, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vaccine_is_severe_set" "', argument " "2"" of type '" "short""'");
+  } 
+  arg2 = (short)(val2);
+  if (arg1) (arg1)->is_severe = arg2;
+  r_ans = R_NilValue;
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_is_severe_get ( SEXP self, SEXP s_swig_copy)
+{
+  short result;
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_is_severe_get" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  result = (short) ((arg1)->is_severe);
+  r_ans = SWIG_From_int((int)(result));
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_n_strains_set ( SEXP self, SEXP s_n_strains)
+{
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  short arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_n_strains_set" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  ecode2 = SWIG_AsVal_int(s_n_strains, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vaccine_n_strains_set" "', argument " "2"" of type '" "short""'");
+  } 
+  arg2 = (short)(val2);
+  if (arg1) (arg1)->n_strains = arg2;
+  r_ans = R_NilValue;
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_n_strains_get ( SEXP self, SEXP s_swig_copy)
+{
+  short result;
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_n_strains_get" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  result = (short) ((arg1)->n_strains);
+  r_ans = SWIG_From_int((int)(result));
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_name_set ( SEXP self, SEXP s_name)
+{
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  char *arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_name_set" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  arg2 = SWIG_strdup(CHAR(STRING_ELT(s_name, 0)));
+  if (arg2) memcpy(arg1->name,arg2,300*sizeof(char));
+  else memset(arg1->name,0,300*sizeof(char));
+  r_ans = R_NilValue;
+  
+  free(arg2);
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_name_get ( SEXP self, SEXP s_swig_copy)
+{
+  char *result = 0 ;
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_name_get" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  result = (char *)(char *) ((arg1)->name);
+  {
+    size_t size = SWIG_strnlen(result, 300);
+    
+    
+    
+    r_ans = SWIG_FromCharPtrAndSize(result, size);
+  }
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine__next_set ( SEXP self, SEXP s_arg2)
+{
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  vaccine *arg2 = (vaccine *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine__next_set" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  res2 = SWIG_R_ConvertPtr(s_arg2, &argp2, SWIGTYPE_p_vaccine, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "vaccine__next_set" "', argument " "2"" of type '" "vaccine *""'"); 
+  }
+  arg2 = (vaccine *)(argp2);
+  if (arg1) (arg1)->next = arg2;
+  r_ans = R_NilValue;
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine__next_get ( SEXP self)
+{
+  vaccine *result = 0 ;
+  struct vaccine *arg1 = (struct vaccine *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine__next_get" "', argument " "1"" of type '" "struct vaccine *""'"); 
+  }
+  arg1 = (struct vaccine *)(argp1);
+  result = (vaccine *) ((arg1)->next);
+  r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_vaccine, R_SWIG_EXTERNAL |  0 );
   
   vmaxset(r_vmax);
   if(r_nprotect)  Rf_unprotect(r_nprotect);
@@ -26679,25 +28443,139 @@ R_swig_intervention_index_case_symptoms_to_positive ( SEXP s_arg1, SEXP s_arg2)
 
 
 SWIGEXPORT SEXP
-R_swig_intervention_vaccinate ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4, SEXP s_arg5, SEXP s_arg6, SEXP s_swig_copy)
+R_swig_add_vaccine ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4, SEXP s_arg5, SEXP s_arg6, SEXP s_swig_copy)
 {
   short result;
   model *arg1 = (model *) 0 ;
-  individual *arg2 = (individual *) 0 ;
-  short arg3 ;
-  double arg4 ;
+  float *arg2 = (float *) 0 ;
+  float *arg3 = (float *) 0 ;
+  float *arg4 = (float *) 0 ;
   short arg5 ;
   short arg6 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
   int val5 ;
   int ecode5 = 0 ;
   int val6 ;
   int ecode6 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(s_arg1, &argp1, SWIGTYPE_p_model, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "add_vaccine" "', argument " "1"" of type '" "model *""'"); 
+  }
+  arg1 = (model *)(argp1);
+  {
+    {
+      int _rswigi;
+      int _rswiglen = LENGTH(s_arg2);
+      arg2 = (float *)(calloc(sizeof(float), _rswiglen));
+      for (_rswigi=0; _rswigi<_rswiglen; _rswigi++) {
+        arg2[_rswigi] = REAL(s_arg2)[_rswigi];
+      }
+    }
+  }
+  {
+    {
+      int _rswigi;
+      int _rswiglen = LENGTH(s_arg3);
+      arg3 = (float *)(calloc(sizeof(float), _rswiglen));
+      for (_rswigi=0; _rswigi<_rswiglen; _rswigi++) {
+        arg3[_rswigi] = REAL(s_arg3)[_rswigi];
+      }
+    }
+  }
+  {
+    {
+      int _rswigi;
+      int _rswiglen = LENGTH(s_arg4);
+      arg4 = (float *)(calloc(sizeof(float), _rswiglen));
+      for (_rswigi=0; _rswigi<_rswiglen; _rswigi++) {
+        arg4[_rswigi] = REAL(s_arg4)[_rswigi];
+      }
+    }
+  }
+  ecode5 = SWIG_AsVal_int(s_arg5, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "add_vaccine" "', argument " "5"" of type '" "short""'");
+  } 
+  arg5 = (short)(val5);
+  ecode6 = SWIG_AsVal_int(s_arg6, &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "add_vaccine" "', argument " "6"" of type '" "short""'");
+  } 
+  arg6 = (short)(val6);
+  result = (short)add_vaccine(arg1,arg2,arg3,arg4,arg5,arg6);
+  r_ans = SWIG_From_int((int)(result));
+  
+  
+  free(arg2);
+  
+  
+  free(arg3);
+  
+  
+  free(arg4);
+  
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_get_vaccine_by_id ( SEXP s_arg1, SEXP s_arg2)
+{
+  vaccine *result = 0 ;
+  model *arg1 = (model *) 0 ;
+  short arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(s_arg1, &argp1, SWIGTYPE_p_model, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "get_vaccine_by_id" "', argument " "1"" of type '" "model *""'"); 
+  }
+  arg1 = (model *)(argp1);
+  ecode2 = SWIG_AsVal_int(s_arg2, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "get_vaccine_by_id" "', argument " "2"" of type '" "short""'");
+  } 
+  arg2 = (short)(val2);
+  result = (vaccine *)get_vaccine_by_id(arg1,arg2);
+  r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_vaccine, R_SWIG_EXTERNAL |  0 );
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_intervention_vaccinate ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_swig_copy)
+{
+  short result;
+  model *arg1 = (model *) 0 ;
+  individual *arg2 = (individual *) 0 ;
+  vaccine *arg3 = (vaccine *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
   unsigned int r_nprotect = 0;
   SEXP r_ans = R_NilValue ;
   VMAXTYPE r_vmax = vmaxget() ;
@@ -26712,27 +28590,13 @@ R_swig_intervention_vaccinate ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_ar
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "intervention_vaccinate" "', argument " "2"" of type '" "individual *""'"); 
   }
   arg2 = (individual *)(argp2);
-  ecode3 = SWIG_AsVal_int(s_arg3, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "intervention_vaccinate" "', argument " "3"" of type '" "short""'");
-  } 
-  arg3 = (short)(val3);
-  arg4 = (double)(REAL(s_arg4)[0]);
-  ecode5 = SWIG_AsVal_int(s_arg5, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "intervention_vaccinate" "', argument " "5"" of type '" "short""'");
-  } 
-  arg5 = (short)(val5);
-  ecode6 = SWIG_AsVal_int(s_arg6, &val6);
-  if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "intervention_vaccinate" "', argument " "6"" of type '" "short""'");
-  } 
-  arg6 = (short)(val6);
-  result = (short)intervention_vaccinate(arg1,arg2,arg3,arg4,arg5,arg6);
+  res3 = SWIG_R_ConvertPtr(s_arg3, &argp3, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "intervention_vaccinate" "', argument " "3"" of type '" "vaccine *""'"); 
+  }
+  arg3 = (vaccine *)(argp3);
+  result = (short)intervention_vaccinate(arg1,arg2,arg3);
   r_ans = SWIG_From_int((int)(result));
-  
-  
-  
   
   
   
@@ -26744,23 +28608,16 @@ R_swig_intervention_vaccinate ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_ar
 
 
 SWIGEXPORT SEXP
-R_swig_intervention_vaccinate_by_idx ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4, SEXP s_arg5, SEXP s_arg6, SEXP s_swig_copy)
+R_swig_intervention_vaccinate_by_idx ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_swig_copy)
 {
   short result;
   model *arg1 = (model *) 0 ;
   long arg2 ;
-  short arg3 ;
-  double arg4 ;
-  short arg5 ;
-  short arg6 ;
+  vaccine *arg3 = (vaccine *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  int val5 ;
-  int ecode5 = 0 ;
-  int val6 ;
-  int ecode6 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
   unsigned int r_nprotect = 0;
   SEXP r_ans = R_NilValue ;
   VMAXTYPE r_vmax = vmaxget() ;
@@ -26771,27 +28628,13 @@ R_swig_intervention_vaccinate_by_idx ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SE
   }
   arg1 = (model *)(argp1);
   arg2 = (long)(INTEGER(s_arg2)[0]);
-  ecode3 = SWIG_AsVal_int(s_arg3, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "intervention_vaccinate_by_idx" "', argument " "3"" of type '" "short""'");
-  } 
-  arg3 = (short)(val3);
-  arg4 = (double)(REAL(s_arg4)[0]);
-  ecode5 = SWIG_AsVal_int(s_arg5, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "intervention_vaccinate_by_idx" "', argument " "5"" of type '" "short""'");
-  } 
-  arg5 = (short)(val5);
-  ecode6 = SWIG_AsVal_int(s_arg6, &val6);
-  if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "intervention_vaccinate_by_idx" "', argument " "6"" of type '" "short""'");
-  } 
-  arg6 = (short)(val6);
-  result = (short)intervention_vaccinate_by_idx(arg1,arg2,arg3,arg4,arg5,arg6);
+  res3 = SWIG_R_ConvertPtr(s_arg3, &argp3, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "intervention_vaccinate_by_idx" "', argument " "3"" of type '" "vaccine *""'"); 
+  }
+  arg3 = (vaccine *)(argp3);
+  result = (short)intervention_vaccinate_by_idx(arg1,arg2,arg3);
   r_ans = SWIG_From_int((int)(result));
-  
-  
-  
   
   
   
@@ -26803,24 +28646,17 @@ R_swig_intervention_vaccinate_by_idx ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SE
 
 
 SWIGEXPORT SEXP
-R_swig_intervention_vaccinate_age_group ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4, SEXP s_arg5, SEXP s_arg6, SEXP s_arg7, SEXP s_swig_copy)
+R_swig_intervention_vaccinate_age_group ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4, SEXP s_swig_copy)
 {
   long result;
   model *arg1 = (model *) 0 ;
   double *arg2 ;
-  short arg3 ;
-  double arg4 ;
-  short arg5 ;
-  short arg6 ;
-  long *arg7 ;
+  vaccine *arg3 = (vaccine *) 0 ;
+  long *arg4 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  int val5 ;
-  int ecode5 = 0 ;
-  int val6 ;
-  int ecode6 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
   unsigned int r_nprotect = 0;
   SEXP r_ans = R_NilValue ;
   VMAXTYPE r_vmax = vmaxget() ;
@@ -26840,33 +28676,22 @@ R_swig_intervention_vaccinate_age_group ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3,
       }
     }
   }
-  ecode3 = SWIG_AsVal_int(s_arg3, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "intervention_vaccinate_age_group" "', argument " "3"" of type '" "short""'");
-  } 
-  arg3 = (short)(val3);
-  arg4 = (double)(REAL(s_arg4)[0]);
-  ecode5 = SWIG_AsVal_int(s_arg5, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "intervention_vaccinate_age_group" "', argument " "5"" of type '" "short""'");
-  } 
-  arg5 = (short)(val5);
-  ecode6 = SWIG_AsVal_int(s_arg6, &val6);
-  if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "intervention_vaccinate_age_group" "', argument " "6"" of type '" "short""'");
-  } 
-  arg6 = (short)(val6);
+  res3 = SWIG_R_ConvertPtr(s_arg3, &argp3, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "intervention_vaccinate_age_group" "', argument " "3"" of type '" "vaccine *""'"); 
+  }
+  arg3 = (vaccine *)(argp3);
   {
     {
       int _rswigi;
-      int _rswiglen = LENGTH(s_arg7);
-      arg7 = (long *)(calloc(sizeof(long), _rswiglen));
+      int _rswiglen = LENGTH(s_arg4);
+      arg4 = (long *)(calloc(sizeof(long), _rswiglen));
       for (_rswigi=0; _rswigi< _rswiglen; _rswigi++) {
-        arg7[_rswigi] = INTEGER(s_arg7)[_rswigi];
+        arg4[_rswigi] = INTEGER(s_arg4)[_rswigi];
       }
     }
   }
-  result = (long)intervention_vaccinate_age_group(arg1,arg2,arg3,arg4,arg5,arg6,arg7);
+  result = (long)intervention_vaccinate_age_group(arg1,arg2,arg3,arg4);
   r_ans = Rf_ScalarInteger(result);
   
   
@@ -26874,10 +28699,7 @@ R_swig_intervention_vaccinate_age_group ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3,
   
   
   
-  
-  
-  
-  free(arg7);
+  free(arg4);
   
   vmaxset(r_vmax);
   if(r_nprotect)  Rf_unprotect(r_nprotect);
@@ -26887,14 +28709,16 @@ R_swig_intervention_vaccinate_age_group ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3,
 
 
 SWIGEXPORT SEXP
-R_swig_intervention_vaccine_protect ( SEXP s_arg1, SEXP s_arg2)
+R_swig_intervention_vaccine_protect ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3)
 {
   model *arg1 = (model *) 0 ;
   individual *arg2 = (individual *) 0 ;
+  void *arg3 = (void *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
+  int res3 ;
   unsigned int r_nprotect = 0;
   SEXP r_ans = R_NilValue ;
   VMAXTYPE r_vmax = vmaxget() ;
@@ -26909,8 +28733,13 @@ R_swig_intervention_vaccine_protect ( SEXP s_arg1, SEXP s_arg2)
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "intervention_vaccine_protect" "', argument " "2"" of type '" "individual *""'"); 
   }
   arg2 = (individual *)(argp2);
-  intervention_vaccine_protect(arg1,arg2);
+  res3 = SWIG_R_ConvertPtr(s_arg3, SWIG_as_voidptrptr(&arg3), 0, 0);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "intervention_vaccine_protect" "', argument " "3"" of type '" "void *""'"); 
+  }
+  intervention_vaccine_protect(arg1,arg2,arg3);
   r_ans = R_NilValue;
+  
   
   
   vmaxset(r_vmax);
@@ -26921,14 +28750,16 @@ R_swig_intervention_vaccine_protect ( SEXP s_arg1, SEXP s_arg2)
 
 
 SWIGEXPORT SEXP
-R_swig_intervention_vaccine_wane ( SEXP s_arg1, SEXP s_arg2)
+R_swig_intervention_vaccine_wane ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3)
 {
   model *arg1 = (model *) 0 ;
   individual *arg2 = (individual *) 0 ;
+  void *arg3 = (void *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
+  int res3 ;
   unsigned int r_nprotect = 0;
   SEXP r_ans = R_NilValue ;
   VMAXTYPE r_vmax = vmaxget() ;
@@ -26943,8 +28774,13 @@ R_swig_intervention_vaccine_wane ( SEXP s_arg1, SEXP s_arg2)
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "intervention_vaccine_wane" "', argument " "2"" of type '" "individual *""'"); 
   }
   arg2 = (individual *)(argp2);
-  intervention_vaccine_wane(arg1,arg2);
+  res3 = SWIG_R_ConvertPtr(s_arg3, SWIG_as_voidptrptr(&arg3), 0, 0);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "intervention_vaccine_wane" "', argument " "3"" of type '" "void *""'"); 
+  }
+  intervention_vaccine_wane(arg1,arg2,arg3);
   r_ans = R_NilValue;
+  
   
   
   vmaxset(r_vmax);
@@ -27801,6 +29637,22 @@ R_swig_setup_gsl_rng ( SEXP s_arg1)
 
 
 SWIGEXPORT SEXP
+R_swig_free_gsl_rng ( )
+{
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  free_gsl_rng();
+  r_ans = R_NilValue;
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
 R_swig_incomplete_gamma_p_params_n_set ( SEXP self, SEXP s_n)
 {
   struct incomplete_gamma_p_params *arg1 = (struct incomplete_gamma_p_params *) 0 ;
@@ -28091,18 +29943,21 @@ R_swig_transmit_virus_by_type ( SEXP s_arg1, SEXP s_arg2)
 
 
 SWIGEXPORT SEXP
-R_swig_new_infection ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4)
+R_swig_new_infection ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4, SEXP s_arg5)
 {
   model *arg1 = (model *) 0 ;
   individual *arg2 = (individual *) 0 ;
   individual *arg3 = (individual *) 0 ;
   int arg4 ;
+  strain *arg5 = (strain *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
   void *argp3 = 0 ;
   int res3 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
   unsigned int r_nprotect = 0;
   SEXP r_ans = R_NilValue ;
   VMAXTYPE r_vmax = vmaxget() ;
@@ -28123,8 +29978,14 @@ R_swig_new_infection ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4)
   }
   arg3 = (individual *)(argp3);
   arg4 = (int)(INTEGER(s_arg4)[0]);
-  new_infection(arg1,arg2,arg3,arg4);
+  res5 = SWIG_R_ConvertPtr(s_arg5, &argp5, SWIGTYPE_p_strain, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "new_infection" "', argument " "5"" of type '" "strain *""'"); 
+  }
+  arg5 = (strain *)(argp5);
+  new_infection(arg1,arg2,arg3,arg4,arg5);
   r_ans = R_NilValue;
+  
   
   
   
@@ -28142,7 +30003,7 @@ R_swig_seed_infect_by_idx ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4, 
   short result;
   model *arg1 = (model *) 0 ;
   long arg2 ;
-  float arg3 ;
+  int arg3 ;
   int arg4 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -28156,7 +30017,7 @@ R_swig_seed_infect_by_idx ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4, 
   }
   arg1 = (model *)(argp1);
   arg2 = (long)(INTEGER(s_arg2)[0]);
-  arg3 = (float)(REAL(s_arg3)[0]);
+  arg3 = (int)(INTEGER(s_arg3)[0]);
   arg4 = (int)(INTEGER(s_arg4)[0]);
   result = (short)seed_infect_by_idx(arg1,arg2,arg3,arg4);
   r_ans = SWIG_From_int((int)(result));
@@ -28487,6 +30348,59 @@ R_swig_transition_one_disese_event ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP
 
 
 SWIGEXPORT SEXP
+R_swig_apply_cross_immunity ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4, SEXP s_swig_copy)
+{
+  short result;
+  model *arg1 = (model *) 0 ;
+  individual *arg2 = (individual *) 0 ;
+  short arg3 ;
+  short arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(s_arg1, &argp1, SWIGTYPE_p_model, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "apply_cross_immunity" "', argument " "1"" of type '" "model *""'"); 
+  }
+  arg1 = (model *)(argp1);
+  res2 = SWIG_R_ConvertPtr(s_arg2, &argp2, SWIGTYPE_p_individual, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "apply_cross_immunity" "', argument " "2"" of type '" "individual *""'"); 
+  }
+  arg2 = (individual *)(argp2);
+  ecode3 = SWIG_AsVal_int(s_arg3, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "apply_cross_immunity" "', argument " "3"" of type '" "short""'");
+  } 
+  arg3 = (short)(val3);
+  ecode4 = SWIG_AsVal_int(s_arg4, &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "apply_cross_immunity" "', argument " "4"" of type '" "short""'");
+  } 
+  arg4 = (short)(val4);
+  result = (short)apply_cross_immunity(arg1,arg2,arg3,arg4);
+  r_ans = SWIG_From_int((int)(result));
+  
+  
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
 R_swig_n_newly_infected ( SEXP s_arg1, SEXP time, SEXP s_swig_copy)
 {
   long result;
@@ -28537,6 +30451,40 @@ R_swig_calculate_R_instanteous ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_s
   arg3 = (double)(REAL(s_arg3)[0]);
   result = (double)calculate_R_instanteous(arg1,arg2,arg3);
   r_ans = SWIG_From_double((double)(result));
+  
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_set_cross_immunity_probability ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_arg4)
+{
+  model *arg1 = (model *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  float arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(s_arg1, &argp1, SWIGTYPE_p_model, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "set_cross_immunity_probability" "', argument " "1"" of type '" "model *""'"); 
+  }
+  arg1 = (model *)(argp1);
+  arg2 = (int)(INTEGER(s_arg2)[0]);
+  arg3 = (int)(INTEGER(s_arg3)[0]);
+  arg4 = (float)(REAL(s_arg4)[0]);
+  set_cross_immunity_probability(arg1,arg2,arg3,arg4);
+  r_ans = R_NilValue;
+  
   
   
   
@@ -29146,6 +31094,60 @@ R_swig_network_name_get ( SEXP self, SEXP s_swig_copy)
     
     r_ans = SWIG_FromCharPtrAndSize(result, size);
   }
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_network_transmission_multiplier_set ( SEXP self, SEXP s_transmission_multiplier)
+{
+  struct network *arg1 = (struct network *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_network, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "network_transmission_multiplier_set" "', argument " "1"" of type '" "struct network *""'"); 
+  }
+  arg1 = (struct network *)(argp1);
+  arg2 = (float)(REAL(s_transmission_multiplier)[0]);
+  if (arg1) (arg1)->transmission_multiplier = arg2;
+  r_ans = R_NilValue;
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_network_transmission_multiplier_get ( SEXP self, SEXP s_swig_copy)
+{
+  float result;
+  struct network *arg1 = (struct network *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_network, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "network_transmission_multiplier_get" "', argument " "1"" of type '" "struct network *""'"); 
+  }
+  arg1 = (struct network *)(argp1);
+  result = (float) ((arg1)->transmission_multiplier);
+  r_ans = SWIG_From_float((float)(result));
   
   vmaxset(r_vmax);
   if(r_nprotect)  Rf_unprotect(r_nprotect);
@@ -29876,6 +31878,264 @@ R_swig_update_daily_fraction ( SEXP s_arg1, SEXP s_arg2, SEXP s_swig_copy)
 
 
 SWIGEXPORT SEXP
+R_swig_strain_idx_set ( SEXP self, SEXP s_idx)
+{
+  struct strain *arg1 = (struct strain *) 0 ;
+  long arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_strain, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "strain_idx_set" "', argument " "1"" of type '" "struct strain *""'"); 
+  }
+  arg1 = (struct strain *)(argp1);
+  arg2 = (long)(INTEGER(s_idx)[0]);
+  if (arg1) (arg1)->idx = arg2;
+  r_ans = R_NilValue;
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_strain_idx_get ( SEXP self, SEXP s_swig_copy)
+{
+  long result;
+  struct strain *arg1 = (struct strain *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_strain, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "strain_idx_get" "', argument " "1"" of type '" "struct strain *""'"); 
+  }
+  arg1 = (struct strain *)(argp1);
+  result = (long) ((arg1)->idx);
+  r_ans = Rf_ScalarInteger(result);
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_strain_transmission_multiplier_set ( SEXP self, SEXP s_transmission_multiplier)
+{
+  struct strain *arg1 = (struct strain *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_strain, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "strain_transmission_multiplier_set" "', argument " "1"" of type '" "struct strain *""'"); 
+  }
+  arg1 = (struct strain *)(argp1);
+  arg2 = (float)(REAL(s_transmission_multiplier)[0]);
+  if (arg1) (arg1)->transmission_multiplier = arg2;
+  r_ans = R_NilValue;
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_strain_transmission_multiplier_get ( SEXP self, SEXP s_swig_copy)
+{
+  float result;
+  struct strain *arg1 = (struct strain *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_strain, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "strain_transmission_multiplier_get" "', argument " "1"" of type '" "struct strain *""'"); 
+  }
+  arg1 = (struct strain *)(argp1);
+  result = (float) ((arg1)->transmission_multiplier);
+  r_ans = SWIG_From_float((float)(result));
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_strain_hospitalised_fraction_set ( SEXP self, SEXP s_hospitalised_fraction)
+{
+  struct strain *arg1 = (struct strain *) 0 ;
+  double *arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_strain, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "strain_hospitalised_fraction_set" "', argument " "1"" of type '" "struct strain *""'"); 
+  }
+  arg1 = (struct strain *)(argp1);
+  {
+    {
+      int _rswigi;
+      int _rswiglen = LENGTH(s_hospitalised_fraction);
+      arg2 = (double *)(calloc(sizeof(double), _rswiglen));
+      for (_rswigi=0; _rswigi<_rswiglen; _rswigi++) {
+        arg2[_rswigi] = REAL(s_hospitalised_fraction)[_rswigi];
+      }
+    }
+  }
+  {
+    if (arg2) {
+      size_t ii = 0;
+      for (; ii < (size_t)N_AGE_GROUPS; ++ii) *(double *)&arg1->hospitalised_fraction[ii] = *((double *)arg2 + ii);
+    } else {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""hospitalised_fraction""' of type '""double [N_AGE_GROUPS]""'");
+    }
+  }
+  r_ans = R_NilValue;
+  
+  
+  free(arg2);
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_strain_hospitalised_fraction_get ( SEXP self, SEXP s_swig_copy)
+{
+  double *result = 0 ;
+  struct strain *arg1 = (struct strain *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_strain, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "strain_hospitalised_fraction_get" "', argument " "1"" of type '" "struct strain *""'"); 
+  }
+  arg1 = (struct strain *)(argp1);
+  result = (double *)(double *) ((arg1)->hospitalised_fraction);
+  r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_double, R_SWIG_EXTERNAL |  0 );
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_add_new_strain ( SEXP s_arg1, SEXP s_arg2, SEXP s_arg3, SEXP s_swig_copy)
+{
+  short result;
+  model *arg1 = (model *) 0 ;
+  float arg2 ;
+  double *arg3 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(s_arg1, &argp1, SWIGTYPE_p_model, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "add_new_strain" "', argument " "1"" of type '" "model *""'"); 
+  }
+  arg1 = (model *)(argp1);
+  arg2 = (float)(REAL(s_arg2)[0]);
+  {
+    {
+      int _rswigi;
+      int _rswiglen = LENGTH(s_arg3);
+      arg3 = (double *)(calloc(sizeof(double), _rswiglen));
+      for (_rswigi=0; _rswigi<_rswiglen; _rswigi++) {
+        arg3[_rswigi] = REAL(s_arg3)[_rswigi];
+      }
+    }
+  }
+  result = (short)add_new_strain(arg1,arg2,arg3);
+  r_ans = SWIG_From_int((int)(result));
+  
+  
+  
+  free(arg3);
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_get_strain_by_id ( SEXP s_arg1, SEXP s_arg2)
+{
+  strain *result = 0 ;
+  model *arg1 = (model *) 0 ;
+  short arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(s_arg1, &argp1, SWIGTYPE_p_model, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "get_strain_by_id" "', argument " "1"" of type '" "model *""'"); 
+  }
+  arg1 = (model *)(argp1);
+  ecode2 = SWIG_AsVal_int(s_arg2, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "get_strain_by_id" "', argument " "2"" of type '" "short""'");
+  } 
+  arg2 = (short)(val2);
+  result = (strain *)get_strain_by_id(arg1,arg2);
+  r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_strain, R_SWIG_EXTERNAL |  0 );
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
 R_swig_utils_n_current ( SEXP pmodel, SEXP type, SEXP s_swig_copy)
 {
   int result;
@@ -30506,6 +32766,32 @@ R_swig_get_param_rebuild_networks ( SEXP params, SEXP s_swig_copy)
   }
   arg1 = (parameters *)(argp1);
   result = (int)get_param_rebuild_networks(arg1);
+  r_ans = Rf_ScalarInteger(result);
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_get_param_max_n_strains ( SEXP params, SEXP s_swig_copy)
+{
+  int result;
+  parameters *arg1 = (parameters *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(params, &argp1, SWIGTYPE_p_parameters, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "get_param_max_n_strains" "', argument " "1"" of type '" "parameters *""'"); 
+  }
+  arg1 = (parameters *)(argp1);
+  result = (int)get_param_max_n_strains(arg1);
   r_ans = Rf_ScalarInteger(result);
   
   vmaxset(r_vmax);
@@ -32999,6 +35285,35 @@ R_swig_set_param_rebuild_networks ( SEXP params, SEXP value, SEXP s_swig_copy)
   arg1 = (parameters *)(argp1);
   arg2 = (int)(INTEGER(value)[0]);
   result = (int)set_param_rebuild_networks(arg1,arg2);
+  r_ans = Rf_ScalarInteger(result);
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_set_param_max_n_strains ( SEXP params, SEXP value, SEXP s_swig_copy)
+{
+  int result;
+  parameters *arg1 = (parameters *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(params, &argp1, SWIGTYPE_p_parameters, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "set_param_max_n_strains" "', argument " "1"" of type '" "parameters *""'"); 
+  }
+  arg1 = (parameters *)(argp1);
+  arg2 = (int)(INTEGER(value)[0]);
+  result = (int)set_param_max_n_strains(arg1,arg2);
   r_ans = Rf_ScalarInteger(result);
   
   
@@ -36004,6 +38319,169 @@ R_swig_shortArray_frompointer ( SEXP t)
 
 
 SWIGEXPORT SEXP
+R_swig_new_floatArray ( SEXP nelements)
+{
+  floatArray *result = 0 ;
+  int arg1 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  arg1 = (int)(INTEGER(nelements)[0]);
+  result = (floatArray *)new_floatArray(arg1);
+  r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_floatArray, R_SWIG_OWNER |  0 );
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_delete_floatArray ( SEXP self)
+{
+  floatArray *arg1 = (floatArray *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_floatArray, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_floatArray" "', argument " "1"" of type '" "floatArray *""'"); 
+  }
+  arg1 = (floatArray *)(argp1);
+  delete_floatArray(arg1);
+  r_ans = R_NilValue;
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  R_ClearExternalPtr(self);
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_floatArray_getitem ( SEXP self, SEXP index, SEXP s_swig_copy)
+{
+  float result;
+  floatArray *arg1 = (floatArray *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_floatArray, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "floatArray_getitem" "', argument " "1"" of type '" "floatArray *""'"); 
+  }
+  arg1 = (floatArray *)(argp1);
+  arg2 = (int)(INTEGER(index)[0]);
+  result = (float)floatArray_getitem(arg1,arg2);
+  r_ans = SWIG_From_float((float)(result));
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_floatArray_setitem ( SEXP self, SEXP index, SEXP value)
+{
+  floatArray *arg1 = (floatArray *) 0 ;
+  int arg2 ;
+  float arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_floatArray, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "floatArray_setitem" "', argument " "1"" of type '" "floatArray *""'"); 
+  }
+  arg1 = (floatArray *)(argp1);
+  arg2 = (int)(INTEGER(index)[0]);
+  arg3 = (float)(REAL(value)[0]);
+  floatArray_setitem(arg1,arg2,arg3);
+  r_ans = R_NilValue;
+  
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_floatArray_cast ( SEXP self)
+{
+  float *result = 0 ;
+  floatArray *arg1 = (floatArray *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(self, &argp1, SWIGTYPE_p_floatArray, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "floatArray_cast" "', argument " "1"" of type '" "floatArray *""'"); 
+  }
+  arg1 = (floatArray *)(argp1);
+  result = (float *)floatArray_cast(arg1);
+  r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_float, R_SWIG_EXTERNAL |  0 );
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_floatArray_frompointer ( SEXP t)
+{
+  floatArray *result = 0 ;
+  float *arg1 = (float *) 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  {
+    {
+      int _rswigi;
+      int _rswiglen = LENGTH(t);
+      arg1 = (float *)(calloc(sizeof(float), _rswiglen));
+      for (_rswigi=0; _rswigi<_rswiglen; _rswigi++) {
+        arg1[_rswigi] = REAL(t)[_rswigi];
+      }
+    }
+  }
+  result = (floatArray *)floatArray_frompointer(arg1);
+  r_ans = SWIG_R_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_floatArray, R_SWIG_EXTERNAL |  0 );
+  
+  free(arg1);
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
 R_swig_get_param_array_mean_random_interactions ( SEXP params, SEXP value)
 {
   parameters *arg1 = (parameters *) 0 ;
@@ -37434,6 +39912,60 @@ R_swig_network_daily_fraction ( SEXP pnetwork, SEXP s_swig_copy)
 
 
 SWIGEXPORT SEXP
+R_swig_network_transmission_multiplier ( SEXP pnetwork, SEXP s_swig_copy)
+{
+  float result;
+  network *arg1 = (network *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(pnetwork, &argp1, SWIGTYPE_p_network, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "network_transmission_multiplier" "', argument " "1"" of type '" "network *""'"); 
+  }
+  arg1 = (network *)(argp1);
+  result = (float)network_transmission_multiplier(arg1);
+  r_ans = SWIG_From_float((float)(result));
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_set_network_transmission_multiplier ( SEXP pnetwork, SEXP val)
+{
+  network *arg1 = (network *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(pnetwork, &argp1, SWIGTYPE_p_network, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "set_network_transmission_multiplier" "', argument " "1"" of type '" "network *""'"); 
+  }
+  arg1 = (network *)(argp1);
+  arg2 = (float)(REAL(val)[0]);
+  set_network_transmission_multiplier(arg1,arg2);
+  r_ans = R_NilValue;
+  
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
 R_swig_get_network ( SEXP pnetwork, SEXP id1_array, SEXP id2_array, SEXP s_swig_copy)
 {
   int result;
@@ -37487,12 +40019,317 @@ R_swig_get_network ( SEXP pnetwork, SEXP id1_array, SEXP id2_array, SEXP s_swig_
 }
 
 
+SWIGEXPORT SEXP
+R_swig_vaccine_idx ( SEXP pvaccine, SEXP s_swig_copy)
+{
+  short result;
+  vaccine *arg1 = (vaccine *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(pvaccine, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_idx" "', argument " "1"" of type '" "vaccine *""'"); 
+  }
+  arg1 = (vaccine *)(argp1);
+  result = (short)vaccine_idx(arg1);
+  r_ans = SWIG_From_int((int)(result));
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_full_efficacy ( SEXP pvaccine, SEXP efficacy)
+{
+  vaccine *arg1 = (vaccine *) 0 ;
+  float *arg2 = (float *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(pvaccine, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_full_efficacy" "', argument " "1"" of type '" "vaccine *""'"); 
+  }
+  arg1 = (vaccine *)(argp1);
+  {
+    {
+      int _rswigi;
+      int _rswiglen = LENGTH(efficacy);
+      arg2 = (float *)(calloc(sizeof(float), _rswiglen));
+      for (_rswigi=0; _rswigi<_rswiglen; _rswigi++) {
+        arg2[_rswigi] = REAL(efficacy)[_rswigi];
+      }
+    }
+  }
+  vaccine_full_efficacy(arg1,arg2);
+  r_ans = R_NilValue;
+  
+  
+  free(arg2);
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_symptoms_efficacy ( SEXP pvaccine, SEXP efficacy)
+{
+  vaccine *arg1 = (vaccine *) 0 ;
+  float *arg2 = (float *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(pvaccine, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_symptoms_efficacy" "', argument " "1"" of type '" "vaccine *""'"); 
+  }
+  arg1 = (vaccine *)(argp1);
+  {
+    {
+      int _rswigi;
+      int _rswiglen = LENGTH(efficacy);
+      arg2 = (float *)(calloc(sizeof(float), _rswiglen));
+      for (_rswigi=0; _rswigi<_rswiglen; _rswigi++) {
+        arg2[_rswigi] = REAL(efficacy)[_rswigi];
+      }
+    }
+  }
+  vaccine_symptoms_efficacy(arg1,arg2);
+  r_ans = R_NilValue;
+  
+  
+  free(arg2);
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_severe_efficacy ( SEXP pvaccine, SEXP efficacy)
+{
+  vaccine *arg1 = (vaccine *) 0 ;
+  float *arg2 = (float *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(pvaccine, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_severe_efficacy" "', argument " "1"" of type '" "vaccine *""'"); 
+  }
+  arg1 = (vaccine *)(argp1);
+  {
+    {
+      int _rswigi;
+      int _rswiglen = LENGTH(efficacy);
+      arg2 = (float *)(calloc(sizeof(float), _rswiglen));
+      for (_rswigi=0; _rswigi<_rswiglen; _rswigi++) {
+        arg2[_rswigi] = REAL(efficacy)[_rswigi];
+      }
+    }
+  }
+  vaccine_severe_efficacy(arg1,arg2);
+  r_ans = R_NilValue;
+  
+  
+  free(arg2);
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_time_to_protect ( SEXP pvaccine, SEXP s_swig_copy)
+{
+  short result;
+  vaccine *arg1 = (vaccine *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(pvaccine, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_time_to_protect" "', argument " "1"" of type '" "vaccine *""'"); 
+  }
+  arg1 = (vaccine *)(argp1);
+  result = (short)vaccine_time_to_protect(arg1);
+  r_ans = SWIG_From_int((int)(result));
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_vaccine_protection_period ( SEXP pvaccine, SEXP s_swig_copy)
+{
+  short result;
+  vaccine *arg1 = (vaccine *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(pvaccine, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_vaccine_protection_period" "', argument " "1"" of type '" "vaccine *""'"); 
+  }
+  arg1 = (vaccine *)(argp1);
+  result = (short)vaccine_vaccine_protection_period(arg1);
+  r_ans = SWIG_From_int((int)(result));
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_name ( SEXP pvaccine)
+{
+  char *result = 0 ;
+  vaccine *arg1 = (vaccine *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(pvaccine, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_name" "', argument " "1"" of type '" "vaccine *""'"); 
+  }
+  arg1 = (vaccine *)(argp1);
+  result = (char *)vaccine_name(arg1);
+  r_ans = result ? Rf_mkString((char *)(result)) : R_NilValue;
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_vaccine_n_strains ( SEXP pvaccine, SEXP s_swig_copy)
+{
+  short result;
+  vaccine *arg1 = (vaccine *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(pvaccine, &argp1, SWIGTYPE_p_vaccine, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vaccine_n_strains" "', argument " "1"" of type '" "vaccine *""'"); 
+  }
+  arg1 = (vaccine *)(argp1);
+  result = (short)vaccine_n_strains(arg1);
+  r_ans = SWIG_From_int((int)(result));
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_strain_idx ( SEXP pstrain, SEXP s_swig_copy)
+{
+  short result;
+  strain *arg1 = (strain *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(pstrain, &argp1, SWIGTYPE_p_strain, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "strain_idx" "', argument " "1"" of type '" "strain *""'"); 
+  }
+  arg1 = (strain *)(argp1);
+  result = (short)strain_idx(arg1);
+  r_ans = SWIG_From_int((int)(result));
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
+SWIGEXPORT SEXP
+R_swig_strain_transmission_multiplier ( SEXP pstrain, SEXP s_swig_copy)
+{
+  float result;
+  strain *arg1 = (strain *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int r_nprotect = 0;
+  SEXP r_ans = R_NilValue ;
+  VMAXTYPE r_vmax = vmaxget() ;
+  
+  res1 = SWIG_R_ConvertPtr(pstrain, &argp1, SWIGTYPE_p_strain, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "strain_transmission_multiplier" "', argument " "1"" of type '" "strain *""'"); 
+  }
+  arg1 = (strain *)(argp1);
+  result = (float)strain_transmission_multiplier(arg1);
+  r_ans = SWIG_From_float((float)(result));
+  
+  vmaxset(r_vmax);
+  if(r_nprotect)  Rf_unprotect(r_nprotect);
+  
+  return r_ans;
+}
+
+
 #ifdef __cplusplus
 }
 #endif
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
+static void *_p_p_floatArrayTo_p_p_float(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((float **)  ((floatArray **) x));
+}
+static void *_p_floatArrayTo_p_float(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((float *)  ((floatArray *) x));
+}
 static void *_p_longArrayTo_p_long(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((long *)  ((longArray *) x));
 }
@@ -37533,6 +40370,9 @@ static swig_type_info _swigt__p_event = {"_p_event", "event *|struct event *", 0
 static swig_type_info _swigt__p_event_block = {"_p_event_block", "event_block *|struct event_block *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_event_list = {"_p_event_list", "struct event_list *|event_list *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_model_p_struct_individual__void = {"_p_f_p_model_p_struct_individual__void", "void (*)(model *,struct individual *)|void (*)(model *,individual *)", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_p_model_p_struct_individual_p_void__void = {"_p_f_p_model_p_struct_individual_p_void__void", "void (*)(model *,struct individual *,void *)|void (*)(model *,individual *,void *)", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_float = {"_p_float", "float *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_floatArray = {"_p_floatArray", "floatArray *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_gsl_rng = {"_p_gsl_rng", "gsl_rng *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_hospital = {"_p_hospital", "hospital *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_incomplete_gamma_p_params = {"_p_incomplete_gamma_p_params", "struct incomplete_gamma_p_params *", 0, 0, (void*)0, 0};
@@ -37550,6 +40390,8 @@ static swig_type_info _swigt__p_p_char = {"_p_p_char", "char **", 0, 0, (void*)0
 static swig_type_info _swigt__p_p_double = {"_p_p_double", "double **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_doubleArray = {"_p_p_doubleArray", 0, 0, 0, 0, 0};
 static swig_type_info _swigt__p_p_event = {"_p_p_event", "event **", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_p_float = {"_p_p_float", "float **", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_p_floatArray = {"_p_p_floatArray", 0, 0, 0, 0, 0};
 static swig_type_info _swigt__p_p_int = {"_p_p_int", "int **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_intArray = {"_p_p_intArray", 0, 0, 0, 0, 0};
 static swig_type_info _swigt__p_p_interaction = {"_p_p_interaction", "interaction **", 0, 0, (void*)0, 0};
@@ -37562,8 +40404,11 @@ static swig_type_info _swigt__p_p_p_doubleArray = {"_p_p_p_doubleArray", 0, 0, 0
 static swig_type_info _swigt__p_parameters = {"_p_parameters", "parameters *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_short = {"_p_short", "short *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_shortArray = {"_p_shortArray", "shortArray *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_strain = {"_p_strain", "struct strain *|strain *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_trace_token = {"_p_trace_token", "trace_token *|struct trace_token *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_trace_token_block = {"_p_trace_token_block", "trace_token_block *|struct trace_token_block *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_vaccine = {"_p_vaccine", "vaccine *|struct vaccine *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_void = {"_p_void", "void *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_a_N_WORKER_TYPES__int,
@@ -37579,6 +40424,9 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_event_block,
   &_swigt__p_event_list,
   &_swigt__p_f_p_model_p_struct_individual__void,
+  &_swigt__p_f_p_model_p_struct_individual_p_void__void,
+  &_swigt__p_float,
+  &_swigt__p_floatArray,
   &_swigt__p_gsl_rng,
   &_swigt__p_hospital,
   &_swigt__p_incomplete_gamma_p_params,
@@ -37596,6 +40444,8 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_p_double,
   &_swigt__p_p_doubleArray,
   &_swigt__p_p_event,
+  &_swigt__p_p_float,
+  &_swigt__p_p_floatArray,
   &_swigt__p_p_int,
   &_swigt__p_p_intArray,
   &_swigt__p_p_interaction,
@@ -37608,8 +40458,11 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_parameters,
   &_swigt__p_short,
   &_swigt__p_shortArray,
+  &_swigt__p_strain,
   &_swigt__p_trace_token,
   &_swigt__p_trace_token_block,
+  &_swigt__p_vaccine,
+  &_swigt__p_void,
 };
 
 static swig_cast_info _swigc__p_a_N_WORKER_TYPES__intArray[] = {{&_swigt__p_a_N_WORKER_TYPES__intArray, 0, 0, 0},{0, 0, 0, 0}};
@@ -37625,6 +40478,9 @@ static swig_cast_info _swigc__p_event[] = {  {&_swigt__p_event, 0, 0, 0},{0, 0, 
 static swig_cast_info _swigc__p_event_block[] = {  {&_swigt__p_event_block, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_event_list[] = {  {&_swigt__p_event_list, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_model_p_struct_individual__void[] = {  {&_swigt__p_f_p_model_p_struct_individual__void, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_f_p_model_p_struct_individual_p_void__void[] = {  {&_swigt__p_f_p_model_p_struct_individual_p_void__void, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_float[] = {  {&_swigt__p_float, 0, 0, 0},  {&_swigt__p_floatArray, _p_floatArrayTo_p_float, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_floatArray[] = {  {&_swigt__p_floatArray, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_gsl_rng[] = {  {&_swigt__p_gsl_rng, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_hospital[] = {  {&_swigt__p_hospital, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_incomplete_gamma_p_params[] = {  {&_swigt__p_incomplete_gamma_p_params, 0, 0, 0},{0, 0, 0, 0}};
@@ -37642,6 +40498,8 @@ static swig_cast_info _swigc__p_p_char[] = {  {&_swigt__p_p_char, 0, 0, 0},{0, 0
 static swig_cast_info _swigc__p_p_doubleArray[] = {{&_swigt__p_p_doubleArray, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_double[] = {  {&_swigt__p_p_doubleArray, _p_p_doubleArrayTo_p_p_double, 0, 0},  {&_swigt__p_p_double, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_event[] = {  {&_swigt__p_p_event, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_p_floatArray[] = {{&_swigt__p_p_floatArray, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_p_float[] = {  {&_swigt__p_p_float, 0, 0, 0},  {&_swigt__p_p_floatArray, _p_p_floatArrayTo_p_p_float, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_intArray[] = {{&_swigt__p_p_intArray, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_int[] = {  {&_swigt__p_p_intArray, _p_p_intArrayTo_p_p_int, 0, 0},  {&_swigt__p_p_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_interaction[] = {  {&_swigt__p_p_interaction, 0, 0, 0},{0, 0, 0, 0}};
@@ -37654,8 +40512,11 @@ static swig_cast_info _swigc__p_p_p_double[] = {  {&_swigt__p_p_p_doubleArray, _
 static swig_cast_info _swigc__p_parameters[] = {  {&_swigt__p_parameters, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_short[] = {  {&_swigt__p_shortArray, _p_shortArrayTo_p_short, 0, 0},  {&_swigt__p_short, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_shortArray[] = {  {&_swigt__p_shortArray, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_strain[] = {  {&_swigt__p_strain, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_trace_token[] = {  {&_swigt__p_trace_token, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_trace_token_block[] = {  {&_swigt__p_trace_token_block, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_vaccine[] = {  {&_swigt__p_vaccine, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_void[] = {  {&_swigt__p_void, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_a_N_WORKER_TYPES__int,
@@ -37671,6 +40532,9 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_event_block,
   _swigc__p_event_list,
   _swigc__p_f_p_model_p_struct_individual__void,
+  _swigc__p_f_p_model_p_struct_individual_p_void__void,
+  _swigc__p_float,
+  _swigc__p_floatArray,
   _swigc__p_gsl_rng,
   _swigc__p_hospital,
   _swigc__p_incomplete_gamma_p_params,
@@ -37688,6 +40552,8 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_p_double,
   _swigc__p_p_doubleArray,
   _swigc__p_p_event,
+  _swigc__p_p_float,
+  _swigc__p_p_floatArray,
   _swigc__p_p_int,
   _swigc__p_p_intArray,
   _swigc__p_p_interaction,
@@ -37700,8 +40566,11 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_parameters,
   _swigc__p_short,
   _swigc__p_shortArray,
+  _swigc__p_strain,
   _swigc__p_trace_token,
   _swigc__p_trace_token_block,
+  _swigc__p_vaccine,
+  _swigc__p_void,
 };
 
 
@@ -37954,6 +40823,7 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_parameters_n_patient_required_interactions_set", (DL_FUNC) &R_swig_parameters_n_patient_required_interactions_set, 2},
    {"R_swig_parameters_hospitalised_daily_interactions_set", (DL_FUNC) &R_swig_parameters_hospitalised_daily_interactions_set, 2},
    {"R_swig_parameters_hospitalised_daily_interactions_get", (DL_FUNC) &R_swig_parameters_hospitalised_daily_interactions_get, 2},
+   {"R_swig_event_info_get", (DL_FUNC) &R_swig_event_info_get, 1},
    {"R_swig_discrete_draw", (DL_FUNC) &R_swig_discrete_draw, 3},
    {"R_swig_parameters_hospital_on_get", (DL_FUNC) &R_swig_parameters_hospital_on_get, 2},
    {"R_swig_parameters_interventions_on_get", (DL_FUNC) &R_swig_parameters_interventions_on_get, 2},
@@ -37978,16 +40848,20 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_parameters_manual_traceable_fraction_get", (DL_FUNC) &R_swig_parameters_manual_traceable_fraction_get, 2},
    {"R_swig_network_daily_fraction_get", (DL_FUNC) &R_swig_network_daily_fraction_get, 2},
    {"R_swig_network_construction_get", (DL_FUNC) &R_swig_network_construction_get, 2},
+   {"R_swig_strain_hospitalised_fraction_get", (DL_FUNC) &R_swig_strain_hospitalised_fraction_get, 2},
    {"R_swig_write_ward_data", (DL_FUNC) &R_swig_write_ward_data, 1},
    {"R_swig_set_model_param_quarantine_household_contacts_on_symptoms", (DL_FUNC) &R_swig_set_model_param_quarantine_household_contacts_on_symptoms, 3},
    {"R_swig_set_model_param_quarantine_household_contacts_on_positive", (DL_FUNC) &R_swig_set_model_param_quarantine_household_contacts_on_positive, 3},
    {"R_swig_get_model_param_quarantine_household_contacts_on_symptoms", (DL_FUNC) &R_swig_get_model_param_quarantine_household_contacts_on_symptoms, 2},
    {"R_swig_get_model_param_quarantine_household_contacts_on_positive", (DL_FUNC) &R_swig_get_model_param_quarantine_household_contacts_on_positive, 2},
    {"R_swig_setup_gsl_rng", (DL_FUNC) &R_swig_setup_gsl_rng, 1},
+   {"R_swig_free_gsl_rng", (DL_FUNC) &R_swig_free_gsl_rng, 0},
    {"R_swig_parameters_mean_asymptomatic_to_recovery_get", (DL_FUNC) &R_swig_parameters_mean_asymptomatic_to_recovery_get, 2},
    {"R_swig_parameters_sd_time_hospitalised_recovery_get", (DL_FUNC) &R_swig_parameters_sd_time_hospitalised_recovery_get, 2},
-   {"R_swig_transition_events", (DL_FUNC) &R_swig_transition_events, 4},
+   {"R_swig_infection_event_strain_get", (DL_FUNC) &R_swig_infection_event_strain_get, 1},
+   {"R_swig_strain_idx", (DL_FUNC) &R_swig_strain_idx, 2},
    {"R_swig_set_up_events", (DL_FUNC) &R_swig_set_up_events, 1},
+   {"R_swig_transition_events", (DL_FUNC) &R_swig_transition_events, 4},
    {"R_swig_count_infection_events", (DL_FUNC) &R_swig_count_infection_events, 2},
    {"R_swig_individual_index_trace_token_get", (DL_FUNC) &R_swig_individual_index_trace_token_get, 1},
    {"R_swig_model_next_trace_token_get", (DL_FUNC) &R_swig_model_next_trace_token_get, 1},
@@ -37999,9 +40873,10 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_set_param_sd_infectious_period", (DL_FUNC) &R_swig_set_param_sd_infectious_period, 3},
    {"R_swig_set_param_test_insensitive_period", (DL_FUNC) &R_swig_set_param_test_insensitive_period, 3},
    {"R_swig_set_param_test_sensitive_period", (DL_FUNC) &R_swig_set_param_test_sensitive_period, 3},
-   {"R_swig_update_event_list_counters", (DL_FUNC) &R_swig_update_event_list_counters, 2},
+   {"R_swig_vaccine_vaccine_protection_period", (DL_FUNC) &R_swig_vaccine_vaccine_protection_period, 2},
    {"R_swig_reset_counters", (DL_FUNC) &R_swig_reset_counters, 1},
    {"R_swig_set_up_counters", (DL_FUNC) &R_swig_set_up_counters, 1},
+   {"R_swig_update_event_list_counters", (DL_FUNC) &R_swig_update_event_list_counters, 2},
    {"R_swig_incomplete_gamma_p_params_n_get", (DL_FUNC) &R_swig_incomplete_gamma_p_params_n_get, 2},
    {"R_swig_get_param_quarantine_length_self", (DL_FUNC) &R_swig_get_param_quarantine_length_self, 2},
    {"R_swig_set_param_quarantine_length_self", (DL_FUNC) &R_swig_set_param_quarantine_length_self, 3},
@@ -38011,6 +40886,9 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_set_param_sd_infectiousness_multiplier", (DL_FUNC) &R_swig_set_param_sd_infectiousness_multiplier, 3},
    {"R_swig_set_param_lockdown_occupation_multiplier", (DL_FUNC) &R_swig_set_param_lockdown_occupation_multiplier, 4},
    {"R_swig_set_param_random_network_multiplier", (DL_FUNC) &R_swig_set_param_random_network_multiplier, 3},
+   {"R_swig_network_transmission_multiplier", (DL_FUNC) &R_swig_network_transmission_multiplier, 2},
+   {"R_swig_set_network_transmission_multiplier", (DL_FUNC) &R_swig_set_network_transmission_multiplier, 2},
+   {"R_swig_strain_transmission_multiplier", (DL_FUNC) &R_swig_strain_transmission_multiplier, 2},
    {"R_swig_gamma_rate_curve", (DL_FUNC) &R_swig_gamma_rate_curve, 5},
    {"R_swig_individual_occupation_network_set", (DL_FUNC) &R_swig_individual_occupation_network_set, 2},
    {"R_swig_model_random_network_set", (DL_FUNC) &R_swig_model_random_network_set, 2},
@@ -38032,6 +40910,8 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_longArray_setitem", (DL_FUNC) &R_swig_longArray_setitem, 3},
    {"R_swig_shortArray_getitem", (DL_FUNC) &R_swig_shortArray_getitem, 3},
    {"R_swig_shortArray_setitem", (DL_FUNC) &R_swig_shortArray_setitem, 3},
+   {"R_swig_floatArray_getitem", (DL_FUNC) &R_swig_floatArray_getitem, 3},
+   {"R_swig_floatArray_setitem", (DL_FUNC) &R_swig_floatArray_setitem, 3},
    {"R_swig_negative_binomial_draw", (DL_FUNC) &R_swig_negative_binomial_draw, 3},
    {"R_swig_EVENT_TYPE_TO_WARD_MAP_get", (DL_FUNC) &R_swig_EVENT_TYPE_TO_WARD_MAP_get, 1},
    {"R_swig_AGE_TEXT_MAP_get", (DL_FUNC) &R_swig_AGE_TEXT_MAP_get, 1},
@@ -38046,8 +40926,12 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_event_list_n_total_set", (DL_FUNC) &R_swig_event_list_n_total_set, 2},
    {"R_swig_parameters_n_total_set", (DL_FUNC) &R_swig_parameters_n_total_set, 2},
    {"R_swig_parameters_mean_time_to_hospital_set", (DL_FUNC) &R_swig_parameters_mean_time_to_hospital_set, 2},
-   {"R_swig_parameters_quarantine_length_traced_positive_set", (DL_FUNC) &R_swig_parameters_quarantine_length_traced_positive_set, 2},
+   {"R_swig_set_up_strains", (DL_FUNC) &R_swig_set_up_strains, 1},
+   {"R_swig_get_param_max_n_strains", (DL_FUNC) &R_swig_get_param_max_n_strains, 2},
+   {"R_swig_set_param_max_n_strains", (DL_FUNC) &R_swig_set_param_max_n_strains, 3},
+   {"R_swig_vaccine_n_strains", (DL_FUNC) &R_swig_vaccine_n_strains, 2},
    {"R_swig_parameters_quarantine_length_traced_positive_get", (DL_FUNC) &R_swig_parameters_quarantine_length_traced_positive_get, 2},
+   {"R_swig_parameters_quarantine_length_traced_positive_set", (DL_FUNC) &R_swig_parameters_quarantine_length_traced_positive_set, 2},
    {"R_swig_intervention_index_case_symptoms_to_positive", (DL_FUNC) &R_swig_intervention_index_case_symptoms_to_positive, 2},
    {"R_swig_get_param_quarantine_dropout_traced_positive", (DL_FUNC) &R_swig_get_param_quarantine_dropout_traced_positive, 2},
    {"R_swig_set_param_quarantine_dropout_traced_positive", (DL_FUNC) &R_swig_set_param_quarantine_dropout_traced_positive, 3},
@@ -38073,8 +40957,8 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_get_param_lockdown_on", (DL_FUNC) &R_swig_get_param_lockdown_on, 2},
    {"R_swig_set_param_lockdown_on", (DL_FUNC) &R_swig_set_param_lockdown_on, 3},
    {"R_swig_transition_to_symptomatic_mild", (DL_FUNC) &R_swig_transition_to_symptomatic_mild, 2},
-   {"R_swig_model_event_block_set", (DL_FUNC) &R_swig_model_event_block_set, 2},
    {"R_swig_model_trace_token_block_set", (DL_FUNC) &R_swig_model_trace_token_block_set, 2},
+   {"R_swig_model_event_block_set", (DL_FUNC) &R_swig_model_event_block_set, 2},
    {"R_swig_individual_age_group_get", (DL_FUNC) &R_swig_individual_age_group_get, 2},
    {"R_swig_get_param_quarantine_dropout_self", (DL_FUNC) &R_swig_get_param_quarantine_dropout_self, 2},
    {"R_swig_set_param_quarantine_dropout_self", (DL_FUNC) &R_swig_set_param_quarantine_dropout_self, 3},
@@ -38082,10 +40966,13 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_get_model_param_risk_score_household", (DL_FUNC) &R_swig_get_model_param_risk_score_household, 4},
    {"R_swig_intervention_quarantine_household", (DL_FUNC) &R_swig_intervention_quarantine_household, 6},
    {"R_swig_check_member_or_self", (DL_FUNC) &R_swig_check_member_or_self, 5},
+   {"R_swig_get_strain_by_id", (DL_FUNC) &R_swig_get_strain_by_id, 2},
    {"R_swig_transition_to_death", (DL_FUNC) &R_swig_transition_to_death, 2},
    {"R_swig_get_param_mean_time_to_death", (DL_FUNC) &R_swig_get_param_mean_time_to_death, 2},
    {"R_swig_get_param_mean_sd_to_death", (DL_FUNC) &R_swig_get_param_mean_sd_to_death, 2},
    {"R_swig_set_param_mean_time_to_death", (DL_FUNC) &R_swig_set_param_mean_time_to_death, 3},
+   {"R_swig_individual_immune_full_set", (DL_FUNC) &R_swig_individual_immune_full_set, 2},
+   {"R_swig_vaccine_is_full_set", (DL_FUNC) &R_swig_vaccine_is_full_set, 2},
    {"R_swig_print_exit", (DL_FUNC) &R_swig_print_exit, 1},
    {"R_swig_set_model_param_manual_trace_on_hospitalization", (DL_FUNC) &R_swig_set_model_param_manual_trace_on_hospitalization, 3},
    {"R_swig_get_model_param_manual_trace_on_hospitalization", (DL_FUNC) &R_swig_get_model_param_manual_trace_on_hospitalization, 2},
@@ -38111,6 +40998,9 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_set_param_quarantine_length_traced_symptoms", (DL_FUNC) &R_swig_set_param_quarantine_length_traced_symptoms, 3},
    {"R_swig_set_param_quarantine_household_on_symptoms", (DL_FUNC) &R_swig_set_param_quarantine_household_on_symptoms, 3},
    {"R_swig_set_param_test_on_symptoms", (DL_FUNC) &R_swig_set_param_test_on_symptoms, 3},
+   {"R_swig_vaccine_full_efficacy", (DL_FUNC) &R_swig_vaccine_full_efficacy, 2},
+   {"R_swig_vaccine_symptoms_efficacy", (DL_FUNC) &R_swig_vaccine_symptoms_efficacy, 2},
+   {"R_swig_vaccine_severe_efficacy", (DL_FUNC) &R_swig_vaccine_severe_efficacy, 2},
    {"R_swig_transition_to_symptomatic", (DL_FUNC) &R_swig_transition_to_symptomatic, 2},
    {"R_swig_get_param_fraction_asymptomatic", (DL_FUNC) &R_swig_get_param_fraction_asymptomatic, 3},
    {"R_swig_set_param_fraction_asymptomatic", (DL_FUNC) &R_swig_set_param_fraction_asymptomatic, 4},
@@ -38143,8 +41033,8 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_parameters_lockdown_occupation_multiplier_set", (DL_FUNC) &R_swig_parameters_lockdown_occupation_multiplier_set, 2},
    {"R_swig_set_model_param_quarantine_household_on_symptoms", (DL_FUNC) &R_swig_set_model_param_quarantine_household_on_symptoms, 3},
    {"R_swig_get_model_param_quarantine_household_on_symptoms", (DL_FUNC) &R_swig_get_model_param_quarantine_household_on_symptoms, 2},
-   {"R_swig_individual_vaccine_status_get", (DL_FUNC) &R_swig_individual_vaccine_status_get, 2},
    {"R_swig_individual_status_get", (DL_FUNC) &R_swig_individual_status_get, 2},
+   {"R_swig_individual_vaccine_status_get", (DL_FUNC) &R_swig_individual_vaccine_status_get, 2},
    {"R_swig_infection_event_infector_status_get", (DL_FUNC) &R_swig_infection_event_infector_status_get, 2},
    {"R_swig_trace_token_index_status_get", (DL_FUNC) &R_swig_trace_token_index_status_get, 2},
    {"R_swig_individual_infection_events_get", (DL_FUNC) &R_swig_individual_infection_events_get, 1},
@@ -38162,23 +41052,28 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_print_individual", (DL_FUNC) &R_swig_print_individual, 2},
    {"R_swig_remove_traces_on_individual", (DL_FUNC) &R_swig_remove_traces_on_individual, 2},
    {"R_swig_get_network_by_id", (DL_FUNC) &R_swig_get_network_by_id, 2},
+   {"R_swig_get_vaccine_by_id", (DL_FUNC) &R_swig_get_vaccine_by_id, 2},
    {"R_swig_edge_id1_get", (DL_FUNC) &R_swig_edge_id1_get, 2},
    {"R_swig_get_param_asymptomatic_infectious_factor", (DL_FUNC) &R_swig_get_param_asymptomatic_infectious_factor, 2},
    {"R_swig_set_param_asymptomatic_infectious_factor", (DL_FUNC) &R_swig_set_param_asymptomatic_infectious_factor, 3},
+   {"R_swig_infection_event_expected_hospitalisation_get", (DL_FUNC) &R_swig_infection_event_expected_hospitalisation_get, 2},
    {"R_swig_model_n_occupation_networks_get", (DL_FUNC) &R_swig_model_n_occupation_networks_get, 2},
    {"R_swig_model_use_custom_occupation_networks_get", (DL_FUNC) &R_swig_model_use_custom_occupation_networks_get, 2},
+   {"R_swig_model_n_networks_get", (DL_FUNC) &R_swig_model_n_networks_get, 2},
+   {"R_swig_model_all_networks_get", (DL_FUNC) &R_swig_model_all_networks_get, 1},
    {"R_swig_model_rebuild_networks_get", (DL_FUNC) &R_swig_model_rebuild_networks_get, 2},
    {"R_swig_parameters_rebuild_networks_get", (DL_FUNC) &R_swig_parameters_rebuild_networks_get, 2},
-   {"R_swig_add_interaction_block", (DL_FUNC) &R_swig_add_interaction_block, 2},
    {"R_swig_add_event_block", (DL_FUNC) &R_swig_add_event_block, 2},
+   {"R_swig_add_interaction_block", (DL_FUNC) &R_swig_add_interaction_block, 2},
    {"R_swig_read_household_demographics_file", (DL_FUNC) &R_swig_read_household_demographics_file, 1},
    {"R_swig_set_up_seed_infection", (DL_FUNC) &R_swig_set_up_seed_infection, 1},
    {"R_swig_parameters_fraction_asymptomatic_get", (DL_FUNC) &R_swig_parameters_fraction_asymptomatic_get, 2},
-   {"R_swig_new_infection", (DL_FUNC) &R_swig_new_infection, 4},
+   {"R_swig_new_infection", (DL_FUNC) &R_swig_new_infection, 5},
    {"R_swig_get_param_test_specificity", (DL_FUNC) &R_swig_get_param_test_specificity, 2},
    {"R_swig_set_param_test_specificity", (DL_FUNC) &R_swig_set_param_test_specificity, 3},
    {"R_swig_set_dead", (DL_FUNC) &R_swig_set_dead, 3},
    {"R_swig_add_household_to_ref_households", (DL_FUNC) &R_swig_add_household_to_ref_households, 11},
+   {"R_swig_model_vaccines_get", (DL_FUNC) &R_swig_model_vaccines_get, 1},
    {"R_swig_set_model_param_fatality_fraction", (DL_FUNC) &R_swig_set_model_param_fatality_fraction, 4},
    {"R_swig_set_model_param_manual_traceable_fraction", (DL_FUNC) &R_swig_set_model_param_manual_traceable_fraction, 4},
    {"R_swig_set_model_param_app_users_fraction", (DL_FUNC) &R_swig_set_model_param_app_users_fraction, 3},
@@ -38220,6 +41115,7 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_read_hospital_param_file", (DL_FUNC) &R_swig_read_hospital_param_file, 1},
    {"R_swig_read_param_file", (DL_FUNC) &R_swig_read_param_file, 1},
    {"R_swig_write_individual_file", (DL_FUNC) &R_swig_write_individual_file, 2},
+   {"R_swig_event_info_set", (DL_FUNC) &R_swig_event_info_set, 2},
    {"R_swig_remove_contact", (DL_FUNC) &R_swig_remove_contact, 3},
    {"R_swig_add_contact", (DL_FUNC) &R_swig_add_contact, 3},
    {"R_swig_parameters_hospital_on_set", (DL_FUNC) &R_swig_parameters_hospital_on_set, 2},
@@ -38245,6 +41141,7 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_parameters_manual_traceable_fraction_set", (DL_FUNC) &R_swig_parameters_manual_traceable_fraction_set, 2},
    {"R_swig_network_daily_fraction_set", (DL_FUNC) &R_swig_network_daily_fraction_set, 2},
    {"R_swig_network_construction_set", (DL_FUNC) &R_swig_network_construction_set, 2},
+   {"R_swig_strain_hospitalised_fraction_set", (DL_FUNC) &R_swig_strain_hospitalised_fraction_set, 2},
    {"R_swig_get_param_quarantine_household_on_traced_positive", (DL_FUNC) &R_swig_get_param_quarantine_household_on_traced_positive, 2},
    {"R_swig_set_param_quarantine_household_on_traced_positive", (DL_FUNC) &R_swig_set_param_quarantine_household_on_traced_positive, 3},
    {"R_swig_set_model_param_quarantine_days", (DL_FUNC) &R_swig_set_model_param_quarantine_days, 3},
@@ -38252,16 +41149,17 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_get_param_quarantine_days", (DL_FUNC) &R_swig_get_param_quarantine_days, 2},
    {"R_swig_set_param_quarantine_days", (DL_FUNC) &R_swig_set_param_quarantine_days, 3},
    {"R_swig_remove_traced_on_this_trace", (DL_FUNC) &R_swig_remove_traced_on_this_trace, 2},
+   {"R_swig_infection_event_strain_set", (DL_FUNC) &R_swig_infection_event_strain_set, 2},
    {"R_swig_individual_app_user_get", (DL_FUNC) &R_swig_individual_app_user_get, 2},
    {"R_swig_individual_infectiousness_multiplier_get", (DL_FUNC) &R_swig_individual_infectiousness_multiplier_get, 2},
    {"R_swig_model_n_quarantine_events_app_user_get", (DL_FUNC) &R_swig_model_n_quarantine_events_app_user_get, 2},
    {"R_swig_model_n_quarantine_app_user_get", (DL_FUNC) &R_swig_model_n_quarantine_app_user_get, 2},
    {"R_swig_parameters_sd_infectiousness_multiplier_get", (DL_FUNC) &R_swig_parameters_sd_infectiousness_multiplier_get, 2},
-   {"R_swig_infection_event_strain_multiplier_get", (DL_FUNC) &R_swig_infection_event_strain_multiplier_get, 2},
+   {"R_swig_network_transmission_multiplier_get", (DL_FUNC) &R_swig_network_transmission_multiplier_get, 2},
+   {"R_swig_strain_transmission_multiplier_get", (DL_FUNC) &R_swig_strain_transmission_multiplier_get, 2},
    {"R_swig_parameters_quarantined_daily_interactions_get", (DL_FUNC) &R_swig_parameters_quarantined_daily_interactions_get, 2},
    {"R_swig_set_quarantine_status", (DL_FUNC) &R_swig_set_quarantine_status, 5},
-   {"R_swig_set_vaccine_status", (DL_FUNC) &R_swig_set_vaccine_status, 3},
-   {"R_swig_transition_vaccine_status", (DL_FUNC) &R_swig_transition_vaccine_status, 1},
+   {"R_swig_set_vaccine_status", (DL_FUNC) &R_swig_set_vaccine_status, 6},
    {"R_swig_model_n_quarantine_days_get", (DL_FUNC) &R_swig_model_n_quarantine_days_get, 2},
    {"R_swig_parameters_quarantine_days_get", (DL_FUNC) &R_swig_parameters_quarantine_days_get, 2},
    {"R_swig_set_discharged", (DL_FUNC) &R_swig_set_discharged, 3},
@@ -38271,7 +41169,7 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_model_next_trace_token_set", (DL_FUNC) &R_swig_model_next_trace_token_set, 2},
    {"R_swig_edge_id2_get", (DL_FUNC) &R_swig_edge_id2_get, 2},
    {"R_swig_set_up_individual_hazard", (DL_FUNC) &R_swig_set_up_individual_hazard, 1},
-   {"R_swig_initialize_hazard", (DL_FUNC) &R_swig_initialize_hazard, 2},
+   {"R_swig_initialize_hazard", (DL_FUNC) &R_swig_initialize_hazard, 3},
    {"R_swig_get_param_lockdown_time_on", (DL_FUNC) &R_swig_get_param_lockdown_time_on, 2},
    {"R_swig_get_param_lockdown_elderly_time_on", (DL_FUNC) &R_swig_get_param_lockdown_elderly_time_on, 2},
    {"R_swig_get_param_symptoms_time_on", (DL_FUNC) &R_swig_get_param_symptoms_time_on, 2},
@@ -38285,7 +41183,8 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_parameters_priority_test_contacts_get", (DL_FUNC) &R_swig_parameters_priority_test_contacts_get, 2},
    {"R_swig_model_event_lists_get", (DL_FUNC) &R_swig_model_event_lists_get, 1},
    {"R_swig_parameters_quarantined_daily_interactions_set", (DL_FUNC) &R_swig_parameters_quarantined_daily_interactions_set, 2},
-   {"R_swig_intervention_vaccine_protect", (DL_FUNC) &R_swig_intervention_vaccine_protect, 2},
+   {"R_swig_intervention_vaccine_protect", (DL_FUNC) &R_swig_intervention_vaccine_protect, 3},
+   {"R_swig_vaccine_time_to_protect", (DL_FUNC) &R_swig_vaccine_time_to_protect, 2},
    {"R_swig_parameters_manual_trace_n_workers_get", (DL_FUNC) &R_swig_parameters_manual_trace_n_workers_get, 2},
    {"R_swig_update_household_intervention_state", (DL_FUNC) &R_swig_update_household_intervention_state, 2},
    {"R_swig_update_work_intervention_state", (DL_FUNC) &R_swig_update_work_intervention_state, 2},
@@ -38302,8 +41201,11 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_individual_n_interactions_get", (DL_FUNC) &R_swig_individual_n_interactions_get, 1},
    {"R_swig_individual_random_interactions_get", (DL_FUNC) &R_swig_individual_random_interactions_get, 2},
    {"R_swig_individual_base_random_interactions_get", (DL_FUNC) &R_swig_individual_base_random_interactions_get, 2},
+   {"R_swig_parameters_max_n_strains_get", (DL_FUNC) &R_swig_parameters_max_n_strains_get, 2},
    {"R_swig_parameters_hcw_mean_work_interactions_get", (DL_FUNC) &R_swig_parameters_hcw_mean_work_interactions_get, 2},
    {"R_swig_parameters_max_hcw_daily_interactions_get", (DL_FUNC) &R_swig_parameters_max_hcw_daily_interactions_get, 2},
+   {"R_swig_model_n_initialised_strains_get", (DL_FUNC) &R_swig_model_n_initialised_strains_get, 2},
+   {"R_swig_model_strains_get", (DL_FUNC) &R_swig_model_strains_get, 1},
    {"R_swig_model_transition_time_distributions_get", (DL_FUNC) &R_swig_model_transition_time_distributions_get, 1},
    {"R_swig_model_n_trace_tokens_get", (DL_FUNC) &R_swig_model_n_trace_tokens_get, 2},
    {"R_swig_model_possible_interactions_get", (DL_FUNC) &R_swig_model_possible_interactions_get, 1},
@@ -38316,13 +41218,17 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_parameters_mean_work_interactions_get", (DL_FUNC) &R_swig_parameters_mean_work_interactions_get, 2},
    {"R_swig_interaction_block_interactions_get", (DL_FUNC) &R_swig_interaction_block_interactions_get, 1},
    {"R_swig_interaction_block_n_interactions_get", (DL_FUNC) &R_swig_interaction_block_n_interactions_get, 2},
+   {"R_swig_set_immune", (DL_FUNC) &R_swig_set_immune, 4},
    {"R_swig_trace_token_block_trace_tokens_get", (DL_FUNC) &R_swig_trace_token_block_trace_tokens_get, 1},
+   {"R_swig_vaccine_n_strains_get", (DL_FUNC) &R_swig_vaccine_n_strains_get, 2},
    {"R_swig_parameters_test_on_symptoms_get", (DL_FUNC) &R_swig_parameters_test_on_symptoms_get, 2},
    {"R_swig_model_n_vaccinated_symptoms_get", (DL_FUNC) &R_swig_model_n_vaccinated_symptoms_get, 2},
    {"R_swig_model_params_get", (DL_FUNC) &R_swig_model_params_get, 1},
    {"R_swig_parameters_mean_time_to_symptoms_get", (DL_FUNC) &R_swig_parameters_mean_time_to_symptoms_get, 2},
    {"R_swig_parameters_sd_time_to_symptoms_get", (DL_FUNC) &R_swig_parameters_sd_time_to_symptoms_get, 2},
    {"R_swig_parameters_trace_on_symptoms_get", (DL_FUNC) &R_swig_parameters_trace_on_symptoms_get, 2},
+   {"R_swig_individual_immune_to_symptoms_get", (DL_FUNC) &R_swig_individual_immune_to_symptoms_get, 1},
+   {"R_swig_vaccine_is_symptoms_get", (DL_FUNC) &R_swig_vaccine_is_symptoms_get, 2},
    {"R_swig_parameters_n_hospitals_get", (DL_FUNC) &R_swig_parameters_n_hospitals_get, 2},
    {"R_swig_model_hospitals_get", (DL_FUNC) &R_swig_model_hospitals_get, 1},
    {"R_swig_set_case", (DL_FUNC) &R_swig_set_case, 2},
@@ -38335,6 +41241,7 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_intArray_cast", (DL_FUNC) &R_swig_intArray_cast, 1},
    {"R_swig_longArray_cast", (DL_FUNC) &R_swig_longArray_cast, 1},
    {"R_swig_shortArray_cast", (DL_FUNC) &R_swig_shortArray_cast, 1},
+   {"R_swig_floatArray_cast", (DL_FUNC) &R_swig_floatArray_cast, 1},
    {"R_swig_parameters_allow_clinical_diagnosis_get", (DL_FUNC) &R_swig_parameters_allow_clinical_diagnosis_get, 2},
    {"R_swig_AGE_TEXT_MAP_set", (DL_FUNC) &R_swig_AGE_TEXT_MAP_set, 1},
    {"R_swig_individual_disease_progression_predicted_set", (DL_FUNC) &R_swig_individual_disease_progression_predicted_set, 2},
@@ -38346,7 +41253,6 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_parameters_n_ward_beds_get", (DL_FUNC) &R_swig_parameters_n_ward_beds_get, 2},
    {"R_swig_parameters_REFERENCE_HOUSEHOLDS_get", (DL_FUNC) &R_swig_parameters_REFERENCE_HOUSEHOLDS_get, 1},
    {"R_swig_parameters_N_REFERENCE_HOUSEHOLDS_get", (DL_FUNC) &R_swig_parameters_N_REFERENCE_HOUSEHOLDS_get, 2},
-   {"R_swig_individual_vaccine_status_next_get", (DL_FUNC) &R_swig_individual_vaccine_status_next_get, 2},
    {"R_swig_event__next_get", (DL_FUNC) &R_swig_event__next_get, 1},
    {"R_swig_event_block__next_get", (DL_FUNC) &R_swig_event_block__next_get, 1},
    {"R_swig_interaction__next_get", (DL_FUNC) &R_swig_interaction__next_get, 1},
@@ -38354,13 +41260,14 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_infection_event__next_get", (DL_FUNC) &R_swig_infection_event__next_get, 1},
    {"R_swig_trace_token_block__next_get", (DL_FUNC) &R_swig_trace_token_block__next_get, 1},
    {"R_swig_trace_token__next_get", (DL_FUNC) &R_swig_trace_token__next_get, 1},
+   {"R_swig_vaccine__next_get", (DL_FUNC) &R_swig_vaccine__next_get, 1},
    {"R_swig_network_type", (DL_FUNC) &R_swig_network_type, 2},
    {"R_swig_set_recovered", (DL_FUNC) &R_swig_set_recovered, 4},
    {"R_swig_set_up_transition_times", (DL_FUNC) &R_swig_set_up_transition_times, 1},
    {"R_swig_transition_to_recovered", (DL_FUNC) &R_swig_transition_to_recovered, 2},
-   {"R_swig_interaction_manual_traceable_get", (DL_FUNC) &R_swig_interaction_manual_traceable_get, 2},
-   {"R_swig_interaction_traceable_get", (DL_FUNC) &R_swig_interaction_traceable_get, 2},
    {"R_swig_parameters_occupation_network_table_get", (DL_FUNC) &R_swig_parameters_occupation_network_table_get, 1},
+   {"R_swig_interaction_traceable_get", (DL_FUNC) &R_swig_interaction_traceable_get, 2},
+   {"R_swig_interaction_manual_traceable_get", (DL_FUNC) &R_swig_interaction_manual_traceable_get, 2},
    {"R_swig_write_trace_tokens_ts", (DL_FUNC) &R_swig_write_trace_tokens_ts, 2},
    {"R_swig_parameters_lockdown_house_interaction_multiplier_get", (DL_FUNC) &R_swig_parameters_lockdown_house_interaction_multiplier_get, 2},
    {"R_swig_parameters_lockdown_house_interaction_multiplier_set", (DL_FUNC) &R_swig_parameters_lockdown_house_interaction_multiplier_set, 2},
@@ -38368,7 +41275,7 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_trace_token_last_get", (DL_FUNC) &R_swig_trace_token_last_get, 1},
    {"R_swig_set_up_healthcare_workers_and_hospitals", (DL_FUNC) &R_swig_set_up_healthcare_workers_and_hospitals, 1},
    {"R_swig_individual_age_group_set", (DL_FUNC) &R_swig_individual_age_group_set, 2},
-   {"R_swig_individual_hazard_get", (DL_FUNC) &R_swig_individual_hazard_get, 2},
+   {"R_swig_individual_hazard_get", (DL_FUNC) &R_swig_individual_hazard_get, 1},
    {"R_swig_parameters_n_hcw_per_ward_get", (DL_FUNC) &R_swig_parameters_n_hcw_per_ward_get, 2},
    {"R_swig_get_worker_ward_type", (DL_FUNC) &R_swig_get_worker_ward_type, 3},
    {"R_swig_set_model_param_quarantine_household_on_traced_positive", (DL_FUNC) &R_swig_set_model_param_quarantine_household_on_traced_positive, 3},
@@ -38384,8 +41291,7 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_parameters_test_insensitive_period_get", (DL_FUNC) &R_swig_parameters_test_insensitive_period_get, 2},
    {"R_swig_parameters_mean_infectious_period_get", (DL_FUNC) &R_swig_parameters_mean_infectious_period_get, 2},
    {"R_swig_parameters_sd_infectious_period_get", (DL_FUNC) &R_swig_parameters_sd_infectious_period_get, 2},
-   {"R_swig_individual_vaccine_wane_event_get", (DL_FUNC) &R_swig_individual_vaccine_wane_event_get, 1},
-   {"R_swig_individual_next_hospital_event_get", (DL_FUNC) &R_swig_individual_next_hospital_event_get, 1},
+   {"R_swig_vaccine_vaccine_protection_period_get", (DL_FUNC) &R_swig_vaccine_vaccine_protection_period_get, 2},
    {"R_swig_individual_current_hospital_event_get", (DL_FUNC) &R_swig_individual_current_hospital_event_get, 1},
    {"R_swig_individual_index_token_release_event_get", (DL_FUNC) &R_swig_individual_index_token_release_event_get, 1},
    {"R_swig_individual_quarantine_release_event_get", (DL_FUNC) &R_swig_individual_quarantine_release_event_get, 1},
@@ -38395,6 +41301,7 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_event_list_n_current_get", (DL_FUNC) &R_swig_event_list_n_current_get, 2},
    {"R_swig_event_list_n_daily_current_get", (DL_FUNC) &R_swig_event_list_n_daily_current_get, 1},
    {"R_swig_model_next_event_get", (DL_FUNC) &R_swig_model_next_event_get, 1},
+   {"R_swig_individual_next_hospital_event_get", (DL_FUNC) &R_swig_individual_next_hospital_event_get, 1},
    {"R_swig_parameters_manual_trace_interviews_per_worker_day_set", (DL_FUNC) &R_swig_parameters_manual_trace_interviews_per_worker_day_set, 2},
    {"R_swig_parameters_manual_trace_interviews_per_worker_day_get", (DL_FUNC) &R_swig_parameters_manual_trace_interviews_per_worker_day_get, 2},
    {"R_swig_set_model_param_priority_test_contacts", (DL_FUNC) &R_swig_set_model_param_priority_test_contacts, 4},
@@ -38409,8 +41316,8 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_set_param_daily_fraction_work", (DL_FUNC) &R_swig_set_param_daily_fraction_work, 3},
    {"R_swig_parameters_test_order_wait_get", (DL_FUNC) &R_swig_parameters_test_order_wait_get, 2},
    {"R_swig_parameters_test_result_wait_get", (DL_FUNC) &R_swig_parameters_test_result_wait_get, 2},
-   {"R_swig_interaction_network_id_get", (DL_FUNC) &R_swig_interaction_network_id_get, 2},
    {"R_swig_parameters_param_id_get", (DL_FUNC) &R_swig_parameters_param_id_get, 2},
+   {"R_swig_interaction_network_id_get", (DL_FUNC) &R_swig_interaction_network_id_get, 2},
    {"R_swig_infection_event_network_id_get", (DL_FUNC) &R_swig_infection_event_network_id_get, 2},
    {"R_swig_set_up_infectious_curves", (DL_FUNC) &R_swig_set_up_infectious_curves, 1},
    {"R_swig_network_network_id_get", (DL_FUNC) &R_swig_network_network_id_get, 2},
@@ -38423,17 +41330,18 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_parameters_relative_transmission_used_get", (DL_FUNC) &R_swig_parameters_relative_transmission_used_get, 2},
    {"R_swig_parameters_household_size_get", (DL_FUNC) &R_swig_parameters_household_size_get, 2},
    {"R_swig_network_skip_hospitalised_get", (DL_FUNC) &R_swig_network_skip_hospitalised_get, 2},
+   {"R_swig_vaccine_time_to_protect_get", (DL_FUNC) &R_swig_vaccine_time_to_protect_get, 2},
    {"R_swig_parameters_mild_infectious_factor_set", (DL_FUNC) &R_swig_parameters_mild_infectious_factor_set, 2},
    {"R_swig_infection_event_infector_set", (DL_FUNC) &R_swig_infection_event_infector_set, 2},
    {"R_swig_infection_event_time_infected_infector_set", (DL_FUNC) &R_swig_infection_event_time_infected_infector_set, 2},
    {"R_swig_parameters_test_release_on_negative_get", (DL_FUNC) &R_swig_parameters_test_release_on_negative_get, 2},
    {"R_swig_parameters_quarantine_dropout_positive_get", (DL_FUNC) &R_swig_parameters_quarantine_dropout_positive_get, 2},
+   {"R_swig_parameters_quarantine_length_positive_get", (DL_FUNC) &R_swig_parameters_quarantine_length_positive_get, 2},
+   {"R_swig_parameters_retrace_on_positive_get", (DL_FUNC) &R_swig_parameters_retrace_on_positive_get, 2},
    {"R_swig_parameters_mean_time_critical_survive_get", (DL_FUNC) &R_swig_parameters_mean_time_critical_survive_get, 2},
    {"R_swig_parameters_sd_time_critical_survive_get", (DL_FUNC) &R_swig_parameters_sd_time_critical_survive_get, 2},
    {"R_swig_parameters_manual_trace_on_positive_get", (DL_FUNC) &R_swig_parameters_manual_trace_on_positive_get, 2},
    {"R_swig_parameters_trace_on_positive_get", (DL_FUNC) &R_swig_parameters_trace_on_positive_get, 2},
-   {"R_swig_parameters_retrace_on_positive_get", (DL_FUNC) &R_swig_parameters_retrace_on_positive_get, 2},
-   {"R_swig_parameters_quarantine_length_positive_get", (DL_FUNC) &R_swig_parameters_quarantine_length_positive_get, 2},
    {"R_swig_add_user_network_random", (DL_FUNC) &R_swig_add_user_network_random, 8},
    {"R_swig_network_opt_n_indiv_get", (DL_FUNC) &R_swig_network_opt_n_indiv_get, 2},
    {"R_swig_get_param_quarantine_household_on_traced_symptoms", (DL_FUNC) &R_swig_get_param_quarantine_household_on_traced_symptoms, 2},
@@ -38446,17 +41354,19 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_infection_event_is_case_get", (DL_FUNC) &R_swig_infection_event_is_case_get, 2},
    {"R_swig_parameters_risk_score_get", (DL_FUNC) &R_swig_parameters_risk_score_get, 1},
    {"R_swig_parameters_work_network_rewire_get", (DL_FUNC) &R_swig_parameters_work_network_rewire_get, 2},
+   {"R_swig_individual_immune_to_severe_get", (DL_FUNC) &R_swig_individual_immune_to_severe_get, 1},
+   {"R_swig_vaccine_is_severe_get", (DL_FUNC) &R_swig_vaccine_is_severe_get, 2},
    {"R_swig_parameters_output_file_dir_set", (DL_FUNC) &R_swig_parameters_output_file_dir_set, 2},
    {"R_swig_get_model_param_hospital_on", (DL_FUNC) &R_swig_get_model_param_hospital_on, 2},
    {"R_swig_get_param_hospital_on", (DL_FUNC) &R_swig_get_param_hospital_on, 2},
    {"R_swig_model_manual_trace_interview_quota_set", (DL_FUNC) &R_swig_model_manual_trace_interview_quota_set, 2},
    {"R_swig_model_manual_trace_notification_quota_set", (DL_FUNC) &R_swig_model_manual_trace_notification_quota_set, 2},
-   {"R_swig_interaction_type_get", (DL_FUNC) &R_swig_interaction_type_get, 2},
-   {"R_swig_individual_worker_type_get", (DL_FUNC) &R_swig_individual_worker_type_get, 2},
    {"R_swig_individual_ward_type_get", (DL_FUNC) &R_swig_individual_ward_type_get, 2},
    {"R_swig_individual_age_type_get", (DL_FUNC) &R_swig_individual_age_type_get, 2},
    {"R_swig_event_type_get", (DL_FUNC) &R_swig_event_type_get, 2},
    {"R_swig_event_list_type_get", (DL_FUNC) &R_swig_event_list_type_get, 2},
+   {"R_swig_individual_worker_type_get", (DL_FUNC) &R_swig_individual_worker_type_get, 2},
+   {"R_swig_interaction_type_get", (DL_FUNC) &R_swig_interaction_type_get, 2},
    {"R_swig_network_type_get", (DL_FUNC) &R_swig_network_type_get, 2},
    {"R_swig_destroy_model", (DL_FUNC) &R_swig_destroy_model, 1},
    {"R_swig_create_model", (DL_FUNC) &R_swig_create_model, 1},
@@ -38466,12 +41376,14 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_parameters_hospital_param_line_number_set", (DL_FUNC) &R_swig_parameters_hospital_param_line_number_set, 2},
    {"R_swig_parameters_mean_time_to_recover_set", (DL_FUNC) &R_swig_parameters_mean_time_to_recover_set, 2},
    {"R_swig_parameters_sd_time_to_recover_set", (DL_FUNC) &R_swig_parameters_sd_time_to_recover_set, 2},
+   {"R_swig_vaccine_idx", (DL_FUNC) &R_swig_vaccine_idx, 2},
    {"R_swig_parameters_intervention_start_time_get", (DL_FUNC) &R_swig_parameters_intervention_start_time_get, 2},
    {"R_swig_parameters_app_turn_on_time_get", (DL_FUNC) &R_swig_parameters_app_turn_on_time_get, 2},
    {"R_swig_event_time_get", (DL_FUNC) &R_swig_event_time_get, 2},
    {"R_swig_model_time_get", (DL_FUNC) &R_swig_model_time_get, 2},
    {"R_swig_parameters_end_time_get", (DL_FUNC) &R_swig_parameters_end_time_get, 2},
    {"R_swig_trace_token_contact_time_get", (DL_FUNC) &R_swig_trace_token_contact_time_get, 2},
+   {"R_swig_vaccine_name_get", (DL_FUNC) &R_swig_vaccine_name_get, 2},
    {"R_swig_network_name_get", (DL_FUNC) &R_swig_network_name_get, 2},
    {"R_swig_calculate_R_instanteous", (DL_FUNC) &R_swig_calculate_R_instanteous, 4},
    {"R_swig_parameters_input_param_file_get", (DL_FUNC) &R_swig_parameters_input_param_file_get, 2},
@@ -38479,6 +41391,7 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_parameters_input_household_file_get", (DL_FUNC) &R_swig_parameters_input_household_file_get, 2},
    {"R_swig_incomplete_gamma_p_params_percentile_get", (DL_FUNC) &R_swig_incomplete_gamma_p_params_percentile_get, 2},
    {"R_swig_build_random_network_default", (DL_FUNC) &R_swig_build_random_network_default, 1},
+   {"R_swig_set_cross_immunity_probability", (DL_FUNC) &R_swig_set_cross_immunity_probability, 4},
    {"R_swig_get_param_relative_susceptibility", (DL_FUNC) &R_swig_get_param_relative_susceptibility, 3},
    {"R_swig_get_param_adjusted_susceptibility", (DL_FUNC) &R_swig_get_param_adjusted_susceptibility, 3},
    {"R_swig_set_param_relative_susceptibility", (DL_FUNC) &R_swig_set_param_relative_susceptibility, 4},
@@ -38487,8 +41400,8 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_get_param_array_adjusted_susceptibility", (DL_FUNC) &R_swig_get_param_array_adjusted_susceptibility, 2},
    {"R_swig_set_param_array_relative_susceptibility", (DL_FUNC) &R_swig_set_param_array_relative_susceptibility, 2},
    {"R_swig_set_param_array_adjusted_susceptibility", (DL_FUNC) &R_swig_set_param_array_adjusted_susceptibility, 2},
-   {"R_swig_individual_vaccine_status_set", (DL_FUNC) &R_swig_individual_vaccine_status_set, 2},
    {"R_swig_individual_status_set", (DL_FUNC) &R_swig_individual_status_set, 2},
+   {"R_swig_individual_vaccine_status_set", (DL_FUNC) &R_swig_individual_vaccine_status_set, 2},
    {"R_swig_infection_event_infector_status_set", (DL_FUNC) &R_swig_infection_event_infector_status_set, 2},
    {"R_swig_trace_token_index_status_set", (DL_FUNC) &R_swig_trace_token_index_status_set, 2},
    {"R_swig_individual_infection_events_set", (DL_FUNC) &R_swig_individual_infection_events_set, 2},
@@ -38509,6 +41422,7 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_model_mean_interactions_by_age_get", (DL_FUNC) &R_swig_model_mean_interactions_by_age_get, 2},
    {"R_swig_get_param_random_interaction_distribution", (DL_FUNC) &R_swig_get_param_random_interaction_distribution, 2},
    {"R_swig_set_param_random_interaction_distribution", (DL_FUNC) &R_swig_set_param_random_interaction_distribution, 3},
+   {"R_swig_add_vaccine", (DL_FUNC) &R_swig_add_vaccine, 7},
    {"R_swig_get_param_relative_transmission_used", (DL_FUNC) &R_swig_get_param_relative_transmission_used, 3},
    {"R_swig_get_param_array_relative_transmission_used", (DL_FUNC) &R_swig_get_param_array_relative_transmission_used, 2},
    {"R_swig_set_param_array_relative_transmission_used", (DL_FUNC) &R_swig_set_param_array_relative_transmission_used, 2},
@@ -38521,6 +41435,8 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_edge_id1_set", (DL_FUNC) &R_swig_edge_id1_set, 2},
    {"R_swig_model_n_occupation_networks_set", (DL_FUNC) &R_swig_model_n_occupation_networks_set, 2},
    {"R_swig_model_use_custom_occupation_networks_set", (DL_FUNC) &R_swig_model_use_custom_occupation_networks_set, 2},
+   {"R_swig_model_n_networks_set", (DL_FUNC) &R_swig_model_n_networks_set, 2},
+   {"R_swig_model_all_networks_set", (DL_FUNC) &R_swig_model_all_networks_set, 2},
    {"R_swig_model_rebuild_networks_set", (DL_FUNC) &R_swig_model_rebuild_networks_set, 2},
    {"R_swig_parameters_rebuild_networks_set", (DL_FUNC) &R_swig_parameters_rebuild_networks_set, 2},
    {"R_swig_parameters_quarantine_household_contacts_on_symptoms_get", (DL_FUNC) &R_swig_parameters_quarantine_household_contacts_on_symptoms_get, 2},
@@ -38548,16 +41464,17 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_get_param_test_on_traced", (DL_FUNC) &R_swig_get_param_test_on_traced, 2},
    {"R_swig_set_param_quarantine_on_traced", (DL_FUNC) &R_swig_set_param_quarantine_on_traced, 3},
    {"R_swig_set_param_test_on_traced", (DL_FUNC) &R_swig_set_param_test_on_traced, 3},
+   {"R_swig_model_vaccines_set", (DL_FUNC) &R_swig_model_vaccines_set, 2},
    {"R_swig_DEFAULT_NETWORKS_NAMES_set", (DL_FUNC) &R_swig_DEFAULT_NETWORKS_NAMES_set, 1},
    {"R_swig_parameters_n_wards_set", (DL_FUNC) &R_swig_parameters_n_wards_set, 2},
    {"R_swig_print_now", (DL_FUNC) &R_swig_print_now, 1},
-   {"R_swig_parameters_quarantine_length_self_get", (DL_FUNC) &R_swig_parameters_quarantine_length_self_get, 2},
    {"R_swig_parameters_quarantine_dropout_self_get", (DL_FUNC) &R_swig_parameters_quarantine_dropout_self_get, 2},
+   {"R_swig_parameters_quarantine_length_self_get", (DL_FUNC) &R_swig_parameters_quarantine_length_self_get, 2},
    {"R_swig_write_quarantine_reasons", (DL_FUNC) &R_swig_write_quarantine_reasons, 2},
    {"R_swig_resolve_quarantine_reasons", (DL_FUNC) &R_swig_resolve_quarantine_reasons, 2},
+   {"R_swig_add_new_strain", (DL_FUNC) &R_swig_add_new_strain, 4},
    {"R_swig_parameters_tracing_network_depth_get", (DL_FUNC) &R_swig_parameters_tracing_network_depth_get, 2},
    {"R_swig_get_app_user_by_index", (DL_FUNC) &R_swig_get_app_user_by_index, 3},
-   {"R_swig_get_network_id_by_index", (DL_FUNC) &R_swig_get_network_id_by_index, 3},
    {"R_swig_set_model_param_test_release_on_negative", (DL_FUNC) &R_swig_set_model_param_test_release_on_negative, 3},
    {"R_swig_get_model_param_test_release_on_negative", (DL_FUNC) &R_swig_get_model_param_test_release_on_negative, 2},
    {"R_swig_get_param_test_release_on_negative", (DL_FUNC) &R_swig_get_param_test_release_on_negative, 2},
@@ -38577,16 +41494,20 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_model_n_quarantine_events_app_user_set", (DL_FUNC) &R_swig_model_n_quarantine_events_app_user_set, 2},
    {"R_swig_model_n_quarantine_app_user_set", (DL_FUNC) &R_swig_model_n_quarantine_app_user_set, 2},
    {"R_swig_parameters_sd_infectiousness_multiplier_set", (DL_FUNC) &R_swig_parameters_sd_infectiousness_multiplier_set, 2},
-   {"R_swig_infection_event_strain_multiplier_set", (DL_FUNC) &R_swig_infection_event_strain_multiplier_set, 2},
+   {"R_swig_network_transmission_multiplier_set", (DL_FUNC) &R_swig_network_transmission_multiplier_set, 2},
+   {"R_swig_strain_transmission_multiplier_set", (DL_FUNC) &R_swig_strain_transmission_multiplier_set, 2},
    {"R_swig_set_param_mean_asymptomatic_to_recovery", (DL_FUNC) &R_swig_set_param_mean_asymptomatic_to_recovery, 3},
    {"R_swig_set_param_sd_asymptomatic_to_recovery", (DL_FUNC) &R_swig_set_param_sd_asymptomatic_to_recovery, 3},
    {"R_swig_parameters_quarantine_household_on_traced_positive_get", (DL_FUNC) &R_swig_parameters_quarantine_household_on_traced_positive_get, 2},
    {"R_swig_parameters_quarantine_household_on_traced_positive_set", (DL_FUNC) &R_swig_parameters_quarantine_household_on_traced_positive_set, 2},
    {"R_swig_model_n_quarantine_days_set", (DL_FUNC) &R_swig_model_n_quarantine_days_set, 2},
    {"R_swig_parameters_quarantine_days_set", (DL_FUNC) &R_swig_parameters_quarantine_days_set, 2},
+   {"R_swig_transition_events_info", (DL_FUNC) &R_swig_transition_events_info, 4},
    {"R_swig_parameters_quarantine_household_on_traced_symptoms_get", (DL_FUNC) &R_swig_parameters_quarantine_household_on_traced_symptoms_get, 2},
    {"R_swig_parameters_quarantine_household_on_traced_symptoms_set", (DL_FUNC) &R_swig_parameters_quarantine_household_on_traced_symptoms_set, 2},
    {"R_swig_edge_id2_set", (DL_FUNC) &R_swig_edge_id2_set, 2},
+   {"R_swig_wane_immunity", (DL_FUNC) &R_swig_wane_immunity, 3},
+   {"R_swig_apply_cross_immunity", (DL_FUNC) &R_swig_apply_cross_immunity, 5},
    {"R_swig_network_name", (DL_FUNC) &R_swig_network_name, 1},
    {"R_swig_parameters_priority_test_contacts_set", (DL_FUNC) &R_swig_parameters_priority_test_contacts_set, 2},
    {"R_swig_model_event_lists_set", (DL_FUNC) &R_swig_model_event_lists_set, 2},
@@ -38610,13 +41531,17 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_model_n_quarantine_recovered_set", (DL_FUNC) &R_swig_model_n_quarantine_recovered_set, 2},
    {"R_swig_model_n_quarantine_infected_set", (DL_FUNC) &R_swig_model_n_quarantine_infected_set, 2},
    {"R_swig_network_skip_quarantined_set", (DL_FUNC) &R_swig_network_skip_quarantined_set, 2},
+   {"R_swig_vaccine_name", (DL_FUNC) &R_swig_vaccine_name, 1},
    {"R_swig_individual_trace_tokens_set", (DL_FUNC) &R_swig_individual_trace_tokens_set, 2},
    {"R_swig_individual_interactions_set", (DL_FUNC) &R_swig_individual_interactions_set, 2},
    {"R_swig_individual_n_interactions_set", (DL_FUNC) &R_swig_individual_n_interactions_set, 2},
    {"R_swig_individual_random_interactions_set", (DL_FUNC) &R_swig_individual_random_interactions_set, 2},
    {"R_swig_individual_base_random_interactions_set", (DL_FUNC) &R_swig_individual_base_random_interactions_set, 2},
+   {"R_swig_parameters_max_n_strains_set", (DL_FUNC) &R_swig_parameters_max_n_strains_set, 2},
    {"R_swig_parameters_hcw_mean_work_interactions_set", (DL_FUNC) &R_swig_parameters_hcw_mean_work_interactions_set, 2},
    {"R_swig_parameters_max_hcw_daily_interactions_set", (DL_FUNC) &R_swig_parameters_max_hcw_daily_interactions_set, 2},
+   {"R_swig_model_n_initialised_strains_set", (DL_FUNC) &R_swig_model_n_initialised_strains_set, 2},
+   {"R_swig_model_strains_set", (DL_FUNC) &R_swig_model_strains_set, 2},
    {"R_swig_model_transition_time_distributions_set", (DL_FUNC) &R_swig_model_transition_time_distributions_set, 2},
    {"R_swig_model_n_trace_tokens_set", (DL_FUNC) &R_swig_model_n_trace_tokens_set, 2},
    {"R_swig_model_possible_interactions_set", (DL_FUNC) &R_swig_model_possible_interactions_set, 2},
@@ -38632,12 +41557,15 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_interaction_block_interactions_set", (DL_FUNC) &R_swig_interaction_block_interactions_set, 2},
    {"R_swig_interaction_block_n_interactions_set", (DL_FUNC) &R_swig_interaction_block_n_interactions_set, 2},
    {"R_swig_trace_token_block_trace_tokens_set", (DL_FUNC) &R_swig_trace_token_block_trace_tokens_set, 2},
+   {"R_swig_vaccine_n_strains_set", (DL_FUNC) &R_swig_vaccine_n_strains_set, 2},
    {"R_swig_parameters_test_on_symptoms_set", (DL_FUNC) &R_swig_parameters_test_on_symptoms_set, 2},
    {"R_swig_model_n_vaccinated_symptoms_set", (DL_FUNC) &R_swig_model_n_vaccinated_symptoms_set, 2},
    {"R_swig_model_params_set", (DL_FUNC) &R_swig_model_params_set, 2},
    {"R_swig_parameters_mean_time_to_symptoms_set", (DL_FUNC) &R_swig_parameters_mean_time_to_symptoms_set, 2},
    {"R_swig_parameters_sd_time_to_symptoms_set", (DL_FUNC) &R_swig_parameters_sd_time_to_symptoms_set, 2},
    {"R_swig_parameters_trace_on_symptoms_set", (DL_FUNC) &R_swig_parameters_trace_on_symptoms_set, 2},
+   {"R_swig_individual_immune_to_symptoms_set", (DL_FUNC) &R_swig_individual_immune_to_symptoms_set, 2},
+   {"R_swig_vaccine_is_symptoms_set", (DL_FUNC) &R_swig_vaccine_is_symptoms_set, 2},
    {"R_swig_parameters_n_hospitals_set", (DL_FUNC) &R_swig_parameters_n_hospitals_set, 2},
    {"R_swig_model_hospitals_set", (DL_FUNC) &R_swig_model_hospitals_set, 2},
    {"R_swig_event_list_infectious_curve_set", (DL_FUNC) &R_swig_event_list_infectious_curve_set, 2},
@@ -38646,8 +41574,8 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_model_interaction_blocks_set", (DL_FUNC) &R_swig_model_interaction_blocks_set, 2},
    {"R_swig_get_param_mean_time_to_hospital", (DL_FUNC) &R_swig_get_param_mean_time_to_hospital, 2},
    {"R_swig_set_param_mean_time_to_hospital", (DL_FUNC) &R_swig_set_param_mean_time_to_hospital, 3},
-   {"R_swig_parameters_quarantine_dropout_traced_positive_set", (DL_FUNC) &R_swig_parameters_quarantine_dropout_traced_positive_set, 2},
    {"R_swig_parameters_quarantine_dropout_traced_positive_get", (DL_FUNC) &R_swig_parameters_quarantine_dropout_traced_positive_get, 2},
+   {"R_swig_parameters_quarantine_dropout_traced_positive_set", (DL_FUNC) &R_swig_parameters_quarantine_dropout_traced_positive_set, 2},
    {"R_swig_parameters_allow_clinical_diagnosis_set", (DL_FUNC) &R_swig_parameters_allow_clinical_diagnosis_set, 2},
    {"R_swig_set_up_networks", (DL_FUNC) &R_swig_set_up_networks, 1},
    {"R_swig_printf_w", (DL_FUNC) &R_swig_printf_w, 2},
@@ -38663,7 +41591,6 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_parameters_quarantine_compliance_traced_symptoms_set", (DL_FUNC) &R_swig_parameters_quarantine_compliance_traced_symptoms_set, 2},
    {"R_swig_parameters_REFERENCE_HOUSEHOLDS_set", (DL_FUNC) &R_swig_parameters_REFERENCE_HOUSEHOLDS_set, 2},
    {"R_swig_parameters_N_REFERENCE_HOUSEHOLDS_set", (DL_FUNC) &R_swig_parameters_N_REFERENCE_HOUSEHOLDS_set, 2},
-   {"R_swig_individual_vaccine_status_next_set", (DL_FUNC) &R_swig_individual_vaccine_status_next_set, 2},
    {"R_swig_event__next_set", (DL_FUNC) &R_swig_event__next_set, 2},
    {"R_swig_event_block__next_set", (DL_FUNC) &R_swig_event_block__next_set, 2},
    {"R_swig_interaction__next_set", (DL_FUNC) &R_swig_interaction__next_set, 2},
@@ -38671,21 +41598,22 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_infection_event__next_set", (DL_FUNC) &R_swig_infection_event__next_set, 2},
    {"R_swig_trace_token_block__next_set", (DL_FUNC) &R_swig_trace_token_block__next_set, 2},
    {"R_swig_trace_token__next_set", (DL_FUNC) &R_swig_trace_token__next_set, 2},
-   {"R_swig_interaction_manual_traceable_set", (DL_FUNC) &R_swig_interaction_manual_traceable_set, 2},
-   {"R_swig_interaction_traceable_set", (DL_FUNC) &R_swig_interaction_traceable_set, 2},
+   {"R_swig_vaccine__next_set", (DL_FUNC) &R_swig_vaccine__next_set, 2},
    {"R_swig_parameters_occupation_network_table_set", (DL_FUNC) &R_swig_parameters_occupation_network_table_set, 2},
    {"R_swig_parameters_mean_time_to_death_get", (DL_FUNC) &R_swig_parameters_mean_time_to_death_get, 2},
    {"R_swig_parameters_sd_time_to_death_get", (DL_FUNC) &R_swig_parameters_sd_time_to_death_get, 2},
+   {"R_swig_interaction_traceable_set", (DL_FUNC) &R_swig_interaction_traceable_set, 2},
+   {"R_swig_interaction_manual_traceable_set", (DL_FUNC) &R_swig_interaction_manual_traceable_set, 2},
    {"R_swig_event_last_set", (DL_FUNC) &R_swig_event_last_set, 2},
    {"R_swig_trace_token_last_set", (DL_FUNC) &R_swig_trace_token_last_set, 2},
-   {"R_swig_set_indiv_occupation_network_property", (DL_FUNC) &R_swig_set_indiv_occupation_network_property, 8},
-   {"R_swig_remove_event_from_event_list", (DL_FUNC) &R_swig_remove_event_from_event_list, 2},
-   {"R_swig_destroy_event_list", (DL_FUNC) &R_swig_destroy_event_list, 2},
+   {"R_swig_set_indiv_occupation_network_property", (DL_FUNC) &R_swig_set_indiv_occupation_network_property, 7},
+   {"R_swig_add_individual_to_event_list", (DL_FUNC) &R_swig_add_individual_to_event_list, 5},
    {"R_swig_set_up_event_list", (DL_FUNC) &R_swig_set_up_event_list, 3},
-   {"R_swig_add_individual_to_event_list", (DL_FUNC) &R_swig_add_individual_to_event_list, 4},
+   {"R_swig_destroy_event_list", (DL_FUNC) &R_swig_destroy_event_list, 2},
+   {"R_swig_remove_event_from_event_list", (DL_FUNC) &R_swig_remove_event_from_event_list, 2},
    {"R_swig_individual_hazard_set", (DL_FUNC) &R_swig_individual_hazard_set, 2},
    {"R_swig_parameters_n_hcw_per_ward_set", (DL_FUNC) &R_swig_parameters_n_hcw_per_ward_set, 2},
-   {"R_swig_intervention_vaccinate", (DL_FUNC) &R_swig_intervention_vaccinate, 7},
+   {"R_swig_intervention_vaccinate", (DL_FUNC) &R_swig_intervention_vaccinate, 4},
    {"R_swig_set_model_param_relative_transmission", (DL_FUNC) &R_swig_set_model_param_relative_transmission, 4},
    {"R_swig_set_general_admission", (DL_FUNC) &R_swig_set_general_admission, 3},
    {"R_swig_set_icu_admission", (DL_FUNC) &R_swig_set_icu_admission, 3},
@@ -38699,14 +41627,16 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_write_household_network", (DL_FUNC) &R_swig_write_household_network, 2},
    {"R_swig_write_occupation_network", (DL_FUNC) &R_swig_write_occupation_network, 3},
    {"R_swig_set_indiv_occupation_network", (DL_FUNC) &R_swig_set_indiv_occupation_network, 5},
-   {"R_swig_add_user_network", (DL_FUNC) &R_swig_add_user_network, 11},
-   {"R_swig_build_random_network", (DL_FUNC) &R_swig_build_random_network, 4},
-   {"R_swig_build_daily_network", (DL_FUNC) &R_swig_build_daily_network, 1},
-   {"R_swig_add_interactions_from_network", (DL_FUNC) &R_swig_add_interactions_from_network, 2},
    {"R_swig_set_up_occupation_network", (DL_FUNC) &R_swig_set_up_occupation_network, 1},
+   {"R_swig_add_new_network", (DL_FUNC) &R_swig_add_new_network, 3},
+   {"R_swig_add_interactions_from_network", (DL_FUNC) &R_swig_add_interactions_from_network, 2},
+   {"R_swig_build_daily_network", (DL_FUNC) &R_swig_build_daily_network, 1},
+   {"R_swig_build_random_network", (DL_FUNC) &R_swig_build_random_network, 4},
+   {"R_swig_add_user_network", (DL_FUNC) &R_swig_add_user_network, 11},
    {"R_swig_delete_network", (DL_FUNC) &R_swig_delete_network, 3},
    {"R_swig_parameters_quarantine_smart_release_day_get", (DL_FUNC) &R_swig_parameters_quarantine_smart_release_day_get, 2},
    {"R_swig_parameters_manual_trace_delay_get", (DL_FUNC) &R_swig_parameters_manual_trace_delay_get, 2},
+   {"R_swig_add_infection_event", (DL_FUNC) &R_swig_add_infection_event, 5},
    {"R_swig_network_opt_pdx_array_get", (DL_FUNC) &R_swig_network_opt_pdx_array_get, 1},
    {"R_swig_network_opt_int_array_get", (DL_FUNC) &R_swig_network_opt_int_array_get, 1},
    {"R_swig_network_opt_long_array_get", (DL_FUNC) &R_swig_network_opt_long_array_get, 1},
@@ -38722,8 +41652,7 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_parameters_test_insensitive_period_set", (DL_FUNC) &R_swig_parameters_test_insensitive_period_set, 2},
    {"R_swig_parameters_mean_infectious_period_set", (DL_FUNC) &R_swig_parameters_mean_infectious_period_set, 2},
    {"R_swig_parameters_sd_infectious_period_set", (DL_FUNC) &R_swig_parameters_sd_infectious_period_set, 2},
-   {"R_swig_individual_vaccine_wane_event_set", (DL_FUNC) &R_swig_individual_vaccine_wane_event_set, 2},
-   {"R_swig_individual_next_hospital_event_set", (DL_FUNC) &R_swig_individual_next_hospital_event_set, 2},
+   {"R_swig_vaccine_vaccine_protection_period_set", (DL_FUNC) &R_swig_vaccine_vaccine_protection_period_set, 2},
    {"R_swig_individual_current_hospital_event_set", (DL_FUNC) &R_swig_individual_current_hospital_event_set, 2},
    {"R_swig_individual_index_token_release_event_set", (DL_FUNC) &R_swig_individual_index_token_release_event_set, 2},
    {"R_swig_individual_quarantine_release_event_set", (DL_FUNC) &R_swig_individual_quarantine_release_event_set, 2},
@@ -38733,8 +41662,9 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_event_list_n_current_set", (DL_FUNC) &R_swig_event_list_n_current_set, 2},
    {"R_swig_event_list_n_daily_current_set", (DL_FUNC) &R_swig_event_list_n_daily_current_set, 2},
    {"R_swig_model_next_event_set", (DL_FUNC) &R_swig_model_next_event_set, 2},
+   {"R_swig_individual_next_hospital_event_set", (DL_FUNC) &R_swig_individual_next_hospital_event_set, 2},
    {"R_swig_set_age_group", (DL_FUNC) &R_swig_set_age_group, 3},
-   {"R_swig_intervention_vaccinate_age_group", (DL_FUNC) &R_swig_intervention_vaccinate_age_group, 8},
+   {"R_swig_intervention_vaccinate_age_group", (DL_FUNC) &R_swig_intervention_vaccinate_age_group, 5},
    {"R_swig_utils_n_daily_age", (DL_FUNC) &R_swig_utils_n_daily_age, 5},
    {"R_swig_get_param_quarantine_compliance_traced_positive", (DL_FUNC) &R_swig_get_param_quarantine_compliance_traced_positive, 2},
    {"R_swig_set_param_quarantine_compliance_traced_positive", (DL_FUNC) &R_swig_set_param_quarantine_compliance_traced_positive, 3},
@@ -38750,8 +41680,8 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_set_param_quarantine_compliance_traced_symptoms", (DL_FUNC) &R_swig_set_param_quarantine_compliance_traced_symptoms, 3},
    {"R_swig_parameters_test_order_wait_set", (DL_FUNC) &R_swig_parameters_test_order_wait_set, 2},
    {"R_swig_parameters_test_result_wait_set", (DL_FUNC) &R_swig_parameters_test_result_wait_set, 2},
-   {"R_swig_interaction_network_id_set", (DL_FUNC) &R_swig_interaction_network_id_set, 2},
    {"R_swig_parameters_param_id_set", (DL_FUNC) &R_swig_parameters_param_id_set, 2},
+   {"R_swig_interaction_network_id_set", (DL_FUNC) &R_swig_interaction_network_id_set, 2},
    {"R_swig_infection_event_network_id_set", (DL_FUNC) &R_swig_infection_event_network_id_set, 2},
    {"R_swig_network_network_id_set", (DL_FUNC) &R_swig_network_network_id_set, 2},
    {"R_swig_one_time_step", (DL_FUNC) &R_swig_one_time_step, 2},
@@ -38761,6 +41691,8 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_model_interaction_day_idx_get", (DL_FUNC) &R_swig_model_interaction_day_idx_get, 2},
    {"R_swig_directory_n_idx_get", (DL_FUNC) &R_swig_directory_n_idx_get, 2},
    {"R_swig_interaction_block_idx_get", (DL_FUNC) &R_swig_interaction_block_idx_get, 2},
+   {"R_swig_vaccine_idx_get", (DL_FUNC) &R_swig_vaccine_idx_get, 2},
+   {"R_swig_strain_idx_get", (DL_FUNC) &R_swig_strain_idx_get, 2},
    {"R_swig_parameters_time_to_susceptible_shift_set", (DL_FUNC) &R_swig_parameters_time_to_susceptible_shift_set, 2},
    {"R_swig_set_waiting", (DL_FUNC) &R_swig_set_waiting, 3},
    {"R_swig_intervention_test_take", (DL_FUNC) &R_swig_intervention_test_take, 2},
@@ -38776,21 +41708,23 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_parameters_household_size_set", (DL_FUNC) &R_swig_parameters_household_size_set, 2},
    {"R_swig_network_skip_hospitalised_set", (DL_FUNC) &R_swig_network_skip_hospitalised_set, 2},
    {"R_swig_get_individuals", (DL_FUNC) &R_swig_get_individuals, 9},
+   {"R_swig_vaccine_time_to_protect_set", (DL_FUNC) &R_swig_vaccine_time_to_protect_set, 2},
    {"R_swig_estimate_mean_interactions_by_age", (DL_FUNC) &R_swig_estimate_mean_interactions_by_age, 3},
    {"R_swig_parameters_test_specificity_get", (DL_FUNC) &R_swig_parameters_test_specificity_get, 2},
    {"R_swig_parameters_test_sensitivity_get", (DL_FUNC) &R_swig_parameters_test_sensitivity_get, 2},
    {"R_swig_parameters_test_order_wait_priority_get", (DL_FUNC) &R_swig_parameters_test_order_wait_priority_get, 2},
    {"R_swig_parameters_test_result_wait_priority_get", (DL_FUNC) &R_swig_parameters_test_result_wait_priority_get, 2},
+   {"R_swig_model_cross_immunity_get", (DL_FUNC) &R_swig_model_cross_immunity_get, 1},
    {"R_swig_parameters_relative_susceptibility_get", (DL_FUNC) &R_swig_parameters_relative_susceptibility_get, 2},
    {"R_swig_parameters_adjusted_susceptibility_get", (DL_FUNC) &R_swig_parameters_adjusted_susceptibility_get, 2},
    {"R_swig_parameters_test_release_on_negative_set", (DL_FUNC) &R_swig_parameters_test_release_on_negative_set, 2},
+   {"R_swig_parameters_quarantine_dropout_positive_set", (DL_FUNC) &R_swig_parameters_quarantine_dropout_positive_set, 2},
+   {"R_swig_parameters_quarantine_length_positive_set", (DL_FUNC) &R_swig_parameters_quarantine_length_positive_set, 2},
    {"R_swig_parameters_mean_time_critical_survive_set", (DL_FUNC) &R_swig_parameters_mean_time_critical_survive_set, 2},
    {"R_swig_parameters_sd_time_critical_survive_set", (DL_FUNC) &R_swig_parameters_sd_time_critical_survive_set, 2},
    {"R_swig_parameters_manual_trace_on_positive_set", (DL_FUNC) &R_swig_parameters_manual_trace_on_positive_set, 2},
    {"R_swig_parameters_trace_on_positive_set", (DL_FUNC) &R_swig_parameters_trace_on_positive_set, 2},
    {"R_swig_parameters_retrace_on_positive_set", (DL_FUNC) &R_swig_parameters_retrace_on_positive_set, 2},
-   {"R_swig_parameters_quarantine_length_positive_set", (DL_FUNC) &R_swig_parameters_quarantine_length_positive_set, 2},
-   {"R_swig_parameters_quarantine_dropout_positive_set", (DL_FUNC) &R_swig_parameters_quarantine_dropout_positive_set, 2},
    {"R_swig_model_household_directory_get", (DL_FUNC) &R_swig_model_household_directory_get, 1},
    {"R_swig_parameters_sd_asymptomatic_to_recovery_get", (DL_FUNC) &R_swig_parameters_sd_asymptomatic_to_recovery_get, 2},
    {"R_swig_set_house_no", (DL_FUNC) &R_swig_set_house_no, 2},
@@ -38805,14 +41739,16 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_infection_event_is_case_set", (DL_FUNC) &R_swig_infection_event_is_case_set, 2},
    {"R_swig_parameters_risk_score_set", (DL_FUNC) &R_swig_parameters_risk_score_set, 2},
    {"R_swig_parameters_work_network_rewire_set", (DL_FUNC) &R_swig_parameters_work_network_rewire_set, 2},
+   {"R_swig_individual_immune_to_severe_set", (DL_FUNC) &R_swig_individual_immune_to_severe_set, 2},
+   {"R_swig_vaccine_is_severe_set", (DL_FUNC) &R_swig_vaccine_is_severe_set, 2},
    {"R_swig_set_model_param_manual_trace_on", (DL_FUNC) &R_swig_set_model_param_manual_trace_on, 3},
    {"R_swig_get_model_param_manual_trace_on", (DL_FUNC) &R_swig_get_model_param_manual_trace_on, 2},
-   {"R_swig_interaction_type_set", (DL_FUNC) &R_swig_interaction_type_set, 2},
-   {"R_swig_individual_worker_type_set", (DL_FUNC) &R_swig_individual_worker_type_set, 2},
    {"R_swig_individual_ward_type_set", (DL_FUNC) &R_swig_individual_ward_type_set, 2},
    {"R_swig_individual_age_type_set", (DL_FUNC) &R_swig_individual_age_type_set, 2},
    {"R_swig_event_type_set", (DL_FUNC) &R_swig_event_type_set, 2},
    {"R_swig_event_list_type_set", (DL_FUNC) &R_swig_event_list_type_set, 2},
+   {"R_swig_individual_worker_type_set", (DL_FUNC) &R_swig_individual_worker_type_set, 2},
+   {"R_swig_interaction_type_set", (DL_FUNC) &R_swig_interaction_type_set, 2},
    {"R_swig_network_type_set", (DL_FUNC) &R_swig_network_type_set, 2},
    {"R_swig_event_list_n_daily_get", (DL_FUNC) &R_swig_event_list_n_daily_get, 1},
    {"R_swig_parameters_intervention_start_time_set", (DL_FUNC) &R_swig_parameters_intervention_start_time_set, 2},
@@ -38821,6 +41757,7 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_model_time_set", (DL_FUNC) &R_swig_model_time_set, 2},
    {"R_swig_parameters_end_time_set", (DL_FUNC) &R_swig_parameters_end_time_set, 2},
    {"R_swig_trace_token_contact_time_set", (DL_FUNC) &R_swig_trace_token_contact_time_set, 2},
+   {"R_swig_vaccine_name_set", (DL_FUNC) &R_swig_vaccine_name_set, 2},
    {"R_swig_network_name_set", (DL_FUNC) &R_swig_network_name_set, 2},
    {"R_swig_write_trace_tokens", (DL_FUNC) &R_swig_write_trace_tokens, 1},
    {"R_swig_set_up_trace_tokens", (DL_FUNC) &R_swig_set_up_trace_tokens, 2},
@@ -38838,6 +41775,7 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_intArray_frompointer", (DL_FUNC) &R_swig_intArray_frompointer, 1},
    {"R_swig_longArray_frompointer", (DL_FUNC) &R_swig_longArray_frompointer, 1},
    {"R_swig_shortArray_frompointer", (DL_FUNC) &R_swig_shortArray_frompointer, 1},
+   {"R_swig_floatArray_frompointer", (DL_FUNC) &R_swig_floatArray_frompointer, 1},
    {"R_swig_get_param_infectious_rate", (DL_FUNC) &R_swig_get_param_infectious_rate, 2},
    {"R_swig_get_param_daily_non_cov_symptoms_rate", (DL_FUNC) &R_swig_get_param_daily_non_cov_symptoms_rate, 2},
    {"R_swig_set_param_infectious_rate", (DL_FUNC) &R_swig_set_param_infectious_rate, 3},
@@ -38853,11 +41791,14 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_model_mean_interactions_by_age_set", (DL_FUNC) &R_swig_model_mean_interactions_by_age_set, 2},
    {"R_swig_model_n_quarantine_release_events_app_user_get", (DL_FUNC) &R_swig_model_n_quarantine_release_events_app_user_get, 2},
    {"R_swig_model_n_quarantine_release_events_app_user_set", (DL_FUNC) &R_swig_model_n_quarantine_release_events_app_user_set, 2},
+   {"R_swig_vaccine_full_efficacy_get", (DL_FUNC) &R_swig_vaccine_full_efficacy_get, 1},
+   {"R_swig_vaccine_symptoms_efficacy_get", (DL_FUNC) &R_swig_vaccine_symptoms_efficacy_get, 1},
+   {"R_swig_vaccine_severe_efficacy_get", (DL_FUNC) &R_swig_vaccine_severe_efficacy_get, 1},
    {"R_swig_parameters_random_interaction_distribution_set", (DL_FUNC) &R_swig_parameters_random_interaction_distribution_set, 2},
    {"R_swig_parameters_random_interaction_distribution_get", (DL_FUNC) &R_swig_parameters_random_interaction_distribution_get, 2},
-   {"R_swig_parameters_quarantine_dropout_traced_symptoms_set", (DL_FUNC) &R_swig_parameters_quarantine_dropout_traced_symptoms_set, 2},
    {"R_swig_parameters_quarantine_dropout_traced_symptoms_get", (DL_FUNC) &R_swig_parameters_quarantine_dropout_traced_symptoms_get, 2},
-   {"R_swig_intervention_vaccinate_by_idx", (DL_FUNC) &R_swig_intervention_vaccinate_by_idx, 7},
+   {"R_swig_parameters_quarantine_dropout_traced_symptoms_set", (DL_FUNC) &R_swig_parameters_quarantine_dropout_traced_symptoms_set, 2},
+   {"R_swig_intervention_vaccinate_by_idx", (DL_FUNC) &R_swig_intervention_vaccinate_by_idx, 4},
    {"R_swig_seed_infect_by_idx", (DL_FUNC) &R_swig_seed_infect_by_idx, 5},
    {"R_swig_create_event", (DL_FUNC) &R_swig_create_event, 1},
    {"R_swig_transition_one_disese_event", (DL_FUNC) &R_swig_transition_one_disese_event, 5},
@@ -38875,8 +41816,8 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_parameters_manual_trace_notifications_per_worker_day_set", (DL_FUNC) &R_swig_parameters_manual_trace_notifications_per_worker_day_set, 2},
    {"R_swig_parameters_manual_trace_notifications_per_worker_day_get", (DL_FUNC) &R_swig_parameters_manual_trace_notifications_per_worker_day_get, 2},
    {"R_swig_utils_n_total_age", (DL_FUNC) &R_swig_utils_n_total_age, 4},
-   {"R_swig_parameters_quarantine_length_self_set", (DL_FUNC) &R_swig_parameters_quarantine_length_self_set, 2},
    {"R_swig_parameters_quarantine_dropout_self_set", (DL_FUNC) &R_swig_parameters_quarantine_dropout_self_set, 2},
+   {"R_swig_parameters_quarantine_length_self_set", (DL_FUNC) &R_swig_parameters_quarantine_length_self_set, 2},
    {"R_swig_individual_disease_progression_predicted_get", (DL_FUNC) &R_swig_individual_disease_progression_predicted_get, 2},
    {"R_swig_parameters_tracing_network_depth_set", (DL_FUNC) &R_swig_parameters_tracing_network_depth_set, 2},
    {"R_swig_new_longArray", (DL_FUNC) &R_swig_new_longArray, 1},
@@ -38889,11 +41830,12 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_parameters_testing_symptoms_time_off_set", (DL_FUNC) &R_swig_parameters_testing_symptoms_time_off_set, 2},
    {"R_swig_parameters_lockdown_elderly_time_off_set", (DL_FUNC) &R_swig_parameters_lockdown_elderly_time_off_set, 2},
    {"R_swig_parameters_lockdown_time_off_set", (DL_FUNC) &R_swig_parameters_lockdown_time_off_set, 2},
-   {"R_swig_get_transmissions", (DL_FUNC) &R_swig_get_transmissions, 34},
+   {"R_swig_get_transmissions", (DL_FUNC) &R_swig_get_transmissions, 36},
    {"R_swig_get_n_transmissions", (DL_FUNC) &R_swig_get_n_transmissions, 2},
    {"R_swig_write_transmissions", (DL_FUNC) &R_swig_write_transmissions, 1},
    {"R_swig_sum_square_diff_array", (DL_FUNC) &R_swig_sum_square_diff_array, 4},
-   {"R_swig_get_network_ids", (DL_FUNC) &R_swig_get_network_ids, 4},
+   {"R_swig_get_network_ids", (DL_FUNC) &R_swig_get_network_ids, 3},
+   {"R_swig_infection_event_expected_hospitalisation_set", (DL_FUNC) &R_swig_infection_event_expected_hospitalisation_set, 2},
    {"R_swig_individual_occupation_network_get", (DL_FUNC) &R_swig_individual_occupation_network_get, 2},
    {"R_swig_model_random_network_get", (DL_FUNC) &R_swig_model_random_network_get, 1},
    {"R_swig_model_household_network_get", (DL_FUNC) &R_swig_model_household_network_get, 1},
@@ -38914,15 +41856,17 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_event_list_n_total_get", (DL_FUNC) &R_swig_event_list_n_total_get, 2},
    {"R_swig_parameters_n_total_get", (DL_FUNC) &R_swig_parameters_n_total_get, 2},
    {"R_swig_parameters_mean_time_to_hospital_get", (DL_FUNC) &R_swig_parameters_mean_time_to_hospital_get, 2},
-   {"R_swig_intervention_vaccine_wane", (DL_FUNC) &R_swig_intervention_vaccine_wane, 2},
+   {"R_swig_intervention_vaccine_wane", (DL_FUNC) &R_swig_intervention_vaccine_wane, 3},
    {"R_swig_network_opt_long_set", (DL_FUNC) &R_swig_network_opt_long_set, 2},
    {"R_swig_get_param_param_id", (DL_FUNC) &R_swig_get_param_param_id, 2},
    {"R_swig_set_param_param_id", (DL_FUNC) &R_swig_set_param_param_id, 3},
+   {"R_swig_new_floatArray", (DL_FUNC) &R_swig_new_floatArray, 1},
+   {"R_swig_delete_floatArray", (DL_FUNC) &R_swig_delete_floatArray, 1},
    {"R_swig_network_n_edges", (DL_FUNC) &R_swig_network_n_edges, 2},
    {"R_swig_trace_token_traced_from_get", (DL_FUNC) &R_swig_trace_token_traced_from_get, 1},
    {"R_swig_transmit_virus", (DL_FUNC) &R_swig_transmit_virus, 1},
-   {"R_swig_model_event_block_get", (DL_FUNC) &R_swig_model_event_block_get, 1},
    {"R_swig_model_trace_token_block_get", (DL_FUNC) &R_swig_model_trace_token_block_get, 1},
+   {"R_swig_model_event_block_get", (DL_FUNC) &R_swig_model_event_block_get, 1},
    {"R_swig_set_model_param_test_order_wait_priority", (DL_FUNC) &R_swig_set_model_param_test_order_wait_priority, 3},
    {"R_swig_set_model_param_test_result_wait_priority", (DL_FUNC) &R_swig_set_model_param_test_result_wait_priority, 3},
    {"R_swig_get_model_param_test_order_wait_priority", (DL_FUNC) &R_swig_get_model_param_test_order_wait_priority, 2},
@@ -38940,13 +41884,15 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_set_param_quarantine_household_contacts_on_positive", (DL_FUNC) &R_swig_set_param_quarantine_household_contacts_on_positive, 3},
    {"R_swig_parameters_mean_time_to_death_set", (DL_FUNC) &R_swig_parameters_mean_time_to_death_set, 2},
    {"R_swig_parameters_sd_time_to_death_set", (DL_FUNC) &R_swig_parameters_sd_time_to_death_set, 2},
-   {"R_swig_parameters_quarantine_length_traced_symptoms_set", (DL_FUNC) &R_swig_parameters_quarantine_length_traced_symptoms_set, 2},
    {"R_swig_parameters_quarantine_length_traced_symptoms_get", (DL_FUNC) &R_swig_parameters_quarantine_length_traced_symptoms_get, 2},
+   {"R_swig_parameters_quarantine_length_traced_symptoms_set", (DL_FUNC) &R_swig_parameters_quarantine_length_traced_symptoms_set, 2},
    {"R_swig_set_model_param_lockdown_house_interaction_multiplier", (DL_FUNC) &R_swig_set_model_param_lockdown_house_interaction_multiplier, 3},
    {"R_swig_get_model_param_lockdown_house_interaction_multiplier", (DL_FUNC) &R_swig_get_model_param_lockdown_house_interaction_multiplier, 2},
    {"R_swig_parameters_asymptomatic_infectious_factor_get", (DL_FUNC) &R_swig_parameters_asymptomatic_infectious_factor_get, 2},
    {"R_swig_get_param_quarantine_dropout_traced_symptoms", (DL_FUNC) &R_swig_get_param_quarantine_dropout_traced_symptoms, 2},
    {"R_swig_set_param_quarantine_dropout_traced_symptoms", (DL_FUNC) &R_swig_set_param_quarantine_dropout_traced_symptoms, 3},
+   {"R_swig_individual_immune_full_get", (DL_FUNC) &R_swig_individual_immune_full_get, 1},
+   {"R_swig_vaccine_is_full_get", (DL_FUNC) &R_swig_vaccine_is_full_get, 2},
    {"R_swig_n_newly_infected", (DL_FUNC) &R_swig_n_newly_infected, 3},
    {"R_swig_set_model_param_risk_score", (DL_FUNC) &R_swig_set_model_param_risk_score, 6},
    {"R_swig_get_model_param_risk_score", (DL_FUNC) &R_swig_get_model_param_risk_score, 5},
@@ -38965,9 +41911,9 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_network_skip_quarantined", (DL_FUNC) &R_swig_network_skip_quarantined, 2},
    {"R_swig_write_hospital_interactions", (DL_FUNC) &R_swig_write_hospital_interactions, 1},
    {"R_swig_write_interactions", (DL_FUNC) &R_swig_write_interactions, 1},
-   {"R_swig_return_interactions", (DL_FUNC) &R_swig_return_interactions, 1},
    {"R_swig_flu_infections", (DL_FUNC) &R_swig_flu_infections, 1},
    {"R_swig_set_up_interactions", (DL_FUNC) &R_swig_set_up_interactions, 1},
+   {"R_swig_return_interactions", (DL_FUNC) &R_swig_return_interactions, 1},
    {"R_swig_set_critical", (DL_FUNC) &R_swig_set_critical, 3},
    {"R_swig_update_random_interactions", (DL_FUNC) &R_swig_update_random_interactions, 2},
    {"R_swig_intervention_on_critical", (DL_FUNC) &R_swig_intervention_on_critical, 2},
@@ -39004,6 +41950,8 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_model_interaction_day_idx_set", (DL_FUNC) &R_swig_model_interaction_day_idx_set, 2},
    {"R_swig_directory_n_idx_set", (DL_FUNC) &R_swig_directory_n_idx_set, 2},
    {"R_swig_interaction_block_idx_set", (DL_FUNC) &R_swig_interaction_block_idx_set, 2},
+   {"R_swig_vaccine_idx_set", (DL_FUNC) &R_swig_vaccine_idx_set, 2},
+   {"R_swig_strain_idx_set", (DL_FUNC) &R_swig_strain_idx_set, 2},
    {"R_swig_parameters_sys_write_individual_get", (DL_FUNC) &R_swig_parameters_sys_write_individual_get, 2},
    {"R_swig_event_individual_get", (DL_FUNC) &R_swig_event_individual_get, 1},
    {"R_swig_parameters_mean_time_to_critical_get", (DL_FUNC) &R_swig_parameters_mean_time_to_critical_get, 2},
@@ -39015,6 +41963,7 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_parameters_test_sensitivity_set", (DL_FUNC) &R_swig_parameters_test_sensitivity_set, 2},
    {"R_swig_parameters_test_order_wait_priority_set", (DL_FUNC) &R_swig_parameters_test_order_wait_priority_set, 2},
    {"R_swig_parameters_test_result_wait_priority_set", (DL_FUNC) &R_swig_parameters_test_result_wait_priority_set, 2},
+   {"R_swig_model_cross_immunity_set", (DL_FUNC) &R_swig_model_cross_immunity_set, 2},
    {"R_swig_parameters_relative_susceptibility_set", (DL_FUNC) &R_swig_parameters_relative_susceptibility_set, 2},
    {"R_swig_parameters_adjusted_susceptibility_set", (DL_FUNC) &R_swig_parameters_adjusted_susceptibility_set, 2},
    {"R_swig_model_household_directory_set", (DL_FUNC) &R_swig_model_household_directory_set, 2},
@@ -39042,6 +41991,9 @@ SWIGINTERN R_CallMethodDef CallEntries[] = {
    {"R_swig_utils_n_total_by_day", (DL_FUNC) &R_swig_utils_n_total_by_day, 4},
    {"R_swig_set_model_param_manual_trace_interviews_per_worker_day", (DL_FUNC) &R_swig_set_model_param_manual_trace_interviews_per_worker_day, 3},
    {"R_swig_get_model_param_manual_trace_interviews_per_worker_day", (DL_FUNC) &R_swig_get_model_param_manual_trace_interviews_per_worker_day, 2},
+   {"R_swig_vaccine_full_efficacy_set", (DL_FUNC) &R_swig_vaccine_full_efficacy_set, 2},
+   {"R_swig_vaccine_symptoms_efficacy_set", (DL_FUNC) &R_swig_vaccine_symptoms_efficacy_set, 2},
+   {"R_swig_vaccine_severe_efficacy_set", (DL_FUNC) &R_swig_vaccine_severe_efficacy_set, 2},
    {"R_swig_set_model_param_manual_trace_on_positive", (DL_FUNC) &R_swig_set_model_param_manual_trace_on_positive, 3},
    {"R_swig_set_model_param_trace_on_positive", (DL_FUNC) &R_swig_set_model_param_trace_on_positive, 3},
    {"R_swig_get_model_param_manual_trace_on_positive", (DL_FUNC) &R_swig_get_model_param_manual_trace_on_positive, 2},

@@ -77,8 +77,11 @@ check the C model still exists
 \item \href{#method-add_user_network_random}{\code{Model$add_user_network_random()}}
 \item \href{#method-get_network_by_id}{\code{Model$get_network_by_id()}}
 \item \href{#method-seed_infect_by_idx}{\code{Model$seed_infect_by_idx()}}
+\item \href{#method-add_new_strain}{\code{Model$add_new_strain()}}
+\item \href{#method-set_cross_immunity_matrix}{\code{Model$set_cross_immunity_matrix()}}
 \item \href{#method-get_network_ids}{\code{Model$get_network_ids()}}
 \item \href{#method-get_network_info}{\code{Model$get_network_info()}}
+\item \href{#method-add_vaccine}{\code{Model$add_vaccine()}}
 \item \href{#method-vaccinate_individual}{\code{Model$vaccinate_individual()}}
 \item \href{#method-vaccinate_schedule}{\code{Model$vaccinate_schedule()}}
 \item \href{#method-get_individuals}{\code{Model$get_individuals()}}
@@ -383,7 +386,7 @@ Wrapper for C API \code{get_network_by_id}.
 Infects a new individual from an external source.
 Wrapper for C API \code{seed_infect_by_idx}.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Model$seed_infect_by_idx(ID, strain_multiplier = 1, network_id = -1)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Model$seed_infect_by_idx(ID, strain_idx = 0, strain = NULL, network_id = -1)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -391,8 +394,9 @@ Wrapper for C API \code{seed_infect_by_idx}.
 \describe{
 \item{\code{ID}}{The ID of the individual.}
 
-\item{\code{strain_multiplier}}{The strain multiplier value, must be a
-positivate number.}
+\item{\code{strain_idx}}{The idx of the strain the person is infected with}
+
+\item{\code{strain}}{\code{Strain} object.}
 
 \item{\code{network_id}}{The network ID.}
 }
@@ -403,22 +407,62 @@ positivate number.}
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-add_new_strain"></a>}}
+\if{latex}{\out{\hypertarget{method-add_new_strain}{}}}
+\subsection{Method \code{add_new_strain()}}{
+Adds a new strain (variant)
+Wrapper for C API \code{add_new_strain}.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Model$add_new_strain(
+  transmission_multiplier = 1,
+  hospitalised_fraction = NA,
+  hospitalised_fraction_multiplier = 1
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{transmission_multiplier}}{The relative transmission rate of the strain}
+
+\item{\code{hospitalised_fraction}}{the fraction of symptomatic (not mild) who progress to hospital [default: None is no change)]}
+
+\item{\code{hospitalised_fraction_multiplier}}{The relative transmission rate of hospitalised patients.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+\code{Strain} A Strain object representing this strain
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_cross_immunity_matrix"></a>}}
+\if{latex}{\out{\hypertarget{method-set_cross_immunity_matrix}{}}}
+\subsection{Method \code{set_cross_immunity_matrix()}}{
+Set the cross_immunity matrix
+Wrapper for C API \code{set_cross_immunity_probability}.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Model$set_cross_immunity_matrix(cross_immunity)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{cross_immunity}}{the cross immunity matrix}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get_network_ids"></a>}}
 \if{latex}{\out{\hypertarget{method-get_network_ids}{}}}
 \subsection{Method \code{get_network_ids()}}{
 Get the list of network IDs
 Wrapper for C API \code{get_network_ids}.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Model$get_network_ids(max_ids = 1000)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Model$get_network_ids()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{max_ids}}{The maximum number of IDs to return.}
-}
-\if{html}{\out{</div>}}
-}
 \subsection{Returns}{
 The list of the network IDs.
 }
@@ -438,16 +482,16 @@ properties and each row is a network.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-vaccinate_individual"></a>}}
-\if{latex}{\out{\hypertarget{method-vaccinate_individual}{}}}
-\subsection{Method \code{vaccinate_individual()}}{
-Vaccinate an individual.
-Wrapper for C API \code{intervention_vaccinate_by_idx}.
+\if{html}{\out{<a id="method-add_vaccine"></a>}}
+\if{latex}{\out{\hypertarget{method-add_vaccine}{}}}
+\subsection{Method \code{add_vaccine()}}{
+Add a new vaccine.
+Wrapper for C API \code{add_vaccine}.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Model$vaccinate_individual(
-  ID,
-  vaccine_type = 0,
-  efficacy = 1,
+\if{html}{\out{<div class="r">}}\preformatted{Model$add_vaccine(
+  full_efficacy = 1,
+  symptoms_efficacy = 1,
+  severe_efficacy = 1,
   time_to_protect = 14,
   vaccine_protection_period = 1000
 )}\if{html}{\out{</div>}}
@@ -456,17 +500,42 @@ Wrapper for C API \code{intervention_vaccinate_by_idx}.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{ID}}{The ID of the individual (must be \code{0 <= ID <= n_total}).}
-
-\item{\code{vaccine_type}}{The type of vaccine, see \code{\link{VACCINE_TYPES}}.}
-
-\item{\code{efficacy}}{Probability that the person is successfully vaccinated
+\item{\code{full_efficacy}}{Probability that the person is successfully vaccinated
 (must be \code{0 <= efficacy <= 1}).}
+
+\item{\code{symptoms_efficacy}}{Probability that the person is successfully vaccinated
+against getting symptoms (must be \code{0 <= efficacy <= 1}).}
+
+\item{\code{severe_efficacy}}{Probability that the person is successfully vaccinated
+against getting severer symptoms (must be \code{0 <= efficacy <= 1}).}
 
 \item{\code{time_to_protect}}{Delay before it takes effect (in days).}
 
 \item{\code{vaccine_protection_period}}{The duration of the vaccine before it
 wanes.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+Vaccine object
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-vaccinate_individual"></a>}}
+\if{latex}{\out{\hypertarget{method-vaccinate_individual}{}}}
+\subsection{Method \code{vaccinate_individual()}}{
+Vaccinate an individual.
+Wrapper for C API \code{intervention_vaccinate_by_idx}.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Model$vaccinate_individual(ID, vaccine)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{ID}}{The ID of the individual (must be \code{0 <= ID <= n_total}).}
+
+\item{\code{vaccine}}{The of vaccine object to be given}
 }
 \if{html}{\out{</div>}}
 }
@@ -609,12 +678,15 @@ A dataframe of the time-series results
 Runs simulation to the end (specified by the parameter
 end_time)
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Model$run(verbose = TRUE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Model$run(n_steps = NULL, verbose = TRUE)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
+\item{\code{n_steps}}{Number of simulation steps to run. \code{NULL} means that
+the simulation runs until the end (\code{get_param("end_time")}).}
+
 \item{\code{verbose}}{- whether to display progress information (DEFAULT=TRUE)}
 }
 \if{html}{\out{</div>}}

@@ -190,6 +190,7 @@ setClass("model",
         n_total_intereactions = "integer",
         n_occupation_networks = "integer",
         use_custom_occupation_networks = "integer",
+        n_networks = "integer",
         mean_interactions = "numeric",
         mean_interactions_by_age = "numeric",
         rebuild_networks = "integer",
@@ -211,7 +212,8 @@ setClass("model",
         n_vaccinated_fully = "integer",
         n_vaccinated_symptoms = "integer",
         n_vaccinated_fully_by_age = "integer",
-        n_vaccinated_symptoms_by_age = "integer"),
+        n_vaccinated_symptoms_by_age = "integer",
+        n_initialised_strains = "integer"),
         contains = "RSWIGStruct")
 
 
@@ -239,6 +241,12 @@ setClass("event",
 setClass('_p_f_p_model_p_struct_individual__void',
         prototype = list(parameterTypes = c('_p_model', '_p_individual'),
                         returnType = '_p_f_p_model_p_struct_individual__void'),
+        contains = 'CRoutinePointer')
+
+##
+setClass('_p_f_p_model_p_struct_individual_p_void__void',
+        prototype = list(parameterTypes = c('_p_model', '_p_individual', '_p_void'),
+                        returnType = '_p_f_p_model_p_struct_individual_p_void__void'),
         contains = 'CRoutinePointer')
 
 ##
@@ -381,7 +389,8 @@ setClass("parameters",
         max_hcw_daily_interactions = "integer",
         hospitalised_waiting_mod = "numeric",
         critical_waiting_mod = "numeric",
-        hcw_mean_work_interactions = "numeric"),
+        hcw_mean_work_interactions = "numeric",
+        max_n_strains = "integer"),
         contains = "RSWIGStruct")
 
 
@@ -400,7 +409,6 @@ setClass("individual",
         base_random_interactions = "integer",
         random_interactions = "integer",
         status = "integer",
-        hazard = "numeric",
         infectiousness_multiplier = "numeric",
         quarantined = "integer",
         quarantine_test_result = "integer",
@@ -412,8 +420,7 @@ setClass("individual",
         hospital_state = "integer",
         disease_progression_predicted = "integer",
         worker_type = "integer",
-        vaccine_status = "integer",
-        vaccine_status_next = "integer"),
+        vaccine_status = "integer"),
         contains = "RSWIGStruct")
 
 
@@ -450,7 +457,7 @@ setClass("infection_event",
         time_infected_infector = "integer",
         is_case = "integer",
         network_id = "integer",
-        strain_multiplier = "numeric"),
+        expected_hospitalisation = "numeric"),
         contains = "RSWIGStruct")
 
 
@@ -474,6 +481,22 @@ setClass("trace_token",
 
 
 # End class trace_token
+
+setClass('_p_vaccine', contains = 'ExternalReference')
+setClass("vaccine",
+    representation(
+        idx = "integer",
+        time_to_protect = "integer",
+        vaccine_protection_period = "integer",
+        is_full = "integer",
+        is_symptoms = "integer",
+        is_severe = "integer",
+        n_strains = "integer",
+        name = "character"),
+        contains = "RSWIGStruct")
+
+
+# End class vaccine
 
 setClass('_p_incomplete_gamma_p_params', contains = 'ExternalReference')
 setClass("incomplete_gamma_p_params",
@@ -507,6 +530,7 @@ setClass("network",
         daily_fraction = "numeric",
         network_id = "integer",
         name = "character",
+        transmission_multiplier = "numeric",
         construction = "integer",
         opt_n_indiv = "integer",
         opt_long = "integer"),
@@ -514,6 +538,18 @@ setClass("network",
 
 
 # End class network
+
+setClass('_p_strain', contains = 'ExternalReference')
+setClass('_p_strain', contains = 'ExternalReference')
+setClass("strain",
+    representation(
+        idx = "integer",
+        transmission_multiplier = "numeric",
+        hospitalised_fraction = "numeric"),
+        contains = "RSWIGStruct")
+
+
+# End class strain
 
 setClass('_p_doubleArray', contains = 'ExternalReference')
 setClass("doubleArray",
@@ -555,6 +591,16 @@ setClass("shortArray",
 # End class shortArray
 
 setClass('_p_shortArray', contains = 'ExternalReference')
+setClass('_p_floatArray', contains = 'ExternalReference')
+setClass("floatArray",
+    representation(
+),
+        contains = "RSWIGStruct")
+
+
+# End class floatArray
+
+setClass('_p_floatArray', contains = 'ExternalReference')
 
 
 
@@ -1555,6 +1601,68 @@ attr(`model_user_network_get`, 'returnType') = '_p_network'
 attr(`model_user_network_get`, "inputTypes") = c('_p_model')
 class(`model_user_network_get`) = c("SWIGFunction", class('model_user_network_get'))
 
+# Start of model_n_networks_set
+
+`model_n_networks_set` = function(self, s_n_networks)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  s_n_networks = as.integer(s_n_networks);
+  
+  if(length(s_n_networks) > 1) {
+    warning("using only the first element of s_n_networks");
+  };
+  
+  ;.Call('R_swig_model_n_networks_set', self, s_n_networks, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`model_n_networks_set`, 'returnType') = 'void'
+attr(`model_n_networks_set`, "inputTypes") = c('_p_model', 'integer')
+class(`model_n_networks_set`) = c("SWIGFunction", class('model_n_networks_set'))
+
+# Start of model_n_networks_get
+
+`model_n_networks_get` = function(self, .copy = FALSE)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;.Call('R_swig_model_n_networks_get', self, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`model_n_networks_get`, 'returnType') = 'integer'
+attr(`model_n_networks_get`, "inputTypes") = c('_p_model')
+class(`model_n_networks_get`) = c("SWIGFunction", class('model_n_networks_get'))
+
+# Start of model_all_networks_set
+
+`model_all_networks_set` = function(self, s_all_networks)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  if (inherits(s_all_networks, "ExternalReference")) s_all_networks = slot(s_all_networks,"ref") 
+  ;.Call('R_swig_model_all_networks_set', self, s_all_networks, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`model_all_networks_set`, 'returnType') = 'void'
+attr(`model_all_networks_set`, "inputTypes") = c('_p_model', '_p_p_network')
+class(`model_all_networks_set`) = c("SWIGFunction", class('model_all_networks_set'))
+
+# Start of model_all_networks_get
+
+`model_all_networks_get` = function(self)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;ans = .Call('R_swig_model_all_networks_get', self, PACKAGE='OpenABMCovid19');
+  ans <- new("_p_p_network", ref=ans) ;
+  
+  ans
+  
+}
+
+attr(`model_all_networks_get`, 'returnType') = '_p_p_network'
+attr(`model_all_networks_get`, "inputTypes") = c('_p_model')
+class(`model_all_networks_get`) = c("SWIGFunction", class('model_all_networks_get'))
+
 # Start of model_mean_interactions_set
 
 `model_mean_interactions_set` = function(self, s_mean_interactions)
@@ -2465,6 +2573,128 @@ attr(`model_hospitals_get`, 'returnType') = '_p_hospital'
 attr(`model_hospitals_get`, "inputTypes") = c('_p_model')
 class(`model_hospitals_get`) = c("SWIGFunction", class('model_hospitals_get'))
 
+# Start of model_strains_set
+
+`model_strains_set` = function(self, s_strains)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  if (inherits(s_strains, "ExternalReference")) s_strains = slot(s_strains,"ref") 
+  ;.Call('R_swig_model_strains_set', self, s_strains, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`model_strains_set`, 'returnType') = 'void'
+attr(`model_strains_set`, "inputTypes") = c('_p_model', '_p_strain')
+class(`model_strains_set`) = c("SWIGFunction", class('model_strains_set'))
+
+# Start of model_strains_get
+
+`model_strains_get` = function(self)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;ans = .Call('R_swig_model_strains_get', self, PACKAGE='OpenABMCovid19');
+  ans <- new("_p_strain", ref=ans) ;
+  
+  ans
+  
+}
+
+attr(`model_strains_get`, 'returnType') = '_p_strain'
+attr(`model_strains_get`, "inputTypes") = c('_p_model')
+class(`model_strains_get`) = c("SWIGFunction", class('model_strains_get'))
+
+# Start of model_n_initialised_strains_set
+
+`model_n_initialised_strains_set` = function(self, s_n_initialised_strains)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  s_n_initialised_strains = as.integer(s_n_initialised_strains);
+  
+  if(length(s_n_initialised_strains) > 1) {
+    warning("using only the first element of s_n_initialised_strains");
+  };
+  
+  ;.Call('R_swig_model_n_initialised_strains_set', self, s_n_initialised_strains, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`model_n_initialised_strains_set`, 'returnType') = 'void'
+attr(`model_n_initialised_strains_set`, "inputTypes") = c('_p_model', 'integer')
+class(`model_n_initialised_strains_set`) = c("SWIGFunction", class('model_n_initialised_strains_set'))
+
+# Start of model_n_initialised_strains_get
+
+`model_n_initialised_strains_get` = function(self, .copy = FALSE)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;.Call('R_swig_model_n_initialised_strains_get', self, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`model_n_initialised_strains_get`, 'returnType') = 'integer'
+attr(`model_n_initialised_strains_get`, "inputTypes") = c('_p_model')
+class(`model_n_initialised_strains_get`) = c("SWIGFunction", class('model_n_initialised_strains_get'))
+
+# Start of model_cross_immunity_set
+
+`model_cross_immunity_set` = function(self, s_cross_immunity)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  if (inherits(s_cross_immunity, "ExternalReference")) s_cross_immunity = slot(s_cross_immunity,"ref") 
+  ;.Call('R_swig_model_cross_immunity_set', self, s_cross_immunity, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`model_cross_immunity_set`, 'returnType') = 'void'
+attr(`model_cross_immunity_set`, "inputTypes") = c('_p_model', '_p_p_float')
+class(`model_cross_immunity_set`) = c("SWIGFunction", class('model_cross_immunity_set'))
+
+# Start of model_cross_immunity_get
+
+`model_cross_immunity_get` = function(self)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;ans = .Call('R_swig_model_cross_immunity_get', self, PACKAGE='OpenABMCovid19');
+  ans <- new("_p_p_float", ref=ans) ;
+  
+  ans
+  
+}
+
+attr(`model_cross_immunity_get`, 'returnType') = '_p_p_float'
+attr(`model_cross_immunity_get`, "inputTypes") = c('_p_model')
+class(`model_cross_immunity_get`) = c("SWIGFunction", class('model_cross_immunity_get'))
+
+# Start of model_vaccines_set
+
+`model_vaccines_set` = function(self, s_vaccines)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  if (inherits(s_vaccines, "ExternalReference")) s_vaccines = slot(s_vaccines,"ref") 
+  ;.Call('R_swig_model_vaccines_set', self, s_vaccines, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`model_vaccines_set`, 'returnType') = 'void'
+attr(`model_vaccines_set`, "inputTypes") = c('_p_model', '_p_vaccine')
+class(`model_vaccines_set`) = c("SWIGFunction", class('model_vaccines_set'))
+
+# Start of model_vaccines_get
+
+`model_vaccines_get` = function(self)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;ans = .Call('R_swig_model_vaccines_get', self, PACKAGE='OpenABMCovid19');
+  ans <- new("_p_vaccine", ref=ans) ;
+  
+  ans
+  
+}
+
+attr(`model_vaccines_get`, 'returnType') = '_p_vaccine'
+attr(`model_vaccines_get`, "inputTypes") = c('_p_model')
+class(`model_vaccines_get`) = c("SWIGFunction", class('model_vaccines_get'))
+
 # Start of delete_model
 
 `delete_model` = function(self)
@@ -2497,8 +2727,8 @@ class(`model`) = c("SWIGFunction", class('model'))
 setMethod('$', '_p_model', function(x, name)
 
 {
-  accessorFuns = list('params' = model_params_get, 'population' = model_population_get, 'time' = model_time_get, 'interaction_blocks' = model_interaction_blocks_get, 'interaction_day_idx' = model_interaction_day_idx_get, 'possible_interactions' = model_possible_interactions_get, 'n_possible_interactions' = model_n_possible_interactions_get, 'n_total_intereactions' = model_n_total_intereactions_get, 'n_occupation_networks' = model_n_occupation_networks_get, 'random_network' = model_random_network_get, 'household_network' = model_household_network_get, 'use_custom_occupation_networks' = model_use_custom_occupation_networks_get, 'occupation_network' = model_occupation_network_get, 'household_directory' = model_household_directory_get, 'user_network' = model_user_network_get, 'mean_interactions' = model_mean_interactions_get, 'mean_interactions_by_age' = model_mean_interactions_by_age_get, 'rebuild_networks' = model_rebuild_networks_get, 'manual_trace_interview_quota' = model_manual_trace_interview_quota_get, 'manual_trace_notification_quota' = model_manual_trace_notification_quota_get, 'event_block' = model_event_block_get, 'next_event' = model_next_event_get, 'event_lists' = model_event_lists_get, 'trace_token_block' = model_trace_token_block_get, 'next_trace_token' = model_next_trace_token_get, 'n_trace_tokens_used' = model_n_trace_tokens_used_get, 'n_trace_tokens' = model_n_trace_tokens_get, 'transition_time_distributions' = model_transition_time_distributions_get, 'n_quarantine_days' = model_n_quarantine_days_get, 'n_quarantine_app_user' = model_n_quarantine_app_user_get, 'n_quarantine_infected' = model_n_quarantine_infected_get, 'n_quarantine_recovered' = model_n_quarantine_recovered_get, 'n_quarantine_app_user_infected' = model_n_quarantine_app_user_infected_get, 'n_quarantine_app_user_recovered' = model_n_quarantine_app_user_recovered_get, 'n_quarantine_events' = model_n_quarantine_events_get, 'n_quarantine_events_app_user' = model_n_quarantine_events_app_user_get, 'n_quarantine_release_events' = model_n_quarantine_release_events_get, 'n_quarantine_release_events_app_user' = model_n_quarantine_release_events_app_user_get, 'n_population_by_age' = model_n_population_by_age_get, 'n_vaccinated_fully' = model_n_vaccinated_fully_get, 'n_vaccinated_symptoms' = model_n_vaccinated_symptoms_get, 'n_vaccinated_fully_by_age' = model_n_vaccinated_fully_by_age_get, 'n_vaccinated_symptoms_by_age' = model_n_vaccinated_symptoms_by_age_get, 'hospitals' = model_hospitals_get);
-  vaccessors = c('params', 'population', 'time', 'interaction_blocks', 'interaction_day_idx', 'possible_interactions', 'n_possible_interactions', 'n_total_intereactions', 'n_occupation_networks', 'random_network', 'household_network', 'use_custom_occupation_networks', 'occupation_network', 'household_directory', 'user_network', 'mean_interactions', 'mean_interactions_by_age', 'rebuild_networks', 'manual_trace_interview_quota', 'manual_trace_notification_quota', 'event_block', 'next_event', 'event_lists', 'trace_token_block', 'next_trace_token', 'n_trace_tokens_used', 'n_trace_tokens', 'transition_time_distributions', 'n_quarantine_days', 'n_quarantine_app_user', 'n_quarantine_infected', 'n_quarantine_recovered', 'n_quarantine_app_user_infected', 'n_quarantine_app_user_recovered', 'n_quarantine_events', 'n_quarantine_events_app_user', 'n_quarantine_release_events', 'n_quarantine_release_events_app_user', 'n_population_by_age', 'n_vaccinated_fully', 'n_vaccinated_symptoms', 'n_vaccinated_fully_by_age', 'n_vaccinated_symptoms_by_age', 'hospitals');
+  accessorFuns = list('params' = model_params_get, 'population' = model_population_get, 'time' = model_time_get, 'interaction_blocks' = model_interaction_blocks_get, 'interaction_day_idx' = model_interaction_day_idx_get, 'possible_interactions' = model_possible_interactions_get, 'n_possible_interactions' = model_n_possible_interactions_get, 'n_total_intereactions' = model_n_total_intereactions_get, 'n_occupation_networks' = model_n_occupation_networks_get, 'random_network' = model_random_network_get, 'household_network' = model_household_network_get, 'use_custom_occupation_networks' = model_use_custom_occupation_networks_get, 'occupation_network' = model_occupation_network_get, 'household_directory' = model_household_directory_get, 'user_network' = model_user_network_get, 'n_networks' = model_n_networks_get, 'all_networks' = model_all_networks_get, 'mean_interactions' = model_mean_interactions_get, 'mean_interactions_by_age' = model_mean_interactions_by_age_get, 'rebuild_networks' = model_rebuild_networks_get, 'manual_trace_interview_quota' = model_manual_trace_interview_quota_get, 'manual_trace_notification_quota' = model_manual_trace_notification_quota_get, 'event_block' = model_event_block_get, 'next_event' = model_next_event_get, 'event_lists' = model_event_lists_get, 'trace_token_block' = model_trace_token_block_get, 'next_trace_token' = model_next_trace_token_get, 'n_trace_tokens_used' = model_n_trace_tokens_used_get, 'n_trace_tokens' = model_n_trace_tokens_get, 'transition_time_distributions' = model_transition_time_distributions_get, 'n_quarantine_days' = model_n_quarantine_days_get, 'n_quarantine_app_user' = model_n_quarantine_app_user_get, 'n_quarantine_infected' = model_n_quarantine_infected_get, 'n_quarantine_recovered' = model_n_quarantine_recovered_get, 'n_quarantine_app_user_infected' = model_n_quarantine_app_user_infected_get, 'n_quarantine_app_user_recovered' = model_n_quarantine_app_user_recovered_get, 'n_quarantine_events' = model_n_quarantine_events_get, 'n_quarantine_events_app_user' = model_n_quarantine_events_app_user_get, 'n_quarantine_release_events' = model_n_quarantine_release_events_get, 'n_quarantine_release_events_app_user' = model_n_quarantine_release_events_app_user_get, 'n_population_by_age' = model_n_population_by_age_get, 'n_vaccinated_fully' = model_n_vaccinated_fully_get, 'n_vaccinated_symptoms' = model_n_vaccinated_symptoms_get, 'n_vaccinated_fully_by_age' = model_n_vaccinated_fully_by_age_get, 'n_vaccinated_symptoms_by_age' = model_n_vaccinated_symptoms_by_age_get, 'hospitals' = model_hospitals_get, 'strains' = model_strains_get, 'n_initialised_strains' = model_n_initialised_strains_get, 'cross_immunity' = model_cross_immunity_get, 'vaccines' = model_vaccines_get);
+  vaccessors = c('params', 'population', 'time', 'interaction_blocks', 'interaction_day_idx', 'possible_interactions', 'n_possible_interactions', 'n_total_intereactions', 'n_occupation_networks', 'random_network', 'household_network', 'use_custom_occupation_networks', 'occupation_network', 'household_directory', 'user_network', 'n_networks', 'all_networks', 'mean_interactions', 'mean_interactions_by_age', 'rebuild_networks', 'manual_trace_interview_quota', 'manual_trace_notification_quota', 'event_block', 'next_event', 'event_lists', 'trace_token_block', 'next_trace_token', 'n_trace_tokens_used', 'n_trace_tokens', 'transition_time_distributions', 'n_quarantine_days', 'n_quarantine_app_user', 'n_quarantine_infected', 'n_quarantine_recovered', 'n_quarantine_app_user_infected', 'n_quarantine_app_user_recovered', 'n_quarantine_events', 'n_quarantine_events_app_user', 'n_quarantine_release_events', 'n_quarantine_release_events_app_user', 'n_population_by_age', 'n_vaccinated_fully', 'n_vaccinated_symptoms', 'n_vaccinated_fully_by_age', 'n_vaccinated_symptoms_by_age', 'hospitals', 'strains', 'n_initialised_strains', 'cross_immunity', 'vaccines');
   ;        idx = pmatch(name, names(accessorFuns));
   if(is.na(idx)) 
   return(callNextMethod(x, name));
@@ -2515,7 +2745,7 @@ setMethod('$', '_p_model', function(x, name)
 setMethod('$<-', '_p_model', function(x, name, value)
 
 {
-  accessorFuns = list('params' = model_params_set, 'population' = model_population_set, 'time' = model_time_set, 'interaction_blocks' = model_interaction_blocks_set, 'interaction_day_idx' = model_interaction_day_idx_set, 'possible_interactions' = model_possible_interactions_set, 'n_possible_interactions' = model_n_possible_interactions_set, 'n_total_intereactions' = model_n_total_intereactions_set, 'n_occupation_networks' = model_n_occupation_networks_set, 'random_network' = model_random_network_set, 'household_network' = model_household_network_set, 'use_custom_occupation_networks' = model_use_custom_occupation_networks_set, 'occupation_network' = model_occupation_network_set, 'household_directory' = model_household_directory_set, 'user_network' = model_user_network_set, 'mean_interactions' = model_mean_interactions_set, 'mean_interactions_by_age' = model_mean_interactions_by_age_set, 'rebuild_networks' = model_rebuild_networks_set, 'manual_trace_interview_quota' = model_manual_trace_interview_quota_set, 'manual_trace_notification_quota' = model_manual_trace_notification_quota_set, 'event_block' = model_event_block_set, 'next_event' = model_next_event_set, 'event_lists' = model_event_lists_set, 'trace_token_block' = model_trace_token_block_set, 'next_trace_token' = model_next_trace_token_set, 'n_trace_tokens_used' = model_n_trace_tokens_used_set, 'n_trace_tokens' = model_n_trace_tokens_set, 'transition_time_distributions' = model_transition_time_distributions_set, 'n_quarantine_days' = model_n_quarantine_days_set, 'n_quarantine_app_user' = model_n_quarantine_app_user_set, 'n_quarantine_infected' = model_n_quarantine_infected_set, 'n_quarantine_recovered' = model_n_quarantine_recovered_set, 'n_quarantine_app_user_infected' = model_n_quarantine_app_user_infected_set, 'n_quarantine_app_user_recovered' = model_n_quarantine_app_user_recovered_set, 'n_quarantine_events' = model_n_quarantine_events_set, 'n_quarantine_events_app_user' = model_n_quarantine_events_app_user_set, 'n_quarantine_release_events' = model_n_quarantine_release_events_set, 'n_quarantine_release_events_app_user' = model_n_quarantine_release_events_app_user_set, 'n_population_by_age' = model_n_population_by_age_set, 'n_vaccinated_fully' = model_n_vaccinated_fully_set, 'n_vaccinated_symptoms' = model_n_vaccinated_symptoms_set, 'n_vaccinated_fully_by_age' = model_n_vaccinated_fully_by_age_set, 'n_vaccinated_symptoms_by_age' = model_n_vaccinated_symptoms_by_age_set, 'hospitals' = model_hospitals_set);
+  accessorFuns = list('params' = model_params_set, 'population' = model_population_set, 'time' = model_time_set, 'interaction_blocks' = model_interaction_blocks_set, 'interaction_day_idx' = model_interaction_day_idx_set, 'possible_interactions' = model_possible_interactions_set, 'n_possible_interactions' = model_n_possible_interactions_set, 'n_total_intereactions' = model_n_total_intereactions_set, 'n_occupation_networks' = model_n_occupation_networks_set, 'random_network' = model_random_network_set, 'household_network' = model_household_network_set, 'use_custom_occupation_networks' = model_use_custom_occupation_networks_set, 'occupation_network' = model_occupation_network_set, 'household_directory' = model_household_directory_set, 'user_network' = model_user_network_set, 'n_networks' = model_n_networks_set, 'all_networks' = model_all_networks_set, 'mean_interactions' = model_mean_interactions_set, 'mean_interactions_by_age' = model_mean_interactions_by_age_set, 'rebuild_networks' = model_rebuild_networks_set, 'manual_trace_interview_quota' = model_manual_trace_interview_quota_set, 'manual_trace_notification_quota' = model_manual_trace_notification_quota_set, 'event_block' = model_event_block_set, 'next_event' = model_next_event_set, 'event_lists' = model_event_lists_set, 'trace_token_block' = model_trace_token_block_set, 'next_trace_token' = model_next_trace_token_set, 'n_trace_tokens_used' = model_n_trace_tokens_used_set, 'n_trace_tokens' = model_n_trace_tokens_set, 'transition_time_distributions' = model_transition_time_distributions_set, 'n_quarantine_days' = model_n_quarantine_days_set, 'n_quarantine_app_user' = model_n_quarantine_app_user_set, 'n_quarantine_infected' = model_n_quarantine_infected_set, 'n_quarantine_recovered' = model_n_quarantine_recovered_set, 'n_quarantine_app_user_infected' = model_n_quarantine_app_user_infected_set, 'n_quarantine_app_user_recovered' = model_n_quarantine_app_user_recovered_set, 'n_quarantine_events' = model_n_quarantine_events_set, 'n_quarantine_events_app_user' = model_n_quarantine_events_app_user_set, 'n_quarantine_release_events' = model_n_quarantine_release_events_set, 'n_quarantine_release_events_app_user' = model_n_quarantine_release_events_app_user_set, 'n_population_by_age' = model_n_population_by_age_set, 'n_vaccinated_fully' = model_n_vaccinated_fully_set, 'n_vaccinated_symptoms' = model_n_vaccinated_symptoms_set, 'n_vaccinated_fully_by_age' = model_n_vaccinated_fully_by_age_set, 'n_vaccinated_symptoms_by_age' = model_n_vaccinated_symptoms_by_age_set, 'hospitals' = model_hospitals_set, 'strains' = model_strains_set, 'n_initialised_strains' = model_n_initialised_strains_set, 'cross_immunity' = model_cross_immunity_set, 'vaccines' = model_vaccines_set);
   ;        idx = pmatch(name, names(accessorFuns));
   if(is.na(idx)) 
   return(callNextMethod(x, name, value));
@@ -2530,7 +2760,7 @@ setMethod('[[<-', c('_p_model', 'character'),function(x, i, j, ..., value)
 
 {
   name = i;
-  accessorFuns = list('params' = model_params_set, 'population' = model_population_set, 'time' = model_time_set, 'interaction_blocks' = model_interaction_blocks_set, 'interaction_day_idx' = model_interaction_day_idx_set, 'possible_interactions' = model_possible_interactions_set, 'n_possible_interactions' = model_n_possible_interactions_set, 'n_total_intereactions' = model_n_total_intereactions_set, 'n_occupation_networks' = model_n_occupation_networks_set, 'random_network' = model_random_network_set, 'household_network' = model_household_network_set, 'use_custom_occupation_networks' = model_use_custom_occupation_networks_set, 'occupation_network' = model_occupation_network_set, 'household_directory' = model_household_directory_set, 'user_network' = model_user_network_set, 'mean_interactions' = model_mean_interactions_set, 'mean_interactions_by_age' = model_mean_interactions_by_age_set, 'rebuild_networks' = model_rebuild_networks_set, 'manual_trace_interview_quota' = model_manual_trace_interview_quota_set, 'manual_trace_notification_quota' = model_manual_trace_notification_quota_set, 'event_block' = model_event_block_set, 'next_event' = model_next_event_set, 'event_lists' = model_event_lists_set, 'trace_token_block' = model_trace_token_block_set, 'next_trace_token' = model_next_trace_token_set, 'n_trace_tokens_used' = model_n_trace_tokens_used_set, 'n_trace_tokens' = model_n_trace_tokens_set, 'transition_time_distributions' = model_transition_time_distributions_set, 'n_quarantine_days' = model_n_quarantine_days_set, 'n_quarantine_app_user' = model_n_quarantine_app_user_set, 'n_quarantine_infected' = model_n_quarantine_infected_set, 'n_quarantine_recovered' = model_n_quarantine_recovered_set, 'n_quarantine_app_user_infected' = model_n_quarantine_app_user_infected_set, 'n_quarantine_app_user_recovered' = model_n_quarantine_app_user_recovered_set, 'n_quarantine_events' = model_n_quarantine_events_set, 'n_quarantine_events_app_user' = model_n_quarantine_events_app_user_set, 'n_quarantine_release_events' = model_n_quarantine_release_events_set, 'n_quarantine_release_events_app_user' = model_n_quarantine_release_events_app_user_set, 'n_population_by_age' = model_n_population_by_age_set, 'n_vaccinated_fully' = model_n_vaccinated_fully_set, 'n_vaccinated_symptoms' = model_n_vaccinated_symptoms_set, 'n_vaccinated_fully_by_age' = model_n_vaccinated_fully_by_age_set, 'n_vaccinated_symptoms_by_age' = model_n_vaccinated_symptoms_by_age_set, 'hospitals' = model_hospitals_set);
+  accessorFuns = list('params' = model_params_set, 'population' = model_population_set, 'time' = model_time_set, 'interaction_blocks' = model_interaction_blocks_set, 'interaction_day_idx' = model_interaction_day_idx_set, 'possible_interactions' = model_possible_interactions_set, 'n_possible_interactions' = model_n_possible_interactions_set, 'n_total_intereactions' = model_n_total_intereactions_set, 'n_occupation_networks' = model_n_occupation_networks_set, 'random_network' = model_random_network_set, 'household_network' = model_household_network_set, 'use_custom_occupation_networks' = model_use_custom_occupation_networks_set, 'occupation_network' = model_occupation_network_set, 'household_directory' = model_household_directory_set, 'user_network' = model_user_network_set, 'n_networks' = model_n_networks_set, 'all_networks' = model_all_networks_set, 'mean_interactions' = model_mean_interactions_set, 'mean_interactions_by_age' = model_mean_interactions_by_age_set, 'rebuild_networks' = model_rebuild_networks_set, 'manual_trace_interview_quota' = model_manual_trace_interview_quota_set, 'manual_trace_notification_quota' = model_manual_trace_notification_quota_set, 'event_block' = model_event_block_set, 'next_event' = model_next_event_set, 'event_lists' = model_event_lists_set, 'trace_token_block' = model_trace_token_block_set, 'next_trace_token' = model_next_trace_token_set, 'n_trace_tokens_used' = model_n_trace_tokens_used_set, 'n_trace_tokens' = model_n_trace_tokens_set, 'transition_time_distributions' = model_transition_time_distributions_set, 'n_quarantine_days' = model_n_quarantine_days_set, 'n_quarantine_app_user' = model_n_quarantine_app_user_set, 'n_quarantine_infected' = model_n_quarantine_infected_set, 'n_quarantine_recovered' = model_n_quarantine_recovered_set, 'n_quarantine_app_user_infected' = model_n_quarantine_app_user_infected_set, 'n_quarantine_app_user_recovered' = model_n_quarantine_app_user_recovered_set, 'n_quarantine_events' = model_n_quarantine_events_set, 'n_quarantine_events_app_user' = model_n_quarantine_events_app_user_set, 'n_quarantine_release_events' = model_n_quarantine_release_events_set, 'n_quarantine_release_events_app_user' = model_n_quarantine_release_events_app_user_set, 'n_population_by_age' = model_n_population_by_age_set, 'n_vaccinated_fully' = model_n_vaccinated_fully_set, 'n_vaccinated_symptoms' = model_n_vaccinated_symptoms_set, 'n_vaccinated_fully_by_age' = model_n_vaccinated_fully_by_age_set, 'n_vaccinated_symptoms_by_age' = model_n_vaccinated_symptoms_by_age_set, 'hospitals' = model_hospitals_set, 'strains' = model_strains_set, 'n_initialised_strains' = model_n_initialised_strains_set, 'cross_immunity' = model_cross_immunity_set, 'vaccines' = model_vaccines_set);
   ;        idx = pmatch(name, names(accessorFuns));
   if(is.na(idx)) 
   return(callNextMethod(x, name, value));
@@ -2552,6 +2782,7 @@ CopyToR_model = function(value, obj = new("model"))
   obj@n_total_intereactions = value$n_total_intereactions;
   obj@n_occupation_networks = value$n_occupation_networks;
   obj@use_custom_occupation_networks = value$use_custom_occupation_networks;
+  obj@n_networks = value$n_networks;
   obj@mean_interactions = value$mean_interactions;
   obj@mean_interactions_by_age = value$mean_interactions_by_age;
   obj@rebuild_networks = value$rebuild_networks;
@@ -2574,6 +2805,7 @@ CopyToR_model = function(value, obj = new("model"))
   obj@n_vaccinated_symptoms = value$n_vaccinated_symptoms;
   obj@n_vaccinated_fully_by_age = value$n_vaccinated_fully_by_age;
   obj@n_vaccinated_symptoms_by_age = value$n_vaccinated_symptoms_by_age;
+  obj@n_initialised_strains = value$n_initialised_strains;
   obj;
 }
 
@@ -2587,6 +2819,7 @@ CopyToC_model = function(value, obj)
   obj$n_total_intereactions = value@n_total_intereactions;
   obj$n_occupation_networks = value@n_occupation_networks;
   obj$use_custom_occupation_networks = value@use_custom_occupation_networks;
+  obj$n_networks = value@n_networks;
   obj$mean_interactions = value@mean_interactions;
   obj$mean_interactions_by_age = value@mean_interactions_by_age;
   obj$rebuild_networks = value@rebuild_networks;
@@ -2609,6 +2842,7 @@ CopyToC_model = function(value, obj)
   obj$n_vaccinated_symptoms = value@n_vaccinated_symptoms;
   obj$n_vaccinated_fully_by_age = value@n_vaccinated_fully_by_age;
   obj$n_vaccinated_symptoms_by_age = value@n_vaccinated_symptoms_by_age;
+  obj$n_initialised_strains = value@n_initialised_strains;
   obj
 }
 
@@ -2844,6 +3078,36 @@ attr(`event_time_get`, 'returnType') = 'integer'
 attr(`event_time_get`, "inputTypes") = c('_p_event')
 class(`event_time_get`) = c("SWIGFunction", class('event_time_get'))
 
+# Start of event_info_set
+
+`event_info_set` = function(self, s_info)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  if (inherits(s_info, "ExternalReference")) s_info = slot(s_info,"ref") 
+  ;.Call('R_swig_event_info_set', self, s_info, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`event_info_set`, 'returnType') = 'void'
+attr(`event_info_set`, "inputTypes") = c('_p_event', '_p_void')
+class(`event_info_set`) = c("SWIGFunction", class('event_info_set'))
+
+# Start of event_info_get
+
+`event_info_get` = function(self)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;ans = .Call('R_swig_event_info_get', self, PACKAGE='OpenABMCovid19');
+  ans <- new("_p_void", ref=ans) ;
+  
+  ans
+  
+}
+
+attr(`event_info_get`, 'returnType') = '_p_void'
+attr(`event_info_get`, "inputTypes") = c('_p_event')
+class(`event_info_get`) = c("SWIGFunction", class('event_info_get'))
+
 # Start of event__next_set
 
 `event__next_set` = function(self, s_arg2)
@@ -2908,8 +3172,8 @@ class(`event_last_get`) = c("SWIGFunction", class('event_last_get'))
 setMethod('$', '_p_event', function(x, name)
 
 {
-  accessorFuns = list('individual' = event_individual_get, 'type' = event_type_get, 'time' = event_time_get, '_next' = event__next_get, 'last' = event_last_get);
-  vaccessors = c('individual', 'type', 'time', '_next', 'last');
+  accessorFuns = list('individual' = event_individual_get, 'type' = event_type_get, 'time' = event_time_get, 'info' = event_info_get, '_next' = event__next_get, 'last' = event_last_get);
+  vaccessors = c('individual', 'type', 'time', 'info', '_next', 'last');
   ;        idx = pmatch(name, names(accessorFuns));
   if(is.na(idx)) 
   return(callNextMethod(x, name));
@@ -2926,7 +3190,7 @@ setMethod('$', '_p_event', function(x, name)
 setMethod('$<-', '_p_event', function(x, name, value)
 
 {
-  accessorFuns = list('individual' = event_individual_set, 'type' = event_type_set, 'time' = event_time_set, '_next' = event__next_set, 'last' = event_last_set);
+  accessorFuns = list('individual' = event_individual_set, 'type' = event_type_set, 'time' = event_time_set, 'info' = event_info_set, '_next' = event__next_set, 'last' = event_last_set);
   ;        idx = pmatch(name, names(accessorFuns));
   if(is.na(idx)) 
   return(callNextMethod(x, name, value));
@@ -2941,7 +3205,7 @@ setMethod('[[<-', c('_p_event', 'character'),function(x, i, j, ..., value)
 
 {
   name = i;
-  accessorFuns = list('individual' = event_individual_set, 'type' = event_type_set, 'time' = event_time_set, '_next' = event__next_set, 'last' = event_last_set);
+  accessorFuns = list('individual' = event_individual_set, 'type' = event_type_set, 'time' = event_time_set, 'info' = event_info_set, '_next' = event__next_set, 'last' = event_last_set);
   ;        idx = pmatch(name, names(accessorFuns));
   if(is.na(idx)) 
   return(callNextMethod(x, name, value));
@@ -3059,6 +3323,19 @@ class(`set_up_events`) = c("SWIGFunction", class('set_up_events'))
 attr(`add_event_block`, 'returnType') = 'void'
 attr(`add_event_block`, "inputTypes") = c('_p_model', 'numeric')
 class(`add_event_block`) = c("SWIGFunction", class('add_event_block'))
+
+# Start of set_up_strains
+
+`set_up_strains` = function(s_arg1)
+{
+  if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
+  ;.Call('R_swig_set_up_strains', s_arg1, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`set_up_strains`, 'returnType') = 'void'
+attr(`set_up_strains`, "inputTypes") = c('_p_model')
+class(`set_up_strains`) = c("SWIGFunction", class('set_up_strains'))
 
 # Start of set_up_seed_infection
 
@@ -3195,7 +3472,7 @@ class(`create_event`) = c("SWIGFunction", class('create_event'))
 
 # Start of add_individual_to_event_list
 
-`add_individual_to_event_list` = function(s_arg1, s_arg2, s_arg3, s_arg4)
+`add_individual_to_event_list` = function(s_arg1, s_arg2, s_arg3, s_arg4, s_arg5)
 {
   if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
   s_arg2 = as.integer(s_arg2);
@@ -3211,7 +3488,8 @@ class(`create_event`) = c("SWIGFunction", class('create_event'))
     warning("using only the first element of s_arg4");
   };
   
-  ;ans = .Call('R_swig_add_individual_to_event_list', s_arg1, s_arg2, s_arg3, s_arg4, PACKAGE='OpenABMCovid19');
+  if (inherits(s_arg5, "ExternalReference")) s_arg5 = slot(s_arg5,"ref") 
+  ;ans = .Call('R_swig_add_individual_to_event_list', s_arg1, s_arg2, s_arg3, s_arg4, s_arg5, PACKAGE='OpenABMCovid19');
   ans <- new("_p_event", ref=ans) ;
   
   ans
@@ -3219,7 +3497,7 @@ class(`create_event`) = c("SWIGFunction", class('create_event'))
 }
 
 attr(`add_individual_to_event_list`, 'returnType') = '_p_event'
-attr(`add_individual_to_event_list`, "inputTypes") = c('_p_model', 'integer', '_p_individual', 'integer')
+attr(`add_individual_to_event_list`, "inputTypes") = c('_p_model', 'integer', '_p_individual', 'integer', '_p_void')
 class(`add_individual_to_event_list`) = c("SWIGFunction", class('add_individual_to_event_list'))
 
 # Start of set_up_event_list
@@ -3332,6 +3610,44 @@ attr(`transition_events`, 'returnType') = 'void'
 attr(`transition_events`, "inputTypes") = c('_p_model', 'integer', '_p_f_p_model_p_struct_individual__void', 'integer')
 class(`transition_events`) = c("SWIGFunction", class('transition_events'))
 
+# Start of transition_events_info
+
+`transition_events_info` = function(s_arg1, s_arg2, s_arg3, s_arg4)
+{
+  if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
+  s_arg2 = as.integer(s_arg2);
+  
+  if(length(s_arg2) > 1) {
+    warning("using only the first element of s_arg2");
+  };
+  
+  if(is.function(s_arg3)) {
+    assert('...' %in% names(formals(s_arg3)) || length(formals(s_arg3)) >= 3);
+  } else {
+    if(is.character(s_arg3)) {
+      s_arg3 = getNativeSymbolInfo(s_arg3);
+    };
+    if(is(s_arg3, "NativeSymbolInfo")) {
+      s_arg3 = s_arg3$address;
+    }
+    if(is(s_arg3, "ExternalReference")) {
+      s_arg3 = s_arg3@ref;
+    }
+  }; 
+  s_arg4 = as.integer(s_arg4);
+  
+  if(length(s_arg4) > 1) {
+    warning("using only the first element of s_arg4");
+  };
+  
+  ;.Call('R_swig_transition_events_info', s_arg1, s_arg2, s_arg3, s_arg4, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`transition_events_info`, 'returnType') = 'void'
+attr(`transition_events_info`, "inputTypes") = c('_p_model', 'integer', '_p_f_p_model_p_struct_individual_p_void__void', 'integer')
+class(`transition_events_info`) = c("SWIGFunction", class('transition_events_info'))
+
 # Start of add_interaction_block
 
 `add_interaction_block` = function(s_arg1, s_arg2)
@@ -3363,6 +3679,34 @@ class(`add_interaction_block`) = c("SWIGFunction", class('add_interaction_block'
 attr(`return_interactions`, 'returnType') = 'void'
 attr(`return_interactions`, "inputTypes") = c('_p_model')
 class(`return_interactions`) = c("SWIGFunction", class('return_interactions'))
+
+# Start of add_new_network
+
+`add_new_network` = function(s_arg1, s_arg2, s_arg3)
+{
+  if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
+  s_arg2 = as.integer(s_arg2);
+  
+  if(length(s_arg2) > 1) {
+    warning("using only the first element of s_arg2");
+  };
+  
+  s_arg3 = as.integer(s_arg3);
+  
+  if(length(s_arg3) > 1) {
+    warning("using only the first element of s_arg3");
+  };
+  
+  ;ans = .Call('R_swig_add_new_network', s_arg1, s_arg2, s_arg3, PACKAGE='OpenABMCovid19');
+  ans <- new("_p_network", ref=ans) ;
+  
+  ans
+  
+}
+
+attr(`add_new_network`, 'returnType') = '_p_network'
+attr(`add_new_network`, "inputTypes") = c('_p_model', 'integer', 'integer')
+class(`add_new_network`) = c("SWIGFunction", class('add_new_network'))
 
 # Start of add_interactions_from_network
 
@@ -3558,42 +3902,17 @@ class(`get_network_by_id`) = c("SWIGFunction", class('get_network_by_id'))
 
 # Start of get_network_ids
 
-`get_network_ids` = function(s_arg1, s_arg2, s_arg3, .copy = FALSE)
+`get_network_ids` = function(s_arg1, s_arg2, .copy = FALSE)
 {
   if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
   s_arg2 = as.integer(s_arg2);
-  s_arg3 = as.integer(s_arg3);
-  
-  if(length(s_arg3) > 1) {
-    warning("using only the first element of s_arg3");
-  };
-  
-  ;.Call('R_swig_get_network_ids', s_arg1, s_arg2, s_arg3, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  ;.Call('R_swig_get_network_ids', s_arg1, s_arg2, as.logical(.copy), PACKAGE='OpenABMCovid19');
   
 }
 
 attr(`get_network_ids`, 'returnType') = 'integer'
-attr(`get_network_ids`, "inputTypes") = c('_p_model', 'integer', 'integer')
+attr(`get_network_ids`, "inputTypes") = c('_p_model', 'integer')
 class(`get_network_ids`) = c("SWIGFunction", class('get_network_ids'))
-
-# Start of get_network_id_by_index
-
-`get_network_id_by_index` = function(s_arg1, s_arg2, .copy = FALSE)
-{
-  if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
-  s_arg2 = as.integer(s_arg2);
-  
-  if(length(s_arg2) > 1) {
-    warning("using only the first element of s_arg2");
-  };
-  
-  ;.Call('R_swig_get_network_id_by_index', s_arg1, s_arg2, as.logical(.copy), PACKAGE='OpenABMCovid19');
-  
-}
-
-attr(`get_network_id_by_index`, 'returnType') = 'integer'
-attr(`get_network_id_by_index`, "inputTypes") = c('_p_model', 'integer')
-class(`get_network_id_by_index`) = c("SWIGFunction", class('get_network_id_by_index'))
 
 # Start of parameters_rng_seed_set
 
@@ -7910,6 +8229,38 @@ attr(`parameters_hcw_mean_work_interactions_get`, 'returnType') = 'numeric'
 attr(`parameters_hcw_mean_work_interactions_get`, "inputTypes") = c('_p_parameters')
 class(`parameters_hcw_mean_work_interactions_get`) = c("SWIGFunction", class('parameters_hcw_mean_work_interactions_get'))
 
+# Start of parameters_max_n_strains_set
+
+`parameters_max_n_strains_set` = function(self, s_max_n_strains)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  s_max_n_strains = as.integer(s_max_n_strains);
+  
+  if(length(s_max_n_strains) > 1) {
+    warning("using only the first element of s_max_n_strains");
+  };
+  
+  ;.Call('R_swig_parameters_max_n_strains_set', self, s_max_n_strains, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`parameters_max_n_strains_set`, 'returnType') = 'void'
+attr(`parameters_max_n_strains_set`, "inputTypes") = c('_p_parameters', 'integer')
+class(`parameters_max_n_strains_set`) = c("SWIGFunction", class('parameters_max_n_strains_set'))
+
+# Start of parameters_max_n_strains_get
+
+`parameters_max_n_strains_get` = function(self, .copy = FALSE)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;.Call('R_swig_parameters_max_n_strains_get', self, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`parameters_max_n_strains_get`, 'returnType') = 'integer'
+attr(`parameters_max_n_strains_get`, "inputTypes") = c('_p_parameters')
+class(`parameters_max_n_strains_get`) = c("SWIGFunction", class('parameters_max_n_strains_get'))
+
 # Start of delete_parameters
 
 `delete_parameters` = function(self)
@@ -7942,8 +8293,8 @@ class(`parameters`) = c("SWIGFunction", class('parameters'))
 setMethod('$', '_p_parameters', function(x, name)
 
 {
-  accessorFuns = list('rng_seed' = parameters_rng_seed_get, 'input_param_file' = parameters_input_param_file_get, 'hospital_input_param_file' = parameters_hospital_input_param_file_get, 'input_household_file' = parameters_input_household_file_get, 'output_file_dir' = parameters_output_file_dir_get, 'param_line_number' = parameters_param_line_number_get, 'hospital_param_line_number' = parameters_hospital_param_line_number_get, 'param_id' = parameters_param_id_get, 'n_total' = parameters_n_total_get, 'days_of_interactions' = parameters_days_of_interactions_get, 'end_time' = parameters_end_time_get, 'n_seed_infection' = parameters_n_seed_infection_get, 'rebuild_networks' = parameters_rebuild_networks_get, 'mean_random_interactions' = parameters_mean_random_interactions_get, 'sd_random_interactions' = parameters_sd_random_interactions_get, 'random_interaction_distribution' = parameters_random_interaction_distribution_get, 'mean_work_interactions' = parameters_mean_work_interactions_get, 'daily_fraction_work' = parameters_daily_fraction_work_get, 'child_network_adults' = parameters_child_network_adults_get, 'elderly_network_adults' = parameters_elderly_network_adults_get, 'work_network_rewire' = parameters_work_network_rewire_get, 'mean_infectious_period' = parameters_mean_infectious_period_get, 'sd_infectious_period' = parameters_sd_infectious_period_get, 'infectious_rate' = parameters_infectious_rate_get, 'sd_infectiousness_multiplier' = parameters_sd_infectiousness_multiplier_get, 'relative_susceptibility' = parameters_relative_susceptibility_get, 'adjusted_susceptibility' = parameters_adjusted_susceptibility_get, 'relative_susceptibility_by_interaction' = parameters_relative_susceptibility_by_interaction_get, 'relative_transmission' = parameters_relative_transmission_get, 'relative_transmission_used' = parameters_relative_transmission_used_get, 'mean_time_to_symptoms' = parameters_mean_time_to_symptoms_get, 'sd_time_to_symptoms' = parameters_sd_time_to_symptoms_get, 'hospitalised_fraction' = parameters_hospitalised_fraction_get, 'critical_fraction' = parameters_critical_fraction_get, 'fatality_fraction' = parameters_fatality_fraction_get, 'mean_time_to_hospital' = parameters_mean_time_to_hospital_get, 'mean_time_to_critical' = parameters_mean_time_to_critical_get, 'sd_time_to_critical' = parameters_sd_time_to_critical_get, 'mean_time_to_recover' = parameters_mean_time_to_recover_get, 'sd_time_to_recover' = parameters_sd_time_to_recover_get, 'mean_time_to_death' = parameters_mean_time_to_death_get, 'sd_time_to_death' = parameters_sd_time_to_death_get, 'mean_time_to_susceptible_after_shift' = parameters_mean_time_to_susceptible_after_shift_get, 'time_to_susceptible_shift' = parameters_time_to_susceptible_shift_get, 'household_size' = parameters_household_size_get, 'population' = parameters_population_get, 'fraction_asymptomatic' = parameters_fraction_asymptomatic_get, 'asymptomatic_infectious_factor' = parameters_asymptomatic_infectious_factor_get, 'mild_fraction' = parameters_mild_fraction_get, 'mild_infectious_factor' = parameters_mild_infectious_factor_get, 'mean_asymptomatic_to_recovery' = parameters_mean_asymptomatic_to_recovery_get, 'sd_asymptomatic_to_recovery' = parameters_sd_asymptomatic_to_recovery_get, 'mean_time_hospitalised_recovery' = parameters_mean_time_hospitalised_recovery_get, 'sd_time_hospitalised_recovery' = parameters_sd_time_hospitalised_recovery_get, 'mean_time_critical_survive' = parameters_mean_time_critical_survive_get, 'sd_time_critical_survive' = parameters_sd_time_critical_survive_get, 'location_death_icu' = parameters_location_death_icu_get, 'quarantined_daily_interactions' = parameters_quarantined_daily_interactions_get, 'hospitalised_daily_interactions' = parameters_hospitalised_daily_interactions_get, 'quarantine_days' = parameters_quarantine_days_get, 'self_quarantine_fraction' = parameters_self_quarantine_fraction_get, 'manual_trace_on' = parameters_manual_trace_on_get, 'manual_trace_time_on' = parameters_manual_trace_time_on_get, 'manual_trace_on_hospitalization' = parameters_manual_trace_on_hospitalization_get, 'manual_trace_on_positive' = parameters_manual_trace_on_positive_get, 'manual_trace_delay' = parameters_manual_trace_delay_get, 'manual_trace_exclude_app_users' = parameters_manual_trace_exclude_app_users_get, 'manual_trace_n_workers' = parameters_manual_trace_n_workers_get, 'manual_trace_interviews_per_worker_day' = parameters_manual_trace_interviews_per_worker_day_get, 'manual_trace_notifications_per_worker_day' = parameters_manual_trace_notifications_per_worker_day_get, 'manual_traceable_fraction' = parameters_manual_traceable_fraction_get, 'trace_on_symptoms' = parameters_trace_on_symptoms_get, 'trace_on_positive' = parameters_trace_on_positive_get, 'retrace_on_positive' = parameters_retrace_on_positive_get, 'quarantine_length_self' = parameters_quarantine_length_self_get, 'quarantine_length_traced_symptoms' = parameters_quarantine_length_traced_symptoms_get, 'quarantine_length_traced_positive' = parameters_quarantine_length_traced_positive_get, 'quarantine_length_positive' = parameters_quarantine_length_positive_get, 'quarantine_dropout_self' = parameters_quarantine_dropout_self_get, 'quarantine_dropout_traced_symptoms' = parameters_quarantine_dropout_traced_symptoms_get, 'quarantine_dropout_traced_positive' = parameters_quarantine_dropout_traced_positive_get, 'quarantine_dropout_positive' = parameters_quarantine_dropout_positive_get, 'quarantine_compliance_traced_symptoms' = parameters_quarantine_compliance_traced_symptoms_get, 'quarantine_compliance_traced_positive' = parameters_quarantine_compliance_traced_positive_get, 'quarantine_on_traced' = parameters_quarantine_on_traced_get, 'quarantine_smart_release_day' = parameters_quarantine_smart_release_day_get, 'traceable_interaction_fraction' = parameters_traceable_interaction_fraction_get, 'tracing_network_depth' = parameters_tracing_network_depth_get, 'allow_clinical_diagnosis' = parameters_allow_clinical_diagnosis_get, 'quarantine_household_on_symptoms' = parameters_quarantine_household_on_symptoms_get, 'quarantine_household_on_positive' = parameters_quarantine_household_on_positive_get, 'quarantine_household_on_traced_symptoms' = parameters_quarantine_household_on_traced_symptoms_get, 'quarantine_household_on_traced_positive' = parameters_quarantine_household_on_traced_positive_get, 'quarantine_household_contacts_on_positive' = parameters_quarantine_household_contacts_on_positive_get, 'quarantine_household_contacts_on_symptoms' = parameters_quarantine_household_contacts_on_symptoms_get, 'test_on_symptoms' = parameters_test_on_symptoms_get, 'test_on_traced' = parameters_test_on_traced_get, 'test_result_wait' = parameters_test_result_wait_get, 'test_order_wait' = parameters_test_order_wait_get, 'test_result_wait_priority' = parameters_test_result_wait_priority_get, 'test_order_wait_priority' = parameters_test_order_wait_priority_get, 'test_release_on_negative' = parameters_test_release_on_negative_get, 'priority_test_contacts' = parameters_priority_test_contacts_get, 'test_insensitive_period' = parameters_test_insensitive_period_get, 'test_sensitive_period' = parameters_test_sensitive_period_get, 'test_sensitivity' = parameters_test_sensitivity_get, 'test_specificity' = parameters_test_specificity_get, 'app_users_fraction' = parameters_app_users_fraction_get, 'app_turned_on' = parameters_app_turned_on_get, 'app_turn_on_time' = parameters_app_turn_on_time_get, 'daily_non_cov_symptoms_rate' = parameters_daily_non_cov_symptoms_rate_get, 'lockdown_occupation_multiplier' = parameters_lockdown_occupation_multiplier_get, 'lockdown_random_network_multiplier' = parameters_lockdown_random_network_multiplier_get, 'lockdown_house_interaction_multiplier' = parameters_lockdown_house_interaction_multiplier_get, 'lockdown_time_on' = parameters_lockdown_time_on_get, 'lockdown_time_off' = parameters_lockdown_time_off_get, 'lockdown_on' = parameters_lockdown_on_get, 'lockdown_elderly_time_on' = parameters_lockdown_elderly_time_on_get, 'lockdown_elderly_time_off' = parameters_lockdown_elderly_time_off_get, 'lockdown_elderly_on' = parameters_lockdown_elderly_on_get, 'testing_symptoms_time_on' = parameters_testing_symptoms_time_on_get, 'testing_symptoms_time_off' = parameters_testing_symptoms_time_off_get, 'interventions_on' = parameters_interventions_on_get, 'intervention_start_time' = parameters_intervention_start_time_get, 'sys_write_individual' = parameters_sys_write_individual_get, 'sys_write_hospital' = parameters_sys_write_hospital_get, 'N_REFERENCE_HOUSEHOLDS' = parameters_N_REFERENCE_HOUSEHOLDS_get, 'REFERENCE_HOUSEHOLDS' = parameters_REFERENCE_HOUSEHOLDS_get, 'demo_house' = parameters_demo_house_get, 'occupation_network_table' = parameters_occupation_network_table_get, 'risk_score' = parameters_risk_score_get, 'risk_score_household' = parameters_risk_score_household_get, 'hospital_on' = parameters_hospital_on_get, 'n_hospitals' = parameters_n_hospitals_get, 'n_wards' = parameters_n_wards_get, 'n_ward_beds' = parameters_n_ward_beds_get, 'n_hcw_per_ward' = parameters_n_hcw_per_ward_get, 'n_patient_required_interactions' = parameters_n_patient_required_interactions_get, 'max_hcw_daily_interactions' = parameters_max_hcw_daily_interactions_get, 'hospitalised_waiting_mod' = parameters_hospitalised_waiting_mod_get, 'critical_waiting_mod' = parameters_critical_waiting_mod_get, 'hcw_mean_work_interactions' = parameters_hcw_mean_work_interactions_get);
-  vaccessors = c('rng_seed', 'input_param_file', 'hospital_input_param_file', 'input_household_file', 'output_file_dir', 'param_line_number', 'hospital_param_line_number', 'param_id', 'n_total', 'days_of_interactions', 'end_time', 'n_seed_infection', 'rebuild_networks', 'mean_random_interactions', 'sd_random_interactions', 'random_interaction_distribution', 'mean_work_interactions', 'daily_fraction_work', 'child_network_adults', 'elderly_network_adults', 'work_network_rewire', 'mean_infectious_period', 'sd_infectious_period', 'infectious_rate', 'sd_infectiousness_multiplier', 'relative_susceptibility', 'adjusted_susceptibility', 'relative_susceptibility_by_interaction', 'relative_transmission', 'relative_transmission_used', 'mean_time_to_symptoms', 'sd_time_to_symptoms', 'hospitalised_fraction', 'critical_fraction', 'fatality_fraction', 'mean_time_to_hospital', 'mean_time_to_critical', 'sd_time_to_critical', 'mean_time_to_recover', 'sd_time_to_recover', 'mean_time_to_death', 'sd_time_to_death', 'mean_time_to_susceptible_after_shift', 'time_to_susceptible_shift', 'household_size', 'population', 'fraction_asymptomatic', 'asymptomatic_infectious_factor', 'mild_fraction', 'mild_infectious_factor', 'mean_asymptomatic_to_recovery', 'sd_asymptomatic_to_recovery', 'mean_time_hospitalised_recovery', 'sd_time_hospitalised_recovery', 'mean_time_critical_survive', 'sd_time_critical_survive', 'location_death_icu', 'quarantined_daily_interactions', 'hospitalised_daily_interactions', 'quarantine_days', 'self_quarantine_fraction', 'manual_trace_on', 'manual_trace_time_on', 'manual_trace_on_hospitalization', 'manual_trace_on_positive', 'manual_trace_delay', 'manual_trace_exclude_app_users', 'manual_trace_n_workers', 'manual_trace_interviews_per_worker_day', 'manual_trace_notifications_per_worker_day', 'manual_traceable_fraction', 'trace_on_symptoms', 'trace_on_positive', 'retrace_on_positive', 'quarantine_length_self', 'quarantine_length_traced_symptoms', 'quarantine_length_traced_positive', 'quarantine_length_positive', 'quarantine_dropout_self', 'quarantine_dropout_traced_symptoms', 'quarantine_dropout_traced_positive', 'quarantine_dropout_positive', 'quarantine_compliance_traced_symptoms', 'quarantine_compliance_traced_positive', 'quarantine_on_traced', 'quarantine_smart_release_day', 'traceable_interaction_fraction', 'tracing_network_depth', 'allow_clinical_diagnosis', 'quarantine_household_on_symptoms', 'quarantine_household_on_positive', 'quarantine_household_on_traced_symptoms', 'quarantine_household_on_traced_positive', 'quarantine_household_contacts_on_positive', 'quarantine_household_contacts_on_symptoms', 'test_on_symptoms', 'test_on_traced', 'test_result_wait', 'test_order_wait', 'test_result_wait_priority', 'test_order_wait_priority', 'test_release_on_negative', 'priority_test_contacts', 'test_insensitive_period', 'test_sensitive_period', 'test_sensitivity', 'test_specificity', 'app_users_fraction', 'app_turned_on', 'app_turn_on_time', 'daily_non_cov_symptoms_rate', 'lockdown_occupation_multiplier', 'lockdown_random_network_multiplier', 'lockdown_house_interaction_multiplier', 'lockdown_time_on', 'lockdown_time_off', 'lockdown_on', 'lockdown_elderly_time_on', 'lockdown_elderly_time_off', 'lockdown_elderly_on', 'testing_symptoms_time_on', 'testing_symptoms_time_off', 'interventions_on', 'intervention_start_time', 'sys_write_individual', 'sys_write_hospital', 'N_REFERENCE_HOUSEHOLDS', 'REFERENCE_HOUSEHOLDS', 'demo_house', 'occupation_network_table', 'risk_score', 'risk_score_household', 'hospital_on', 'n_hospitals', 'n_wards', 'n_ward_beds', 'n_hcw_per_ward', 'n_patient_required_interactions', 'max_hcw_daily_interactions', 'hospitalised_waiting_mod', 'critical_waiting_mod', 'hcw_mean_work_interactions');
+  accessorFuns = list('rng_seed' = parameters_rng_seed_get, 'input_param_file' = parameters_input_param_file_get, 'hospital_input_param_file' = parameters_hospital_input_param_file_get, 'input_household_file' = parameters_input_household_file_get, 'output_file_dir' = parameters_output_file_dir_get, 'param_line_number' = parameters_param_line_number_get, 'hospital_param_line_number' = parameters_hospital_param_line_number_get, 'param_id' = parameters_param_id_get, 'n_total' = parameters_n_total_get, 'days_of_interactions' = parameters_days_of_interactions_get, 'end_time' = parameters_end_time_get, 'n_seed_infection' = parameters_n_seed_infection_get, 'rebuild_networks' = parameters_rebuild_networks_get, 'mean_random_interactions' = parameters_mean_random_interactions_get, 'sd_random_interactions' = parameters_sd_random_interactions_get, 'random_interaction_distribution' = parameters_random_interaction_distribution_get, 'mean_work_interactions' = parameters_mean_work_interactions_get, 'daily_fraction_work' = parameters_daily_fraction_work_get, 'child_network_adults' = parameters_child_network_adults_get, 'elderly_network_adults' = parameters_elderly_network_adults_get, 'work_network_rewire' = parameters_work_network_rewire_get, 'mean_infectious_period' = parameters_mean_infectious_period_get, 'sd_infectious_period' = parameters_sd_infectious_period_get, 'infectious_rate' = parameters_infectious_rate_get, 'sd_infectiousness_multiplier' = parameters_sd_infectiousness_multiplier_get, 'relative_susceptibility' = parameters_relative_susceptibility_get, 'adjusted_susceptibility' = parameters_adjusted_susceptibility_get, 'relative_susceptibility_by_interaction' = parameters_relative_susceptibility_by_interaction_get, 'relative_transmission' = parameters_relative_transmission_get, 'relative_transmission_used' = parameters_relative_transmission_used_get, 'mean_time_to_symptoms' = parameters_mean_time_to_symptoms_get, 'sd_time_to_symptoms' = parameters_sd_time_to_symptoms_get, 'hospitalised_fraction' = parameters_hospitalised_fraction_get, 'critical_fraction' = parameters_critical_fraction_get, 'fatality_fraction' = parameters_fatality_fraction_get, 'mean_time_to_hospital' = parameters_mean_time_to_hospital_get, 'mean_time_to_critical' = parameters_mean_time_to_critical_get, 'sd_time_to_critical' = parameters_sd_time_to_critical_get, 'mean_time_to_recover' = parameters_mean_time_to_recover_get, 'sd_time_to_recover' = parameters_sd_time_to_recover_get, 'mean_time_to_death' = parameters_mean_time_to_death_get, 'sd_time_to_death' = parameters_sd_time_to_death_get, 'mean_time_to_susceptible_after_shift' = parameters_mean_time_to_susceptible_after_shift_get, 'time_to_susceptible_shift' = parameters_time_to_susceptible_shift_get, 'household_size' = parameters_household_size_get, 'population' = parameters_population_get, 'fraction_asymptomatic' = parameters_fraction_asymptomatic_get, 'asymptomatic_infectious_factor' = parameters_asymptomatic_infectious_factor_get, 'mild_fraction' = parameters_mild_fraction_get, 'mild_infectious_factor' = parameters_mild_infectious_factor_get, 'mean_asymptomatic_to_recovery' = parameters_mean_asymptomatic_to_recovery_get, 'sd_asymptomatic_to_recovery' = parameters_sd_asymptomatic_to_recovery_get, 'mean_time_hospitalised_recovery' = parameters_mean_time_hospitalised_recovery_get, 'sd_time_hospitalised_recovery' = parameters_sd_time_hospitalised_recovery_get, 'mean_time_critical_survive' = parameters_mean_time_critical_survive_get, 'sd_time_critical_survive' = parameters_sd_time_critical_survive_get, 'location_death_icu' = parameters_location_death_icu_get, 'quarantined_daily_interactions' = parameters_quarantined_daily_interactions_get, 'hospitalised_daily_interactions' = parameters_hospitalised_daily_interactions_get, 'quarantine_days' = parameters_quarantine_days_get, 'self_quarantine_fraction' = parameters_self_quarantine_fraction_get, 'manual_trace_on' = parameters_manual_trace_on_get, 'manual_trace_time_on' = parameters_manual_trace_time_on_get, 'manual_trace_on_hospitalization' = parameters_manual_trace_on_hospitalization_get, 'manual_trace_on_positive' = parameters_manual_trace_on_positive_get, 'manual_trace_delay' = parameters_manual_trace_delay_get, 'manual_trace_exclude_app_users' = parameters_manual_trace_exclude_app_users_get, 'manual_trace_n_workers' = parameters_manual_trace_n_workers_get, 'manual_trace_interviews_per_worker_day' = parameters_manual_trace_interviews_per_worker_day_get, 'manual_trace_notifications_per_worker_day' = parameters_manual_trace_notifications_per_worker_day_get, 'manual_traceable_fraction' = parameters_manual_traceable_fraction_get, 'trace_on_symptoms' = parameters_trace_on_symptoms_get, 'trace_on_positive' = parameters_trace_on_positive_get, 'retrace_on_positive' = parameters_retrace_on_positive_get, 'quarantine_length_self' = parameters_quarantine_length_self_get, 'quarantine_length_traced_symptoms' = parameters_quarantine_length_traced_symptoms_get, 'quarantine_length_traced_positive' = parameters_quarantine_length_traced_positive_get, 'quarantine_length_positive' = parameters_quarantine_length_positive_get, 'quarantine_dropout_self' = parameters_quarantine_dropout_self_get, 'quarantine_dropout_traced_symptoms' = parameters_quarantine_dropout_traced_symptoms_get, 'quarantine_dropout_traced_positive' = parameters_quarantine_dropout_traced_positive_get, 'quarantine_dropout_positive' = parameters_quarantine_dropout_positive_get, 'quarantine_compliance_traced_symptoms' = parameters_quarantine_compliance_traced_symptoms_get, 'quarantine_compliance_traced_positive' = parameters_quarantine_compliance_traced_positive_get, 'quarantine_on_traced' = parameters_quarantine_on_traced_get, 'quarantine_smart_release_day' = parameters_quarantine_smart_release_day_get, 'traceable_interaction_fraction' = parameters_traceable_interaction_fraction_get, 'tracing_network_depth' = parameters_tracing_network_depth_get, 'allow_clinical_diagnosis' = parameters_allow_clinical_diagnosis_get, 'quarantine_household_on_symptoms' = parameters_quarantine_household_on_symptoms_get, 'quarantine_household_on_positive' = parameters_quarantine_household_on_positive_get, 'quarantine_household_on_traced_symptoms' = parameters_quarantine_household_on_traced_symptoms_get, 'quarantine_household_on_traced_positive' = parameters_quarantine_household_on_traced_positive_get, 'quarantine_household_contacts_on_positive' = parameters_quarantine_household_contacts_on_positive_get, 'quarantine_household_contacts_on_symptoms' = parameters_quarantine_household_contacts_on_symptoms_get, 'test_on_symptoms' = parameters_test_on_symptoms_get, 'test_on_traced' = parameters_test_on_traced_get, 'test_result_wait' = parameters_test_result_wait_get, 'test_order_wait' = parameters_test_order_wait_get, 'test_result_wait_priority' = parameters_test_result_wait_priority_get, 'test_order_wait_priority' = parameters_test_order_wait_priority_get, 'test_release_on_negative' = parameters_test_release_on_negative_get, 'priority_test_contacts' = parameters_priority_test_contacts_get, 'test_insensitive_period' = parameters_test_insensitive_period_get, 'test_sensitive_period' = parameters_test_sensitive_period_get, 'test_sensitivity' = parameters_test_sensitivity_get, 'test_specificity' = parameters_test_specificity_get, 'app_users_fraction' = parameters_app_users_fraction_get, 'app_turned_on' = parameters_app_turned_on_get, 'app_turn_on_time' = parameters_app_turn_on_time_get, 'daily_non_cov_symptoms_rate' = parameters_daily_non_cov_symptoms_rate_get, 'lockdown_occupation_multiplier' = parameters_lockdown_occupation_multiplier_get, 'lockdown_random_network_multiplier' = parameters_lockdown_random_network_multiplier_get, 'lockdown_house_interaction_multiplier' = parameters_lockdown_house_interaction_multiplier_get, 'lockdown_time_on' = parameters_lockdown_time_on_get, 'lockdown_time_off' = parameters_lockdown_time_off_get, 'lockdown_on' = parameters_lockdown_on_get, 'lockdown_elderly_time_on' = parameters_lockdown_elderly_time_on_get, 'lockdown_elderly_time_off' = parameters_lockdown_elderly_time_off_get, 'lockdown_elderly_on' = parameters_lockdown_elderly_on_get, 'testing_symptoms_time_on' = parameters_testing_symptoms_time_on_get, 'testing_symptoms_time_off' = parameters_testing_symptoms_time_off_get, 'interventions_on' = parameters_interventions_on_get, 'intervention_start_time' = parameters_intervention_start_time_get, 'sys_write_individual' = parameters_sys_write_individual_get, 'sys_write_hospital' = parameters_sys_write_hospital_get, 'N_REFERENCE_HOUSEHOLDS' = parameters_N_REFERENCE_HOUSEHOLDS_get, 'REFERENCE_HOUSEHOLDS' = parameters_REFERENCE_HOUSEHOLDS_get, 'demo_house' = parameters_demo_house_get, 'occupation_network_table' = parameters_occupation_network_table_get, 'risk_score' = parameters_risk_score_get, 'risk_score_household' = parameters_risk_score_household_get, 'hospital_on' = parameters_hospital_on_get, 'n_hospitals' = parameters_n_hospitals_get, 'n_wards' = parameters_n_wards_get, 'n_ward_beds' = parameters_n_ward_beds_get, 'n_hcw_per_ward' = parameters_n_hcw_per_ward_get, 'n_patient_required_interactions' = parameters_n_patient_required_interactions_get, 'max_hcw_daily_interactions' = parameters_max_hcw_daily_interactions_get, 'hospitalised_waiting_mod' = parameters_hospitalised_waiting_mod_get, 'critical_waiting_mod' = parameters_critical_waiting_mod_get, 'hcw_mean_work_interactions' = parameters_hcw_mean_work_interactions_get, 'max_n_strains' = parameters_max_n_strains_get);
+  vaccessors = c('rng_seed', 'input_param_file', 'hospital_input_param_file', 'input_household_file', 'output_file_dir', 'param_line_number', 'hospital_param_line_number', 'param_id', 'n_total', 'days_of_interactions', 'end_time', 'n_seed_infection', 'rebuild_networks', 'mean_random_interactions', 'sd_random_interactions', 'random_interaction_distribution', 'mean_work_interactions', 'daily_fraction_work', 'child_network_adults', 'elderly_network_adults', 'work_network_rewire', 'mean_infectious_period', 'sd_infectious_period', 'infectious_rate', 'sd_infectiousness_multiplier', 'relative_susceptibility', 'adjusted_susceptibility', 'relative_susceptibility_by_interaction', 'relative_transmission', 'relative_transmission_used', 'mean_time_to_symptoms', 'sd_time_to_symptoms', 'hospitalised_fraction', 'critical_fraction', 'fatality_fraction', 'mean_time_to_hospital', 'mean_time_to_critical', 'sd_time_to_critical', 'mean_time_to_recover', 'sd_time_to_recover', 'mean_time_to_death', 'sd_time_to_death', 'mean_time_to_susceptible_after_shift', 'time_to_susceptible_shift', 'household_size', 'population', 'fraction_asymptomatic', 'asymptomatic_infectious_factor', 'mild_fraction', 'mild_infectious_factor', 'mean_asymptomatic_to_recovery', 'sd_asymptomatic_to_recovery', 'mean_time_hospitalised_recovery', 'sd_time_hospitalised_recovery', 'mean_time_critical_survive', 'sd_time_critical_survive', 'location_death_icu', 'quarantined_daily_interactions', 'hospitalised_daily_interactions', 'quarantine_days', 'self_quarantine_fraction', 'manual_trace_on', 'manual_trace_time_on', 'manual_trace_on_hospitalization', 'manual_trace_on_positive', 'manual_trace_delay', 'manual_trace_exclude_app_users', 'manual_trace_n_workers', 'manual_trace_interviews_per_worker_day', 'manual_trace_notifications_per_worker_day', 'manual_traceable_fraction', 'trace_on_symptoms', 'trace_on_positive', 'retrace_on_positive', 'quarantine_length_self', 'quarantine_length_traced_symptoms', 'quarantine_length_traced_positive', 'quarantine_length_positive', 'quarantine_dropout_self', 'quarantine_dropout_traced_symptoms', 'quarantine_dropout_traced_positive', 'quarantine_dropout_positive', 'quarantine_compliance_traced_symptoms', 'quarantine_compliance_traced_positive', 'quarantine_on_traced', 'quarantine_smart_release_day', 'traceable_interaction_fraction', 'tracing_network_depth', 'allow_clinical_diagnosis', 'quarantine_household_on_symptoms', 'quarantine_household_on_positive', 'quarantine_household_on_traced_symptoms', 'quarantine_household_on_traced_positive', 'quarantine_household_contacts_on_positive', 'quarantine_household_contacts_on_symptoms', 'test_on_symptoms', 'test_on_traced', 'test_result_wait', 'test_order_wait', 'test_result_wait_priority', 'test_order_wait_priority', 'test_release_on_negative', 'priority_test_contacts', 'test_insensitive_period', 'test_sensitive_period', 'test_sensitivity', 'test_specificity', 'app_users_fraction', 'app_turned_on', 'app_turn_on_time', 'daily_non_cov_symptoms_rate', 'lockdown_occupation_multiplier', 'lockdown_random_network_multiplier', 'lockdown_house_interaction_multiplier', 'lockdown_time_on', 'lockdown_time_off', 'lockdown_on', 'lockdown_elderly_time_on', 'lockdown_elderly_time_off', 'lockdown_elderly_on', 'testing_symptoms_time_on', 'testing_symptoms_time_off', 'interventions_on', 'intervention_start_time', 'sys_write_individual', 'sys_write_hospital', 'N_REFERENCE_HOUSEHOLDS', 'REFERENCE_HOUSEHOLDS', 'demo_house', 'occupation_network_table', 'risk_score', 'risk_score_household', 'hospital_on', 'n_hospitals', 'n_wards', 'n_ward_beds', 'n_hcw_per_ward', 'n_patient_required_interactions', 'max_hcw_daily_interactions', 'hospitalised_waiting_mod', 'critical_waiting_mod', 'hcw_mean_work_interactions', 'max_n_strains');
   ;        idx = pmatch(name, names(accessorFuns));
   if(is.na(idx)) 
   return(callNextMethod(x, name));
@@ -7960,7 +8311,7 @@ setMethod('$', '_p_parameters', function(x, name)
 setMethod('$<-', '_p_parameters', function(x, name, value)
 
 {
-  accessorFuns = list('rng_seed' = parameters_rng_seed_set, 'input_param_file' = parameters_input_param_file_set, 'hospital_input_param_file' = parameters_hospital_input_param_file_set, 'input_household_file' = parameters_input_household_file_set, 'output_file_dir' = parameters_output_file_dir_set, 'param_line_number' = parameters_param_line_number_set, 'hospital_param_line_number' = parameters_hospital_param_line_number_set, 'param_id' = parameters_param_id_set, 'n_total' = parameters_n_total_set, 'days_of_interactions' = parameters_days_of_interactions_set, 'end_time' = parameters_end_time_set, 'n_seed_infection' = parameters_n_seed_infection_set, 'rebuild_networks' = parameters_rebuild_networks_set, 'mean_random_interactions' = parameters_mean_random_interactions_set, 'sd_random_interactions' = parameters_sd_random_interactions_set, 'random_interaction_distribution' = parameters_random_interaction_distribution_set, 'mean_work_interactions' = parameters_mean_work_interactions_set, 'daily_fraction_work' = parameters_daily_fraction_work_set, 'child_network_adults' = parameters_child_network_adults_set, 'elderly_network_adults' = parameters_elderly_network_adults_set, 'work_network_rewire' = parameters_work_network_rewire_set, 'mean_infectious_period' = parameters_mean_infectious_period_set, 'sd_infectious_period' = parameters_sd_infectious_period_set, 'infectious_rate' = parameters_infectious_rate_set, 'sd_infectiousness_multiplier' = parameters_sd_infectiousness_multiplier_set, 'relative_susceptibility' = parameters_relative_susceptibility_set, 'adjusted_susceptibility' = parameters_adjusted_susceptibility_set, 'relative_susceptibility_by_interaction' = parameters_relative_susceptibility_by_interaction_set, 'relative_transmission' = parameters_relative_transmission_set, 'relative_transmission_used' = parameters_relative_transmission_used_set, 'mean_time_to_symptoms' = parameters_mean_time_to_symptoms_set, 'sd_time_to_symptoms' = parameters_sd_time_to_symptoms_set, 'hospitalised_fraction' = parameters_hospitalised_fraction_set, 'critical_fraction' = parameters_critical_fraction_set, 'fatality_fraction' = parameters_fatality_fraction_set, 'mean_time_to_hospital' = parameters_mean_time_to_hospital_set, 'mean_time_to_critical' = parameters_mean_time_to_critical_set, 'sd_time_to_critical' = parameters_sd_time_to_critical_set, 'mean_time_to_recover' = parameters_mean_time_to_recover_set, 'sd_time_to_recover' = parameters_sd_time_to_recover_set, 'mean_time_to_death' = parameters_mean_time_to_death_set, 'sd_time_to_death' = parameters_sd_time_to_death_set, 'mean_time_to_susceptible_after_shift' = parameters_mean_time_to_susceptible_after_shift_set, 'time_to_susceptible_shift' = parameters_time_to_susceptible_shift_set, 'household_size' = parameters_household_size_set, 'population' = parameters_population_set, 'fraction_asymptomatic' = parameters_fraction_asymptomatic_set, 'asymptomatic_infectious_factor' = parameters_asymptomatic_infectious_factor_set, 'mild_fraction' = parameters_mild_fraction_set, 'mild_infectious_factor' = parameters_mild_infectious_factor_set, 'mean_asymptomatic_to_recovery' = parameters_mean_asymptomatic_to_recovery_set, 'sd_asymptomatic_to_recovery' = parameters_sd_asymptomatic_to_recovery_set, 'mean_time_hospitalised_recovery' = parameters_mean_time_hospitalised_recovery_set, 'sd_time_hospitalised_recovery' = parameters_sd_time_hospitalised_recovery_set, 'mean_time_critical_survive' = parameters_mean_time_critical_survive_set, 'sd_time_critical_survive' = parameters_sd_time_critical_survive_set, 'location_death_icu' = parameters_location_death_icu_set, 'quarantined_daily_interactions' = parameters_quarantined_daily_interactions_set, 'hospitalised_daily_interactions' = parameters_hospitalised_daily_interactions_set, 'quarantine_days' = parameters_quarantine_days_set, 'self_quarantine_fraction' = parameters_self_quarantine_fraction_set, 'manual_trace_on' = parameters_manual_trace_on_set, 'manual_trace_time_on' = parameters_manual_trace_time_on_set, 'manual_trace_on_hospitalization' = parameters_manual_trace_on_hospitalization_set, 'manual_trace_on_positive' = parameters_manual_trace_on_positive_set, 'manual_trace_delay' = parameters_manual_trace_delay_set, 'manual_trace_exclude_app_users' = parameters_manual_trace_exclude_app_users_set, 'manual_trace_n_workers' = parameters_manual_trace_n_workers_set, 'manual_trace_interviews_per_worker_day' = parameters_manual_trace_interviews_per_worker_day_set, 'manual_trace_notifications_per_worker_day' = parameters_manual_trace_notifications_per_worker_day_set, 'manual_traceable_fraction' = parameters_manual_traceable_fraction_set, 'trace_on_symptoms' = parameters_trace_on_symptoms_set, 'trace_on_positive' = parameters_trace_on_positive_set, 'retrace_on_positive' = parameters_retrace_on_positive_set, 'quarantine_length_self' = parameters_quarantine_length_self_set, 'quarantine_length_traced_symptoms' = parameters_quarantine_length_traced_symptoms_set, 'quarantine_length_traced_positive' = parameters_quarantine_length_traced_positive_set, 'quarantine_length_positive' = parameters_quarantine_length_positive_set, 'quarantine_dropout_self' = parameters_quarantine_dropout_self_set, 'quarantine_dropout_traced_symptoms' = parameters_quarantine_dropout_traced_symptoms_set, 'quarantine_dropout_traced_positive' = parameters_quarantine_dropout_traced_positive_set, 'quarantine_dropout_positive' = parameters_quarantine_dropout_positive_set, 'quarantine_compliance_traced_symptoms' = parameters_quarantine_compliance_traced_symptoms_set, 'quarantine_compliance_traced_positive' = parameters_quarantine_compliance_traced_positive_set, 'quarantine_on_traced' = parameters_quarantine_on_traced_set, 'quarantine_smart_release_day' = parameters_quarantine_smart_release_day_set, 'traceable_interaction_fraction' = parameters_traceable_interaction_fraction_set, 'tracing_network_depth' = parameters_tracing_network_depth_set, 'allow_clinical_diagnosis' = parameters_allow_clinical_diagnosis_set, 'quarantine_household_on_symptoms' = parameters_quarantine_household_on_symptoms_set, 'quarantine_household_on_positive' = parameters_quarantine_household_on_positive_set, 'quarantine_household_on_traced_symptoms' = parameters_quarantine_household_on_traced_symptoms_set, 'quarantine_household_on_traced_positive' = parameters_quarantine_household_on_traced_positive_set, 'quarantine_household_contacts_on_positive' = parameters_quarantine_household_contacts_on_positive_set, 'quarantine_household_contacts_on_symptoms' = parameters_quarantine_household_contacts_on_symptoms_set, 'test_on_symptoms' = parameters_test_on_symptoms_set, 'test_on_traced' = parameters_test_on_traced_set, 'test_result_wait' = parameters_test_result_wait_set, 'test_order_wait' = parameters_test_order_wait_set, 'test_result_wait_priority' = parameters_test_result_wait_priority_set, 'test_order_wait_priority' = parameters_test_order_wait_priority_set, 'test_release_on_negative' = parameters_test_release_on_negative_set, 'priority_test_contacts' = parameters_priority_test_contacts_set, 'test_insensitive_period' = parameters_test_insensitive_period_set, 'test_sensitive_period' = parameters_test_sensitive_period_set, 'test_sensitivity' = parameters_test_sensitivity_set, 'test_specificity' = parameters_test_specificity_set, 'app_users_fraction' = parameters_app_users_fraction_set, 'app_turned_on' = parameters_app_turned_on_set, 'app_turn_on_time' = parameters_app_turn_on_time_set, 'daily_non_cov_symptoms_rate' = parameters_daily_non_cov_symptoms_rate_set, 'lockdown_occupation_multiplier' = parameters_lockdown_occupation_multiplier_set, 'lockdown_random_network_multiplier' = parameters_lockdown_random_network_multiplier_set, 'lockdown_house_interaction_multiplier' = parameters_lockdown_house_interaction_multiplier_set, 'lockdown_time_on' = parameters_lockdown_time_on_set, 'lockdown_time_off' = parameters_lockdown_time_off_set, 'lockdown_on' = parameters_lockdown_on_set, 'lockdown_elderly_time_on' = parameters_lockdown_elderly_time_on_set, 'lockdown_elderly_time_off' = parameters_lockdown_elderly_time_off_set, 'lockdown_elderly_on' = parameters_lockdown_elderly_on_set, 'testing_symptoms_time_on' = parameters_testing_symptoms_time_on_set, 'testing_symptoms_time_off' = parameters_testing_symptoms_time_off_set, 'interventions_on' = parameters_interventions_on_set, 'intervention_start_time' = parameters_intervention_start_time_set, 'sys_write_individual' = parameters_sys_write_individual_set, 'sys_write_hospital' = parameters_sys_write_hospital_set, 'N_REFERENCE_HOUSEHOLDS' = parameters_N_REFERENCE_HOUSEHOLDS_set, 'REFERENCE_HOUSEHOLDS' = parameters_REFERENCE_HOUSEHOLDS_set, 'demo_house' = parameters_demo_house_set, 'occupation_network_table' = parameters_occupation_network_table_set, 'risk_score' = parameters_risk_score_set, 'risk_score_household' = parameters_risk_score_household_set, 'hospital_on' = parameters_hospital_on_set, 'n_hospitals' = parameters_n_hospitals_set, 'n_wards' = parameters_n_wards_set, 'n_ward_beds' = parameters_n_ward_beds_set, 'n_hcw_per_ward' = parameters_n_hcw_per_ward_set, 'n_patient_required_interactions' = parameters_n_patient_required_interactions_set, 'max_hcw_daily_interactions' = parameters_max_hcw_daily_interactions_set, 'hospitalised_waiting_mod' = parameters_hospitalised_waiting_mod_set, 'critical_waiting_mod' = parameters_critical_waiting_mod_set, 'hcw_mean_work_interactions' = parameters_hcw_mean_work_interactions_set);
+  accessorFuns = list('rng_seed' = parameters_rng_seed_set, 'input_param_file' = parameters_input_param_file_set, 'hospital_input_param_file' = parameters_hospital_input_param_file_set, 'input_household_file' = parameters_input_household_file_set, 'output_file_dir' = parameters_output_file_dir_set, 'param_line_number' = parameters_param_line_number_set, 'hospital_param_line_number' = parameters_hospital_param_line_number_set, 'param_id' = parameters_param_id_set, 'n_total' = parameters_n_total_set, 'days_of_interactions' = parameters_days_of_interactions_set, 'end_time' = parameters_end_time_set, 'n_seed_infection' = parameters_n_seed_infection_set, 'rebuild_networks' = parameters_rebuild_networks_set, 'mean_random_interactions' = parameters_mean_random_interactions_set, 'sd_random_interactions' = parameters_sd_random_interactions_set, 'random_interaction_distribution' = parameters_random_interaction_distribution_set, 'mean_work_interactions' = parameters_mean_work_interactions_set, 'daily_fraction_work' = parameters_daily_fraction_work_set, 'child_network_adults' = parameters_child_network_adults_set, 'elderly_network_adults' = parameters_elderly_network_adults_set, 'work_network_rewire' = parameters_work_network_rewire_set, 'mean_infectious_period' = parameters_mean_infectious_period_set, 'sd_infectious_period' = parameters_sd_infectious_period_set, 'infectious_rate' = parameters_infectious_rate_set, 'sd_infectiousness_multiplier' = parameters_sd_infectiousness_multiplier_set, 'relative_susceptibility' = parameters_relative_susceptibility_set, 'adjusted_susceptibility' = parameters_adjusted_susceptibility_set, 'relative_susceptibility_by_interaction' = parameters_relative_susceptibility_by_interaction_set, 'relative_transmission' = parameters_relative_transmission_set, 'relative_transmission_used' = parameters_relative_transmission_used_set, 'mean_time_to_symptoms' = parameters_mean_time_to_symptoms_set, 'sd_time_to_symptoms' = parameters_sd_time_to_symptoms_set, 'hospitalised_fraction' = parameters_hospitalised_fraction_set, 'critical_fraction' = parameters_critical_fraction_set, 'fatality_fraction' = parameters_fatality_fraction_set, 'mean_time_to_hospital' = parameters_mean_time_to_hospital_set, 'mean_time_to_critical' = parameters_mean_time_to_critical_set, 'sd_time_to_critical' = parameters_sd_time_to_critical_set, 'mean_time_to_recover' = parameters_mean_time_to_recover_set, 'sd_time_to_recover' = parameters_sd_time_to_recover_set, 'mean_time_to_death' = parameters_mean_time_to_death_set, 'sd_time_to_death' = parameters_sd_time_to_death_set, 'mean_time_to_susceptible_after_shift' = parameters_mean_time_to_susceptible_after_shift_set, 'time_to_susceptible_shift' = parameters_time_to_susceptible_shift_set, 'household_size' = parameters_household_size_set, 'population' = parameters_population_set, 'fraction_asymptomatic' = parameters_fraction_asymptomatic_set, 'asymptomatic_infectious_factor' = parameters_asymptomatic_infectious_factor_set, 'mild_fraction' = parameters_mild_fraction_set, 'mild_infectious_factor' = parameters_mild_infectious_factor_set, 'mean_asymptomatic_to_recovery' = parameters_mean_asymptomatic_to_recovery_set, 'sd_asymptomatic_to_recovery' = parameters_sd_asymptomatic_to_recovery_set, 'mean_time_hospitalised_recovery' = parameters_mean_time_hospitalised_recovery_set, 'sd_time_hospitalised_recovery' = parameters_sd_time_hospitalised_recovery_set, 'mean_time_critical_survive' = parameters_mean_time_critical_survive_set, 'sd_time_critical_survive' = parameters_sd_time_critical_survive_set, 'location_death_icu' = parameters_location_death_icu_set, 'quarantined_daily_interactions' = parameters_quarantined_daily_interactions_set, 'hospitalised_daily_interactions' = parameters_hospitalised_daily_interactions_set, 'quarantine_days' = parameters_quarantine_days_set, 'self_quarantine_fraction' = parameters_self_quarantine_fraction_set, 'manual_trace_on' = parameters_manual_trace_on_set, 'manual_trace_time_on' = parameters_manual_trace_time_on_set, 'manual_trace_on_hospitalization' = parameters_manual_trace_on_hospitalization_set, 'manual_trace_on_positive' = parameters_manual_trace_on_positive_set, 'manual_trace_delay' = parameters_manual_trace_delay_set, 'manual_trace_exclude_app_users' = parameters_manual_trace_exclude_app_users_set, 'manual_trace_n_workers' = parameters_manual_trace_n_workers_set, 'manual_trace_interviews_per_worker_day' = parameters_manual_trace_interviews_per_worker_day_set, 'manual_trace_notifications_per_worker_day' = parameters_manual_trace_notifications_per_worker_day_set, 'manual_traceable_fraction' = parameters_manual_traceable_fraction_set, 'trace_on_symptoms' = parameters_trace_on_symptoms_set, 'trace_on_positive' = parameters_trace_on_positive_set, 'retrace_on_positive' = parameters_retrace_on_positive_set, 'quarantine_length_self' = parameters_quarantine_length_self_set, 'quarantine_length_traced_symptoms' = parameters_quarantine_length_traced_symptoms_set, 'quarantine_length_traced_positive' = parameters_quarantine_length_traced_positive_set, 'quarantine_length_positive' = parameters_quarantine_length_positive_set, 'quarantine_dropout_self' = parameters_quarantine_dropout_self_set, 'quarantine_dropout_traced_symptoms' = parameters_quarantine_dropout_traced_symptoms_set, 'quarantine_dropout_traced_positive' = parameters_quarantine_dropout_traced_positive_set, 'quarantine_dropout_positive' = parameters_quarantine_dropout_positive_set, 'quarantine_compliance_traced_symptoms' = parameters_quarantine_compliance_traced_symptoms_set, 'quarantine_compliance_traced_positive' = parameters_quarantine_compliance_traced_positive_set, 'quarantine_on_traced' = parameters_quarantine_on_traced_set, 'quarantine_smart_release_day' = parameters_quarantine_smart_release_day_set, 'traceable_interaction_fraction' = parameters_traceable_interaction_fraction_set, 'tracing_network_depth' = parameters_tracing_network_depth_set, 'allow_clinical_diagnosis' = parameters_allow_clinical_diagnosis_set, 'quarantine_household_on_symptoms' = parameters_quarantine_household_on_symptoms_set, 'quarantine_household_on_positive' = parameters_quarantine_household_on_positive_set, 'quarantine_household_on_traced_symptoms' = parameters_quarantine_household_on_traced_symptoms_set, 'quarantine_household_on_traced_positive' = parameters_quarantine_household_on_traced_positive_set, 'quarantine_household_contacts_on_positive' = parameters_quarantine_household_contacts_on_positive_set, 'quarantine_household_contacts_on_symptoms' = parameters_quarantine_household_contacts_on_symptoms_set, 'test_on_symptoms' = parameters_test_on_symptoms_set, 'test_on_traced' = parameters_test_on_traced_set, 'test_result_wait' = parameters_test_result_wait_set, 'test_order_wait' = parameters_test_order_wait_set, 'test_result_wait_priority' = parameters_test_result_wait_priority_set, 'test_order_wait_priority' = parameters_test_order_wait_priority_set, 'test_release_on_negative' = parameters_test_release_on_negative_set, 'priority_test_contacts' = parameters_priority_test_contacts_set, 'test_insensitive_period' = parameters_test_insensitive_period_set, 'test_sensitive_period' = parameters_test_sensitive_period_set, 'test_sensitivity' = parameters_test_sensitivity_set, 'test_specificity' = parameters_test_specificity_set, 'app_users_fraction' = parameters_app_users_fraction_set, 'app_turned_on' = parameters_app_turned_on_set, 'app_turn_on_time' = parameters_app_turn_on_time_set, 'daily_non_cov_symptoms_rate' = parameters_daily_non_cov_symptoms_rate_set, 'lockdown_occupation_multiplier' = parameters_lockdown_occupation_multiplier_set, 'lockdown_random_network_multiplier' = parameters_lockdown_random_network_multiplier_set, 'lockdown_house_interaction_multiplier' = parameters_lockdown_house_interaction_multiplier_set, 'lockdown_time_on' = parameters_lockdown_time_on_set, 'lockdown_time_off' = parameters_lockdown_time_off_set, 'lockdown_on' = parameters_lockdown_on_set, 'lockdown_elderly_time_on' = parameters_lockdown_elderly_time_on_set, 'lockdown_elderly_time_off' = parameters_lockdown_elderly_time_off_set, 'lockdown_elderly_on' = parameters_lockdown_elderly_on_set, 'testing_symptoms_time_on' = parameters_testing_symptoms_time_on_set, 'testing_symptoms_time_off' = parameters_testing_symptoms_time_off_set, 'interventions_on' = parameters_interventions_on_set, 'intervention_start_time' = parameters_intervention_start_time_set, 'sys_write_individual' = parameters_sys_write_individual_set, 'sys_write_hospital' = parameters_sys_write_hospital_set, 'N_REFERENCE_HOUSEHOLDS' = parameters_N_REFERENCE_HOUSEHOLDS_set, 'REFERENCE_HOUSEHOLDS' = parameters_REFERENCE_HOUSEHOLDS_set, 'demo_house' = parameters_demo_house_set, 'occupation_network_table' = parameters_occupation_network_table_set, 'risk_score' = parameters_risk_score_set, 'risk_score_household' = parameters_risk_score_household_set, 'hospital_on' = parameters_hospital_on_set, 'n_hospitals' = parameters_n_hospitals_set, 'n_wards' = parameters_n_wards_set, 'n_ward_beds' = parameters_n_ward_beds_set, 'n_hcw_per_ward' = parameters_n_hcw_per_ward_set, 'n_patient_required_interactions' = parameters_n_patient_required_interactions_set, 'max_hcw_daily_interactions' = parameters_max_hcw_daily_interactions_set, 'hospitalised_waiting_mod' = parameters_hospitalised_waiting_mod_set, 'critical_waiting_mod' = parameters_critical_waiting_mod_set, 'hcw_mean_work_interactions' = parameters_hcw_mean_work_interactions_set, 'max_n_strains' = parameters_max_n_strains_set);
   ;        idx = pmatch(name, names(accessorFuns));
   if(is.na(idx)) 
   return(callNextMethod(x, name, value));
@@ -7975,7 +8326,7 @@ setMethod('[[<-', c('_p_parameters', 'character'),function(x, i, j, ..., value)
 
 {
   name = i;
-  accessorFuns = list('rng_seed' = parameters_rng_seed_set, 'input_param_file' = parameters_input_param_file_set, 'hospital_input_param_file' = parameters_hospital_input_param_file_set, 'input_household_file' = parameters_input_household_file_set, 'output_file_dir' = parameters_output_file_dir_set, 'param_line_number' = parameters_param_line_number_set, 'hospital_param_line_number' = parameters_hospital_param_line_number_set, 'param_id' = parameters_param_id_set, 'n_total' = parameters_n_total_set, 'days_of_interactions' = parameters_days_of_interactions_set, 'end_time' = parameters_end_time_set, 'n_seed_infection' = parameters_n_seed_infection_set, 'rebuild_networks' = parameters_rebuild_networks_set, 'mean_random_interactions' = parameters_mean_random_interactions_set, 'sd_random_interactions' = parameters_sd_random_interactions_set, 'random_interaction_distribution' = parameters_random_interaction_distribution_set, 'mean_work_interactions' = parameters_mean_work_interactions_set, 'daily_fraction_work' = parameters_daily_fraction_work_set, 'child_network_adults' = parameters_child_network_adults_set, 'elderly_network_adults' = parameters_elderly_network_adults_set, 'work_network_rewire' = parameters_work_network_rewire_set, 'mean_infectious_period' = parameters_mean_infectious_period_set, 'sd_infectious_period' = parameters_sd_infectious_period_set, 'infectious_rate' = parameters_infectious_rate_set, 'sd_infectiousness_multiplier' = parameters_sd_infectiousness_multiplier_set, 'relative_susceptibility' = parameters_relative_susceptibility_set, 'adjusted_susceptibility' = parameters_adjusted_susceptibility_set, 'relative_susceptibility_by_interaction' = parameters_relative_susceptibility_by_interaction_set, 'relative_transmission' = parameters_relative_transmission_set, 'relative_transmission_used' = parameters_relative_transmission_used_set, 'mean_time_to_symptoms' = parameters_mean_time_to_symptoms_set, 'sd_time_to_symptoms' = parameters_sd_time_to_symptoms_set, 'hospitalised_fraction' = parameters_hospitalised_fraction_set, 'critical_fraction' = parameters_critical_fraction_set, 'fatality_fraction' = parameters_fatality_fraction_set, 'mean_time_to_hospital' = parameters_mean_time_to_hospital_set, 'mean_time_to_critical' = parameters_mean_time_to_critical_set, 'sd_time_to_critical' = parameters_sd_time_to_critical_set, 'mean_time_to_recover' = parameters_mean_time_to_recover_set, 'sd_time_to_recover' = parameters_sd_time_to_recover_set, 'mean_time_to_death' = parameters_mean_time_to_death_set, 'sd_time_to_death' = parameters_sd_time_to_death_set, 'mean_time_to_susceptible_after_shift' = parameters_mean_time_to_susceptible_after_shift_set, 'time_to_susceptible_shift' = parameters_time_to_susceptible_shift_set, 'household_size' = parameters_household_size_set, 'population' = parameters_population_set, 'fraction_asymptomatic' = parameters_fraction_asymptomatic_set, 'asymptomatic_infectious_factor' = parameters_asymptomatic_infectious_factor_set, 'mild_fraction' = parameters_mild_fraction_set, 'mild_infectious_factor' = parameters_mild_infectious_factor_set, 'mean_asymptomatic_to_recovery' = parameters_mean_asymptomatic_to_recovery_set, 'sd_asymptomatic_to_recovery' = parameters_sd_asymptomatic_to_recovery_set, 'mean_time_hospitalised_recovery' = parameters_mean_time_hospitalised_recovery_set, 'sd_time_hospitalised_recovery' = parameters_sd_time_hospitalised_recovery_set, 'mean_time_critical_survive' = parameters_mean_time_critical_survive_set, 'sd_time_critical_survive' = parameters_sd_time_critical_survive_set, 'location_death_icu' = parameters_location_death_icu_set, 'quarantined_daily_interactions' = parameters_quarantined_daily_interactions_set, 'hospitalised_daily_interactions' = parameters_hospitalised_daily_interactions_set, 'quarantine_days' = parameters_quarantine_days_set, 'self_quarantine_fraction' = parameters_self_quarantine_fraction_set, 'manual_trace_on' = parameters_manual_trace_on_set, 'manual_trace_time_on' = parameters_manual_trace_time_on_set, 'manual_trace_on_hospitalization' = parameters_manual_trace_on_hospitalization_set, 'manual_trace_on_positive' = parameters_manual_trace_on_positive_set, 'manual_trace_delay' = parameters_manual_trace_delay_set, 'manual_trace_exclude_app_users' = parameters_manual_trace_exclude_app_users_set, 'manual_trace_n_workers' = parameters_manual_trace_n_workers_set, 'manual_trace_interviews_per_worker_day' = parameters_manual_trace_interviews_per_worker_day_set, 'manual_trace_notifications_per_worker_day' = parameters_manual_trace_notifications_per_worker_day_set, 'manual_traceable_fraction' = parameters_manual_traceable_fraction_set, 'trace_on_symptoms' = parameters_trace_on_symptoms_set, 'trace_on_positive' = parameters_trace_on_positive_set, 'retrace_on_positive' = parameters_retrace_on_positive_set, 'quarantine_length_self' = parameters_quarantine_length_self_set, 'quarantine_length_traced_symptoms' = parameters_quarantine_length_traced_symptoms_set, 'quarantine_length_traced_positive' = parameters_quarantine_length_traced_positive_set, 'quarantine_length_positive' = parameters_quarantine_length_positive_set, 'quarantine_dropout_self' = parameters_quarantine_dropout_self_set, 'quarantine_dropout_traced_symptoms' = parameters_quarantine_dropout_traced_symptoms_set, 'quarantine_dropout_traced_positive' = parameters_quarantine_dropout_traced_positive_set, 'quarantine_dropout_positive' = parameters_quarantine_dropout_positive_set, 'quarantine_compliance_traced_symptoms' = parameters_quarantine_compliance_traced_symptoms_set, 'quarantine_compliance_traced_positive' = parameters_quarantine_compliance_traced_positive_set, 'quarantine_on_traced' = parameters_quarantine_on_traced_set, 'quarantine_smart_release_day' = parameters_quarantine_smart_release_day_set, 'traceable_interaction_fraction' = parameters_traceable_interaction_fraction_set, 'tracing_network_depth' = parameters_tracing_network_depth_set, 'allow_clinical_diagnosis' = parameters_allow_clinical_diagnosis_set, 'quarantine_household_on_symptoms' = parameters_quarantine_household_on_symptoms_set, 'quarantine_household_on_positive' = parameters_quarantine_household_on_positive_set, 'quarantine_household_on_traced_symptoms' = parameters_quarantine_household_on_traced_symptoms_set, 'quarantine_household_on_traced_positive' = parameters_quarantine_household_on_traced_positive_set, 'quarantine_household_contacts_on_positive' = parameters_quarantine_household_contacts_on_positive_set, 'quarantine_household_contacts_on_symptoms' = parameters_quarantine_household_contacts_on_symptoms_set, 'test_on_symptoms' = parameters_test_on_symptoms_set, 'test_on_traced' = parameters_test_on_traced_set, 'test_result_wait' = parameters_test_result_wait_set, 'test_order_wait' = parameters_test_order_wait_set, 'test_result_wait_priority' = parameters_test_result_wait_priority_set, 'test_order_wait_priority' = parameters_test_order_wait_priority_set, 'test_release_on_negative' = parameters_test_release_on_negative_set, 'priority_test_contacts' = parameters_priority_test_contacts_set, 'test_insensitive_period' = parameters_test_insensitive_period_set, 'test_sensitive_period' = parameters_test_sensitive_period_set, 'test_sensitivity' = parameters_test_sensitivity_set, 'test_specificity' = parameters_test_specificity_set, 'app_users_fraction' = parameters_app_users_fraction_set, 'app_turned_on' = parameters_app_turned_on_set, 'app_turn_on_time' = parameters_app_turn_on_time_set, 'daily_non_cov_symptoms_rate' = parameters_daily_non_cov_symptoms_rate_set, 'lockdown_occupation_multiplier' = parameters_lockdown_occupation_multiplier_set, 'lockdown_random_network_multiplier' = parameters_lockdown_random_network_multiplier_set, 'lockdown_house_interaction_multiplier' = parameters_lockdown_house_interaction_multiplier_set, 'lockdown_time_on' = parameters_lockdown_time_on_set, 'lockdown_time_off' = parameters_lockdown_time_off_set, 'lockdown_on' = parameters_lockdown_on_set, 'lockdown_elderly_time_on' = parameters_lockdown_elderly_time_on_set, 'lockdown_elderly_time_off' = parameters_lockdown_elderly_time_off_set, 'lockdown_elderly_on' = parameters_lockdown_elderly_on_set, 'testing_symptoms_time_on' = parameters_testing_symptoms_time_on_set, 'testing_symptoms_time_off' = parameters_testing_symptoms_time_off_set, 'interventions_on' = parameters_interventions_on_set, 'intervention_start_time' = parameters_intervention_start_time_set, 'sys_write_individual' = parameters_sys_write_individual_set, 'sys_write_hospital' = parameters_sys_write_hospital_set, 'N_REFERENCE_HOUSEHOLDS' = parameters_N_REFERENCE_HOUSEHOLDS_set, 'REFERENCE_HOUSEHOLDS' = parameters_REFERENCE_HOUSEHOLDS_set, 'demo_house' = parameters_demo_house_set, 'occupation_network_table' = parameters_occupation_network_table_set, 'risk_score' = parameters_risk_score_set, 'risk_score_household' = parameters_risk_score_household_set, 'hospital_on' = parameters_hospital_on_set, 'n_hospitals' = parameters_n_hospitals_set, 'n_wards' = parameters_n_wards_set, 'n_ward_beds' = parameters_n_ward_beds_set, 'n_hcw_per_ward' = parameters_n_hcw_per_ward_set, 'n_patient_required_interactions' = parameters_n_patient_required_interactions_set, 'max_hcw_daily_interactions' = parameters_max_hcw_daily_interactions_set, 'hospitalised_waiting_mod' = parameters_hospitalised_waiting_mod_set, 'critical_waiting_mod' = parameters_critical_waiting_mod_set, 'hcw_mean_work_interactions' = parameters_hcw_mean_work_interactions_set);
+  accessorFuns = list('rng_seed' = parameters_rng_seed_set, 'input_param_file' = parameters_input_param_file_set, 'hospital_input_param_file' = parameters_hospital_input_param_file_set, 'input_household_file' = parameters_input_household_file_set, 'output_file_dir' = parameters_output_file_dir_set, 'param_line_number' = parameters_param_line_number_set, 'hospital_param_line_number' = parameters_hospital_param_line_number_set, 'param_id' = parameters_param_id_set, 'n_total' = parameters_n_total_set, 'days_of_interactions' = parameters_days_of_interactions_set, 'end_time' = parameters_end_time_set, 'n_seed_infection' = parameters_n_seed_infection_set, 'rebuild_networks' = parameters_rebuild_networks_set, 'mean_random_interactions' = parameters_mean_random_interactions_set, 'sd_random_interactions' = parameters_sd_random_interactions_set, 'random_interaction_distribution' = parameters_random_interaction_distribution_set, 'mean_work_interactions' = parameters_mean_work_interactions_set, 'daily_fraction_work' = parameters_daily_fraction_work_set, 'child_network_adults' = parameters_child_network_adults_set, 'elderly_network_adults' = parameters_elderly_network_adults_set, 'work_network_rewire' = parameters_work_network_rewire_set, 'mean_infectious_period' = parameters_mean_infectious_period_set, 'sd_infectious_period' = parameters_sd_infectious_period_set, 'infectious_rate' = parameters_infectious_rate_set, 'sd_infectiousness_multiplier' = parameters_sd_infectiousness_multiplier_set, 'relative_susceptibility' = parameters_relative_susceptibility_set, 'adjusted_susceptibility' = parameters_adjusted_susceptibility_set, 'relative_susceptibility_by_interaction' = parameters_relative_susceptibility_by_interaction_set, 'relative_transmission' = parameters_relative_transmission_set, 'relative_transmission_used' = parameters_relative_transmission_used_set, 'mean_time_to_symptoms' = parameters_mean_time_to_symptoms_set, 'sd_time_to_symptoms' = parameters_sd_time_to_symptoms_set, 'hospitalised_fraction' = parameters_hospitalised_fraction_set, 'critical_fraction' = parameters_critical_fraction_set, 'fatality_fraction' = parameters_fatality_fraction_set, 'mean_time_to_hospital' = parameters_mean_time_to_hospital_set, 'mean_time_to_critical' = parameters_mean_time_to_critical_set, 'sd_time_to_critical' = parameters_sd_time_to_critical_set, 'mean_time_to_recover' = parameters_mean_time_to_recover_set, 'sd_time_to_recover' = parameters_sd_time_to_recover_set, 'mean_time_to_death' = parameters_mean_time_to_death_set, 'sd_time_to_death' = parameters_sd_time_to_death_set, 'mean_time_to_susceptible_after_shift' = parameters_mean_time_to_susceptible_after_shift_set, 'time_to_susceptible_shift' = parameters_time_to_susceptible_shift_set, 'household_size' = parameters_household_size_set, 'population' = parameters_population_set, 'fraction_asymptomatic' = parameters_fraction_asymptomatic_set, 'asymptomatic_infectious_factor' = parameters_asymptomatic_infectious_factor_set, 'mild_fraction' = parameters_mild_fraction_set, 'mild_infectious_factor' = parameters_mild_infectious_factor_set, 'mean_asymptomatic_to_recovery' = parameters_mean_asymptomatic_to_recovery_set, 'sd_asymptomatic_to_recovery' = parameters_sd_asymptomatic_to_recovery_set, 'mean_time_hospitalised_recovery' = parameters_mean_time_hospitalised_recovery_set, 'sd_time_hospitalised_recovery' = parameters_sd_time_hospitalised_recovery_set, 'mean_time_critical_survive' = parameters_mean_time_critical_survive_set, 'sd_time_critical_survive' = parameters_sd_time_critical_survive_set, 'location_death_icu' = parameters_location_death_icu_set, 'quarantined_daily_interactions' = parameters_quarantined_daily_interactions_set, 'hospitalised_daily_interactions' = parameters_hospitalised_daily_interactions_set, 'quarantine_days' = parameters_quarantine_days_set, 'self_quarantine_fraction' = parameters_self_quarantine_fraction_set, 'manual_trace_on' = parameters_manual_trace_on_set, 'manual_trace_time_on' = parameters_manual_trace_time_on_set, 'manual_trace_on_hospitalization' = parameters_manual_trace_on_hospitalization_set, 'manual_trace_on_positive' = parameters_manual_trace_on_positive_set, 'manual_trace_delay' = parameters_manual_trace_delay_set, 'manual_trace_exclude_app_users' = parameters_manual_trace_exclude_app_users_set, 'manual_trace_n_workers' = parameters_manual_trace_n_workers_set, 'manual_trace_interviews_per_worker_day' = parameters_manual_trace_interviews_per_worker_day_set, 'manual_trace_notifications_per_worker_day' = parameters_manual_trace_notifications_per_worker_day_set, 'manual_traceable_fraction' = parameters_manual_traceable_fraction_set, 'trace_on_symptoms' = parameters_trace_on_symptoms_set, 'trace_on_positive' = parameters_trace_on_positive_set, 'retrace_on_positive' = parameters_retrace_on_positive_set, 'quarantine_length_self' = parameters_quarantine_length_self_set, 'quarantine_length_traced_symptoms' = parameters_quarantine_length_traced_symptoms_set, 'quarantine_length_traced_positive' = parameters_quarantine_length_traced_positive_set, 'quarantine_length_positive' = parameters_quarantine_length_positive_set, 'quarantine_dropout_self' = parameters_quarantine_dropout_self_set, 'quarantine_dropout_traced_symptoms' = parameters_quarantine_dropout_traced_symptoms_set, 'quarantine_dropout_traced_positive' = parameters_quarantine_dropout_traced_positive_set, 'quarantine_dropout_positive' = parameters_quarantine_dropout_positive_set, 'quarantine_compliance_traced_symptoms' = parameters_quarantine_compliance_traced_symptoms_set, 'quarantine_compliance_traced_positive' = parameters_quarantine_compliance_traced_positive_set, 'quarantine_on_traced' = parameters_quarantine_on_traced_set, 'quarantine_smart_release_day' = parameters_quarantine_smart_release_day_set, 'traceable_interaction_fraction' = parameters_traceable_interaction_fraction_set, 'tracing_network_depth' = parameters_tracing_network_depth_set, 'allow_clinical_diagnosis' = parameters_allow_clinical_diagnosis_set, 'quarantine_household_on_symptoms' = parameters_quarantine_household_on_symptoms_set, 'quarantine_household_on_positive' = parameters_quarantine_household_on_positive_set, 'quarantine_household_on_traced_symptoms' = parameters_quarantine_household_on_traced_symptoms_set, 'quarantine_household_on_traced_positive' = parameters_quarantine_household_on_traced_positive_set, 'quarantine_household_contacts_on_positive' = parameters_quarantine_household_contacts_on_positive_set, 'quarantine_household_contacts_on_symptoms' = parameters_quarantine_household_contacts_on_symptoms_set, 'test_on_symptoms' = parameters_test_on_symptoms_set, 'test_on_traced' = parameters_test_on_traced_set, 'test_result_wait' = parameters_test_result_wait_set, 'test_order_wait' = parameters_test_order_wait_set, 'test_result_wait_priority' = parameters_test_result_wait_priority_set, 'test_order_wait_priority' = parameters_test_order_wait_priority_set, 'test_release_on_negative' = parameters_test_release_on_negative_set, 'priority_test_contacts' = parameters_priority_test_contacts_set, 'test_insensitive_period' = parameters_test_insensitive_period_set, 'test_sensitive_period' = parameters_test_sensitive_period_set, 'test_sensitivity' = parameters_test_sensitivity_set, 'test_specificity' = parameters_test_specificity_set, 'app_users_fraction' = parameters_app_users_fraction_set, 'app_turned_on' = parameters_app_turned_on_set, 'app_turn_on_time' = parameters_app_turn_on_time_set, 'daily_non_cov_symptoms_rate' = parameters_daily_non_cov_symptoms_rate_set, 'lockdown_occupation_multiplier' = parameters_lockdown_occupation_multiplier_set, 'lockdown_random_network_multiplier' = parameters_lockdown_random_network_multiplier_set, 'lockdown_house_interaction_multiplier' = parameters_lockdown_house_interaction_multiplier_set, 'lockdown_time_on' = parameters_lockdown_time_on_set, 'lockdown_time_off' = parameters_lockdown_time_off_set, 'lockdown_on' = parameters_lockdown_on_set, 'lockdown_elderly_time_on' = parameters_lockdown_elderly_time_on_set, 'lockdown_elderly_time_off' = parameters_lockdown_elderly_time_off_set, 'lockdown_elderly_on' = parameters_lockdown_elderly_on_set, 'testing_symptoms_time_on' = parameters_testing_symptoms_time_on_set, 'testing_symptoms_time_off' = parameters_testing_symptoms_time_off_set, 'interventions_on' = parameters_interventions_on_set, 'intervention_start_time' = parameters_intervention_start_time_set, 'sys_write_individual' = parameters_sys_write_individual_set, 'sys_write_hospital' = parameters_sys_write_hospital_set, 'N_REFERENCE_HOUSEHOLDS' = parameters_N_REFERENCE_HOUSEHOLDS_set, 'REFERENCE_HOUSEHOLDS' = parameters_REFERENCE_HOUSEHOLDS_set, 'demo_house' = parameters_demo_house_set, 'occupation_network_table' = parameters_occupation_network_table_set, 'risk_score' = parameters_risk_score_set, 'risk_score_household' = parameters_risk_score_household_set, 'hospital_on' = parameters_hospital_on_set, 'n_hospitals' = parameters_n_hospitals_set, 'n_wards' = parameters_n_wards_set, 'n_ward_beds' = parameters_n_ward_beds_set, 'n_hcw_per_ward' = parameters_n_hcw_per_ward_set, 'n_patient_required_interactions' = parameters_n_patient_required_interactions_set, 'max_hcw_daily_interactions' = parameters_max_hcw_daily_interactions_set, 'hospitalised_waiting_mod' = parameters_hospitalised_waiting_mod_set, 'critical_waiting_mod' = parameters_critical_waiting_mod_set, 'hcw_mean_work_interactions' = parameters_hcw_mean_work_interactions_set, 'max_n_strains' = parameters_max_n_strains_set);
   ;        idx = pmatch(name, names(accessorFuns));
   if(is.na(idx)) 
   return(callNextMethod(x, name, value));
@@ -8128,6 +8479,7 @@ CopyToR_parameters = function(value, obj = new("parameters"))
   obj@hospitalised_waiting_mod = value$hospitalised_waiting_mod;
   obj@critical_waiting_mod = value$critical_waiting_mod;
   obj@hcw_mean_work_interactions = value$hcw_mean_work_interactions;
+  obj@max_n_strains = value$max_n_strains;
   obj;
 }
 
@@ -8272,6 +8624,7 @@ CopyToC_parameters = function(value, obj)
   obj$hospitalised_waiting_mod = value@hospitalised_waiting_mod;
   obj$critical_waiting_mod = value@critical_waiting_mod;
   obj$hcw_mean_work_interactions = value@hcw_mean_work_interactions;
+  obj$max_n_strains = value@max_n_strains;
   obj
 }
 
@@ -9747,7 +10100,7 @@ class(`set_occupation_network_table`) = c("SWIGFunction", class('set_occupation_
 
 # Start of set_indiv_occupation_network_property
 
-`set_indiv_occupation_network_property` = function(params, network, age_type, mean_interaction, lockdown_multiplier, network_id, network_name, .copy = FALSE)
+`set_indiv_occupation_network_property` = function(params, network, age_type, mean_interaction, lockdown_multiplier, network_name, .copy = FALSE)
 {
   if (inherits(params, "ExternalReference")) params = slot(params,"ref") 
   network = as.integer(network);
@@ -9764,19 +10117,13 @@ class(`set_occupation_network_table`) = c("SWIGFunction", class('set_occupation_
   
   
   
-  network_id = as.integer(network_id);
-  
-  if(length(network_id) > 1) {
-    warning("using only the first element of network_id");
-  };
-  
   network_name = as(network_name, "character"); 
-  ;.Call('R_swig_set_indiv_occupation_network_property', params, network, age_type, mean_interaction, lockdown_multiplier, network_id, network_name, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  ;.Call('R_swig_set_indiv_occupation_network_property', params, network, age_type, mean_interaction, lockdown_multiplier, network_name, as.logical(.copy), PACKAGE='OpenABMCovid19');
   
 }
 
 attr(`set_indiv_occupation_network_property`, 'returnType') = 'integer'
-attr(`set_indiv_occupation_network_property`, "inputTypes") = c('_p_parameters', 'integer', 'integer', 'numeric', 'numeric', 'integer', 'character')
+attr(`set_indiv_occupation_network_property`, "inputTypes") = c('_p_parameters', 'integer', 'integer', 'numeric', 'numeric', 'character')
 class(`set_indiv_occupation_network_property`) = c("SWIGFunction", class('set_indiv_occupation_network_property'))
 
 # Start of set_indiv_occupation_network
@@ -10399,12 +10746,19 @@ defineEnumeration('_VACCINE_STATUS',
                         'VACCINE_NO_PROTECTION' = 1, 
                         'VACCINE_PROTECTED_FULLY' = 2, 
                         'VACCINE_PROTECTED_SYMPTOMS' = 3, 
-                        'VACCINE_WANED' = 4
+                        'VACCINE_PROTECTED_SEVERE' = 4, 
+                        'VACCINE_WANED' = 5
 ))
 defineEnumeration('_VACCINE_TYPES',
                     .values = c(
                         'VACCINE_TYPE_FULL' = 0, 
                         'VACCINE_TYPE_SYMPTOMS' = 1
+))
+defineEnumeration('_IMMUNE_TYPES',
+                    .values = c(
+                        'IMMUNE_FULL' = 0, 
+                        'IMMUNE_SYMPTOMS' = 1, 
+                        'IMMUNE_SEVERE' = 2
 ))
 # Start of rng_set
 
@@ -10769,7 +11123,7 @@ class(`get_n_transmissions`) = c("SWIGFunction", class('get_n_transmissions'))
 
 # Start of get_transmissions
 
-`get_transmissions` = function(s_arg1, s_arg2, s_arg3, s_arg4, s_arg5, s_arg6, s_arg7, s_arg8, s_arg9, s_arg10, s_arg11, s_arg12, s_arg13, s_arg14, s_arg15, s_arg16, s_arg17, s_arg18, s_arg19, s_arg20, s_arg21, s_arg22, s_arg23, s_arg24, s_arg25, s_arg26, s_arg27, s_arg28, s_arg29, s_arg30, s_arg31, s_arg32, s_arg33, s_arg34)
+`get_transmissions` = function(s_arg1, s_arg2, s_arg3, s_arg4, s_arg5, s_arg6, s_arg7, s_arg8, s_arg9, s_arg10, s_arg11, s_arg12, s_arg13, s_arg14, s_arg15, s_arg16, s_arg17, s_arg18, s_arg19, s_arg20, s_arg21, s_arg22, s_arg23, s_arg24, s_arg25, s_arg26, s_arg27, s_arg28, s_arg29, s_arg30, s_arg31, s_arg32, s_arg33, s_arg34, s_arg35, s_arg36)
 {
   if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
   s_arg2 = as.integer(s_arg2);
@@ -10804,13 +11158,15 @@ class(`get_n_transmissions`) = c("SWIGFunction", class('get_n_transmissions'))
   s_arg31 = as.integer(s_arg31);
   s_arg32 = as.integer(s_arg32);
   s_arg33 = as.integer(s_arg33);
+  s_arg34 = as.integer(s_arg34);
   
-  ;.Call('R_swig_get_transmissions', s_arg1, s_arg2, s_arg3, s_arg4, s_arg5, s_arg6, s_arg7, s_arg8, s_arg9, s_arg10, s_arg11, s_arg12, s_arg13, s_arg14, s_arg15, s_arg16, s_arg17, s_arg18, s_arg19, s_arg20, s_arg21, s_arg22, s_arg23, s_arg24, s_arg25, s_arg26, s_arg27, s_arg28, s_arg29, s_arg30, s_arg31, s_arg32, s_arg33, s_arg34, PACKAGE='OpenABMCovid19');
+  
+  ;.Call('R_swig_get_transmissions', s_arg1, s_arg2, s_arg3, s_arg4, s_arg5, s_arg6, s_arg7, s_arg8, s_arg9, s_arg10, s_arg11, s_arg12, s_arg13, s_arg14, s_arg15, s_arg16, s_arg17, s_arg18, s_arg19, s_arg20, s_arg21, s_arg22, s_arg23, s_arg24, s_arg25, s_arg26, s_arg27, s_arg28, s_arg29, s_arg30, s_arg31, s_arg32, s_arg33, s_arg34, s_arg35, s_arg36, PACKAGE='OpenABMCovid19');
   
 }
 
 attr(`get_transmissions`, 'returnType') = 'void'
-attr(`get_transmissions`, "inputTypes") = c('_p_model', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'numeric')
+attr(`get_transmissions`, "inputTypes") = c('_p_model', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'integer', 'numeric', 'numeric')
 class(`get_transmissions`) = c("SWIGFunction", class('get_transmissions'))
 
 # Start of individual_idx_set
@@ -11145,10 +11501,10 @@ class(`individual_hazard_set`) = c("SWIGFunction", class('individual_hazard_set'
 
 # Start of individual_hazard_get
 
-`individual_hazard_get` = function(self, .copy = FALSE)
+`individual_hazard_get` = function(self)
 {
   if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
-  ;.Call('R_swig_individual_hazard_get', self, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  ;.Call('R_swig_individual_hazard_get', self, PACKAGE='OpenABMCovid19');
   
 }
 
@@ -11831,74 +12187,102 @@ attr(`individual_vaccine_status_get`, 'returnType') = 'integer'
 attr(`individual_vaccine_status_get`, "inputTypes") = c('_p_individual')
 class(`individual_vaccine_status_get`) = c("SWIGFunction", class('individual_vaccine_status_get'))
 
-# Start of individual_vaccine_status_next_set
+# Start of individual_immune_full_set
 
-`individual_vaccine_status_next_set` = function(self, s_vaccine_status_next)
+`individual_immune_full_set` = function(self, s_immune_full)
 {
   if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
-  s_vaccine_status_next = as.integer(s_vaccine_status_next);
-  
-  if(length(s_vaccine_status_next) > 1) {
-    warning("using only the first element of s_vaccine_status_next");
-  };
-  
-  ;.Call('R_swig_individual_vaccine_status_next_set', self, s_vaccine_status_next, PACKAGE='OpenABMCovid19');
+  s_immune_full = as.integer(s_immune_full);
+  ;.Call('R_swig_individual_immune_full_set', self, s_immune_full, PACKAGE='OpenABMCovid19');
   
 }
 
-attr(`individual_vaccine_status_next_set`, 'returnType') = 'void'
-attr(`individual_vaccine_status_next_set`, "inputTypes") = c('_p_individual', 'integer')
-class(`individual_vaccine_status_next_set`) = c("SWIGFunction", class('individual_vaccine_status_next_set'))
+attr(`individual_immune_full_set`, 'returnType') = 'void'
+attr(`individual_immune_full_set`, "inputTypes") = c('_p_individual', 'integer')
+class(`individual_immune_full_set`) = c("SWIGFunction", class('individual_immune_full_set'))
 
-# Start of individual_vaccine_status_next_get
+# Start of individual_immune_full_get
 
-`individual_vaccine_status_next_get` = function(self, .copy = FALSE)
+`individual_immune_full_get` = function(self)
 {
   if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
-  ;.Call('R_swig_individual_vaccine_status_next_get', self, as.logical(.copy), PACKAGE='OpenABMCovid19');
-  
-}
-
-attr(`individual_vaccine_status_next_get`, 'returnType') = 'integer'
-attr(`individual_vaccine_status_next_get`, "inputTypes") = c('_p_individual')
-class(`individual_vaccine_status_next_get`) = c("SWIGFunction", class('individual_vaccine_status_next_get'))
-
-# Start of individual_vaccine_wane_event_set
-
-`individual_vaccine_wane_event_set` = function(self, s_vaccine_wane_event)
-{
-  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
-  if (inherits(s_vaccine_wane_event, "ExternalReference")) s_vaccine_wane_event = slot(s_vaccine_wane_event,"ref") 
-  ;.Call('R_swig_individual_vaccine_wane_event_set', self, s_vaccine_wane_event, PACKAGE='OpenABMCovid19');
-  
-}
-
-attr(`individual_vaccine_wane_event_set`, 'returnType') = 'void'
-attr(`individual_vaccine_wane_event_set`, "inputTypes") = c('_p_individual', '_p_event')
-class(`individual_vaccine_wane_event_set`) = c("SWIGFunction", class('individual_vaccine_wane_event_set'))
-
-# Start of individual_vaccine_wane_event_get
-
-`individual_vaccine_wane_event_get` = function(self)
-{
-  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
-  ;ans = .Call('R_swig_individual_vaccine_wane_event_get', self, PACKAGE='OpenABMCovid19');
-  ans <- new("_p_event", ref=ans) ;
+  ;ans = .Call('R_swig_individual_immune_full_get', self, PACKAGE='OpenABMCovid19');
+  ans <- new("_p_short", ref=ans) ;
   
   ans
   
 }
 
-attr(`individual_vaccine_wane_event_get`, 'returnType') = '_p_event'
-attr(`individual_vaccine_wane_event_get`, "inputTypes") = c('_p_individual')
-class(`individual_vaccine_wane_event_get`) = c("SWIGFunction", class('individual_vaccine_wane_event_get'))
+attr(`individual_immune_full_get`, 'returnType') = 'integer'
+attr(`individual_immune_full_get`, "inputTypes") = c('_p_individual')
+class(`individual_immune_full_get`) = c("SWIGFunction", class('individual_immune_full_get'))
+
+# Start of individual_immune_to_symptoms_set
+
+`individual_immune_to_symptoms_set` = function(self, s_immune_to_symptoms)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  s_immune_to_symptoms = as.integer(s_immune_to_symptoms);
+  ;.Call('R_swig_individual_immune_to_symptoms_set', self, s_immune_to_symptoms, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`individual_immune_to_symptoms_set`, 'returnType') = 'void'
+attr(`individual_immune_to_symptoms_set`, "inputTypes") = c('_p_individual', 'integer')
+class(`individual_immune_to_symptoms_set`) = c("SWIGFunction", class('individual_immune_to_symptoms_set'))
+
+# Start of individual_immune_to_symptoms_get
+
+`individual_immune_to_symptoms_get` = function(self)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;ans = .Call('R_swig_individual_immune_to_symptoms_get', self, PACKAGE='OpenABMCovid19');
+  ans <- new("_p_short", ref=ans) ;
+  
+  ans
+  
+}
+
+attr(`individual_immune_to_symptoms_get`, 'returnType') = 'integer'
+attr(`individual_immune_to_symptoms_get`, "inputTypes") = c('_p_individual')
+class(`individual_immune_to_symptoms_get`) = c("SWIGFunction", class('individual_immune_to_symptoms_get'))
+
+# Start of individual_immune_to_severe_set
+
+`individual_immune_to_severe_set` = function(self, s_immune_to_severe)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  s_immune_to_severe = as.integer(s_immune_to_severe);
+  ;.Call('R_swig_individual_immune_to_severe_set', self, s_immune_to_severe, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`individual_immune_to_severe_set`, 'returnType') = 'void'
+attr(`individual_immune_to_severe_set`, "inputTypes") = c('_p_individual', 'integer')
+class(`individual_immune_to_severe_set`) = c("SWIGFunction", class('individual_immune_to_severe_set'))
+
+# Start of individual_immune_to_severe_get
+
+`individual_immune_to_severe_get` = function(self)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;ans = .Call('R_swig_individual_immune_to_severe_get', self, PACKAGE='OpenABMCovid19');
+  ans <- new("_p_short", ref=ans) ;
+  
+  ans
+  
+}
+
+attr(`individual_immune_to_severe_get`, 'returnType') = 'integer'
+attr(`individual_immune_to_severe_get`, "inputTypes") = c('_p_individual')
+class(`individual_immune_to_severe_get`) = c("SWIGFunction", class('individual_immune_to_severe_get'))
 
 # Start of accessor method for individual
 setMethod('$', '_p_individual', function(x, name)
 
 {
-  accessorFuns = list('idx' = individual_idx_get, 'house_no' = individual_house_no_get, 'age_group' = individual_age_group_get, 'age_type' = individual_age_type_get, 'occupation_network' = individual_occupation_network_get, 'base_random_interactions' = individual_base_random_interactions_get, 'random_interactions' = individual_random_interactions_get, 'n_interactions' = individual_n_interactions_get, 'interactions' = individual_interactions_get, 'status' = individual_status_get, 'hazard' = individual_hazard_get, 'infectiousness_multiplier' = individual_infectiousness_multiplier_get, 'current_disease_event' = individual_current_disease_event_get, 'next_disease_event' = individual_next_disease_event_get, 'infection_events' = individual_infection_events_get, 'quarantined' = individual_quarantined_get, 'quarantine_event' = individual_quarantine_event_get, 'quarantine_release_event' = individual_quarantine_release_event_get, 'quarantine_test_result' = individual_quarantine_test_result_get, 'trace_tokens' = individual_trace_tokens_get, 'index_trace_token' = individual_index_trace_token_get, 'index_token_release_event' = individual_index_token_release_event_get, 'traced_on_this_trace' = individual_traced_on_this_trace_get, 'app_user' = individual_app_user_get, 'ward_idx' = individual_ward_idx_get, 'ward_type' = individual_ward_type_get, 'hospital_idx' = individual_hospital_idx_get, 'hospital_state' = individual_hospital_state_get, 'disease_progression_predicted' = individual_disease_progression_predicted_get, 'current_hospital_event' = individual_current_hospital_event_get, 'next_hospital_event' = individual_next_hospital_event_get, 'worker_type' = individual_worker_type_get, 'vaccine_status' = individual_vaccine_status_get, 'vaccine_status_next' = individual_vaccine_status_next_get, 'vaccine_wane_event' = individual_vaccine_wane_event_get);
-  vaccessors = c('idx', 'house_no', 'age_group', 'age_type', 'occupation_network', 'base_random_interactions', 'random_interactions', 'n_interactions', 'interactions', 'status', 'hazard', 'infectiousness_multiplier', 'current_disease_event', 'next_disease_event', 'infection_events', 'quarantined', 'quarantine_event', 'quarantine_release_event', 'quarantine_test_result', 'trace_tokens', 'index_trace_token', 'index_token_release_event', 'traced_on_this_trace', 'app_user', 'ward_idx', 'ward_type', 'hospital_idx', 'hospital_state', 'disease_progression_predicted', 'current_hospital_event', 'next_hospital_event', 'worker_type', 'vaccine_status', 'vaccine_status_next', 'vaccine_wane_event');
+  accessorFuns = list('idx' = individual_idx_get, 'house_no' = individual_house_no_get, 'age_group' = individual_age_group_get, 'age_type' = individual_age_type_get, 'occupation_network' = individual_occupation_network_get, 'base_random_interactions' = individual_base_random_interactions_get, 'random_interactions' = individual_random_interactions_get, 'n_interactions' = individual_n_interactions_get, 'interactions' = individual_interactions_get, 'status' = individual_status_get, 'hazard' = individual_hazard_get, 'infectiousness_multiplier' = individual_infectiousness_multiplier_get, 'current_disease_event' = individual_current_disease_event_get, 'next_disease_event' = individual_next_disease_event_get, 'infection_events' = individual_infection_events_get, 'quarantined' = individual_quarantined_get, 'quarantine_event' = individual_quarantine_event_get, 'quarantine_release_event' = individual_quarantine_release_event_get, 'quarantine_test_result' = individual_quarantine_test_result_get, 'trace_tokens' = individual_trace_tokens_get, 'index_trace_token' = individual_index_trace_token_get, 'index_token_release_event' = individual_index_token_release_event_get, 'traced_on_this_trace' = individual_traced_on_this_trace_get, 'app_user' = individual_app_user_get, 'ward_idx' = individual_ward_idx_get, 'ward_type' = individual_ward_type_get, 'hospital_idx' = individual_hospital_idx_get, 'hospital_state' = individual_hospital_state_get, 'disease_progression_predicted' = individual_disease_progression_predicted_get, 'current_hospital_event' = individual_current_hospital_event_get, 'next_hospital_event' = individual_next_hospital_event_get, 'worker_type' = individual_worker_type_get, 'vaccine_status' = individual_vaccine_status_get, 'immune_full' = individual_immune_full_get, 'immune_to_symptoms' = individual_immune_to_symptoms_get, 'immune_to_severe' = individual_immune_to_severe_get);
+  vaccessors = c('idx', 'house_no', 'age_group', 'age_type', 'occupation_network', 'base_random_interactions', 'random_interactions', 'n_interactions', 'interactions', 'status', 'hazard', 'infectiousness_multiplier', 'current_disease_event', 'next_disease_event', 'infection_events', 'quarantined', 'quarantine_event', 'quarantine_release_event', 'quarantine_test_result', 'trace_tokens', 'index_trace_token', 'index_token_release_event', 'traced_on_this_trace', 'app_user', 'ward_idx', 'ward_type', 'hospital_idx', 'hospital_state', 'disease_progression_predicted', 'current_hospital_event', 'next_hospital_event', 'worker_type', 'vaccine_status', 'immune_full', 'immune_to_symptoms', 'immune_to_severe');
   ;        idx = pmatch(name, names(accessorFuns));
   if(is.na(idx)) 
   return(callNextMethod(x, name));
@@ -11915,7 +12299,7 @@ setMethod('$', '_p_individual', function(x, name)
 setMethod('$<-', '_p_individual', function(x, name, value)
 
 {
-  accessorFuns = list('idx' = individual_idx_set, 'house_no' = individual_house_no_set, 'age_group' = individual_age_group_set, 'age_type' = individual_age_type_set, 'occupation_network' = individual_occupation_network_set, 'base_random_interactions' = individual_base_random_interactions_set, 'random_interactions' = individual_random_interactions_set, 'n_interactions' = individual_n_interactions_set, 'interactions' = individual_interactions_set, 'status' = individual_status_set, 'hazard' = individual_hazard_set, 'infectiousness_multiplier' = individual_infectiousness_multiplier_set, 'current_disease_event' = individual_current_disease_event_set, 'next_disease_event' = individual_next_disease_event_set, 'infection_events' = individual_infection_events_set, 'quarantined' = individual_quarantined_set, 'quarantine_event' = individual_quarantine_event_set, 'quarantine_release_event' = individual_quarantine_release_event_set, 'quarantine_test_result' = individual_quarantine_test_result_set, 'trace_tokens' = individual_trace_tokens_set, 'index_trace_token' = individual_index_trace_token_set, 'index_token_release_event' = individual_index_token_release_event_set, 'traced_on_this_trace' = individual_traced_on_this_trace_set, 'app_user' = individual_app_user_set, 'ward_idx' = individual_ward_idx_set, 'ward_type' = individual_ward_type_set, 'hospital_idx' = individual_hospital_idx_set, 'hospital_state' = individual_hospital_state_set, 'disease_progression_predicted' = individual_disease_progression_predicted_set, 'current_hospital_event' = individual_current_hospital_event_set, 'next_hospital_event' = individual_next_hospital_event_set, 'worker_type' = individual_worker_type_set, 'vaccine_status' = individual_vaccine_status_set, 'vaccine_status_next' = individual_vaccine_status_next_set, 'vaccine_wane_event' = individual_vaccine_wane_event_set);
+  accessorFuns = list('idx' = individual_idx_set, 'house_no' = individual_house_no_set, 'age_group' = individual_age_group_set, 'age_type' = individual_age_type_set, 'occupation_network' = individual_occupation_network_set, 'base_random_interactions' = individual_base_random_interactions_set, 'random_interactions' = individual_random_interactions_set, 'n_interactions' = individual_n_interactions_set, 'interactions' = individual_interactions_set, 'status' = individual_status_set, 'hazard' = individual_hazard_set, 'infectiousness_multiplier' = individual_infectiousness_multiplier_set, 'current_disease_event' = individual_current_disease_event_set, 'next_disease_event' = individual_next_disease_event_set, 'infection_events' = individual_infection_events_set, 'quarantined' = individual_quarantined_set, 'quarantine_event' = individual_quarantine_event_set, 'quarantine_release_event' = individual_quarantine_release_event_set, 'quarantine_test_result' = individual_quarantine_test_result_set, 'trace_tokens' = individual_trace_tokens_set, 'index_trace_token' = individual_index_trace_token_set, 'index_token_release_event' = individual_index_token_release_event_set, 'traced_on_this_trace' = individual_traced_on_this_trace_set, 'app_user' = individual_app_user_set, 'ward_idx' = individual_ward_idx_set, 'ward_type' = individual_ward_type_set, 'hospital_idx' = individual_hospital_idx_set, 'hospital_state' = individual_hospital_state_set, 'disease_progression_predicted' = individual_disease_progression_predicted_set, 'current_hospital_event' = individual_current_hospital_event_set, 'next_hospital_event' = individual_next_hospital_event_set, 'worker_type' = individual_worker_type_set, 'vaccine_status' = individual_vaccine_status_set, 'immune_full' = individual_immune_full_set, 'immune_to_symptoms' = individual_immune_to_symptoms_set, 'immune_to_severe' = individual_immune_to_severe_set);
   ;        idx = pmatch(name, names(accessorFuns));
   if(is.na(idx)) 
   return(callNextMethod(x, name, value));
@@ -11930,7 +12314,7 @@ setMethod('[[<-', c('_p_individual', 'character'),function(x, i, j, ..., value)
 
 {
   name = i;
-  accessorFuns = list('idx' = individual_idx_set, 'house_no' = individual_house_no_set, 'age_group' = individual_age_group_set, 'age_type' = individual_age_type_set, 'occupation_network' = individual_occupation_network_set, 'base_random_interactions' = individual_base_random_interactions_set, 'random_interactions' = individual_random_interactions_set, 'n_interactions' = individual_n_interactions_set, 'interactions' = individual_interactions_set, 'status' = individual_status_set, 'hazard' = individual_hazard_set, 'infectiousness_multiplier' = individual_infectiousness_multiplier_set, 'current_disease_event' = individual_current_disease_event_set, 'next_disease_event' = individual_next_disease_event_set, 'infection_events' = individual_infection_events_set, 'quarantined' = individual_quarantined_set, 'quarantine_event' = individual_quarantine_event_set, 'quarantine_release_event' = individual_quarantine_release_event_set, 'quarantine_test_result' = individual_quarantine_test_result_set, 'trace_tokens' = individual_trace_tokens_set, 'index_trace_token' = individual_index_trace_token_set, 'index_token_release_event' = individual_index_token_release_event_set, 'traced_on_this_trace' = individual_traced_on_this_trace_set, 'app_user' = individual_app_user_set, 'ward_idx' = individual_ward_idx_set, 'ward_type' = individual_ward_type_set, 'hospital_idx' = individual_hospital_idx_set, 'hospital_state' = individual_hospital_state_set, 'disease_progression_predicted' = individual_disease_progression_predicted_set, 'current_hospital_event' = individual_current_hospital_event_set, 'next_hospital_event' = individual_next_hospital_event_set, 'worker_type' = individual_worker_type_set, 'vaccine_status' = individual_vaccine_status_set, 'vaccine_status_next' = individual_vaccine_status_next_set, 'vaccine_wane_event' = individual_vaccine_wane_event_set);
+  accessorFuns = list('idx' = individual_idx_set, 'house_no' = individual_house_no_set, 'age_group' = individual_age_group_set, 'age_type' = individual_age_type_set, 'occupation_network' = individual_occupation_network_set, 'base_random_interactions' = individual_base_random_interactions_set, 'random_interactions' = individual_random_interactions_set, 'n_interactions' = individual_n_interactions_set, 'interactions' = individual_interactions_set, 'status' = individual_status_set, 'hazard' = individual_hazard_set, 'infectiousness_multiplier' = individual_infectiousness_multiplier_set, 'current_disease_event' = individual_current_disease_event_set, 'next_disease_event' = individual_next_disease_event_set, 'infection_events' = individual_infection_events_set, 'quarantined' = individual_quarantined_set, 'quarantine_event' = individual_quarantine_event_set, 'quarantine_release_event' = individual_quarantine_release_event_set, 'quarantine_test_result' = individual_quarantine_test_result_set, 'trace_tokens' = individual_trace_tokens_set, 'index_trace_token' = individual_index_trace_token_set, 'index_token_release_event' = individual_index_token_release_event_set, 'traced_on_this_trace' = individual_traced_on_this_trace_set, 'app_user' = individual_app_user_set, 'ward_idx' = individual_ward_idx_set, 'ward_type' = individual_ward_type_set, 'hospital_idx' = individual_hospital_idx_set, 'hospital_state' = individual_hospital_state_set, 'disease_progression_predicted' = individual_disease_progression_predicted_set, 'current_hospital_event' = individual_current_hospital_event_set, 'next_hospital_event' = individual_next_hospital_event_set, 'worker_type' = individual_worker_type_set, 'vaccine_status' = individual_vaccine_status_set, 'immune_full' = individual_immune_full_set, 'immune_to_symptoms' = individual_immune_to_symptoms_set, 'immune_to_severe' = individual_immune_to_severe_set);
   ;        idx = pmatch(name, names(accessorFuns));
   if(is.na(idx)) 
   return(callNextMethod(x, name, value));
@@ -11953,7 +12337,6 @@ CopyToR_individual = function(value, obj = new("individual"))
   obj@base_random_interactions = value$base_random_interactions;
   obj@random_interactions = value$random_interactions;
   obj@status = value$status;
-  obj@hazard = value$hazard;
   obj@infectiousness_multiplier = value$infectiousness_multiplier;
   obj@quarantined = value$quarantined;
   obj@quarantine_test_result = value$quarantine_test_result;
@@ -11966,7 +12349,6 @@ CopyToR_individual = function(value, obj = new("individual"))
   obj@disease_progression_predicted = value$disease_progression_predicted;
   obj@worker_type = value$worker_type;
   obj@vaccine_status = value$vaccine_status;
-  obj@vaccine_status_next = value$vaccine_status_next;
   obj;
 }
 
@@ -11982,7 +12364,6 @@ CopyToC_individual = function(value, obj)
   obj$base_random_interactions = value@base_random_interactions;
   obj$random_interactions = value@random_interactions;
   obj$status = value@status;
-  obj$hazard = value@hazard;
   obj$infectiousness_multiplier = value@infectiousness_multiplier;
   obj$quarantined = value@quarantined;
   obj$quarantine_test_result = value@quarantine_test_result;
@@ -11995,7 +12376,6 @@ CopyToC_individual = function(value, obj)
   obj$disease_progression_predicted = value@disease_progression_predicted;
   obj$worker_type = value@worker_type;
   obj$vaccine_status = value@vaccine_status;
-  obj$vaccine_status_next = value@vaccine_status_next;
   obj
 }
 
@@ -12753,39 +13133,69 @@ attr(`infection_event_network_id_get`, 'returnType') = 'integer'
 attr(`infection_event_network_id_get`, "inputTypes") = c('_p_infection_event')
 class(`infection_event_network_id_get`) = c("SWIGFunction", class('infection_event_network_id_get'))
 
-# Start of infection_event_strain_multiplier_set
+# Start of infection_event_expected_hospitalisation_set
 
-`infection_event_strain_multiplier_set` = function(self, s_strain_multiplier)
+`infection_event_expected_hospitalisation_set` = function(self, s_expected_hospitalisation)
 {
   if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
   
-  ;.Call('R_swig_infection_event_strain_multiplier_set', self, s_strain_multiplier, PACKAGE='OpenABMCovid19');
+  ;.Call('R_swig_infection_event_expected_hospitalisation_set', self, s_expected_hospitalisation, PACKAGE='OpenABMCovid19');
   
 }
 
-attr(`infection_event_strain_multiplier_set`, 'returnType') = 'void'
-attr(`infection_event_strain_multiplier_set`, "inputTypes") = c('_p_infection_event', 'numeric')
-class(`infection_event_strain_multiplier_set`) = c("SWIGFunction", class('infection_event_strain_multiplier_set'))
+attr(`infection_event_expected_hospitalisation_set`, 'returnType') = 'void'
+attr(`infection_event_expected_hospitalisation_set`, "inputTypes") = c('_p_infection_event', 'numeric')
+class(`infection_event_expected_hospitalisation_set`) = c("SWIGFunction", class('infection_event_expected_hospitalisation_set'))
 
-# Start of infection_event_strain_multiplier_get
+# Start of infection_event_expected_hospitalisation_get
 
-`infection_event_strain_multiplier_get` = function(self, .copy = FALSE)
+`infection_event_expected_hospitalisation_get` = function(self, .copy = FALSE)
 {
   if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
-  ;.Call('R_swig_infection_event_strain_multiplier_get', self, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  ;.Call('R_swig_infection_event_expected_hospitalisation_get', self, as.logical(.copy), PACKAGE='OpenABMCovid19');
   
 }
 
-attr(`infection_event_strain_multiplier_get`, 'returnType') = 'numeric'
-attr(`infection_event_strain_multiplier_get`, "inputTypes") = c('_p_infection_event')
-class(`infection_event_strain_multiplier_get`) = c("SWIGFunction", class('infection_event_strain_multiplier_get'))
+attr(`infection_event_expected_hospitalisation_get`, 'returnType') = 'numeric'
+attr(`infection_event_expected_hospitalisation_get`, "inputTypes") = c('_p_infection_event')
+class(`infection_event_expected_hospitalisation_get`) = c("SWIGFunction", class('infection_event_expected_hospitalisation_get'))
+
+# Start of infection_event_strain_set
+
+`infection_event_strain_set` = function(self, s_strain)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  if (inherits(s_strain, "ExternalReference")) s_strain = slot(s_strain,"ref") 
+  ;.Call('R_swig_infection_event_strain_set', self, s_strain, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`infection_event_strain_set`, 'returnType') = 'void'
+attr(`infection_event_strain_set`, "inputTypes") = c('_p_infection_event', '_p_strain')
+class(`infection_event_strain_set`) = c("SWIGFunction", class('infection_event_strain_set'))
+
+# Start of infection_event_strain_get
+
+`infection_event_strain_get` = function(self)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;ans = .Call('R_swig_infection_event_strain_get', self, PACKAGE='OpenABMCovid19');
+  ans <- new("_p_strain", ref=ans) ;
+  
+  ans
+  
+}
+
+attr(`infection_event_strain_get`, 'returnType') = '_p_strain'
+attr(`infection_event_strain_get`, "inputTypes") = c('_p_infection_event')
+class(`infection_event_strain_get`) = c("SWIGFunction", class('infection_event_strain_get'))
 
 # Start of accessor method for infection_event
 setMethod('$', '_p_infection_event', function(x, name)
 
 {
-  accessorFuns = list('times' = infection_event_times_get, 'infector' = infection_event_infector_get, 'infector_status' = infection_event_infector_status_get, 'infector_hospital_state' = infection_event_infector_hospital_state_get, 'infector_network' = infection_event_infector_network_get, 'time_infected_infector' = infection_event_time_infected_infector_get, '_next' = infection_event__next_get, 'is_case' = infection_event_is_case_get, 'network_id' = infection_event_network_id_get, 'strain_multiplier' = infection_event_strain_multiplier_get);
-  vaccessors = c('times', 'infector', 'infector_status', 'infector_hospital_state', 'infector_network', 'time_infected_infector', '_next', 'is_case', 'network_id', 'strain_multiplier');
+  accessorFuns = list('times' = infection_event_times_get, 'infector' = infection_event_infector_get, 'infector_status' = infection_event_infector_status_get, 'infector_hospital_state' = infection_event_infector_hospital_state_get, 'infector_network' = infection_event_infector_network_get, 'time_infected_infector' = infection_event_time_infected_infector_get, '_next' = infection_event__next_get, 'is_case' = infection_event_is_case_get, 'network_id' = infection_event_network_id_get, 'expected_hospitalisation' = infection_event_expected_hospitalisation_get, 'strain' = infection_event_strain_get);
+  vaccessors = c('times', 'infector', 'infector_status', 'infector_hospital_state', 'infector_network', 'time_infected_infector', '_next', 'is_case', 'network_id', 'expected_hospitalisation', 'strain');
   ;        idx = pmatch(name, names(accessorFuns));
   if(is.na(idx)) 
   return(callNextMethod(x, name));
@@ -12802,7 +13212,7 @@ setMethod('$', '_p_infection_event', function(x, name)
 setMethod('$<-', '_p_infection_event', function(x, name, value)
 
 {
-  accessorFuns = list('times' = infection_event_times_set, 'infector' = infection_event_infector_set, 'infector_status' = infection_event_infector_status_set, 'infector_hospital_state' = infection_event_infector_hospital_state_set, 'infector_network' = infection_event_infector_network_set, 'time_infected_infector' = infection_event_time_infected_infector_set, '_next' = infection_event__next_set, 'is_case' = infection_event_is_case_set, 'network_id' = infection_event_network_id_set, 'strain_multiplier' = infection_event_strain_multiplier_set);
+  accessorFuns = list('times' = infection_event_times_set, 'infector' = infection_event_infector_set, 'infector_status' = infection_event_infector_status_set, 'infector_hospital_state' = infection_event_infector_hospital_state_set, 'infector_network' = infection_event_infector_network_set, 'time_infected_infector' = infection_event_time_infected_infector_set, '_next' = infection_event__next_set, 'is_case' = infection_event_is_case_set, 'network_id' = infection_event_network_id_set, 'expected_hospitalisation' = infection_event_expected_hospitalisation_set, 'strain' = infection_event_strain_set);
   ;        idx = pmatch(name, names(accessorFuns));
   if(is.na(idx)) 
   return(callNextMethod(x, name, value));
@@ -12817,7 +13227,7 @@ setMethod('[[<-', c('_p_infection_event', 'character'),function(x, i, j, ..., va
 
 {
   name = i;
-  accessorFuns = list('times' = infection_event_times_set, 'infector' = infection_event_infector_set, 'infector_status' = infection_event_infector_status_set, 'infector_hospital_state' = infection_event_infector_hospital_state_set, 'infector_network' = infection_event_infector_network_set, 'time_infected_infector' = infection_event_time_infected_infector_set, '_next' = infection_event__next_set, 'is_case' = infection_event_is_case_set, 'network_id' = infection_event_network_id_set, 'strain_multiplier' = infection_event_strain_multiplier_set);
+  accessorFuns = list('times' = infection_event_times_set, 'infector' = infection_event_infector_set, 'infector_status' = infection_event_infector_status_set, 'infector_hospital_state' = infection_event_infector_hospital_state_set, 'infector_network' = infection_event_infector_network_set, 'time_infected_infector' = infection_event_time_infected_infector_set, '_next' = infection_event__next_set, 'is_case' = infection_event_is_case_set, 'network_id' = infection_event_network_id_set, 'expected_hospitalisation' = infection_event_expected_hospitalisation_set, 'strain' = infection_event_strain_set);
   ;        idx = pmatch(name, names(accessorFuns));
   if(is.na(idx)) 
   return(callNextMethod(x, name, value));
@@ -12838,7 +13248,7 @@ CopyToR_infection_event = function(value, obj = new("infection_event"))
   obj@time_infected_infector = value$time_infected_infector;
   obj@is_case = value$is_case;
   obj@network_id = value$network_id;
-  obj@strain_multiplier = value$strain_multiplier;
+  obj@expected_hospitalisation = value$expected_hospitalisation;
   obj;
 }
 
@@ -12852,7 +13262,7 @@ CopyToC_infection_event = function(value, obj)
   obj$time_infected_infector = value@time_infected_infector;
   obj$is_case = value@is_case;
   obj$network_id = value@network_id;
-  obj$strain_multiplier = value@strain_multiplier;
+  obj$expected_hospitalisation = value@expected_hospitalisation;
   obj
 }
 
@@ -12886,17 +13296,50 @@ class(`initialize_individual`) = c("SWIGFunction", class('initialize_individual'
 
 # Start of initialize_hazard
 
-`initialize_hazard` = function(s_arg1, s_arg2)
+`initialize_hazard` = function(s_arg1, s_arg2, s_arg3)
 {
   if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
   if (inherits(s_arg2, "ExternalReference")) s_arg2 = slot(s_arg2,"ref") 
-  ;.Call('R_swig_initialize_hazard', s_arg1, s_arg2, PACKAGE='OpenABMCovid19');
+  s_arg3 = as.integer(s_arg3);
+  
+  if(length(s_arg3) > 1) {
+    warning("using only the first element of s_arg3");
+  };
+  
+  ;.Call('R_swig_initialize_hazard', s_arg1, s_arg2, s_arg3, PACKAGE='OpenABMCovid19');
   
 }
 
 attr(`initialize_hazard`, 'returnType') = 'void'
-attr(`initialize_hazard`, "inputTypes") = c('_p_individual', '_p_parameters')
+attr(`initialize_hazard`, "inputTypes") = c('_p_individual', '_p_parameters', 'integer')
 class(`initialize_hazard`) = c("SWIGFunction", class('initialize_hazard'))
+
+# Start of add_infection_event
+
+`add_infection_event` = function(s_arg1, s_arg2, s_arg3, s_arg4, s_arg5)
+{
+  if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
+  if (inherits(s_arg2, "ExternalReference")) s_arg2 = slot(s_arg2,"ref") 
+  s_arg3 = as.integer(s_arg3);
+  
+  if(length(s_arg3) > 1) {
+    warning("using only the first element of s_arg3");
+  };
+  
+  if (inherits(s_arg4, "ExternalReference")) s_arg4 = slot(s_arg4,"ref") 
+  s_arg5 = as.integer(s_arg5);
+  
+  if(length(s_arg5) > 1) {
+    warning("using only the first element of s_arg5");
+  };
+  
+  ;.Call('R_swig_add_infection_event', s_arg1, s_arg2, s_arg3, s_arg4, s_arg5, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`add_infection_event`, 'returnType') = 'void'
+attr(`add_infection_event`, "inputTypes") = c('_p_individual', '_p_individual', 'integer', '_p_strain', 'integer')
+class(`add_infection_event`) = c("SWIGFunction", class('add_infection_event'))
 
 # Start of set_age_group
 
@@ -13204,9 +13647,9 @@ attr(`set_discharged`, 'returnType') = 'void'
 attr(`set_discharged`, "inputTypes") = c('_p_individual', '_p_parameters', 'integer')
 class(`set_discharged`) = c("SWIGFunction", class('set_discharged'))
 
-# Start of set_vaccine_status
+# Start of set_immune
 
-`set_vaccine_status` = function(s_arg1, s_arg2, s_arg3)
+`set_immune` = function(s_arg1, s_arg2, s_arg3, s_arg4)
 {
   if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
   s_arg2 = as.integer(s_arg2);
@@ -13221,26 +13664,77 @@ class(`set_discharged`) = c("SWIGFunction", class('set_discharged'))
     warning("using only the first element of s_arg3");
   };
   
-  ;.Call('R_swig_set_vaccine_status', s_arg1, s_arg2, s_arg3, PACKAGE='OpenABMCovid19');
+  s_arg4 = as.integer(s_arg4);
+  
+  if(length(s_arg4) > 1) {
+    warning("using only the first element of s_arg4");
+  };
+  
+  ;.Call('R_swig_set_immune', s_arg1, s_arg2, s_arg3, s_arg4, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`set_immune`, 'returnType') = 'void'
+attr(`set_immune`, "inputTypes") = c('_p_individual', 'integer', 'integer', 'integer')
+class(`set_immune`) = c("SWIGFunction", class('set_immune'))
+
+# Start of wane_immunity
+
+`wane_immunity` = function(s_arg1, s_arg2, s_arg3)
+{
+  if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
+  if (inherits(s_arg2, "ExternalReference")) s_arg2 = slot(s_arg2,"ref") 
+  s_arg3 = as.integer(s_arg3);
+  
+  if(length(s_arg3) > 1) {
+    warning("using only the first element of s_arg3");
+  };
+  
+  ;.Call('R_swig_wane_immunity', s_arg1, s_arg2, s_arg3, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`wane_immunity`, 'returnType') = 'void'
+attr(`wane_immunity`, "inputTypes") = c('_p_individual', '_p_parameters', 'integer')
+class(`wane_immunity`) = c("SWIGFunction", class('wane_immunity'))
+
+# Start of set_vaccine_status
+
+`set_vaccine_status` = function(s_arg1, s_arg2, s_arg3, s_arg4, s_arg5, s_arg6)
+{
+  if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
+  if (inherits(s_arg2, "ExternalReference")) s_arg2 = slot(s_arg2,"ref") 
+  s_arg3 = as.integer(s_arg3);
+  
+  if(length(s_arg3) > 1) {
+    warning("using only the first element of s_arg3");
+  };
+  
+  s_arg4 = as.integer(s_arg4);
+  
+  if(length(s_arg4) > 1) {
+    warning("using only the first element of s_arg4");
+  };
+  
+  s_arg5 = as.integer(s_arg5);
+  
+  if(length(s_arg5) > 1) {
+    warning("using only the first element of s_arg5");
+  };
+  
+  s_arg6 = as.integer(s_arg6);
+  
+  if(length(s_arg6) > 1) {
+    warning("using only the first element of s_arg6");
+  };
+  
+  ;.Call('R_swig_set_vaccine_status', s_arg1, s_arg2, s_arg3, s_arg4, s_arg5, s_arg6, PACKAGE='OpenABMCovid19');
   
 }
 
 attr(`set_vaccine_status`, 'returnType') = 'void'
-attr(`set_vaccine_status`, "inputTypes") = c('_p_individual', 'integer', 'integer')
+attr(`set_vaccine_status`, "inputTypes") = c('_p_individual', '_p_parameters', 'integer', 'integer', 'integer', 'integer')
 class(`set_vaccine_status`) = c("SWIGFunction", class('set_vaccine_status'))
-
-# Start of transition_vaccine_status
-
-`transition_vaccine_status` = function(s_arg1)
-{
-  if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
-  ;.Call('R_swig_transition_vaccine_status', s_arg1, PACKAGE='OpenABMCovid19');
-  
-}
-
-attr(`transition_vaccine_status`, 'returnType') = 'void'
-attr(`transition_vaccine_status`, "inputTypes") = c('_p_individual')
-class(`transition_vaccine_status`) = c("SWIGFunction", class('transition_vaccine_status'))
 
 # Start of update_random_interactions
 
@@ -13749,6 +14243,463 @@ setMethod('copyToC', 'trace_token', CopyToC_trace_token);
 
 # End definition of copy methods for trace_token
 # End definition of copy functions & methods for trace_token
+# Start of vaccine_idx_set
+
+`vaccine_idx_set` = function(self, s_idx)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  s_idx = as.integer(s_idx);
+  
+  if(length(s_idx) > 1) {
+    warning("using only the first element of s_idx");
+  };
+  
+  ;.Call('R_swig_vaccine_idx_set', self, s_idx, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_idx_set`, 'returnType') = 'void'
+attr(`vaccine_idx_set`, "inputTypes") = c('_p_vaccine', 'integer')
+class(`vaccine_idx_set`) = c("SWIGFunction", class('vaccine_idx_set'))
+
+# Start of vaccine_idx_get
+
+`vaccine_idx_get` = function(self, .copy = FALSE)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;.Call('R_swig_vaccine_idx_get', self, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_idx_get`, 'returnType') = 'integer'
+attr(`vaccine_idx_get`, "inputTypes") = c('_p_vaccine')
+class(`vaccine_idx_get`) = c("SWIGFunction", class('vaccine_idx_get'))
+
+# Start of vaccine_full_efficacy_set
+
+`vaccine_full_efficacy_set` = function(self, s_full_efficacy)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  
+  ;.Call('R_swig_vaccine_full_efficacy_set', self, s_full_efficacy, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_full_efficacy_set`, 'returnType') = 'void'
+attr(`vaccine_full_efficacy_set`, "inputTypes") = c('_p_vaccine', 'numeric')
+class(`vaccine_full_efficacy_set`) = c("SWIGFunction", class('vaccine_full_efficacy_set'))
+
+# Start of vaccine_full_efficacy_get
+
+`vaccine_full_efficacy_get` = function(self)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;.Call('R_swig_vaccine_full_efficacy_get', self, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_full_efficacy_get`, 'returnType') = 'numeric'
+attr(`vaccine_full_efficacy_get`, "inputTypes") = c('_p_vaccine')
+class(`vaccine_full_efficacy_get`) = c("SWIGFunction", class('vaccine_full_efficacy_get'))
+
+# Start of vaccine_symptoms_efficacy_set
+
+`vaccine_symptoms_efficacy_set` = function(self, s_symptoms_efficacy)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  
+  ;.Call('R_swig_vaccine_symptoms_efficacy_set', self, s_symptoms_efficacy, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_symptoms_efficacy_set`, 'returnType') = 'void'
+attr(`vaccine_symptoms_efficacy_set`, "inputTypes") = c('_p_vaccine', 'numeric')
+class(`vaccine_symptoms_efficacy_set`) = c("SWIGFunction", class('vaccine_symptoms_efficacy_set'))
+
+# Start of vaccine_symptoms_efficacy_get
+
+`vaccine_symptoms_efficacy_get` = function(self)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;.Call('R_swig_vaccine_symptoms_efficacy_get', self, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_symptoms_efficacy_get`, 'returnType') = 'numeric'
+attr(`vaccine_symptoms_efficacy_get`, "inputTypes") = c('_p_vaccine')
+class(`vaccine_symptoms_efficacy_get`) = c("SWIGFunction", class('vaccine_symptoms_efficacy_get'))
+
+# Start of vaccine_severe_efficacy_set
+
+`vaccine_severe_efficacy_set` = function(self, s_severe_efficacy)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  
+  ;.Call('R_swig_vaccine_severe_efficacy_set', self, s_severe_efficacy, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_severe_efficacy_set`, 'returnType') = 'void'
+attr(`vaccine_severe_efficacy_set`, "inputTypes") = c('_p_vaccine', 'numeric')
+class(`vaccine_severe_efficacy_set`) = c("SWIGFunction", class('vaccine_severe_efficacy_set'))
+
+# Start of vaccine_severe_efficacy_get
+
+`vaccine_severe_efficacy_get` = function(self)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;.Call('R_swig_vaccine_severe_efficacy_get', self, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_severe_efficacy_get`, 'returnType') = 'numeric'
+attr(`vaccine_severe_efficacy_get`, "inputTypes") = c('_p_vaccine')
+class(`vaccine_severe_efficacy_get`) = c("SWIGFunction", class('vaccine_severe_efficacy_get'))
+
+# Start of vaccine_time_to_protect_set
+
+`vaccine_time_to_protect_set` = function(self, s_time_to_protect)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  s_time_to_protect = as.integer(s_time_to_protect);
+  
+  if(length(s_time_to_protect) > 1) {
+    warning("using only the first element of s_time_to_protect");
+  };
+  
+  ;.Call('R_swig_vaccine_time_to_protect_set', self, s_time_to_protect, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_time_to_protect_set`, 'returnType') = 'void'
+attr(`vaccine_time_to_protect_set`, "inputTypes") = c('_p_vaccine', 'integer')
+class(`vaccine_time_to_protect_set`) = c("SWIGFunction", class('vaccine_time_to_protect_set'))
+
+# Start of vaccine_time_to_protect_get
+
+`vaccine_time_to_protect_get` = function(self, .copy = FALSE)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;.Call('R_swig_vaccine_time_to_protect_get', self, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_time_to_protect_get`, 'returnType') = 'integer'
+attr(`vaccine_time_to_protect_get`, "inputTypes") = c('_p_vaccine')
+class(`vaccine_time_to_protect_get`) = c("SWIGFunction", class('vaccine_time_to_protect_get'))
+
+# Start of vaccine_vaccine_protection_period_set
+
+`vaccine_vaccine_protection_period_set` = function(self, s_vaccine_protection_period)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  s_vaccine_protection_period = as.integer(s_vaccine_protection_period);
+  
+  if(length(s_vaccine_protection_period) > 1) {
+    warning("using only the first element of s_vaccine_protection_period");
+  };
+  
+  ;.Call('R_swig_vaccine_vaccine_protection_period_set', self, s_vaccine_protection_period, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_vaccine_protection_period_set`, 'returnType') = 'void'
+attr(`vaccine_vaccine_protection_period_set`, "inputTypes") = c('_p_vaccine', 'integer')
+class(`vaccine_vaccine_protection_period_set`) = c("SWIGFunction", class('vaccine_vaccine_protection_period_set'))
+
+# Start of vaccine_vaccine_protection_period_get
+
+`vaccine_vaccine_protection_period_get` = function(self, .copy = FALSE)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;.Call('R_swig_vaccine_vaccine_protection_period_get', self, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_vaccine_protection_period_get`, 'returnType') = 'integer'
+attr(`vaccine_vaccine_protection_period_get`, "inputTypes") = c('_p_vaccine')
+class(`vaccine_vaccine_protection_period_get`) = c("SWIGFunction", class('vaccine_vaccine_protection_period_get'))
+
+# Start of vaccine_is_full_set
+
+`vaccine_is_full_set` = function(self, s_is_full)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  s_is_full = as.integer(s_is_full);
+  
+  if(length(s_is_full) > 1) {
+    warning("using only the first element of s_is_full");
+  };
+  
+  ;.Call('R_swig_vaccine_is_full_set', self, s_is_full, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_is_full_set`, 'returnType') = 'void'
+attr(`vaccine_is_full_set`, "inputTypes") = c('_p_vaccine', 'integer')
+class(`vaccine_is_full_set`) = c("SWIGFunction", class('vaccine_is_full_set'))
+
+# Start of vaccine_is_full_get
+
+`vaccine_is_full_get` = function(self, .copy = FALSE)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;.Call('R_swig_vaccine_is_full_get', self, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_is_full_get`, 'returnType') = 'integer'
+attr(`vaccine_is_full_get`, "inputTypes") = c('_p_vaccine')
+class(`vaccine_is_full_get`) = c("SWIGFunction", class('vaccine_is_full_get'))
+
+# Start of vaccine_is_symptoms_set
+
+`vaccine_is_symptoms_set` = function(self, s_is_symptoms)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  s_is_symptoms = as.integer(s_is_symptoms);
+  
+  if(length(s_is_symptoms) > 1) {
+    warning("using only the first element of s_is_symptoms");
+  };
+  
+  ;.Call('R_swig_vaccine_is_symptoms_set', self, s_is_symptoms, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_is_symptoms_set`, 'returnType') = 'void'
+attr(`vaccine_is_symptoms_set`, "inputTypes") = c('_p_vaccine', 'integer')
+class(`vaccine_is_symptoms_set`) = c("SWIGFunction", class('vaccine_is_symptoms_set'))
+
+# Start of vaccine_is_symptoms_get
+
+`vaccine_is_symptoms_get` = function(self, .copy = FALSE)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;.Call('R_swig_vaccine_is_symptoms_get', self, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_is_symptoms_get`, 'returnType') = 'integer'
+attr(`vaccine_is_symptoms_get`, "inputTypes") = c('_p_vaccine')
+class(`vaccine_is_symptoms_get`) = c("SWIGFunction", class('vaccine_is_symptoms_get'))
+
+# Start of vaccine_is_severe_set
+
+`vaccine_is_severe_set` = function(self, s_is_severe)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  s_is_severe = as.integer(s_is_severe);
+  
+  if(length(s_is_severe) > 1) {
+    warning("using only the first element of s_is_severe");
+  };
+  
+  ;.Call('R_swig_vaccine_is_severe_set', self, s_is_severe, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_is_severe_set`, 'returnType') = 'void'
+attr(`vaccine_is_severe_set`, "inputTypes") = c('_p_vaccine', 'integer')
+class(`vaccine_is_severe_set`) = c("SWIGFunction", class('vaccine_is_severe_set'))
+
+# Start of vaccine_is_severe_get
+
+`vaccine_is_severe_get` = function(self, .copy = FALSE)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;.Call('R_swig_vaccine_is_severe_get', self, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_is_severe_get`, 'returnType') = 'integer'
+attr(`vaccine_is_severe_get`, "inputTypes") = c('_p_vaccine')
+class(`vaccine_is_severe_get`) = c("SWIGFunction", class('vaccine_is_severe_get'))
+
+# Start of vaccine_n_strains_set
+
+`vaccine_n_strains_set` = function(self, s_n_strains)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  s_n_strains = as.integer(s_n_strains);
+  
+  if(length(s_n_strains) > 1) {
+    warning("using only the first element of s_n_strains");
+  };
+  
+  ;.Call('R_swig_vaccine_n_strains_set', self, s_n_strains, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_n_strains_set`, 'returnType') = 'void'
+attr(`vaccine_n_strains_set`, "inputTypes") = c('_p_vaccine', 'integer')
+class(`vaccine_n_strains_set`) = c("SWIGFunction", class('vaccine_n_strains_set'))
+
+# Start of vaccine_n_strains_get
+
+`vaccine_n_strains_get` = function(self, .copy = FALSE)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;.Call('R_swig_vaccine_n_strains_get', self, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_n_strains_get`, 'returnType') = 'integer'
+attr(`vaccine_n_strains_get`, "inputTypes") = c('_p_vaccine')
+class(`vaccine_n_strains_get`) = c("SWIGFunction", class('vaccine_n_strains_get'))
+
+# Start of vaccine_name_set
+
+`vaccine_name_set` = function(self, s_name)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  
+  if(is.list(s_name))
+  assert(all(sapply(s_name, class) == "_p_char"));
+  
+  
+#  assert(length(s_name) >= 300)
+  
+  ;.Call('R_swig_vaccine_name_set', self, s_name, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_name_set`, 'returnType') = 'void'
+attr(`vaccine_name_set`, "inputTypes") = c('_p_vaccine', '_p_char')
+class(`vaccine_name_set`) = c("SWIGFunction", class('vaccine_name_set'))
+
+# Start of vaccine_name_get
+
+`vaccine_name_get` = function(self, .copy = FALSE)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;ans = .Call('R_swig_vaccine_name_get', self, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  #ans <- new("_p_char", ref=ans) ;
+  
+  ans
+  
+}
+
+attr(`vaccine_name_get`, 'returnType') = '_p_char'
+attr(`vaccine_name_get`, "inputTypes") = c('_p_vaccine')
+class(`vaccine_name_get`) = c("SWIGFunction", class('vaccine_name_get'))
+
+# Start of vaccine__next_set
+
+`vaccine__next_set` = function(self, s_arg2)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  if (inherits(s_arg2, "ExternalReference")) s_arg2 = slot(s_arg2,"ref") 
+  ;.Call('R_swig_vaccine__next_set', self, s_arg2, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine__next_set`, 'returnType') = 'void'
+attr(`vaccine__next_set`, "inputTypes") = c('_p_vaccine', '_p_vaccine')
+class(`vaccine__next_set`) = c("SWIGFunction", class('vaccine__next_set'))
+
+# Start of vaccine__next_get
+
+`vaccine__next_get` = function(self)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;ans = .Call('R_swig_vaccine__next_get', self, PACKAGE='OpenABMCovid19');
+  ans <- new("_p_vaccine", ref=ans) ;
+  
+  ans
+  
+}
+
+attr(`vaccine__next_get`, 'returnType') = '_p_vaccine'
+attr(`vaccine__next_get`, "inputTypes") = c('_p_vaccine')
+class(`vaccine__next_get`) = c("SWIGFunction", class('vaccine__next_get'))
+
+# Start of accessor method for vaccine
+setMethod('$', '_p_vaccine', function(x, name)
+
+{
+  accessorFuns = list('idx' = vaccine_idx_get, 'full_efficacy' = vaccine_full_efficacy_get, 'symptoms_efficacy' = vaccine_symptoms_efficacy_get, 'severe_efficacy' = vaccine_severe_efficacy_get, 'time_to_protect' = vaccine_time_to_protect_get, 'vaccine_protection_period' = vaccine_vaccine_protection_period_get, 'is_full' = vaccine_is_full_get, 'is_symptoms' = vaccine_is_symptoms_get, 'is_severe' = vaccine_is_severe_get, 'n_strains' = vaccine_n_strains_get, 'name' = vaccine_name_get, '_next' = vaccine__next_get);
+  vaccessors = c('idx', 'full_efficacy', 'symptoms_efficacy', 'severe_efficacy', 'time_to_protect', 'vaccine_protection_period', 'is_full', 'is_symptoms', 'is_severe', 'n_strains', 'name', '_next');
+  ;        idx = pmatch(name, names(accessorFuns));
+  if(is.na(idx)) 
+  return(callNextMethod(x, name));
+  f = accessorFuns[[idx]];
+  if (is.na(match(name, vaccessors))) function(...){
+    f(x, ...)
+  } else f(x);
+}
+
+
+);
+# end of accessor method for vaccine
+# Start of accessor method for vaccine
+setMethod('$<-', '_p_vaccine', function(x, name, value)
+
+{
+  accessorFuns = list('idx' = vaccine_idx_set, 'full_efficacy' = vaccine_full_efficacy_set, 'symptoms_efficacy' = vaccine_symptoms_efficacy_set, 'severe_efficacy' = vaccine_severe_efficacy_set, 'time_to_protect' = vaccine_time_to_protect_set, 'vaccine_protection_period' = vaccine_vaccine_protection_period_set, 'is_full' = vaccine_is_full_set, 'is_symptoms' = vaccine_is_symptoms_set, 'is_severe' = vaccine_is_severe_set, 'n_strains' = vaccine_n_strains_set, 'name' = vaccine_name_set, '_next' = vaccine__next_set);
+  ;        idx = pmatch(name, names(accessorFuns));
+  if(is.na(idx)) 
+  return(callNextMethod(x, name, value));
+  f = accessorFuns[[idx]];
+  f(x, value);
+  x;
+}
+
+
+);
+setMethod('[[<-', c('_p_vaccine', 'character'),function(x, i, j, ..., value)
+
+{
+  name = i;
+  accessorFuns = list('idx' = vaccine_idx_set, 'full_efficacy' = vaccine_full_efficacy_set, 'symptoms_efficacy' = vaccine_symptoms_efficacy_set, 'severe_efficacy' = vaccine_severe_efficacy_set, 'time_to_protect' = vaccine_time_to_protect_set, 'vaccine_protection_period' = vaccine_vaccine_protection_period_set, 'is_full' = vaccine_is_full_set, 'is_symptoms' = vaccine_is_symptoms_set, 'is_severe' = vaccine_is_severe_set, 'n_strains' = vaccine_n_strains_set, 'name' = vaccine_name_set, '_next' = vaccine__next_set);
+  ;        idx = pmatch(name, names(accessorFuns));
+  if(is.na(idx)) 
+  return(callNextMethod(x, name, value));
+  f = accessorFuns[[idx]];
+  f(x, value);
+  x;
+}
+
+
+);
+# end of accessor method for vaccine
+# Start definition of copy functions & methods for vaccine
+CopyToR_vaccine = function(value, obj = new("vaccine"))
+{
+  obj@idx = value$idx;
+  obj@time_to_protect = value$time_to_protect;
+  obj@vaccine_protection_period = value$vaccine_protection_period;
+  obj@is_full = value$is_full;
+  obj@is_symptoms = value$is_symptoms;
+  obj@is_severe = value$is_severe;
+  obj@n_strains = value$n_strains;
+  obj@name = value$name;
+  obj;
+}
+
+
+
+CopyToC_vaccine = function(value, obj)
+{
+  obj$idx = value@idx;
+  obj$time_to_protect = value@time_to_protect;
+  obj$vaccine_protection_period = value@vaccine_protection_period;
+  obj$is_full = value@is_full;
+  obj$is_symptoms = value@is_symptoms;
+  obj$is_severe = value@is_severe;
+  obj$n_strains = value@n_strains;
+  obj$name = value@name;
+  obj
+}
+
+
+
+# Start definition of copy methods for vaccine
+setMethod('copyToR', '_p_vaccine', CopyToR_vaccine);
+setMethod('copyToC', 'vaccine', CopyToC_vaccine);
+
+# End definition of copy methods for vaccine
+# End definition of copy functions & methods for vaccine
 # Start of set_up_transition_times_intervention
 
 `set_up_transition_times_intervention` = function(s_arg1)
@@ -14109,17 +15060,12 @@ attr(`intervention_index_case_symptoms_to_positive`, 'returnType') = 'void'
 attr(`intervention_index_case_symptoms_to_positive`, "inputTypes") = c('_p_model', '_p_trace_token')
 class(`intervention_index_case_symptoms_to_positive`) = c("SWIGFunction", class('intervention_index_case_symptoms_to_positive'))
 
-# Start of intervention_vaccinate
+# Start of add_vaccine
 
-`intervention_vaccinate` = function(s_arg1, s_arg2, s_arg3, s_arg4, s_arg5, s_arg6, .copy = FALSE)
+`add_vaccine` = function(s_arg1, s_arg2, s_arg3, s_arg4, s_arg5, s_arg6, .copy = FALSE)
 {
   if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
-  if (inherits(s_arg2, "ExternalReference")) s_arg2 = slot(s_arg2,"ref") 
-  s_arg3 = as.integer(s_arg3);
   
-  if(length(s_arg3) > 1) {
-    warning("using only the first element of s_arg3");
-  };
   
   
   s_arg5 = as.integer(s_arg5);
@@ -14134,17 +15080,17 @@ class(`intervention_index_case_symptoms_to_positive`) = c("SWIGFunction", class(
     warning("using only the first element of s_arg6");
   };
   
-  ;.Call('R_swig_intervention_vaccinate', s_arg1, s_arg2, s_arg3, s_arg4, s_arg5, s_arg6, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  ;.Call('R_swig_add_vaccine', s_arg1, s_arg2, s_arg3, s_arg4, s_arg5, s_arg6, as.logical(.copy), PACKAGE='OpenABMCovid19');
   
 }
 
-attr(`intervention_vaccinate`, 'returnType') = 'integer'
-attr(`intervention_vaccinate`, "inputTypes") = c('_p_model', '_p_individual', 'integer', 'numeric', 'integer', 'integer')
-class(`intervention_vaccinate`) = c("SWIGFunction", class('intervention_vaccinate'))
+attr(`add_vaccine`, 'returnType') = 'integer'
+attr(`add_vaccine`, "inputTypes") = c('_p_model', 'numeric', 'numeric', 'numeric', 'integer', 'integer')
+class(`add_vaccine`) = c("SWIGFunction", class('add_vaccine'))
 
-# Start of intervention_vaccinate_by_idx
+# Start of get_vaccine_by_id
 
-`intervention_vaccinate_by_idx` = function(s_arg1, s_arg2, s_arg3, s_arg4, s_arg5, s_arg6, .copy = FALSE)
+`get_vaccine_by_id` = function(s_arg1, s_arg2)
 {
   if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
   s_arg2 = as.integer(s_arg2);
@@ -14153,99 +15099,102 @@ class(`intervention_vaccinate`) = c("SWIGFunction", class('intervention_vaccinat
     warning("using only the first element of s_arg2");
   };
   
-  s_arg3 = as.integer(s_arg3);
+  ;ans = .Call('R_swig_get_vaccine_by_id', s_arg1, s_arg2, PACKAGE='OpenABMCovid19');
+  ans <- new("_p_vaccine", ref=ans) ;
   
-  if(length(s_arg3) > 1) {
-    warning("using only the first element of s_arg3");
+  ans
+  
+}
+
+attr(`get_vaccine_by_id`, 'returnType') = '_p_vaccine'
+attr(`get_vaccine_by_id`, "inputTypes") = c('_p_model', 'integer')
+class(`get_vaccine_by_id`) = c("SWIGFunction", class('get_vaccine_by_id'))
+
+# Start of intervention_vaccinate
+
+`intervention_vaccinate` = function(s_arg1, s_arg2, s_arg3, .copy = FALSE)
+{
+  if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
+  if (inherits(s_arg2, "ExternalReference")) s_arg2 = slot(s_arg2,"ref") 
+  if (inherits(s_arg3, "ExternalReference")) s_arg3 = slot(s_arg3,"ref") 
+  ;.Call('R_swig_intervention_vaccinate', s_arg1, s_arg2, s_arg3, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`intervention_vaccinate`, 'returnType') = 'integer'
+attr(`intervention_vaccinate`, "inputTypes") = c('_p_model', '_p_individual', '_p_vaccine')
+class(`intervention_vaccinate`) = c("SWIGFunction", class('intervention_vaccinate'))
+
+# Start of intervention_vaccinate_by_idx
+
+`intervention_vaccinate_by_idx` = function(s_arg1, s_arg2, s_arg3, .copy = FALSE)
+{
+  if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
+  s_arg2 = as.integer(s_arg2);
+  
+  if(length(s_arg2) > 1) {
+    warning("using only the first element of s_arg2");
   };
   
-  
-  s_arg5 = as.integer(s_arg5);
-  
-  if(length(s_arg5) > 1) {
-    warning("using only the first element of s_arg5");
-  };
-  
-  s_arg6 = as.integer(s_arg6);
-  
-  if(length(s_arg6) > 1) {
-    warning("using only the first element of s_arg6");
-  };
-  
-  ;.Call('R_swig_intervention_vaccinate_by_idx', s_arg1, s_arg2, s_arg3, s_arg4, s_arg5, s_arg6, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  if (inherits(s_arg3, "ExternalReference")) s_arg3 = slot(s_arg3,"ref") 
+  ;.Call('R_swig_intervention_vaccinate_by_idx', s_arg1, s_arg2, s_arg3, as.logical(.copy), PACKAGE='OpenABMCovid19');
   
 }
 
 attr(`intervention_vaccinate_by_idx`, 'returnType') = 'integer'
-attr(`intervention_vaccinate_by_idx`, "inputTypes") = c('_p_model', 'integer', 'integer', 'numeric', 'integer', 'integer')
+attr(`intervention_vaccinate_by_idx`, "inputTypes") = c('_p_model', 'integer', '_p_vaccine')
 class(`intervention_vaccinate_by_idx`) = c("SWIGFunction", class('intervention_vaccinate_by_idx'))
 
 # Start of intervention_vaccinate_age_group
 
-`intervention_vaccinate_age_group` = function(s_arg1, s_arg2, s_arg3, s_arg4, s_arg5, s_arg6, s_arg7, .copy = FALSE)
+`intervention_vaccinate_age_group` = function(s_arg1, s_arg2, s_arg3, s_arg4, .copy = FALSE)
 {
   if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
   
   
 #  assert(length(s_arg2) >= N_AGE_GROUPS)
   
-  s_arg3 = as.integer(s_arg3);
+  if (inherits(s_arg3, "ExternalReference")) s_arg3 = slot(s_arg3,"ref") 
+  s_arg4 = as.integer(s_arg4);
   
-  if(length(s_arg3) > 1) {
-    warning("using only the first element of s_arg3");
-  };
+#  assert(length(s_arg4) >= N_AGE_GROUPS)
   
-  
-  s_arg5 = as.integer(s_arg5);
-  
-  if(length(s_arg5) > 1) {
-    warning("using only the first element of s_arg5");
-  };
-  
-  s_arg6 = as.integer(s_arg6);
-  
-  if(length(s_arg6) > 1) {
-    warning("using only the first element of s_arg6");
-  };
-  
-  s_arg7 = as.integer(s_arg7);
-  
-#  assert(length(s_arg7) >= N_AGE_GROUPS)
-  
-  ;.Call('R_swig_intervention_vaccinate_age_group', s_arg1, s_arg2, s_arg3, s_arg4, s_arg5, s_arg6, s_arg7, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  ;.Call('R_swig_intervention_vaccinate_age_group', s_arg1, s_arg2, s_arg3, s_arg4, as.logical(.copy), PACKAGE='OpenABMCovid19');
   
 }
 
 attr(`intervention_vaccinate_age_group`, 'returnType') = 'integer'
-attr(`intervention_vaccinate_age_group`, "inputTypes") = c('_p_model', 'numeric', 'integer', 'numeric', 'integer', 'integer', 'integer')
+attr(`intervention_vaccinate_age_group`, "inputTypes") = c('_p_model', 'numeric', '_p_vaccine', 'integer')
 class(`intervention_vaccinate_age_group`) = c("SWIGFunction", class('intervention_vaccinate_age_group'))
 
 # Start of intervention_vaccine_protect
 
-`intervention_vaccine_protect` = function(s_arg1, s_arg2)
+`intervention_vaccine_protect` = function(s_arg1, s_arg2, s_arg3)
 {
   if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
   if (inherits(s_arg2, "ExternalReference")) s_arg2 = slot(s_arg2,"ref") 
-  ;.Call('R_swig_intervention_vaccine_protect', s_arg1, s_arg2, PACKAGE='OpenABMCovid19');
+  if (inherits(s_arg3, "ExternalReference")) s_arg3 = slot(s_arg3,"ref") 
+  ;.Call('R_swig_intervention_vaccine_protect', s_arg1, s_arg2, s_arg3, PACKAGE='OpenABMCovid19');
   
 }
 
 attr(`intervention_vaccine_protect`, 'returnType') = 'void'
-attr(`intervention_vaccine_protect`, "inputTypes") = c('_p_model', '_p_individual')
+attr(`intervention_vaccine_protect`, "inputTypes") = c('_p_model', '_p_individual', '_p_void')
 class(`intervention_vaccine_protect`) = c("SWIGFunction", class('intervention_vaccine_protect'))
 
 # Start of intervention_vaccine_wane
 
-`intervention_vaccine_wane` = function(s_arg1, s_arg2)
+`intervention_vaccine_wane` = function(s_arg1, s_arg2, s_arg3)
 {
   if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
   if (inherits(s_arg2, "ExternalReference")) s_arg2 = slot(s_arg2,"ref") 
-  ;.Call('R_swig_intervention_vaccine_wane', s_arg1, s_arg2, PACKAGE='OpenABMCovid19');
+  if (inherits(s_arg3, "ExternalReference")) s_arg3 = slot(s_arg3,"ref") 
+  ;.Call('R_swig_intervention_vaccine_wane', s_arg1, s_arg2, s_arg3, PACKAGE='OpenABMCovid19');
   
 }
 
 attr(`intervention_vaccine_wane`, 'returnType') = 'void'
-attr(`intervention_vaccine_wane`, "inputTypes") = c('_p_model', '_p_individual')
+attr(`intervention_vaccine_wane`, "inputTypes") = c('_p_model', '_p_individual', '_p_void')
 class(`intervention_vaccine_wane`) = c("SWIGFunction", class('intervention_vaccine_wane'))
 
 # Start of intervention_on_symptoms
@@ -14688,6 +15637,17 @@ attr(`setup_gsl_rng`, 'returnType') = 'void'
 attr(`setup_gsl_rng`, "inputTypes") = c('integer')
 class(`setup_gsl_rng`) = c("SWIGFunction", class('setup_gsl_rng'))
 
+# Start of free_gsl_rng
+
+`free_gsl_rng` = function()
+{
+  ;.Call('R_swig_free_gsl_rng', PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`free_gsl_rng`, 'returnType') = 'void'
+class(`free_gsl_rng`) = c("SWIGFunction", class('free_gsl_rng'))
+
 # Start of incomplete_gamma_p_params_n_set
 
 `incomplete_gamma_p_params_n_set` = function(self, s_n)
@@ -14931,7 +15891,7 @@ class(`transmit_virus_by_type`) = c("SWIGFunction", class('transmit_virus_by_typ
 
 # Start of new_infection
 
-`new_infection` = function(s_arg1, s_arg2, s_arg3, s_arg4)
+`new_infection` = function(s_arg1, s_arg2, s_arg3, s_arg4, s_arg5)
 {
   if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
   if (inherits(s_arg2, "ExternalReference")) s_arg2 = slot(s_arg2,"ref") 
@@ -14942,12 +15902,13 @@ class(`transmit_virus_by_type`) = c("SWIGFunction", class('transmit_virus_by_typ
     warning("using only the first element of s_arg4");
   };
   
-  ;.Call('R_swig_new_infection', s_arg1, s_arg2, s_arg3, s_arg4, PACKAGE='OpenABMCovid19');
+  if (inherits(s_arg5, "ExternalReference")) s_arg5 = slot(s_arg5,"ref") 
+  ;.Call('R_swig_new_infection', s_arg1, s_arg2, s_arg3, s_arg4, s_arg5, PACKAGE='OpenABMCovid19');
   
 }
 
 attr(`new_infection`, 'returnType') = 'void'
-attr(`new_infection`, "inputTypes") = c('_p_model', '_p_individual', '_p_individual', 'integer')
+attr(`new_infection`, "inputTypes") = c('_p_model', '_p_individual', '_p_individual', 'integer', '_p_strain')
 class(`new_infection`) = c("SWIGFunction", class('new_infection'))
 
 # Start of seed_infect_by_idx
@@ -14961,6 +15922,11 @@ class(`new_infection`) = c("SWIGFunction", class('new_infection'))
     warning("using only the first element of s_arg2");
   };
   
+  s_arg3 = as.integer(s_arg3);
+  
+  if(length(s_arg3) > 1) {
+    warning("using only the first element of s_arg3");
+  };
   
   s_arg4 = as.integer(s_arg4);
   
@@ -14973,7 +15939,7 @@ class(`new_infection`) = c("SWIGFunction", class('new_infection'))
 }
 
 attr(`seed_infect_by_idx`, 'returnType') = 'integer'
-attr(`seed_infect_by_idx`, "inputTypes") = c('_p_model', 'integer', 'numeric', 'integer')
+attr(`seed_infect_by_idx`, "inputTypes") = c('_p_model', 'integer', 'integer', 'integer')
 class(`seed_infect_by_idx`) = c("SWIGFunction", class('seed_infect_by_idx'))
 
 # Start of transition_to_symptomatic
@@ -15120,6 +16086,32 @@ attr(`transition_one_disese_event`, 'returnType') = 'void'
 attr(`transition_one_disese_event`, "inputTypes") = c('_p_model', '_p_individual', 'integer', 'integer', 'integer')
 class(`transition_one_disese_event`) = c("SWIGFunction", class('transition_one_disese_event'))
 
+# Start of apply_cross_immunity
+
+`apply_cross_immunity` = function(s_arg1, s_arg2, s_arg3, s_arg4, .copy = FALSE)
+{
+  if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
+  if (inherits(s_arg2, "ExternalReference")) s_arg2 = slot(s_arg2,"ref") 
+  s_arg3 = as.integer(s_arg3);
+  
+  if(length(s_arg3) > 1) {
+    warning("using only the first element of s_arg3");
+  };
+  
+  s_arg4 = as.integer(s_arg4);
+  
+  if(length(s_arg4) > 1) {
+    warning("using only the first element of s_arg4");
+  };
+  
+  ;.Call('R_swig_apply_cross_immunity', s_arg1, s_arg2, s_arg3, s_arg4, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`apply_cross_immunity`, 'returnType') = 'integer'
+attr(`apply_cross_immunity`, "inputTypes") = c('_p_model', '_p_individual', 'integer', 'integer')
+class(`apply_cross_immunity`) = c("SWIGFunction", class('apply_cross_immunity'))
+
 # Start of n_newly_infected
 
 `n_newly_infected` = function(s_arg1, time, .copy = FALSE)
@@ -15158,6 +16150,32 @@ class(`n_newly_infected`) = c("SWIGFunction", class('n_newly_infected'))
 attr(`calculate_R_instanteous`, 'returnType') = 'numeric'
 attr(`calculate_R_instanteous`, "inputTypes") = c('_p_model', 'integer', 'numeric')
 class(`calculate_R_instanteous`) = c("SWIGFunction", class('calculate_R_instanteous'))
+
+# Start of set_cross_immunity_probability
+
+`set_cross_immunity_probability` = function(s_arg1, s_arg2, s_arg3, s_arg4)
+{
+  if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
+  s_arg2 = as.integer(s_arg2);
+  
+  if(length(s_arg2) > 1) {
+    warning("using only the first element of s_arg2");
+  };
+  
+  s_arg3 = as.integer(s_arg3);
+  
+  if(length(s_arg3) > 1) {
+    warning("using only the first element of s_arg3");
+  };
+  
+  
+  ;.Call('R_swig_set_cross_immunity_probability', s_arg1, s_arg2, s_arg3, s_arg4, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`set_cross_immunity_probability`, 'returnType') = 'void'
+attr(`set_cross_immunity_probability`, "inputTypes") = c('_p_model', 'integer', 'integer', 'numeric')
+class(`set_cross_immunity_probability`) = c("SWIGFunction", class('set_cross_immunity_probability'))
 
 # Start of edge_id1_set
 
@@ -15582,6 +16600,33 @@ attr(`network_name_get`, 'returnType') = '_p_char'
 attr(`network_name_get`, "inputTypes") = c('_p_network')
 class(`network_name_get`) = c("SWIGFunction", class('network_name_get'))
 
+# Start of network_transmission_multiplier_set
+
+`network_transmission_multiplier_set` = function(self, s_transmission_multiplier)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  
+  ;.Call('R_swig_network_transmission_multiplier_set', self, s_transmission_multiplier, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`network_transmission_multiplier_set`, 'returnType') = 'void'
+attr(`network_transmission_multiplier_set`, "inputTypes") = c('_p_network', 'numeric')
+class(`network_transmission_multiplier_set`) = c("SWIGFunction", class('network_transmission_multiplier_set'))
+
+# Start of network_transmission_multiplier_get
+
+`network_transmission_multiplier_get` = function(self, .copy = FALSE)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;.Call('R_swig_network_transmission_multiplier_get', self, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`network_transmission_multiplier_get`, 'returnType') = 'numeric'
+attr(`network_transmission_multiplier_get`, "inputTypes") = c('_p_network')
+class(`network_transmission_multiplier_get`) = c("SWIGFunction", class('network_transmission_multiplier_get'))
+
 # Start of network_construction_set
 
 `network_construction_set` = function(self, s_construction)
@@ -15817,8 +16862,8 @@ class(`network`) = c("SWIGFunction", class('network'))
 setMethod('$', '_p_network', function(x, name)
 
 {
-  accessorFuns = list('edges' = network_edges_get, 'n_edges' = network_n_edges_get, 'n_vertices' = network_n_vertices_get, 'type' = network_type_get, 'skip_hospitalised' = network_skip_hospitalised_get, 'skip_quarantined' = network_skip_quarantined_get, 'daily_fraction' = network_daily_fraction_get, 'network_id' = network_network_id_get, 'name' = network_name_get, 'construction' = network_construction_get, 'opt_n_indiv' = network_opt_n_indiv_get, 'opt_pdx_array' = network_opt_pdx_array_get, 'opt_int_array' = network_opt_int_array_get, 'opt_long' = network_opt_long_get, 'opt_long_array' = network_opt_long_array_get, 'next_network' = network_next_network_get);
-  vaccessors = c('edges', 'n_edges', 'n_vertices', 'type', 'skip_hospitalised', 'skip_quarantined', 'daily_fraction', 'network_id', 'name', 'construction', 'opt_n_indiv', 'opt_pdx_array', 'opt_int_array', 'opt_long', 'opt_long_array', 'next_network');
+  accessorFuns = list('edges' = network_edges_get, 'n_edges' = network_n_edges_get, 'n_vertices' = network_n_vertices_get, 'type' = network_type_get, 'skip_hospitalised' = network_skip_hospitalised_get, 'skip_quarantined' = network_skip_quarantined_get, 'daily_fraction' = network_daily_fraction_get, 'network_id' = network_network_id_get, 'name' = network_name_get, 'transmission_multiplier' = network_transmission_multiplier_get, 'construction' = network_construction_get, 'opt_n_indiv' = network_opt_n_indiv_get, 'opt_pdx_array' = network_opt_pdx_array_get, 'opt_int_array' = network_opt_int_array_get, 'opt_long' = network_opt_long_get, 'opt_long_array' = network_opt_long_array_get, 'next_network' = network_next_network_get);
+  vaccessors = c('edges', 'n_edges', 'n_vertices', 'type', 'skip_hospitalised', 'skip_quarantined', 'daily_fraction', 'network_id', 'name', 'transmission_multiplier', 'construction', 'opt_n_indiv', 'opt_pdx_array', 'opt_int_array', 'opt_long', 'opt_long_array', 'next_network');
   ;        idx = pmatch(name, names(accessorFuns));
   if(is.na(idx)) 
   return(callNextMethod(x, name));
@@ -15835,7 +16880,7 @@ setMethod('$', '_p_network', function(x, name)
 setMethod('$<-', '_p_network', function(x, name, value)
 
 {
-  accessorFuns = list('edges' = network_edges_set, 'n_edges' = network_n_edges_set, 'n_vertices' = network_n_vertices_set, 'type' = network_type_set, 'skip_hospitalised' = network_skip_hospitalised_set, 'skip_quarantined' = network_skip_quarantined_set, 'daily_fraction' = network_daily_fraction_set, 'network_id' = network_network_id_set, 'name' = network_name_set, 'construction' = network_construction_set, 'opt_n_indiv' = network_opt_n_indiv_set, 'opt_pdx_array' = network_opt_pdx_array_set, 'opt_int_array' = network_opt_int_array_set, 'opt_long' = network_opt_long_set, 'opt_long_array' = network_opt_long_array_set, 'next_network' = network_next_network_set);
+  accessorFuns = list('edges' = network_edges_set, 'n_edges' = network_n_edges_set, 'n_vertices' = network_n_vertices_set, 'type' = network_type_set, 'skip_hospitalised' = network_skip_hospitalised_set, 'skip_quarantined' = network_skip_quarantined_set, 'daily_fraction' = network_daily_fraction_set, 'network_id' = network_network_id_set, 'name' = network_name_set, 'transmission_multiplier' = network_transmission_multiplier_set, 'construction' = network_construction_set, 'opt_n_indiv' = network_opt_n_indiv_set, 'opt_pdx_array' = network_opt_pdx_array_set, 'opt_int_array' = network_opt_int_array_set, 'opt_long' = network_opt_long_set, 'opt_long_array' = network_opt_long_array_set, 'next_network' = network_next_network_set);
   ;        idx = pmatch(name, names(accessorFuns));
   if(is.na(idx)) 
   return(callNextMethod(x, name, value));
@@ -15850,7 +16895,7 @@ setMethod('[[<-', c('_p_network', 'character'),function(x, i, j, ..., value)
 
 {
   name = i;
-  accessorFuns = list('edges' = network_edges_set, 'n_edges' = network_n_edges_set, 'n_vertices' = network_n_vertices_set, 'type' = network_type_set, 'skip_hospitalised' = network_skip_hospitalised_set, 'skip_quarantined' = network_skip_quarantined_set, 'daily_fraction' = network_daily_fraction_set, 'network_id' = network_network_id_set, 'name' = network_name_set, 'construction' = network_construction_set, 'opt_n_indiv' = network_opt_n_indiv_set, 'opt_pdx_array' = network_opt_pdx_array_set, 'opt_int_array' = network_opt_int_array_set, 'opt_long' = network_opt_long_set, 'opt_long_array' = network_opt_long_array_set, 'next_network' = network_next_network_set);
+  accessorFuns = list('edges' = network_edges_set, 'n_edges' = network_n_edges_set, 'n_vertices' = network_n_vertices_set, 'type' = network_type_set, 'skip_hospitalised' = network_skip_hospitalised_set, 'skip_quarantined' = network_skip_quarantined_set, 'daily_fraction' = network_daily_fraction_set, 'network_id' = network_network_id_set, 'name' = network_name_set, 'transmission_multiplier' = network_transmission_multiplier_set, 'construction' = network_construction_set, 'opt_n_indiv' = network_opt_n_indiv_set, 'opt_pdx_array' = network_opt_pdx_array_set, 'opt_int_array' = network_opt_int_array_set, 'opt_long' = network_opt_long_set, 'opt_long_array' = network_opt_long_array_set, 'next_network' = network_next_network_set);
   ;        idx = pmatch(name, names(accessorFuns));
   if(is.na(idx)) 
   return(callNextMethod(x, name, value));
@@ -15873,6 +16918,7 @@ CopyToR_network = function(value, obj = new("network"))
   obj@daily_fraction = value$daily_fraction;
   obj@network_id = value$network_id;
   obj@name = value$name;
+  obj@transmission_multiplier = value$transmission_multiplier;
   obj@construction = value$construction;
   obj@opt_n_indiv = value$opt_n_indiv;
   obj@opt_long = value$opt_long;
@@ -15891,6 +16937,7 @@ CopyToC_network = function(value, obj)
   obj$daily_fraction = value@daily_fraction;
   obj$network_id = value@network_id;
   obj$name = value@name;
+  obj$transmission_multiplier = value@transmission_multiplier;
   obj$construction = value@construction;
   obj$opt_n_indiv = value@opt_n_indiv;
   obj$opt_long = value@opt_long;
@@ -16070,6 +17117,208 @@ class(`destroy_network`) = c("SWIGFunction", class('destroy_network'))
 attr(`update_daily_fraction`, 'returnType') = 'integer'
 attr(`update_daily_fraction`, "inputTypes") = c('_p_network', 'numeric')
 class(`update_daily_fraction`) = c("SWIGFunction", class('update_daily_fraction'))
+
+# Start of strain_idx_set
+
+`strain_idx_set` = function(self, s_idx)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  s_idx = as.integer(s_idx);
+  
+  if(length(s_idx) > 1) {
+    warning("using only the first element of s_idx");
+  };
+  
+  ;.Call('R_swig_strain_idx_set', self, s_idx, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`strain_idx_set`, 'returnType') = 'void'
+attr(`strain_idx_set`, "inputTypes") = c('_p_strain', 'integer')
+class(`strain_idx_set`) = c("SWIGFunction", class('strain_idx_set'))
+
+# Start of strain_idx_get
+
+`strain_idx_get` = function(self, .copy = FALSE)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;.Call('R_swig_strain_idx_get', self, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`strain_idx_get`, 'returnType') = 'integer'
+attr(`strain_idx_get`, "inputTypes") = c('_p_strain')
+class(`strain_idx_get`) = c("SWIGFunction", class('strain_idx_get'))
+
+# Start of strain_transmission_multiplier_set
+
+`strain_transmission_multiplier_set` = function(self, s_transmission_multiplier)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  
+  ;.Call('R_swig_strain_transmission_multiplier_set', self, s_transmission_multiplier, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`strain_transmission_multiplier_set`, 'returnType') = 'void'
+attr(`strain_transmission_multiplier_set`, "inputTypes") = c('_p_strain', 'numeric')
+class(`strain_transmission_multiplier_set`) = c("SWIGFunction", class('strain_transmission_multiplier_set'))
+
+# Start of strain_transmission_multiplier_get
+
+`strain_transmission_multiplier_get` = function(self, .copy = FALSE)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;.Call('R_swig_strain_transmission_multiplier_get', self, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`strain_transmission_multiplier_get`, 'returnType') = 'numeric'
+attr(`strain_transmission_multiplier_get`, "inputTypes") = c('_p_strain')
+class(`strain_transmission_multiplier_get`) = c("SWIGFunction", class('strain_transmission_multiplier_get'))
+
+# Start of strain_hospitalised_fraction_set
+
+`strain_hospitalised_fraction_set` = function(self, s_hospitalised_fraction)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  
+  
+#  assert(length(s_hospitalised_fraction) >= N_AGE_GROUPS)
+  
+  ;.Call('R_swig_strain_hospitalised_fraction_set', self, s_hospitalised_fraction, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`strain_hospitalised_fraction_set`, 'returnType') = 'void'
+attr(`strain_hospitalised_fraction_set`, "inputTypes") = c('_p_strain', 'numeric')
+class(`strain_hospitalised_fraction_set`) = c("SWIGFunction", class('strain_hospitalised_fraction_set'))
+
+# Start of strain_hospitalised_fraction_get
+
+`strain_hospitalised_fraction_get` = function(self, .copy = FALSE)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;.Call('R_swig_strain_hospitalised_fraction_get', self, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`strain_hospitalised_fraction_get`, 'returnType') = 'numeric'
+attr(`strain_hospitalised_fraction_get`, "inputTypes") = c('_p_strain')
+class(`strain_hospitalised_fraction_get`) = c("SWIGFunction", class('strain_hospitalised_fraction_get'))
+
+# Start of accessor method for strain
+setMethod('$', '_p_strain', function(x, name)
+
+{
+  accessorFuns = list('idx' = strain_idx_get, 'transmission_multiplier' = strain_transmission_multiplier_get, 'hospitalised_fraction' = strain_hospitalised_fraction_get);
+  vaccessors = c('idx', 'transmission_multiplier', 'hospitalised_fraction');
+  ;        idx = pmatch(name, names(accessorFuns));
+  if(is.na(idx)) 
+  return(callNextMethod(x, name));
+  f = accessorFuns[[idx]];
+  if (is.na(match(name, vaccessors))) function(...){
+    f(x, ...)
+  } else f(x);
+}
+
+
+);
+# end of accessor method for strain
+# Start of accessor method for strain
+setMethod('$<-', '_p_strain', function(x, name, value)
+
+{
+  accessorFuns = list('idx' = strain_idx_set, 'transmission_multiplier' = strain_transmission_multiplier_set, 'hospitalised_fraction' = strain_hospitalised_fraction_set);
+  ;        idx = pmatch(name, names(accessorFuns));
+  if(is.na(idx)) 
+  return(callNextMethod(x, name, value));
+  f = accessorFuns[[idx]];
+  f(x, value);
+  x;
+}
+
+
+);
+setMethod('[[<-', c('_p_strain', 'character'),function(x, i, j, ..., value)
+
+{
+  name = i;
+  accessorFuns = list('idx' = strain_idx_set, 'transmission_multiplier' = strain_transmission_multiplier_set, 'hospitalised_fraction' = strain_hospitalised_fraction_set);
+  ;        idx = pmatch(name, names(accessorFuns));
+  if(is.na(idx)) 
+  return(callNextMethod(x, name, value));
+  f = accessorFuns[[idx]];
+  f(x, value);
+  x;
+}
+
+
+);
+# end of accessor method for strain
+# Start definition of copy functions & methods for strain
+CopyToR_strain = function(value, obj = new("strain"))
+{
+  obj@idx = value$idx;
+  obj@transmission_multiplier = value$transmission_multiplier;
+  obj@hospitalised_fraction = value$hospitalised_fraction;
+  obj;
+}
+
+
+
+CopyToC_strain = function(value, obj)
+{
+  obj$idx = value@idx;
+  obj$transmission_multiplier = value@transmission_multiplier;
+  obj$hospitalised_fraction = value@hospitalised_fraction;
+  obj
+}
+
+
+
+# Start definition of copy methods for strain
+setMethod('copyToR', '_p_strain', CopyToR_strain);
+setMethod('copyToC', 'strain', CopyToC_strain);
+
+# End definition of copy methods for strain
+# End definition of copy functions & methods for strain
+# Start of add_new_strain
+
+`add_new_strain` = function(s_arg1, s_arg2, s_arg3, .copy = FALSE)
+{
+  if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
+  
+  
+  ;.Call('R_swig_add_new_strain', s_arg1, s_arg2, s_arg3, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`add_new_strain`, 'returnType') = 'integer'
+attr(`add_new_strain`, "inputTypes") = c('_p_model', 'numeric', 'numeric')
+class(`add_new_strain`) = c("SWIGFunction", class('add_new_strain'))
+
+# Start of get_strain_by_id
+
+`get_strain_by_id` = function(s_arg1, s_arg2)
+{
+  if (inherits(s_arg1, "ExternalReference")) s_arg1 = slot(s_arg1,"ref") 
+  s_arg2 = as.integer(s_arg2);
+  
+  if(length(s_arg2) > 1) {
+    warning("using only the first element of s_arg2");
+  };
+  
+  ;ans = .Call('R_swig_get_strain_by_id', s_arg1, s_arg2, PACKAGE='OpenABMCovid19');
+  ans <- new("_p_strain", ref=ans) ;
+  
+  ans
+  
+}
+
+attr(`get_strain_by_id`, 'returnType') = '_p_strain'
+attr(`get_strain_by_id`, "inputTypes") = c('_p_model', 'integer')
+class(`get_strain_by_id`) = c("SWIGFunction", class('get_strain_by_id'))
 
 # Start of utils_n_current
 
@@ -16453,6 +17702,19 @@ class(`get_param_infectious_rate`) = c("SWIGFunction", class('get_param_infectio
 attr(`get_param_rebuild_networks`, 'returnType') = 'integer'
 attr(`get_param_rebuild_networks`, "inputTypes") = c('_p_parameters')
 class(`get_param_rebuild_networks`) = c("SWIGFunction", class('get_param_rebuild_networks'))
+
+# Start of get_param_max_n_strains
+
+`get_param_max_n_strains` = function(params, .copy = FALSE)
+{
+  if (inherits(params, "ExternalReference")) params = slot(params,"ref") 
+  ;.Call('R_swig_get_param_max_n_strains', params, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`get_param_max_n_strains`, 'returnType') = 'integer'
+attr(`get_param_max_n_strains`, "inputTypes") = c('_p_parameters')
+class(`get_param_max_n_strains`) = c("SWIGFunction", class('get_param_max_n_strains'))
 
 # Start of get_param_sd_infectiousness_multiplier
 
@@ -17793,6 +19055,25 @@ class(`set_param_infectious_rate`) = c("SWIGFunction", class('set_param_infectio
 attr(`set_param_rebuild_networks`, 'returnType') = 'integer'
 attr(`set_param_rebuild_networks`, "inputTypes") = c('_p_parameters', 'integer')
 class(`set_param_rebuild_networks`) = c("SWIGFunction", class('set_param_rebuild_networks'))
+
+# Start of set_param_max_n_strains
+
+`set_param_max_n_strains` = function(params, value, .copy = FALSE)
+{
+  if (inherits(params, "ExternalReference")) params = slot(params,"ref") 
+  value = as.integer(value);
+  
+  if(length(value) > 1) {
+    warning("using only the first element of value");
+  };
+  
+  ;.Call('R_swig_set_param_max_n_strains', params, value, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`set_param_max_n_strains`, 'returnType') = 'integer'
+attr(`set_param_max_n_strains`, "inputTypes") = c('_p_parameters', 'integer')
+class(`set_param_max_n_strains`) = c("SWIGFunction", class('set_param_max_n_strains'))
 
 # Start of set_param_sd_infectiousness_multiplier
 
@@ -19827,6 +21108,147 @@ setMethod('copyToC', 'shortArray', CopyToC_shortArray);
 
 # End definition of copy methods for shortArray
 # End definition of copy functions & methods for shortArray
+# Start of new_floatArray
+
+`floatArray` = function(nelements)
+{
+  nelements = as.integer(nelements);
+  
+  if(length(nelements) > 1) {
+    warning("using only the first element of nelements");
+  };
+  
+  ;ans = .Call('R_swig_new_floatArray', nelements, PACKAGE='OpenABMCovid19');
+  ans <- new("_p_floatArray", ref=ans) ;
+  
+  reg.finalizer(ans@ref, delete_floatArray)
+  ans
+  
+}
+
+attr(`floatArray`, 'returnType') = '_p_floatArray'
+attr(`floatArray`, "inputTypes") = c('integer')
+class(`floatArray`) = c("SWIGFunction", class('floatArray'))
+
+# Start of delete_floatArray
+
+`delete_floatArray` = function(self)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;.Call('R_swig_delete_floatArray', self, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`delete_floatArray`, 'returnType') = 'void'
+attr(`delete_floatArray`, "inputTypes") = c('_p_floatArray')
+class(`delete_floatArray`) = c("SWIGFunction", class('delete_floatArray'))
+
+# Start of floatArray_getitem
+
+`floatArray_getitem` = function(self, index, .copy = FALSE)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  index = as.integer(index);
+  
+  if(length(index) > 1) {
+    warning("using only the first element of index");
+  };
+  
+  ;.Call('R_swig_floatArray_getitem', self, index, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`floatArray_getitem`, 'returnType') = 'numeric'
+attr(`floatArray_getitem`, "inputTypes") = c('_p_floatArray', 'integer')
+class(`floatArray_getitem`) = c("SWIGFunction", class('floatArray_getitem'))
+
+# Start of floatArray_setitem
+
+`floatArray_setitem` = function(self, index, value)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  index = as.integer(index);
+  
+  if(length(index) > 1) {
+    warning("using only the first element of index");
+  };
+  
+  
+  ;.Call('R_swig_floatArray_setitem', self, index, value, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`floatArray_setitem`, 'returnType') = 'void'
+attr(`floatArray_setitem`, "inputTypes") = c('_p_floatArray', 'integer', 'numeric')
+class(`floatArray_setitem`) = c("SWIGFunction", class('floatArray_setitem'))
+
+# Start of floatArray_cast
+
+`floatArray_cast` = function(self)
+{
+  if (inherits(self, "ExternalReference")) self = slot(self,"ref") 
+  ;.Call('R_swig_floatArray_cast', self, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`floatArray_cast`, 'returnType') = 'numeric'
+attr(`floatArray_cast`, "inputTypes") = c('_p_floatArray')
+class(`floatArray_cast`) = c("SWIGFunction", class('floatArray_cast'))
+
+# Start of floatArray_frompointer
+
+`floatArray_frompointer` = function(t)
+{
+  ;ans = .Call('R_swig_floatArray_frompointer', t, PACKAGE='OpenABMCovid19');
+  ans <- new("_p_floatArray", ref=ans) ;
+  
+  ans
+  
+}
+
+attr(`floatArray_frompointer`, 'returnType') = '_p_floatArray'
+attr(`floatArray_frompointer`, "inputTypes") = c('numeric')
+class(`floatArray_frompointer`) = c("SWIGFunction", class('floatArray_frompointer'))
+
+# Start of accessor method for floatArray
+setMethod('$', '_p_floatArray', function(x, name)
+
+{
+  accessorFuns = list('getitem' = floatArray_getitem, 'setitem' = floatArray_setitem, 'cast' = floatArray_cast);
+  ;        idx = pmatch(name, names(accessorFuns));
+  if(is.na(idx)) 
+  return(callNextMethod(x, name));
+  f = accessorFuns[[idx]];
+  function(...){
+    f(x, ...)
+  };
+}
+
+
+);
+# end of accessor method for floatArray
+setMethod('delete', '_p_floatArray', function(obj) {delete_floatArray(obj)})
+# Start definition of copy functions & methods for floatArray
+CopyToR_floatArray = function(value, obj = new("floatArray"))
+{
+  obj;
+}
+
+
+
+CopyToC_floatArray = function(value, obj)
+{
+  obj
+}
+
+
+
+# Start definition of copy methods for floatArray
+setMethod('copyToR', '_p_floatArray', CopyToR_floatArray);
+setMethod('copyToC', 'floatArray', CopyToC_floatArray);
+
+# End definition of copy methods for floatArray
+# End definition of copy functions & methods for floatArray
 # Start of get_param_array_mean_random_interactions
 
 `get_param_array_mean_random_interactions` = function(params, value)
@@ -20366,6 +21788,33 @@ attr(`network_daily_fraction`, 'returnType') = 'numeric'
 attr(`network_daily_fraction`, "inputTypes") = c('_p_network')
 class(`network_daily_fraction`) = c("SWIGFunction", class('network_daily_fraction'))
 
+# Start of network_transmission_multiplier
+
+`network_transmission_multiplier` = function(pnetwork, .copy = FALSE)
+{
+  if (inherits(pnetwork, "ExternalReference")) pnetwork = slot(pnetwork,"ref") 
+  ;.Call('R_swig_network_transmission_multiplier', pnetwork, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`network_transmission_multiplier`, 'returnType') = 'numeric'
+attr(`network_transmission_multiplier`, "inputTypes") = c('_p_network')
+class(`network_transmission_multiplier`) = c("SWIGFunction", class('network_transmission_multiplier'))
+
+# Start of set_network_transmission_multiplier
+
+`set_network_transmission_multiplier` = function(pnetwork, val)
+{
+  if (inherits(pnetwork, "ExternalReference")) pnetwork = slot(pnetwork,"ref") 
+  
+  ;.Call('R_swig_set_network_transmission_multiplier', pnetwork, val, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`set_network_transmission_multiplier`, 'returnType') = 'void'
+attr(`set_network_transmission_multiplier`, "inputTypes") = c('_p_network', 'numeric')
+class(`set_network_transmission_multiplier`) = c("SWIGFunction", class('set_network_transmission_multiplier'))
+
 # Start of get_network
 
 `get_network` = function(pnetwork, id1_array, id2_array, .copy = FALSE)
@@ -20380,5 +21829,138 @@ class(`network_daily_fraction`) = c("SWIGFunction", class('network_daily_fractio
 attr(`get_network`, 'returnType') = 'integer'
 attr(`get_network`, "inputTypes") = c('_p_network', 'integer', 'integer')
 class(`get_network`) = c("SWIGFunction", class('get_network'))
+
+# Start of vaccine_idx
+
+`vaccine_idx` = function(pvaccine, .copy = FALSE)
+{
+  if (inherits(pvaccine, "ExternalReference")) pvaccine = slot(pvaccine,"ref") 
+  ;.Call('R_swig_vaccine_idx', pvaccine, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_idx`, 'returnType') = 'integer'
+attr(`vaccine_idx`, "inputTypes") = c('_p_vaccine')
+class(`vaccine_idx`) = c("SWIGFunction", class('vaccine_idx'))
+
+# Start of vaccine_full_efficacy
+
+`vaccine_full_efficacy` = function(pvaccine, efficacy)
+{
+  if (inherits(pvaccine, "ExternalReference")) pvaccine = slot(pvaccine,"ref") 
+  
+  ;.Call('R_swig_vaccine_full_efficacy', pvaccine, efficacy, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_full_efficacy`, 'returnType') = 'void'
+attr(`vaccine_full_efficacy`, "inputTypes") = c('_p_vaccine', 'numeric')
+class(`vaccine_full_efficacy`) = c("SWIGFunction", class('vaccine_full_efficacy'))
+
+# Start of vaccine_symptoms_efficacy
+
+`vaccine_symptoms_efficacy` = function(pvaccine, efficacy)
+{
+  if (inherits(pvaccine, "ExternalReference")) pvaccine = slot(pvaccine,"ref") 
+  
+  ;.Call('R_swig_vaccine_symptoms_efficacy', pvaccine, efficacy, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_symptoms_efficacy`, 'returnType') = 'void'
+attr(`vaccine_symptoms_efficacy`, "inputTypes") = c('_p_vaccine', 'numeric')
+class(`vaccine_symptoms_efficacy`) = c("SWIGFunction", class('vaccine_symptoms_efficacy'))
+
+# Start of vaccine_severe_efficacy
+
+`vaccine_severe_efficacy` = function(pvaccine, efficacy)
+{
+  if (inherits(pvaccine, "ExternalReference")) pvaccine = slot(pvaccine,"ref") 
+  
+  ;.Call('R_swig_vaccine_severe_efficacy', pvaccine, efficacy, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_severe_efficacy`, 'returnType') = 'void'
+attr(`vaccine_severe_efficacy`, "inputTypes") = c('_p_vaccine', 'numeric')
+class(`vaccine_severe_efficacy`) = c("SWIGFunction", class('vaccine_severe_efficacy'))
+
+# Start of vaccine_time_to_protect
+
+`vaccine_time_to_protect` = function(pvaccine, .copy = FALSE)
+{
+  if (inherits(pvaccine, "ExternalReference")) pvaccine = slot(pvaccine,"ref") 
+  ;.Call('R_swig_vaccine_time_to_protect', pvaccine, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_time_to_protect`, 'returnType') = 'integer'
+attr(`vaccine_time_to_protect`, "inputTypes") = c('_p_vaccine')
+class(`vaccine_time_to_protect`) = c("SWIGFunction", class('vaccine_time_to_protect'))
+
+# Start of vaccine_vaccine_protection_period
+
+`vaccine_vaccine_protection_period` = function(pvaccine, .copy = FALSE)
+{
+  if (inherits(pvaccine, "ExternalReference")) pvaccine = slot(pvaccine,"ref") 
+  ;.Call('R_swig_vaccine_vaccine_protection_period', pvaccine, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_vaccine_protection_period`, 'returnType') = 'integer'
+attr(`vaccine_vaccine_protection_period`, "inputTypes") = c('_p_vaccine')
+class(`vaccine_vaccine_protection_period`) = c("SWIGFunction", class('vaccine_vaccine_protection_period'))
+
+# Start of vaccine_name
+
+`vaccine_name` = function(pvaccine)
+{
+  if (inherits(pvaccine, "ExternalReference")) pvaccine = slot(pvaccine,"ref") 
+  ;.Call('R_swig_vaccine_name', pvaccine, PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_name`, 'returnType') = 'character'
+attr(`vaccine_name`, "inputTypes") = c('_p_vaccine')
+class(`vaccine_name`) = c("SWIGFunction", class('vaccine_name'))
+
+# Start of vaccine_n_strains
+
+`vaccine_n_strains` = function(pvaccine, .copy = FALSE)
+{
+  if (inherits(pvaccine, "ExternalReference")) pvaccine = slot(pvaccine,"ref") 
+  ;.Call('R_swig_vaccine_n_strains', pvaccine, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`vaccine_n_strains`, 'returnType') = 'integer'
+attr(`vaccine_n_strains`, "inputTypes") = c('_p_vaccine')
+class(`vaccine_n_strains`) = c("SWIGFunction", class('vaccine_n_strains'))
+
+# Start of strain_idx
+
+`strain_idx` = function(pstrain, .copy = FALSE)
+{
+  if (inherits(pstrain, "ExternalReference")) pstrain = slot(pstrain,"ref") 
+  ;.Call('R_swig_strain_idx', pstrain, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`strain_idx`, 'returnType') = 'integer'
+attr(`strain_idx`, "inputTypes") = c('_p_strain')
+class(`strain_idx`) = c("SWIGFunction", class('strain_idx'))
+
+# Start of strain_transmission_multiplier
+
+`strain_transmission_multiplier` = function(pstrain, .copy = FALSE)
+{
+  if (inherits(pstrain, "ExternalReference")) pstrain = slot(pstrain,"ref") 
+  ;.Call('R_swig_strain_transmission_multiplier', pstrain, as.logical(.copy), PACKAGE='OpenABMCovid19');
+  
+}
+
+attr(`strain_transmission_multiplier`, 'returnType') = 'numeric'
+attr(`strain_transmission_multiplier`, "inputTypes") = c('_p_strain')
+class(`strain_transmission_multiplier`) = c("SWIGFunction", class('strain_transmission_multiplier'))
 
 

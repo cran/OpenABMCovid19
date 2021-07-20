@@ -7,11 +7,15 @@
 VaccineSchedule object has information an age-group vaccination plan.
 }
 \examples{
+# Create a new vaccine object
+model <- OpenABMCovid19::Model.new( params = list(n_total = 10000) )
+Vaccine <- model$add_vaccine()
+
 # Vaccinate 15\% of age group 70-79 and 85\% of age group 80+
 vaccine.schedule <- OpenABMCovid19::VaccineSchedule$new(
   frac_70_79 = 0.15,
   frac_80    = 0.85,
-  vaccine_type = OpenABMCovid19::VACCINE_TYPES[['FULL']]
+  vaccine    = Vaccine
 )
 }
 \section{Public fields}{
@@ -21,15 +25,7 @@ vaccine.schedule <- OpenABMCovid19::VaccineSchedule$new(
 
 \item{\code{total_vaccinated}}{The total number of vaccinations per age-group.}
 
-\item{\code{vaccine_type}}{The type of vaccine, see \code{\link{VACCINE_TYPES}}.}
-
-\item{\code{efficacy}}{Probability that the person is successfully vaccinated
-(must be \code{0 <= efficacy <= 1}).}
-
-\item{\code{time_to_protect}}{Delay before it takes effect (in days).}
-
-\item{\code{vaccine_protection_period}}{The duration of the vaccine before it
-wanes.}
+\item{\code{vaccine}}{The R vaccine object}
 }
 \if{html}{\out{</div>}}
 }
@@ -54,10 +50,8 @@ wanes.}
   frac_60_69 = 0,
   frac_70_79 = 0,
   frac_80 = 0,
-  vaccine_type = 0,
-  efficacy = 1,
-  time_to_protect = 15,
-  vaccine_protection_period = 365
+  vaccine = -1,
+  fractions = NA
 )}\if{html}{\out{</div>}}
 }
 
@@ -82,15 +76,12 @@ wanes.}
 
 \item{\code{frac_80}}{Fraction of age group >80.}
 
-\item{\code{vaccine_type}}{The type of vaccine, see \code{\link{VACCINE_TYPES}}.}
+\item{\code{vaccine}}{A vaccine object}
 
-\item{\code{efficacy}}{Probability that the person is successfully vaccinated
-(must be \code{0 <= efficacy <= 1}).}
-
-\item{\code{time_to_protect}}{Delay before it takes effect (in days).}
-
-\item{\code{vaccine_protection_period}}{The duration of the vaccine before it
-wanes.}
+\item{\code{fractions}}{Fractions for all age groups. This is an alternative way
+\code{c(frac_0_9, frac_10_19, frac_20_29, frac_30_39, frac_40_49, frac_50_59, frac_60_69, frac_70_79, frac_80)}.
+If not \code{NA}, then the parameters prefixed by \code{frac_} are
+ignored.}
 }
 \if{html}{\out{</div>}}
 }

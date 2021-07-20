@@ -5,7 +5,7 @@
 \alias{VACCINE_STATUS}
 \title{Vaccine status}
 \format{
-An object of class \code{numeric} of length 5.
+An object of class \code{numeric} of length 7.
 }
 \usage{
 VACCINE_STATUS
@@ -22,8 +22,10 @@ Wrapper for \code{enum VACCINE_STATUS} (in \emph{constant.h}).
     \code{VACCINE_PROTECTED_FULLY}
   \item{VACCINE_PROTECTED_SYMPTOMS} Wrapper for C enum
     \code{VACCINE_PROTECTED_SYMPTOMS}
-  \item{VACCINE_WANED} Wrapper for C enum
-    \code{VACCINE_WANED}
+  \item{VACCINE_WANED_FULLY} Wrapper for C enum
+    \code{VACCINE_WANED_FULLY}
+  \item{VACCINE_WANED_SYMPTOMS} Wrapper for C enum
+    \code{VACCINE_WANED_SYMPTOMS}
 }
 }
 \keyword{datasets}

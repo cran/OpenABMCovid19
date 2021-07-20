@@ -32,6 +32,8 @@ check the C network still exists
 \item \href{#method-skip_quarantined}{\code{Network$skip_quarantined()}}
 \item \href{#method-type}{\code{Network$type()}}
 \item \href{#method-daily_fraction}{\code{Network$daily_fraction()}}
+\item \href{#method-transmission_multiplier}{\code{Network$transmission_multiplier()}}
+\item \href{#method-set_transmission_multiplier}{\code{Network$set_transmission_multiplier()}}
 \item \href{#method-update_daily_fraction}{\code{Network$update_daily_fraction()}}
 \item \href{#method-print}{\code{Network$print()}}
 }
@@ -162,6 +164,39 @@ down-sampling the network). Value between 0 and 1.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-transmission_multiplier"></a>}}
+\if{latex}{\out{\hypertarget{method-transmission_multiplier}{}}}
+\subsection{Method \code{transmission_multiplier()}}{
+Wrapper for C API \code{network_transmission_multiplier}.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Network$transmission_multiplier()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+The transmission multiplier for this network
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_transmission_multiplier"></a>}}
+\if{latex}{\out{\hypertarget{method-set_transmission_multiplier}{}}}
+\subsection{Method \code{set_transmission_multiplier()}}{
+Wrapper for C API \code{set_network_transmission_multiplier}.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Network$set_transmission_multiplier(val)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{val}}{New tranmission multiplier value to set.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+Sets the transmission multiplier for this network
+}
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-update_daily_fraction"></a>}}
 \if{latex}{\out{\hypertarget{method-update_daily_fraction}{}}}
 \subsection{Method \code{update_daily_fraction()}}{
@@ -173,7 +208,7 @@ Wrapper for C API \code{update_daily_fraction}.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{daily_fraction}}{New fraction value; a value vetween 0 and 1.}
+\item{\code{daily_fraction}}{New fraction value; a value between 0 and 1.}
 }
 \if{html}{\out{</div>}}
 }

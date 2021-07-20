@@ -3,19 +3,19 @@
 \name{Model.run}
 \alias{Model.run}
 \title{Runs the simulation until the \code{end_time} specified in the parameters
-(wrapper for  \code{\link{Model}run()})}
+(wrapper for \code{\link{Model}$run()})}
 \usage{
-Model.run(model, verbose = TRUE)
+Model.run(model, n_steps = NULL, verbose = TRUE)
 }
 \arguments{
 \item{model}{The Model object (R6 Class)}
 
+\item{n_steps}{Number of simulation steps to run. \code{NULL} means that
+the simulation runs until the end (parameter \code{"end_time")}).}
+
 \item{verbose}{Show progress of the calculation (default = TRUE)}
-}
-\value{
-Null
 }
 \description{
 Runs the simulation until the \code{end_time} specified in the parameters
-(wrapper for  \code{\link{Model}run()})
+(wrapper for \code{\link{Model}$run()})
 }

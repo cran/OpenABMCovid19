@@ -1,5 +1,5 @@
 Package: OpenABMCovid19
-Version: 1.0
+Version: 1.0.1
 Title: Agent-Based Model for Modelling the COVID-19
 License: GPL-3
 Authors@R: 
@@ -53,14 +53,14 @@ Description:
 Depends: R6
 Imports: methods, xptr
 Collate: OpenABMCovid19.R util.R Parameters.R Network.R Model.R
-        Simulation.R VaccineSchedule.R
+        Simulation.R Strain.R VaccineSchedule.R Vaccine.R
 Suggests: testthat
 RoxygenNote: 7.1.1
 Encoding: UTF-8
 SystemRequirements: GNU GSL
 Biarch: FALSE
 NeedsCompilation: yes
-Packaged: 2021-05-14 14:37:19 UTC; olegat
+Packaged: 2021-07-16 13:30:58 UTC; olegat
 Author: Oli Legat [cre],
   Robert Hinch [aut],
   Will Probert [aut] (a.k.a. p-robot),
@@ -99,4 +99,4 @@ Author: Oli Legat [cre],
   rory-improbable [ctb]
 Maintainer: Oli Legat <olegat@google.com>
 Repository: CRAN
-Date/Publication: 2021-05-17 07:10:10 UTC
+Date/Publication: 2021-07-20 10:40:02 UTC
